@@ -1,0 +1,55 @@
+/* mobile-slide 图片轮播 */
+
+.mobile-slide {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100px;
+    overflow: hidden;
+}
+
+.mobile-slide-list {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+}
+
+.mobile-slide-item {
+    float: left;
+    display: block;
+    height: 100%;
+}
+
+.mobile-slide-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.mobile-slide-radius {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    z-index: 1;
+    width: 100%;
+ 
+    text-align: center;
+}
+
+.mobile-slide-radius span {
+    display: inline-block;
+    height: 6px;
+    width:6px;
+    padding: 0;
+    background: $slide-rd-df;
+    border:1px solid $slide-rd-df;
+    border-radius: 50%;
+     margin-left: 2rem/$rem;
+    
+    &.active {
+    background: $slide-rd-active;
+     border:1px solid $slide-rd-active;
+}
+}
+

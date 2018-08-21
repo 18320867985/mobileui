@@ -1,0 +1,104 @@
+/*table-view*/
+
+.mobile-table-view {
+    display: flex;
+    flex-flow: column nowrap;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    
+    /*圆角table*/
+    &.mobile-table-view-rd {
+        margin: 10rem/$rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    >.mobile-table-view-cell {
+        display: flex;
+        flex-flow: row wrap;
+        align-content: space-between;
+        margin-left: 10rem/$rem;
+        font-size: 14rem/$rem;
+       
+        &+.mobile-table-view-cell {
+            border-top: 1px solid #ddd;
+        }
+        
+        >.mobile-table-view-ttl,
+        >a {
+            display: flex;
+            width: 90%;
+            justify-content: flex-start;
+            align-items: center;
+            text-overflow: ellipsis;
+             padding: 10rem/$rem;
+            white-space: nowrap;
+            word-wrap: break-word;
+            overflow-x: hidden;
+        }
+         >.mobile-table-view-ttl{
+             font-size: 15rem/$rem;
+             color:#777;
+             &.active{
+                 color:$active-color;
+             }
+         }
+        .iconfont {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 10%;
+            font-size: 20rem/$rem;
+            color: #999;
+            
+        }
+        .mobile-table-view-ttl+.iconfont{
+              transform: rotate(90deg);
+                transition: all .5s;
+            &.active{
+                  transform:  rotate(-90deg);
+                
+            }
+        }
+        
+      
+    }
+}
+
+.mobile-table-view-collapse {
+ 
+    width: 100%;
+    background: #f8f8f8;
+    display: none;
+    margin-left: 15rem/$rem;
+    >.mobile-table-view-cell {
+        display: flex;
+        flex-flow: row wrap;
+        align-content: flex-start;
+        font-size: 14rem/$rem;
+        &+.mobile-table-view-cell {
+            border-top: 1px solid #ddd;
+        }
+        a {
+            display: flex;
+            width: 90%;
+            justify-content: flex-start;
+            align-items: center;
+             padding: 10rem/$rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: break-word;
+            overflow-x: hidden;
+        }
+        .iconfont {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 10%;
+            font-size: 20rem/$rem;
+            color: #999;
+        }
+    }
+}
+

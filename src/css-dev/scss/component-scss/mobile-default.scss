@@ -1,0 +1,52 @@
+
+/*default*/
+.mobile-title{
+    padding: .5rem;
+    font-size: 15rem/$rem;
+ 
+  
+   
+}
+
+/*display*/
+.mobile-hide {
+    display: none;
+}
+.mobile-show {
+    display:  block;
+}
+.mobile-hide-text-index {
+    position: absolute !important;
+    display: inline-block !important;
+    text-indent: -99999px;
+    margin: -2px !important;
+    padding: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    outline: none !important;
+}
+
+/*ellipsis*/
+.mobile-.ellipsis {
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.mobile-ellipsis-no {
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.mobile-ellipsis-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal!important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+}
+

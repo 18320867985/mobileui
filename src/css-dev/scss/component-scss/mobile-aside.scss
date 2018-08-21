@@ -1,0 +1,60 @@
+
+.mobile-aside  {
+    width: 100%;
+    height: 100%;
+}
+
+.mobile-aside-menu{
+    position: relative;
+    height: 100%;
+   
+     background: #f8f8f8;
+     
+}
+.mobile-aside-ttl{
+    width: 100%;
+     height: 35rem/$rem;
+    line-height: 35rem/$rem;
+    text-align: center;
+    background: #f8f8f8;
+     border-bottom: 1px solid #ddd;
+     &.active{
+         background: $active-bg;
+         color: #fff;
+     }
+     &:first-child{
+         border-top: 1px solid #ddd;
+     }
+   
+}
+
+
+.mobile-aside-content {
+    height: 100%;
+  
+}
+
+.mobile-aside-item {
+    display: none;
+    
+    &.active{
+        display: block;
+    }
+    .mobile-scroll-content{
+        padding: 0.25rem; ;
+    }
+}
+
+.mobile-aside-content  .mobile-scroll-content-many{
+    
+    position: relative;
+    top: 0;
+    left: 0;
+     display: none;
+    min-height: 100%;
+    padding: 5px;
+    background: #fff;
+    &.active {
+        display: block;
+    }
+}

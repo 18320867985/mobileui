@@ -1,0 +1,59 @@
+.mobile-scroll-topbottom {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+    
+    .mobile-scroll-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    min-height: 100%;
+    background: #fff;
+    
+}
+
+    /*置顶文字*/
+    .mobile-toptext {
+        
+        width: 100%;
+        padding: 20px;
+        margin-top: 10%;
+        text-align: center;
+        color: #bbb;
+    }
+    
+    /*加载图标*/
+    .mobile-loading {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        color: #777;
+        background: #fff;
+       // box-shadow: 0 1px 2px 2px #f8f8f8;
+    }
+
+}
+
+
+
+/*滚动条*/
+.mobile-scroll-bar {
+    position: absolute;
+    top: 0;
+    right: 1px;
+    z-index: 9999;
+    width: 3px;
+    background: rgba(#999, 0.8);
+    border-radius: 8px;
+    opacity: 1;
+
+}
+

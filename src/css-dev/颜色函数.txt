@@ -1,0 +1,16 @@
+	
+lighten(@color, 10%);     // 减轻
+darken(@color, 10%);      // 变暗
+
+saturate(@color, 10%);    // 饱和/浸湿
+desaturate(@color, 10%);  //不饱和/去色
+
+
+fadein(@color, 10%);      // 渐明
+fadeout(@color, 10%);     // 淡出
+fade(@color, 50%);        //褪色
+
+spin(@color, 10);         // 眩晕
+spin(@color, -10);        
+
+mix(@color1, @color2);    // 混合

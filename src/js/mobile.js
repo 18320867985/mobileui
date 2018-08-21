@@ -12,9 +12,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /*
  *	移动端 公共类库
+ * 作者：724485868@qq.com
  */
 
 (function (global, factory) {
+
 	//  cmd commonjs
 	if ((typeof module === "undefined" ? "undefined" : _typeof(module)) === "object" && _typeof(module.exports) === "object") {
 		module.exports = factory(global);
@@ -487,9 +489,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			for (var i = 0; i < obj.length; i++) {
 
 				var p = _searchParents(obj[i], function (elm) {
-					var bl = false;
-					bl = Mobile.checkSelector(elm, selector);
-					return bl;
+					return Mobile.checkSelector(elm, selector);
 				});
 
 				delete obj[i];
@@ -513,9 +513,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 					arr.push(obj[i]);
 				} else {
 					p = _searchParents(obj[i], function (elm) {
-						var bl = false;
-						bl = Mobile.checkSelector(elm, selector);
-						return bl;
+						return Mobile.checkSelector(elm, selector);
 					});
 				}
 				delete obj[i];

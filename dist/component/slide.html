@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>mobile触摸页面</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			.mobile-scroll-content h4 {
+				height: 30px;
+				line-height: 30px;
+				color: #777;
+				text-align: center;
+			}
+			
+			.mobile-slide {
+				height: 8rem;
+			}
+			
+			p {
+				line-height: 28px;
+			}
+			
+			.wz {
+				padding: 10px;
+				background: #f8f8f8;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/font/iconfont.css"/>		
+		<link rel="stylesheet" type="text/css" href="../css/mobile.css" />
+
+	</head>
+
+	<body>
+
+		<!--header-->
+		<header class="mobile-head">
+			<span class="mobile-back iconfont icon-back-left"></span>
+			<h2 class="mobile-head-ttl">轮播slide滑动组件</h2>
+		</header>
+
+		<!--content-->
+		<section class="mobile-content mobile-scroll-topbottom" data-scroll-bottom data-scroll-top data-scroll-bar>
+
+			<div class=" mobile-scroll-content">
+
+				<!--slide滑动组件-->
+				<!--轮播图 data-time="3000" data-auto="自动播放"  data-no-loop="禁止循环" -->
+				<h4>自动轮播</h4>
+				<div class="mobile-slide  clearfix" data-time="3000" data-auto="自动播放">
+
+					<ul class="mobile-slide-list">
+						<li class="mobile-slide-item">
+							<a href="scroll.html" id="a">
+									<img src="../images/slider.png" alt="">
+							</a>
+							<!--<div class="wz">
+								<p>1习近平等党和国家领导人出席全国政协十三届一次会议闭幕会</p>
+								<p>1习近平等党和国家领导人出席全国政协十三届一次会议闭幕会</p>
+								<p>1习近平等党和国家领导人出席全国政协十三届一次会议闭幕会</p>
+								<p>1习近平等党和国家领导人出席全国政协十三届一次会议闭幕会</p>
+								<p>1习近平等党和国家领导人出席全国政协十三届一次会议闭幕会</p>
+								<p>1习近平等党和国家领导人出席全国政协十三届一次会议闭幕会</p>
+								<p>1习近平等党和国家领导人出席全国政协十三届一次会议闭幕会</p>
+
+							</div>-->
+
+						</li>
+						<li class="mobile-slide-item">
+							<a href="http://www.51zxw.com">
+									<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+						<li class="mobile-slide-item">
+							<a href="javascript:;">
+									<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+						<li class="mobile-slide-item">
+							<a href="javascript:;">
+									<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+						<li class="mobile-slide-item">
+							<a href="javascript:;">
+									<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+					</ul>
+
+					<div class="mobile-slide-radius">
+						<span class="active"></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+
+				</div>
+				
+
+				<!--slide滑动组件-->
+				<!--轮播图 data-time="3000" data-auto="自动播放"  data-no-loop="禁止循环" -->
+				<h4>禁止自动轮播</h4>
+				<div class="mobile-slide  clearfix">
+
+					<ul class="mobile-slide-list ">
+						<li class="mobile-slide-item">
+							<a href="#">
+									<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+						<li class="mobile-slide-item">
+							<a href="http://www.51zxw.com">
+									<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+						<li class="mobile-slide-item">
+							<a href="javascript:;">
+									<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+						<li class="mobile-slide-item">
+							<a href="javascript:;">
+									<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+						<li class="mobile-slide-item">
+							<a href="javascript:;">
+									<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+					</ul>
+
+					<div class="mobile-slide-radius">
+						<span class="active"></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+
+				</div>
+				
+
+				<h4>禁止自动轮播和禁止循环</h4>
+				<!--slide滑动组件-->
+				<!--轮播图 data-time="3000" data-auto="自动播放"  data-no-loop="禁止循环" -->
+				<div class="mobile-slide  clearfix" data-no-loop="禁止循环">
+
+					<ul class="mobile-slide-list">
+						<li class="mobile-slide-item">
+							<a href="#" id="a">
+								<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+						<li class="mobile-slide-item">
+							<a href="http://www.51zxw.com">
+								<img src="../images/slider.png" alt="">
+							</a>
+						</li>
+
+					</ul>
+
+					<div class="mobile-slide-radius">
+						<span class="active"></span>
+						<span></span>
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+		<!--footer-->
+		<!--<footer class="mobile-footer">
+			<h2>页脚</h2>
+		</footer>-->
+
+		<script src="../js/mobile.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		</script>
+
+	</body>
+
+</html>

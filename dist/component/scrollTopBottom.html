@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>mobile触摸页面</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			.mobile-slide {
+				height: 8rem;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/font/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/mobile.css" />
+
+	</head>
+
+	<body>
+		<!--header-->
+		<header class="mobile-head">
+			<span class="mobile-back iconfont icon-back-left"></span>
+			<h2 class="mobile-head-ttl">上下slide滑动组件</h2>
+		</header>
+
+		<!--content-->
+		<!-- data-scroll-top 是否下拉#   data-scroll-bottom 是否上拉   data-scroll-bar 是否显示滚动条 data-loading=是否上拉加载数据 -->
+		<section class="mobile-content ">
+			<div class="mobile-scroll-topbottom" data-scroll-bar  data-loading>
+
+				<div class="mobile-toptext">别拉了，我已到顶了。</div>
+				<div class=" mobile-scroll-content">
+
+					<div class="mobile-slide clearfix " data-time="3000" data-auto="自动播放">
+
+						<ul class="mobile-slide-list">
+							<li class="mobile-slide-item">
+								<a href="slide.html" id="a">
+									<img src="../images/slider.png" alt="">
+								</a>
+							</li>
+							<li class="mobile-slide-item">
+								<a href="scroll.html">
+									<img src="../images/slider.png" alt="">
+								</a>
+							</li>
+							<li class="mobile-slide-item">
+								<a href="javascript:;">
+									<img src="../images/slider.png" alt="">
+								</a>
+							</li>
+							<li class="mobile-slide-item">
+								<a href="javascript:;">
+									<img src="../images/slider.png" alt="">
+								</a>
+							</li>
+							<li class="mobile-slide-item">
+								<a href="javascript:;">
+									<img src="../images/slider.png" alt="">
+								</a>
+							</li>
+						</ul>
+
+						<div class="mobile-slide-radius">
+							<span class="active"></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+
+					</div>
+					<!-- 包含a连接 加mobile-link -->
+					<ul class="mobile-loading-content scrolltopbottom  mobile-link clearfix">
+						<!--<li>
+							<img src="../images/index-list-1.png" alt="" />
+							<h5>Theland新西兰进口牛奶牛市兰</h5>
+							<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+							<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+							<div class="op clearfix">
+								<span class="price">79.9元/箱</span>
+								<button class="btn" type="button">立即购买</button>
+							</div>
+						</li>
+						<li>
+							<img src="../images/index-list-2.png" alt="" />
+							<h5>Theland新西兰进口牛奶牛市兰</h5>
+							<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+							<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+							<div class="op clearfix">
+								<span class="price">79.9元/箱</span>
+								<button class="btn" type="button">立即购买</button>
+							</div>
+						</li>
+						<li>
+							<img src="../images/index-list-3.png" alt="" />
+							<h5>Theland新西兰进口牛奶牛市兰</h5>
+							<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+							<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+							<div class="op clearfix">
+								<span class="price">79.9元/箱</span>
+								<button class="btn" type="button">立即购买</button>
+							</div>
+						</li>
+						<li>
+							<img src="../images/index-list-4.png" alt="" />
+							<h5>Theland新西兰进口牛奶牛市兰</h5>
+							<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+							<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+							<div class="op clearfix">
+								<span class="price">79.9元/箱</span>
+								<button class="btn" type="button">立即购买</button>
+							</div>
+						</li>-->
+
+					</ul>
+					<div class="mobile-loading">
+						上拉加载更多
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--footer-->
+		<!--<footer class="mobile-footer">
+				<h2>页脚</h2>
+		</footer>-->
+
+		<script src="../js/mobile.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			m(function() {
+
+				// 拉到底部 加载数据
+				var count = 0;
+				m(".mobile-scroll-topbottom").on("scrollloading", function(event) {
+					var bottomcontent = m(event.detail.el);
+					var loading = event.detail.loading || {};
+					var translateY = event.detail.translateY || 0;
+					var loadingY = event.detail.loadingY || 0;
+					var isLoading = event.detail.isLoading || false;
+
+					if(!isLoading) {
+						return;
+
+					}
+
+					if(!bottomcontent.hasAttr("firstbottom")) {
+						bottomcontent.attr("firstbottom", true); //异步加载标识
+						m(loading).html("正在加载中...");
+						setTimeout(function() {
+
+							m.get("../json/topbottom.json", function(data) {
+								var temp = "";
+								///data = JSON.parse(data)
+								data.forEach(function(item) {
+									temp +=
+										`<li>
+										<img src="${item.src}" alt="" />
+										<h5>Theland新西兰进口牛奶牛市兰</h5>
+										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+										<div class="op clearfix">
+											<span class="price">79.9元/箱</span>
+											<button class="btn" type="button">立即购买</button>
+										</div>
+									</li>
+								`;
+
+								});
+								//console.log(++count);
+								bottomcontent.find(".mobile-loading-content").append(temp);
+								m(loading).html("上拉加载更多");
+
+								if(event.detail.resetBar) {
+									event.detail.resetBar(); // 重置滚动条
+								}
+								bottomcontent.attr("data-trigger", true); // 标记元素第一次已触发过
+								bottomcontent.removeAttr("firstbottom"); //异步加载标识
+
+							}, function() {
+								bottomcontent.removeAttr("firstbottom"); //异步加载标识
+								m(loading).html("数据加载失败");
+							});
+						}, 500);
+					}
+
+				});
+
+				// 第一屏 第一次出发触发scrollbottom
+				m(".mobile-scroll-topbottom").emit("scrollloading", {
+					el: m(".mobile-scroll-topbottom").find(".mobile-scroll-content").eq(0),
+					loading: m(".mobile-scroll-topbottom").find(".mobile-loading"),
+					isLoading: true
+				});
+
+				// 拉到顶部
+				m(".mobile-scroll-topbottom").on("scrolltop", function(event) {
+
+					//console.log(event.detail);
+					//console.log("scrolltop");
+				})
+
+				// 滚动
+				m(".mobile-scroll-topbottom").on("scrolltopbottom", function(event) {
+
+					//console.log(event.detail);
+					//console.log("scrolltopbottom");
+				})
+
+			});
+		</script>
+
+	</body>
+
+</html>

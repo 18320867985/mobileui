@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>mobile触摸页面</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			p {
+				line-height: 1.4rem;
+				font-size: .8rem;
+				padding: .25rem;
+				background: #fafafa;
+				margin-bottom: .25rem;
+				border-radius: .25rem;
+			}
+			
+			.mobile-aside-content span {
+				display: block;
+				padding: .25rem;
+				margin-bottom: 1rem;
+				background: #f8f8f8;
+				color: #999;
+				
+		
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mobile.css" />
+
+	</head>
+
+	<body>
+
+		<!--header-->
+		<header class="mobile-head">
+			<span class="mobile-back iconfont icon-back-left"></span>
+			<h2 class="mobile-head-ttl">aside侧边菜单</h2>
+		</header>
+
+		<!--content-->
+		<section class="mobile-content ">
+
+			<div class="mobile-aside  clearfix">
+
+				<!--侧边菜单 data-trigger=触发scrollbottom事件  data-position-center=定位中间 data-position-top=顶部-->
+				<aside class="mobile-aside-menu width-2" data-position-top data-trigger>
+					<div class="mobile-scroll-topbottom" data-scroll-top data-scroll-bottom>
+						<ul class="mobile-scroll-content">
+							<li class="mobile-aside-ttl active" data-target="#page1">
+								第1屏
+							</li>
+
+						</ul>
+					</div>
+				</aside>
+
+				<!--菜单内容  -->
+				<div class="mobile-aside-content  width-8">
+					<div class=" mobile-scroll-topbottom " data-scroll-top data-scroll-bottom data-scroll-bar data-loading>
+						<!--异步加载内容很有用 mobile-scroll-content-many内容hide 只一个显示active-->
+						<div class="mobile-aside-item  mobile-scroll-content-many active   " id="page1">
+							<div class="mobile-loading-content">
+								<p>第1屏</p>
+							</div>
+							<div class="mobile-loading">
+								上拉加载更多
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+		<!--footer-->
+		<!--<footer class="mobile-footer">
+			<h2>页脚</h2>
+		</footer>-->
+
+		<script src="../js/mobile.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			m(function() {
+
+				// 添加左边菜单
+				var menu_content = m(".mobile-aside-menu ul");
+				var docfrag = document.createDocumentFragment();
+				// 添加内容 
+				var tab_content = m(".mobile-aside-content  .mobile-scroll-topbottom");
+				var tab_docfrag = document.createDocumentFragment();
+
+				for(var i = 2; i < 41; i++) {
+
+					// 添加左边菜单
+					//<li class="mobile-aside-ttl active" data-target="#page1"></li>
+					var li = document.createElement("li");
+					li.classList.add("mobile-aside-ttl");
+					li.setAttribute("data-target", "#page" + i);
+					li.innerHTML = "第" + i + "屏";
+					docfrag.appendChild(li);
+
+					// 添加内容 
+					//<div class="mobile-scroll-content-many  ">
+					var div = document.createElement("div");
+					div.classList.add("mobile-scroll-content-many");
+					div.classList.add("mobile-aside-item");
+					div.setAttribute("id", "page" + i);
+
+					var div2 = document.createElement("div");
+					div2.classList.add("mobile-loading-content");
+					var p = document.createElement("p");
+					p.innerHTML = "第" + i + "屏";
+					div2.appendChild(p)
+
+					var div3 = document.createElement("div");
+					div3.classList.add("mobile-loading");
+					div3.innerHTML = "上拉加载更多";
+					div.appendChild(div2);
+					div.appendChild(div3)
+					tab_docfrag.appendChild(div);
+
+				}
+				menu_content.append(docfrag);
+				tab_content.append(tab_docfrag);
+
+				// 拉到底部 加载数据
+				var count = 0;
+				m(".mobile-aside-content  .mobile-scroll-topbottom").on("scrollloading", function(event) {
+					var bottomcontent = m(event.detail.el);
+					var loading = event.detail.loading || {};
+					var translateY = event.detail.translateY || 0;
+					var loadingY = event.detail.loadingY || 0;
+					var isLoading = event.detail.isLoading || false;
+
+					if(!isLoading) {
+						return;
+
+					}
+
+					if(!bottomcontent.hasAttr("firstbottom")) {
+						bottomcontent.attr("firstbottom", true); //异步加载标识
+						m(loading).html("正在加载中...");
+						setTimeout(function() {
+
+							m.get("../json/tab.json", function(data) {
+								data = data.map(function(item) {
+									return {
+										content: bottomcontent.attr("id") + "#" + item.content,
+										dt: item.dt
+									};
+								});
+								//console.log(data)
+								var temp = "";
+								data.forEach(function(item) {
+									temp +=
+										`
+										<p>${item.content}</p>
+										<span>日期:${m.jsonToDate(item.dt,"yyyy-MM-dd HH:mm:ss")}</span>	
+									`;
+
+								});
+								//console.log(++count);
+								bottomcontent.find(".mobile-loading-content").append(temp);
+								m(loading).html("上拉加载更多");
+
+								if(event.detail.resetBar) {
+									event.detail.resetBar(); // 重置滚动条
+								}
+								bottomcontent.attr("data-trigger", true); // 标记元素第一次已触发过
+								bottomcontent.removeAttr("firstbottom"); //异步加载标识
+
+							}, function() {
+								bottomcontent.removeAttr("firstbottom"); //异步加载标识
+								m(loading).html("数据加载失败");
+							});
+						}, 500);
+					}
+
+				});
+
+				// 第一屏 第一次出发触发scrollbottom
+				m(".mobile-scroll-content-many.active").emit("scrollloading", {
+					el: m(".mobile-scroll-content-many.active"),
+					loading: m(".mobile-scroll-content-many.active").find(".mobile-loading"),
+					isLoading: true
+				});
+				
+				
+			});
+		</script>
+
+	</body>
+
+</html>

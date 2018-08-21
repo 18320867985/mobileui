@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>mobile触摸页面-固定顶部的tab</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			.mobile-tab-slide .mobile-scroll-content {
+				padding: 5px;
+			}
+			
+			p {
+				line-height: 1.4rem;
+				font-size: .8rem;
+				padding: .25rem;
+				background: #fafafa;
+				margin-bottom: .25rem;
+				border-radius: .25rem;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/font/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/mobile.css" />
+
+	</head>
+
+	<body>
+		<!--head-->
+		<div class="mobile-head">
+			<span class="mobile-back iconfont icon-back-left"></span>
+			<h2 class="mobile-head-ttl">固定顶部的tab标签</h2>
+		</div>
+		<!--定位到顶部-->
+		<div class="mobile-tab mobile-tab-top">
+			<!--左右滑动组件 data-position-left=定位到left data-position-center=定位到center data-trigger=允许触发scrollloading事件 -->
+			<ul class="mobile-tab-nav mobile-tab-fixed" data-trigger>
+				<li class="active width-2" data-target="#page1">
+					第1屏
+				</li>
+				<li data-target="#page2" class="width-2">
+					第2屏
+				</li>
+				<li data-target="#page3" class="width-2">
+					第3屏
+				</li>
+				<li data-target="#page4" class="width-2">
+					第4屏
+				</li>
+				<li data-target="#page5" class="width-2">
+					第5屏
+				</li>
+
+			</ul>
+
+		</div>
+
+		<!--content-->
+		<section class="mobile-content">
+
+			<!--tab 左右滑动内容 data-drag=左右两边回弹  data-transition="是否左右滑动动画"  data-trigger=允许触发scrollloading事件 -->
+			<div class="mobile-tab-slide" data-transition="是否左右滑动动画" data-drag data-trigger>
+				<div class="mobile-tab-slide-list">
+					<div id="page1" class="mobile-tab-slide-item  mobile-scroll-topbottom" data-scroll-bar data-loading>
+						<div class="mobile-scroll-content">
+							<div class="mobile-loading-content">
+								<p>第1屏</p>
+
+							</div>
+							<div class="mobile-loading">
+								上拉加载更多
+							</div>
+
+						</div>
+					</div>
+
+					<div id="page2" class="mobile-tab-slide-item mobile-scroll-topbottom" data-scroll-bar data-loading>
+						<div class="mobile-scroll-content">
+							<div class="mobile-loading-content">
+								<p>第2屏</p>
+
+							</div>
+							<div class="mobile-loading">
+								上拉加载更多
+							</div>
+
+						</div>
+
+					</div>
+
+					<div id="page3" class="mobile-tab-slide-item mobile-scroll-topbottom" data-scroll-bar data-loading>
+						<div class="mobile-scroll-content">
+							<div class="mobile-loading-content">
+								<p>第3屏</p>
+
+							</div>
+							<div class="mobile-loading">
+								上拉加载更多
+							</div>
+
+						</div>
+					</div>
+
+					<div id="page4" class="mobile-tab-slide-item mobile-scroll-topbottom" data-scroll-bar data-loading>
+						<div class="mobile-scroll-content">
+							<div class="mobile-loading-content">
+								<p>第4屏</p>
+
+							</div>
+							<div class="mobile-loading">
+								上拉加载更多
+							</div>
+
+						</div>
+					</div>
+
+					<div id="page5" class="mobile-tab-slide-item mobile-scroll-topbottom" data-scroll-bar data-loading>
+						<div class="mobile-scroll-content">
+							<div class="mobile-loading-content">
+								<p>第5屏</p>
+
+							</div>
+							<div class="mobile-loading">
+								上拉加载更多
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+		<!--定位到底部-->
+		<!--<div class="mobile-tab mobile-tab-bottom">
+			<nav class="mobile-tab-nav">
+				<div class="mobile-tab-item width-2-5 active">
+					<span>首页</span>
+				</div>
+
+				<div class="mobile-tab-item width-2-5">
+					<span class="">电话</span>
+				</div>
+
+				<div class="mobile-tab-item width-2-5">
+					<span>邮件</span>
+				</div>
+				<div class="mobile-tab-item width-2-5">
+					<span>设置</span>
+				</div>
+
+			</nav>
+
+		</div>-->
+
+		<!--footer-->
+		<!--<footer class="mobile-footer">
+				<h2>页脚</h2>
+		</footer>-->
+
+		<script type="text/html" id="must">
+			{{#must}}
+
+			<p>{{content}}</p>
+
+			{{/must}}
+		</script>
+		<script src="../js/mobile.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			m(function() {
+
+				// 拉到底部 加载数据
+				m(".mobile-tab-slide-item.mobile-scroll-topbottom").on("scrollloading", function(event) {
+					var bottomcontent = m(event.detail.el);
+					var loading = event.detail.loading || {};
+					var translateY = event.detail.translateY || 0;
+					var loadingY = event.detail.loadingY || 0;
+					var isLoading = event.detail.isLoading || false;
+
+					if(!isLoading) {
+						return;
+
+					}
+
+					if(!bottomcontent.hasAttr("firstbottom")) {
+						bottomcontent.attr("firstbottom", true); //异步加载标识
+						m(loading).html("正在加载中...");
+						setTimeout(function() {
+
+							m.get("../json/tab.json", function(data) {
+								data = data.map(function(item) {
+									return {
+										content: bottomcontent.parent().attr("id") + "#" + item.content
+									};
+								});
+
+								var temp = "";
+								data.forEach(function(item) {
+									temp +=
+										`
+									<p>${item.content}</p>
+								`
+
+								});
+								//console.log(++count);
+								bottomcontent.find(".mobile-loading-content").append(temp);
+								m(loading).html("上拉加载更多");
+
+								if(event.detail.resetBar) {
+									event.detail.resetBar(); // 重置滚动条
+								}
+								bottomcontent.attr("data-trigger", true); // 标记元素第一次已触发过
+								bottomcontent.removeAttr("firstbottom"); //异步加载标识
+
+							}, function() {
+								bottomcontent.removeAttr("firstbottom"); //异步加载标识
+								m(loading).html("数据加载失败");
+							});
+						}, 500);
+					}
+
+				});
+
+				// 第一屏 第一次出发触发scrollbottom
+				m("#page1").emit("scrollloading", {
+					el: m("#page1").find(".mobile-scroll-content").eq(0),
+					loading: m("#page1").find(".mobile-loading"),
+					isLoading: true
+				});
+
+			});
+		</script>
+
+	</body>
+
+</html>

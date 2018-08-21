@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>mobile触摸页面</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			h4 {
+				height: 30px;
+				line-height: 30px;
+				color: #777;
+				text-align: center;
+				background: #F8F8F8;
+			}
+			
+			.mobile-scroll-content{
+				
+			}
+			
+			.mobile-scroll-leftright {
+				margin-bottom: 10px;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mobile.css" />
+
+	</head>
+
+	<body>
+
+		<!--header-->
+		<header class="mobile-head">
+			<span class="mobile-back iconfont icon-back-left"></span>
+			<h2 class="mobile-head-ttl">左右滑动组件</h2>
+		</header>
+
+		<div class="mobile-tab mobile-tab-top">
+			<h4>定位到中间</h4>
+			<!--左右滑动组件  data-position-left=定位到left data-position-center=定位到center -->
+			<!--只能被套在mobile-head 或 mobile-tab 中--->
+			<nav class="mobile-scroll-leftright" data-position-center>
+				<ul class="mobile-scroll-content">
+					<li class="active">
+						<a href="javascript:;">首页</a>
+					</li>
+					<li>
+						<a href="javascript:;">MV</a>
+					</li>
+					<li>
+						<a href="javascript:;">悦单</a>
+					</li>
+					<li>
+						<a href="javascript:;">V榜</a>
+					</li>
+					<li>
+						<a href="javascript:;">音悦</a>
+					</li>
+					<li>
+						<a href="javascript:;">商城</a>
+					</li>
+					<li>
+						<a href="javascript:;">节目</a>
+					</li>
+					<li>
+						<a href="javascript:;">饭团</a>
+					</li>
+					<li>
+						<a href="javascript:;">资讯</a>
+					</li>
+					<li>
+						<a href="javascript:;">我的家</a>
+					</li>
+
+				</ul>
+			</nav>
+
+			<h4>定位到左边</h4>
+			<!--左右滑动组建  data-position-left=定位到left data-position-center=定位到center -->
+			<nav class="mobile-scroll-leftright" data-position-left>
+				<ul class="mobile-scroll-content">
+					<li class="active">
+						<a href="javascript:;">首页</a>
+					</li>
+					<li>
+						<a href="javascript:;">MV</a>
+					</li>
+					<li>
+						<a href="javascript:;">悦单</a>
+					</li>
+					<li>
+						<a href="javascript:;">V榜</a>
+					</li>
+					<li>
+						<a href="javascript:;">音悦</a>
+					</li>
+					<li>
+						<a href="javascript:;">商城</a>
+					</li>
+					<li>
+						<a href="javascript:;">节目</a>
+					</li>
+					<li>
+						<a href="javascript:;">饭团</a>
+					</li>
+					<li>
+						<a href="javascript:;">资讯</a>
+					</li>
+					<li>
+						<a href="javascript:;">我的家</a>
+					</li>
+
+				</ul>
+			</nav>
+
+			<h4>内容小的window窗体</h4>
+			<!--左右滑动组建  data-position-left=定位到left data-position-center=定位到center -->
+			<nav class="mobile-scroll-leftright" data-position-center>
+				<ul class="mobile-scroll-content">
+					<li class="active">
+						<a href="javascript:;">首页</a>
+					</li>
+					<li>
+						<a href="javascript:;">MV</a>
+					</li>
+					<li>
+						<a href="javascript:;">悦单</a>
+					</li>
+					<li>
+						<a href="javascript:;">V榜2</a>
+					</li>
+
+				</ul>
+			</nav>
+
+		</div>
+
+		<!--footer-->
+		<footer>
+
+		</footer>
+
+		<script src="../js/mobile.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 选中样式的事件
+			m(".mobile-scroll-leftright").on("scrollselect", function(event) {
+
+				console.log(m(event.detail).find("a").text());
+
+			})
+		</script>
+
+	</body>
+
+</html>

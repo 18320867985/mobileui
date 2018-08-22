@@ -16,16 +16,16 @@
 	</head>
 
 	<body>
-		<!--header-->
-		<header class="mobile-head">
+		<!--tab组件-->
+		<div class="mobile-head">
 			<span class="mobile-back iconfont icon-back-left"></span>
-			<h2 class="mobile-head-ttl">上下slide滑动组件</h2>
-		</header>
+			<h2 class="mobile-head-ttl">上下滑动组件</h2>
+		</div>
 
 		<!--content-->
 		<!-- data-scroll-top 是否下拉#   data-scroll-bottom 是否上拉   data-scroll-bar 是否显示滚动条 data-loading=是否上拉加载数据 -->
 		<section class="mobile-content ">
-			<div class="mobile-scroll-topbottom" data-scroll-bar  data-loading>
+			<div class="mobile-scroll-topbottom" data-scroll-bar data-scroll-bottom data-scroll-top data-loading>
 
 				<div class="mobile-toptext">别拉了，我已到顶了。</div>
 				<div class=" mobile-scroll-content">
@@ -72,6 +72,7 @@
 					<!-- 包含a连接 加mobile-link -->
 					<ul class="mobile-loading-content scrolltopbottom  mobile-link clearfix">
 						<!--<li>
+							<a href="aside.html">
 							<img src="../images/index-list-1.png" alt="" />
 							<h5>Theland新西兰进口牛奶牛市兰</h5>
 							<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
@@ -80,6 +81,7 @@
 								<span class="price">79.9元/箱</span>
 								<button class="btn" type="button">立即购买</button>
 							</div>
+							</a>
 						</li>
 						<li>
 							<img src="../images/index-list-2.png" alt="" />
@@ -120,14 +122,38 @@
 			</div>
 		</section>
 
+		<!--<div class="mobile-tab mobile-tab-bottom">
+			<nav class="mobile-tab-nav">
+				<div class="mobile-tab-item width-2-5 active">
+					<span>首页</span>
+				</div>
+
+				<div class="mobile-tab-item width-2-5">
+					<span class="">电话</span>
+				</div>
+
+				<div class="mobile-tab-item width-2-5">
+					<span>邮件</span>
+				</div>
+				<div class="mobile-tab-item width-2-5">
+					<span>设置</span>
+				</div>
+
+			</nav>
+
+		</div>-->
+
 		<!--footer-->
 		<!--<footer class="mobile-footer">
 				<h2>页脚</h2>
 		</footer>-->
 
+		</script>
 		<script src="../js/mobile.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			
 			m(function() {
+
 
 				// 拉到底部 加载数据
 				var count = 0;
@@ -154,15 +180,17 @@
 								data.forEach(function(item) {
 									temp +=
 										`<li>
-										<img src="${item.src}" alt="" />
-										<h5>Theland新西兰进口牛奶牛市兰</h5>
-										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
-										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
-										<div class="op clearfix">
-											<span class="price">79.9元/箱</span>
-											<button class="btn" type="button">立即购买</button>
-										</div>
-									</li>
+											<a href="aside.html">
+												<img src="${item.src}" alt="" />
+												<h5>Theland新西兰进口牛奶牛市兰</h5>
+												<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+												<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+												<div class="op clearfix">
+													<span class="price">79.9元/箱</span>
+													<button class="btn" type="button">立即购买</button>
+												</div>
+											</a>
+										</li>
 								`;
 
 								});
@@ -208,7 +236,6 @@
 
 			});
 		</script>
-
 	</body>
 
 </html>

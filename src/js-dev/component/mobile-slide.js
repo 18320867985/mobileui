@@ -71,7 +71,7 @@ var slide = (function(m) {
 
 		// start
 		function start(event) {
-			event.preventDefault();
+			//event.preventDefault();
 			window_w = m(mobile_slide).width();
 			var touch = event.changedTouches[0];
 			isLink = true;
@@ -104,7 +104,7 @@ var slide = (function(m) {
 		wrap.touchmove( move);
 
 		function move(event) {
-			event.preventDefault();
+			//event.preventDefault();
 			var touch = event.changedTouches[0];
 			var nowX = touch.clientX;
 			var nowY = touch.clientY;
@@ -161,7 +161,7 @@ var slide = (function(m) {
 
 		//touchend
 		function end(event) {
-			event.preventDefault();
+			//event.preventDefault();
 			var touch = event.changedTouches[0];
 			var nowX = touch.clientX;
 			var nowY = touch.clientY;

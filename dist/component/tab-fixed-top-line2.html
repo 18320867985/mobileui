@@ -1,0 +1,373 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>mobile触摸页面-固定顶部的tab下面line样式</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			.mobile-tab-slide .mobile-scroll-content {
+				padding: 5px;
+			}
+			
+			p {
+				line-height: 1.4rem;
+				font-size: .8rem;
+				padding: .25rem;
+				background: #fafafa;
+				margin-bottom: .25rem;
+				border-radius: .25rem;
+			}
+			
+			.mobile-tab-nav .mobile-tab-fixed li {
+				padding: 5px;
+			}
+			
+			.mobile-tab-nav .mobile-tab-fixed li.active {
+				background: #fff;
+				color: #690;
+			}
+			
+			..mobile-tab-slide-item {
+				height: 400px;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mobile.css" />
+
+	</head>
+
+	<body>
+		<!--head-->
+		<div class="mobile-head">
+			<span class="mobile-back iconfont icon-back-left"></span>
+			<h2 class="mobile-head-ttl">固定顶部的tab标签下面line样式</h2>
+		</div>
+		<!--定位到顶部-->
+		<div class="mobile-tab mobile-tab-top">
+			<!--左右滑动组件 data-position-left=定位到left data-position-center=定位到center data-trigger=允许触发scrollloading事件  data-line=下面line样式 -->
+			<ul class="mobile-tab-nav mobile-tab-fixed mobile-tab-line" data-trigger data-line>
+				<li data-target="#page1" class="active width-2">
+					第1屏
+				</li>
+				<li data-target="#page2" class="width-2">
+					第2屏
+				</li>
+				<li data-target="#page3" class="width-2">
+					第3屏
+				</li>
+				<li data-target="#page4" class="width-2">
+					第4屏
+				</li>
+				<li data-target="#page5" class=" width-2">
+					第5屏
+				</li>
+
+			</ul>
+
+		</div>
+
+		<!--content-->
+		<section class="mobile-content">
+
+			<!--tab 左右滑动内容 data-drag=左右两边回弹  data-transition="是否左右滑动动画"  data-trigger=允许触发scrollloading事件 -->
+			<div class="mobile-tab-slide " data-transition="是否左右滑动动画" data-trigger data-drag>
+				<div class="mobile-tab-slide-list ">
+
+					<div id="page1" class="mobile-tab-slide-item  mobile-overflow">
+						<div class="mobile-overflow-content ">
+
+							<div class="mobile-loading-content">
+								<ul class=" scrolltopbottom clearfix">
+									<li>
+										<a href="aside.html">
+											<img src="../images/index-list-1.png" alt="" />
+											<h5>Theland新西兰进口牛奶牛市兰</h5>
+											<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+											<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+											<div class="op clearfix">
+												<span class="price">79.9元/箱</span>
+												<button class="btn" type="button">立即购买</button>
+											</div>
+										</a>
+									</li>
+									<li>
+										<img src="../images/index-list-2.png" alt="" />
+										<h5>Theland新西兰进口牛奶牛市兰</h5>
+										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+										<div class="op clearfix">
+											<span class="price">79.9元/箱</span>
+											<button class="btn" type="button">立即购买</button>
+										</div>
+									</li>
+									<li>
+										<img src="../images/index-list-3.png" alt="" />
+										<h5>Theland新西兰进口牛奶牛市兰</h5>
+										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+										<div class="op clearfix">
+											<span class="price">79.9元/箱</span>
+											<button class="btn" type="button">立即购买</button>
+										</div>
+									</li>
+									<li>
+										<img src="../images/index-list-4.png" alt="" />
+										<h5>Theland新西兰进口牛奶牛市兰</h5>
+										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+										<div class="op clearfix">
+											<span class="price">79.9元/箱</span>
+											<button class="btn" type="button">立即购买</button>
+										</div>
+									</li>
+									<li>
+										<a href="aside.html">
+											<img src="../images/index-list-1.png" alt="" />
+											<h5>Theland新西兰进口牛奶牛市兰</h5>
+											<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+											<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+											<div class="op clearfix">
+												<span class="price">79.9元/箱</span>
+												<button class="btn" type="button">立即购买</button>
+											</div>
+										</a>
+									</li>
+									<li>
+										<img src="../images/index-list-2.png" alt="" />
+										<h5>Theland新西兰进口牛奶牛市兰</h5>
+										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+										<div class="op clearfix">
+											<span class="price">79.9元/箱</span>
+											<button class="btn" type="button">立即购买</button>
+										</div>
+									</li>
+									<li>
+										<img src="../images/index-list-3.png" alt="" />
+										<h5>Theland新西兰进口牛奶牛市兰</h5>
+										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+										<div class="op clearfix">
+											<span class="price">79.9元/箱</span>
+											<button class="btn" type="button">立即购买</button>
+										</div>
+									</li>
+									<li>
+										<img src="../images/index-list-4.png" alt="" />
+										<h5>Theland新西兰进口牛奶牛市兰</h5>
+										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+										<div class="op clearfix">
+											<span class="price">79.9元/箱</span>
+											<button class="btn" type="button">立即购买</button>
+										</div>
+									</li>
+									<li>
+										<a href="aside.html">
+											<img src="../images/index-list-1.png" alt="" />
+											<h5>Theland新西兰进口牛奶牛市兰</h5>
+											<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+											<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+											<div class="op clearfix">
+												<span class="price">79.9元/箱</span>
+												<button class="btn" type="button">立即购买</button>
+											</div>
+										</a>
+									</li>
+									<li>
+										<img src="../images/index-list-2.png" alt="" />
+										<h5>Theland新西兰进口牛奶牛市兰</h5>
+										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+										<div class="op clearfix">
+											<span class="price">79.9元/箱</span>
+											<button class="btn" type="button">立即购买</button>
+										</div>
+									</li>
+									<li>
+										<img src="../images/index-list-3.png" alt="" />
+										<h5>Theland新西兰进口牛奶牛市兰</h5>
+										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+										<div class="op clearfix">
+											<span class="price">79.9元/箱</span>
+											<button class="btn" type="button">立即购买</button>
+										</div>
+									</li>
+									<li>
+										<img src="../images/index-list-4.png" alt="" />
+										<h5>Theland新西兰进口牛奶牛市兰</h5>
+										<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+										<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+										<div class="op clearfix">
+											<span class="price">79.9元/箱</span>
+											<button class="btn" type="button">立即购买</button>
+										</div>
+									</li>
+
+								</ul>
+
+							</div>
+							<div class="mobile-loading">
+								正在加载中...
+							</div>
+
+						</div>
+					</div>
+
+					<div id="page2" class="mobile-tab-slide-item mobile-scroll-topbottom" data-scroll-bar data-loading>
+						<div class="mobile-scroll-content">
+							<div class="mobile-loading-content">
+								<p>第2屏</p>
+
+							</div>
+							<div class="mobile-loading">
+								上拉加载更多
+							</div>
+
+						</div>
+
+					</div>
+
+					<div id="page3" class="mobile-tab-slide-item mobile-scroll-topbottom" data-scroll-bar data-loading>
+						<div class="mobile-scroll-content">
+							<div class="mobile-loading-content">
+								<p>第3屏</p>
+
+							</div>
+							<div class="mobile-loading">
+								上拉加载更多
+							</div>
+
+						</div>
+					</div>
+
+					<div id="page4" class="mobile-tab-slide-item mobile-scroll-topbottom" data-scroll-bar data-loading>
+						<div class="mobile-scroll-content">
+							<div class="mobile-loading-content">
+								<p>第4屏</p>
+
+							</div>
+							<div class="mobile-loading">
+								上拉加载更多
+							</div>
+
+						</div>
+					</div>
+
+					<div id="page5" class="mobile-tab-slide-item mobile-scroll-topbottom" data-scroll-bar data-loading>
+						<div class="mobile-scroll-content">
+							<div class="mobile-loading-content">
+								<p>第5屏</p>
+
+							</div>
+							<div class="mobile-loading">
+								上拉加载更多
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+		<!--定位到底部-->
+		<!--<div class="mobile-tab mobile-tab-bottom">
+			<nav class="mobile-tab-nav">
+				<div class="mobile-tab-item width-2-5 active">
+					<span>首页</span>
+				</div>
+
+				<div class="mobile-tab-item width-2-5">
+					<span class="">电话</span>
+				</div>
+
+				<div class="mobile-tab-item width-2-5">
+					<span>邮件</span>
+				</div>
+				<div class="mobile-tab-item width-2-5">
+					<span>设置</span>
+				</div>
+
+			</nav>
+
+		</div>-->
+
+		<!--footer-->
+		<!--<footer class="mobile-footer">
+				<h2>页脚</h2>
+		</footer>-->
+
+		<script src="../js/mobile.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			m(function() {
+
+				var oneFlag = true;
+				$(".mobile-overflow-content").scroll(function(event) {
+					//console.log(this.clientHeight);
+					//console.log("scrollHeight:"+event.currentTarget.scrollHeight);
+					//console.log("scrollTop:"+event.currentTarget.scrollTop);
+					//var load_top=$(".mobile-loading").offset().top;
+					//console.log("load:"+load_top);
+
+					var scroll_client_h = parseFloat(this.clientHeight);
+
+					var scroll_h = parseFloat(event.currentTarget.scrollHeight);
+
+					var scroll_top = parseFloat(event.currentTarget.scrollTop);
+
+					var loading_top =m(this).find(".mobile-loading").offset().top;
+
+					var loading_scroll_top = loading_top - scroll_client_h;
+
+
+					if(scroll_top >= loading_scroll_top) {
+
+						
+						if(oneFlag) {
+							oneFlag = false;
+							setTimeout(function() {
+								
+								m.get("../json/topbottom.json", function(data) {
+									console.log("6666")
+									oneFlag = true;
+									var temp = "";
+									///data = JSON.parse(data)
+									data.forEach(function(item) {
+										temp +=
+											`<li>
+											<a href="aside.html">
+												<img src="${item.src}" alt="" />
+												<h5>Theland新西兰进口牛奶牛市兰</h5>
+												<p class="mobile-ellipsis-2">口牛奶牛市兰口牛奶牛市兰牛奶牛市</p>
+												<p class="mobile-ellipsis">250ml*24 <span>家庭装</span></p>
+												<div class="op clearfix">
+													<span class="price">79.9元/箱</span>
+													<button class="btn" type="button">立即购买</button>
+												</div>
+											</a>
+										</li>
+								`;
+
+									});
+									
+								m(this).find(".mobile-loading-content .scrolltopbottom").append(temp);
+
+								}.bind(this));
+								
+							}.bind(this), 500);
+
+						}
+					}
+				});
+
+			});
+		</script>
+
+	</body>
+
+</html>

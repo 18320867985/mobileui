@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>scrollTop</title>
+		<link rel="stylesheet" href="" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lte IE 8]>
+			<script src="../../js/html5shiv.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../js/respond.min.js" type="text/javascript" charset="utf-8"></script>
+		<![endif]-->
+
+		<style type="text/css">
+			@charset "utf-8";
+			body {
+				padding: 10px;
+			}
+			
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			ul {
+				list-style: none;
+			}
+			
+			.clearfix:before,
+			.clearfix:after {
+				display: table;
+				content: "";
+			}
+			
+			.clearfix:after {
+				clear: both;
+			}
+			
+			.active {
+				font-size: 28px;
+				color: darkgoldenrod;
+			}
+			
+			.width {
+				position: relative;
+				box-sizing: border-box;
+				width: 250px;
+				height: 200px;
+				padding: 20px;
+				border: #3C763D solid 20px;
+				bottom left: 30px;
+			}
+			
+			ul li {
+				border-bottom: 1px solid red;
+			}
+			
+			.box {
+				border: 1px solid red;
+			}
+			
+			h1 {
+				display: none;
+			}
+			
+			
+			.btn{
+				position: fixed;
+				top:20px;
+				left: 20px;
+			}
+				.btn:nth-of-type(2){
+			
+				 left: 80px;
+				 color:red;
+			}
+		</style>
+
+	</head>
+
+	<body class="a" id="a">
+
+		<h1 id="h1" data-pattern="^\d{2,4}$">hhh1</h1>
+		<h1 id="h1" data-pattern="^\d{2,4}$">hhh2</h1>
+		<ul>
+			<li class="a">11
+				<a href="">a</a>
+			</li>
+			<li class="b">22
+				<a href="">b</a>
+			</li>
+			<li>c</li>
+			<li>d</li>
+			<li>e</li>
+		</ul>
+
+		<hr />
+
+		<ul class="ul">
+			<li>a</li>
+			<li>b</li>
+			<li>c</li>
+			<li>d</li>
+			<li>e</li>
+
+		</ul>
+
+		<div class="box">
+			<a href="a">a</a>
+			<a href="a">b</a>
+		</div>
+	<button class="btn" type="button">btn</button>
+	
+	<button class="btn2" type="button">btn2</button>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+		<p>1</p>
+
+
+		<script src="js/mobile-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+	<!--	<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>-->
+		<script type="text/javascript">
+			
+			m(".btn:nth-of-type(1)").click(function() {
+				m(window).windowTop(200,200);
+				
+			});
+
+			m(".btn2").click(function() {
+				//alert($(this).offset().top)
+				m(document).scrollTop($(this).offset().top,400);
+				
+			});
+			
+			$(window).scroll(function(){
+		//				console.log($(window).windowTop())
+			//console.log($(window).scrollTop())
+			});
+
+
+		</script>
+	</body>
+
+</html>

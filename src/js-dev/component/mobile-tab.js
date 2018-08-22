@@ -63,7 +63,7 @@ var tab = (function(m) {
 
 		// start
 		function start(event) {
-			event.preventDefault();
+			//event.preventDefault();
 			var touch = event.changedTouches[0];
 			list = wrap.find(".mobile-tab-slide-list");
 			liNodes = wrap.find(".mobile-tab-slide-item");
@@ -93,7 +93,7 @@ var tab = (function(m) {
 		wrap.touchmove(move);
 
 		function move(event) {
-			event.preventDefault();
+			//event.preventDefault();
 			var touch = event.changedTouches[0];
 			var nowX = touch.clientX;
 			var nowY = touch.clientY;
@@ -167,7 +167,7 @@ var tab = (function(m) {
 
 		//touchend
 		function end(event) {
-			event.preventDefault();
+			//event.preventDefault();
 			var touch = event.changedTouches[0];
 			var nowX = touch.clientX;
 			var nowY = touch.clientY;
@@ -205,7 +205,7 @@ var tab = (function(m) {
 
 	// mobile-tab-slide滑动touchend触发的事件
 	m(".mobile-tab-slide").on("tabmove", function(event) {
-		event.preventDefault();
+		//event.preventDefault();
 		var el = m(event.detail.el);
 		var translateX = event.detail.translateX;
 		var id = el.attr("id") || el.attr("data-id");
@@ -230,7 +230,7 @@ var tab = (function(m) {
 
 	// mobile-tab-slide滑动touchend触发的事件
 	m(".mobile-tab-slide").on("tabend", function(event) {
-		event.preventDefault();
+		//event.preventDefault();
 
 		var el = m(event.detail.el);
 		el.parents(".mobile-tab-slide-list").find(".mobile-tab-slide-item ").removeClass("active");

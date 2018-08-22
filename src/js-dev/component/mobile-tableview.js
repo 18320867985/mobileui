@@ -3,13 +3,13 @@
 var tableview = (function(m) {
 
 	m(".mobile-table-view ").tap(".mobile-table-view-ttl", function(event) {
-		event.preventDefault();
+		//event.preventDefault();
 		tableviewfn.call(this, event)
 
 	});
 
 	m(".mobile-table-view ").tap(".iconfont", function(event) {
-		event.preventDefault();
+		//event.preventDefault();
 		tableviewfn.call(this, event)
 
 	});

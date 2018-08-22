@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>下拉自动加载</title>
+		<link rel="stylesheet" href="" />
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lte IE 8]>
+			<script src="../../js/html5shiv.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../js/respond.min.js" type="text/javascript" charset="utf-8"></script>
+		<![endif]-->
+
+		<style type="text/css">
+			@charset "utf-8";
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			.container {
+				width: 1200px;
+				margin: 0 auto;
+				height: 20px;
+				border: 1px solid red;
+			}
+			
+			table {
+				table-layout: auto;
+				border-collapse: collapse;
+				border: 1px solid red;
+				margin-bottom: 20px;
+			}
+			
+			table tr td {
+				padding: 10px;
+				border: 1px solid red;
+			}
+			
+			ul {
+				list-style: none;
+			}
+			
+			ul li {
+				margin-bottom: 20px;
+				line-height: 30px;
+			}
+			
+			.scroll-content {
+				height: 60%;
+				width: 100%;
+				box-sizing: border-box;
+				overflow-y: auto;
+				background: #fff;
+				-webkit-transition: .5s;
+				transition: .5s;
+			}
+			
+			.scroll-content-box {
+				padding: 10px;
+			}
+			
+			.scroll-handler {
+				padding: 10px;
+				background: #f0f0f0;
+				color: #444;
+				text-align: center;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<input type="text" class="search" /> <button type="button" class="btn">search</button>
+		<hr />
+		<div class="scroll-content">
+
+			<ul class="scroll-content-box">
+
+				<!--<li>
+					让房价调控更令人宽心 算好污染防治账
+				</li>
+				<li>
+					让房价调控更令人宽心 算好污染防治账
+				</li>
+				<li>
+					让房价调控更令人宽心 算好污染防治账
+				</li>
+				<li>
+					让房价调控更令人宽心 算好污染防治账
+				</li>
+				<li>
+					让房价调控更令人宽心 算好污染防治账
+				</li>
+				<li>
+					让房价调控更令人宽心 算好污染防治账
+				</li>
+				<li>
+					让房价调控更令人宽心 算好污染防治账
+				</li>-->
+
+			</ul>
+
+			<!--下拉加载title-->
+			<div class="scroll-handler">加载更多...</div>
+
+		</div>
+
+		<script src="./js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="js/mobile-1.0.0.js" type="text/javascript" charset="utf-8"></script>-->
+
+		<script type="text/javascript">
+			var op = {};
+			$(function() {
+
+				op = srollPaging.init({
+					data:$(".search").val(), // 文本框查询值
+					indexPage: 1, // 当前页
+					maxPage: 5, // 最大页码
+					textLoad: "正在加载中...",
+					textEnd: "没有更多数据",
+					textClick: "点击加载更多",
+					callback: function(el, op) { // 回调函数
+						
+						var value=op.data;  // 查询数据
+						$.get("scroll.json", function(data) {
+
+							var list = document.createDocumentFragment();
+							for(var i = 0; i < data.length; i++) {
+								var li = document.createElement("li");
+
+								li.innerHTML = (i + 1) + "========" + op.indexPage + "============" + data[i].content + "========";
+
+								list.appendChild(li)
+							}
+
+							el.appendChild(list);
+							
+							/*op查询对象*/
+							//op.maxPage=10  // 最大页码
+							op.indexPage++;   //当前页
+							op.isLoad = true;  // 禁用重复加载
+						});
+					}
+				});
+
+				$(".btn").click(function() {
+					
+					op.data=$(".search").val(); // 文本框查询值
+					op.indexPage = 1;
+					op.maxPage = 3;
+					op.init();
+
+				});
+
+			});
+
+			// srollPaging API
+			var srollPaging = (function() {
+
+				var _options = null;
+
+				function init(options) {
+
+					var list = document.querySelector(".scroll-content") || $(".scroll-content")[0];
+					scrollItem(list, options);
+					return options;
+
+				}
+
+				function scrollItem(item, options) {
+					options.data=options.data||{};
+					options.indexPage = options.indexPage || 1;
+					options.maxPage = options.maxPage || 1;
+					options.init = options.init || function() {};
+					options.isLoad =typeof options.isLoad==="boolean"?options.isLoad: true;
+
+					var window_h = window.innerHeight || window.document.documentElement.clientHeight || window.document.body.clientHeight;
+					window_h = Number(window_h);
+					options.indexPage || 0; //当前页
+					options.maxPage || 0; //最大页码
+					
+					var setTimeoutId = 0;
+					var load = item.querySelector(".scroll-handler") || $(".scroll-handler")[0];
+					var content = item.querySelector(".scroll-content-box") || $(".scroll-content-box")[0];
+
+					options.init = function() {
+						content.innerHTML = "";
+						load.innerHTML=options.textLoad||"加载更多...";
+						options.isLoad=true;
+						scrollLoad();
+					};
+					// 第一次加载
+					options.init();
+					// off event
+					offEvent(load, "click", clickLoad);
+					// document不能scroll 就点击click
+					onEvent(load, "click", clickLoad);
+
+					// off event
+					offEvent(window, "scroll", scrollLoad);
+
+					// document scroll event
+					onEvent(window, "scroll", scrollLoad);
+
+					function clickLoad() {
+						
+						if(options.indexPage > options.maxPage) {
+							load.innerHTML = options.textEnd ? options.textEnd : "...已到底了...";
+							return;
+						}
+
+						if(window_h >= load.offsetTop) {
+							
+							clearTimeout(setTimeoutId);
+							if(options.isLoad){
+								options.isLoad=false;
+								loadData(options.callback);
+									
+							}
+						}
+
+					}
+
+					function scrollLoad() {
+
+						if(options.indexPage > options.maxPage) {
+							load.innerHTML = options.textEnd ? options.textEnd : "...已到底了...";
+							return;
+						}
+						else if(window_h >= load.offsetTop) {
+							//load.innerHTML = options.textClick ? options.textClick : "...点击加载更多...";
+						} else {
+							load.innerHTML = options.textLoad ? options.textLoad : "正在加载中...";
+						}
+
+						var load_offset_top = Number(load.offsetTop);
+						var window_scroll_top = Number(window.scrollY || window.pageYOffset)
+						if(isNaN(window_scroll_top)) {
+							window_scroll_top = Number($(window).scrollTop())
+						}
+
+						window_scroll_top = window_scroll_top + Number(load.offsetHeight);
+
+						var load_top = (load_offset_top - window_h);
+
+						if((window_scroll_top >= load_top) && options.isLoad) {
+							
+							clearTimeout(setTimeoutId);
+							
+							options.isLoad = false;
+							setTimeoutId = setTimeout(function() {
+
+								loadData(options.callback);
+
+							}, 1000);
+
+						}
+
+					}
+
+					function loadData(callback) {
+						
+						callback(content, options);
+						
+						if(options.indexPage >= options.maxPage) {
+							load.innerHTML = options.textEnd ? options.textEnd : "...已到底了...";
+
+						} else if(window_h >= load.offsetTop) {
+
+							load.innerHTML = options.textClick ? options.textClick : "...点击加载更多...";
+						} else {
+							load.innerHTML = options.textLoad ? options.textLoad : "正在加载中...";
+						}
+					}
+
+				}
+
+				/**bing事件**/
+				function onEvent(el, type, handler) {
+
+					if(el.addEventListener) {
+						el.addEventListener(type, handler);
+					} else if(el.attachEvent) {
+						if(!el.attachEvent("on" + type, handler)) {
+							window["on" + type] = handler;
+						}
+
+					}
+				}
+
+				function offEvent(el, type, handler) {
+
+					if(el.removeEventListener) {
+						el.removeEventListener(type, handler);
+					} else if(el.detachEvent) {
+						el.detachEvent("on" + type, handler)
+
+					}
+				}
+
+				return {
+					init: init
+				}
+
+			})();
+		</script>
+
+	</body>
+
+</html>

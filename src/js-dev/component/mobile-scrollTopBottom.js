@@ -36,12 +36,7 @@ var scrollTopBottom = (function(m) {
 			scrolltb.appendChild(scrollBar)
 		}
 
-		var beginTime = 0;
-		var beginValue = 0;
-		var endTime = 0;
-		var endValue = 0;
-		var disTime = 0;
-		var disValue = 0;
+		
 		var eleY = 0; // 元素初始位置
 		var startY = 0;
 		var startX = 0;

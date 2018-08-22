@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>委托事件</title>
+		<link rel="stylesheet" href="" />
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lte IE 8]>
+			<script src="../../js/html5shiv.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../js/respond.min.js" type="text/javascript" charset="utf-8"></script>
+		<![endif]-->
+
+		<style type="text/css">
+			@charset "utf-8";
+			body {
+				padding: 10px;
+			}
+			
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			ul {
+				margin: 20px 0 0 0;
+				list-style: none;
+			}
+			
+			ul li {
+				padding: 10px;
+				border: 1px solid #ddd;
+			}
+			
+			ul li+li {
+				border-top: none;
+			}
+		</style>
+
+	</head>
+
+	<body id="body">
+
+		<button id="a45" type="button">btn</button>
+		<button id="btn" type="button">btn2</button>
+
+		<ul class="">
+			<li class="a">1111</li>
+			<li data-id >222</li>
+			<li>333</li>
+			<li>444</li>
+			<li>555</li>
+
+		</ul>
+
+		</div>
+
+		<div id="div" href="" class="a b"  data-id>aaa</div>
+
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mobile-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var lis = document.querySelectorAll("ul li");
+//
+			for(var i = 0; i < lis.length; i++) {
+				lis[i].addEventListener("click", function(event) {
+					if(event.target.nodeName.toLowerCase() === "li") {
+						alert(event.target.nodeName + "@@lievent")
+					}
+
+				});
+
+			}
+
+			var ul = document.querySelector("ul");
+//
+//			ul.addEventListener("click", function(event) {
+//				if(checkElement(event.target,"li.a")){
+//					alert(event.target.nodeName + "===")
+//
+//				}
+//
+//			});
+
+			var btn = document.querySelector("button");
+			btn.addEventListener("click", function() {
+				var list = document.createDocumentFragment();
+			
+				for(var i = 0; i < 10; i++) {
+					var li = document.createElement("li");
+					li.classList.add("active")
+					li.textContent = i.toString();
+					list.appendChild(li);
+				}
+				ul.appendChild(list);
+			});
+
+			/**bing事件**/
+			function onEvent(el, type, handler) {
+
+				if(el.addEventListener) {
+					el.addEventListener(type, handler);
+				} else if(el.attachEvent) {
+					if(!el.attachEvent("on" + type, handler)) {
+						window["on" + type] = handler;
+					}
+
+				}
+			}
+
+			function offEvent(el, type, handler) {
+
+				if(el.removeEventListener) {
+					el.removeEventListener(type, handler);
+				} else if(el.detachEvent) {
+					el.detachEvent("on" + type, handler)
+
+				}
+			}
+			
+			
+			m("ul").on("click","[class]li",function(){
+				
+				alert(this.nodeName)
+			})
+
+//			var el = document.querySelector("#div");
+//			//alert(el.hasAttribute("data-id"))
+//		alert(checkElement(el, "#div1[data-id].a.b"));
+//
+//		function checkElement(el, txt) {
+//				txt=typeof txt ==="string"?txt:"";
+//				if(txt.trim()===""){
+//					return false;
+//				}
+//				var regId = /\#[a-zA-Z_][\w|-]*[^\.|^#|\[]{0,}/g;
+//				var regClass = /\.[a-zA-Z_][\w|-]*[^\.|^#|\[]{0,}/g;
+//				var regTag = /^[a-zA-Z][\w|-]*[^\.|^#|\[]{0,}|[\]][a-zA-Z][\w|-]*[^\.|^#|\[]{0,}/g;  
+//				var regAttr = /\[[a-zA-Z][\w-=]*\]/g;
+//				
+//				var idList = txt.match(regId) || [];
+//				idList = rep(idList, "#", "");
+//				var isIdBl = isId(el, idList,txt);
+//				//alert(isIdBl)
+//				
+//				var classList = txt.match(regClass) || [];
+//				classList = rep(classList, ".", "");
+//				var isClassBl=isclass(el,classList,txt);
+//				//alert(isClassBl)
+//				
+//				var tagList = txt.match(regTag) || [];
+//				tagList=rep(tagList,"]","")
+//				var isTagBl=istag(el,tagList,txt);
+//				//alert(isTagBl)
+//				
+//				var attrList = txt.match(regAttr) || [];
+//				attrList = rep(attrList, "[", "");
+//				attrList = rep(attrList, "]", "");
+//				var isAttrBl=isAttr(el,attrList,txt);
+//				//alert(attrList)
+//
+//				function rep(list, old, now) {
+//					var arr = [];
+//					for(var i = 0; i < list.length; i++) {
+//						arr.push(list[i].replace(old, now));
+//					}
+//
+//					return arr;
+//				}
+//
+//				function isId(el, idList,searchTxt) {
+//					
+//					if(searchTxt.search(/#/)===-1){
+//						return true;
+//					}
+//					 else if(searchTxt.search(/#/)!==-1&&idList.length===0){
+//						return  false;
+//					}
+//					 
+//					// 上条件不符合  向下执行
+//					var id = el.id || "";
+//					for(var i = 0; i < idList.length; i++) {
+//						if(idList[i] == id) {
+//							return true;
+//						}
+//					}
+//					return false;
+//
+//				}
+//				
+//				function isclass(el, idList,searchTxt) {
+//					if(searchTxt.search(/\./)===-1){
+//						return true;
+//					}
+//					 else if(searchTxt.search(/\./)!==-1&&idList.length===0){
+//						return  false;
+//					}
+//					 
+//					// 上条件不符合  向下执行
+//					var _class = el.classList || "";
+//					
+//					for(var i = 0; i < idList.length; i++) {
+//						if(!_class.contains(idList[i])) {
+//							return  false;
+//						}
+//					}
+//					return  true;
+//
+//				}
+//				
+//				function istag(el, idList,searchTxt) {
+//					if(searchTxt.search(/^[a-zA-Z]|[\]][a-zA-Z]/)===-1){
+//						return true;
+//					}
+//					 else if(searchTxt.search(/^[a-zA-Z]|[\]][a-zA-Z]/)!==-1&&idList.length===0){
+//						return  false;
+//					}
+//					 
+//					// 上条件不符合  向下执行
+//					var _tag = (el.nodeName || "").toLowerCase();
+//					
+//					for(var i = 0; i < idList.length; i++) {
+//						if(idList[i].trim()!==_tag) {
+//							return   false;
+//						}
+//					}
+//					return  true;
+//
+//				}
+//				
+//				function isAttr(el, idList,searchTxt) {
+//					
+//					if(searchTxt.search(/\[.*\]/)===-1){
+//						return true;
+//					}
+//					 else if(searchTxt.search(/\[.*\]/)!==-1&&idList.length===0){
+//						return  false;
+//					}
+//					 
+//					// 上条件不符合  向下执行
+//					//var _tag = el.getat
+//					var _reg2=/=/g;
+//					for(var i = 0; i <idList.length; i++) {
+//						
+//						if(_reg2.test(idList[i])){
+//							//alert(idList[i]);
+//							var arr2=idList[i].split("=");
+//							if((el.getAttribute(arr2[0])||"").trim()!==(arr2[1]||"").trim()){
+//								return false;
+//							}
+//						}else{
+//							
+//							if(!el.hasAttribute(idList[i])){
+//								return false;
+//							}
+//						}
+//							
+//						
+//					}
+//					return  true;
+//
+//				}
+//
+//				return isIdBl&&isClassBl&&isTagBl&&isAttrBl;
+//			}
+//	
+
+	</script>
+
+	</body>
+
+</html>

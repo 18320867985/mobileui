@@ -662,8 +662,9 @@ select option {
   position: absolute;
   left: 0;
   bottom: 10px;
-  z-index: 1;
+  z-index: 9;
   width: 100%;
+  overflow: hidden;
   text-align: center; }
 
 .mobile-slide-radius span {
@@ -747,7 +748,7 @@ select option {
 
 .mobile-tab-slide-item {
   float: left;
-  padding: 10px; }
+  height: 100%; }
   .mobile-tab-slide-item.mobile-scroll-topbottom {
     height: 100%; }
 
@@ -1051,17 +1052,35 @@ select option {
       color: #999; }
 
 .mobile-overflow {
+  position: relative;
+  z-index: 2;
   height: 100%;
   width: 100%;
-  overflow-y: scroll; }
+  overflow: hidden; }
 
 .mobile-overflow-content {
+  position: relative;
   width: 100%;
-  height: auto; }
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #fff; }
+
+/*loading*/
+.mobile-loading {
+  width: 100%;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 0.7rem;
+  color: #777;
+  text-align: center;
+  background: #fff; }
 
 .scrolltopbottom {
   -webkit-box-shadow: -2px 0px 3px #ddd;
-          box-shadow: -2px 0px 3px #ddd; }
+          box-shadow: -2px 0px 3px #ddd;
+  background: #fff; }
   .scrolltopbottom li {
     float: left;
     width: 50%;

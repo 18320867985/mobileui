@@ -1,12 +1,35 @@
 
 .mobile-overflow{
+    position: relative;
+    z-index: 2;
     
     height: 100%;
     width: 100%;
-    overflow-y: scroll;
+    overflow: hidden;
+
 }
 
 .mobile-overflow-content{
+    position: relative;
     width: 100%;
-     height: auto;
+    height: 100%;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    background: #fff;;
 }
+
+
+
+/*loading*/
+
+.mobile-loading{
+    
+    width: 100%;
+    height: 40rem/$rem;
+    line-height: 40rem/$rem;
+    font-size: 14rem/$rem;
+    color:#777;
+    text-align: center;
+    background:#fff;;
+}
+

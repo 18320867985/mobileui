@@ -6,7 +6,7 @@
 		<title>mobile触摸页面</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<style>
-			.mobile-scroll-content h4 {
+			.mobile-overflow-content h4 {
 				height: 30px;
 				line-height: 30px;
 				color: #777;
@@ -39,10 +39,11 @@
 			<h2 class="mobile-head-ttl">轮播slide滑动组件</h2>
 		</header>
 
-		<!--content-->
-		<section class="mobile-content mobile-scroll-topbottom" data-scroll-bottom data-scroll-top data-scroll-bar>
-
-			<div class=" mobile-scroll-content">
+	<!-- data-scroll-top 是否下拉#   data-scroll-bottom 是否上拉   -->
+		<section class="mobile-content ">
+				<div class="mobile-overflow " data-scroll-top data-scroll-bottom>
+	
+					<div class="mobile-overflow-content">
 
 				<!--slide滑动组件-->
 				<!--轮播图 data-time="3000" data-auto="自动播放"  data-no-loop="禁止循环" -->
@@ -169,6 +170,7 @@
 
 				</div>
 
+					</div>
 			</div>
 
 		</section>

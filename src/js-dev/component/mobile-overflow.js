@@ -20,7 +20,7 @@ var overflow = (function(m) {
 		var topbottomContent = m(scrolltb).find(".mobile-overflow-content");
 
 		m(topbottomContent).setTransform('translateZ', 0.01);
-		
+
 		var eleY = 0; // 元素初始位置
 		var startY = 0;
 		var startX = 0;
@@ -30,14 +30,13 @@ var overflow = (function(m) {
 		var isAddMoveEventFirst = true; // 判断是否第一往上拖动
 		var dis = 0;
 
-		
 		var window_h = m(scrolltb).height();
 		var minY = window_h - topbottomContent.height();
 
 		m(scrolltb).touchstart(start);
 
 		function start(event) {
-			
+
 			var touch = event.changedTouches[0]
 			startY = touch.clientY;
 			startX = touch.clientX;
@@ -59,8 +58,7 @@ var overflow = (function(m) {
 		m(scrolltb).touchmove(move);
 
 		function move(event) {
-			
-			
+
 			window_h = m(scrolltb).height();
 			var touch = event.changedTouches[0]
 			var nowY = touch.clientY;
@@ -93,25 +91,39 @@ var overflow = (function(m) {
 
 			minY = window_h - topbottomContent.height();
 			var translateY = eleY + dis;
-			
-			if(translateY>=0){
-				var scroll_top=topbottomContent[0].scrollTop;
-			if(scroll_top===0){
-				event.preventDefault();
-				
-				topbottomContent.css("overflow","hidden");
+
+			if(translateY >= 0) {
+				var scroll_top = topbottomContent[0].scrollTop;
+				if(scroll_top === 0) {
+					event.preventDefault();
+
+					topbottomContent.css("overflow", "hidden");
+				}
 			}
-			}
-		
+
+			//			m(event.target).touchmove(function(){
+			//				console.log("3333")
+			//			});
+
 		}
 
 		m(scrolltb).touchendcancel(end);
 
 		function end(event) {
-			topbottomContent.css("overflow","scroll");
+			topbottomContent.css("overflow", "scroll");
+
 		}
+		
+		m(scrolltb).windowcancel(function(event){
+				//console.log(this)
+		});
+			
+			
 
 	}
+
+
+	
 
 })(mobile);
 

@@ -4,7 +4,7 @@
  */
 
 (function(global, factory) {
-	
+
 	//  cmd commonjs
 	if(typeof module === "object" && typeof module.exports === "object") {
 		module.exports = factory(global);
@@ -515,17 +515,17 @@
 			var arr = [];
 			var obj = m(this);
 			for(var i = 0; i < obj.length; i++) {
-			
+
 				var p = _searchParents(obj[i], function(elm) {
-					 return  Mobile.checkSelector(elm, selector);
+					return Mobile.checkSelector(elm, selector);
 				});
 
 				delete obj[i];
 				if(p) {
 					arr.push(p);
-				
+
 				}
-					
+
 			};
 			delete obj.length;
 			Array.prototype.push.apply(obj, arr);
@@ -543,7 +543,7 @@
 					arr.push(obj[i]);
 				} else {
 					p = _searchParents(obj[i], function(elm) {
-					return	Mobile.checkSelector(elm, selector);
+						return Mobile.checkSelector(elm, selector);
 					});
 				}
 				delete obj[i];
@@ -1687,6 +1687,19 @@
 			Mobile.each(this, function() {
 				m(this).on("touchend", fn, bl);
 				m(this).on("touchcancel", fn, bl);
+			});
+		},
+
+		// window canel 绑定事件
+		windowcancel: function(fn) {
+			var $this=this[0]||{};
+			m(window).on("touchstart", function(event) {
+
+				m(event.target).one("touchend", function(event) {
+					fn.call($this,event);
+
+				});
+
 			});
 		},
 

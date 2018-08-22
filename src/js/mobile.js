@@ -1612,6 +1612,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			});
 		},
 
+		// window canel 绑定事件
+		windowcancel: function windowcancel(fn) {
+			var $this = this[0] || {};
+			m(window).on("touchstart", function (event) {
+
+				m(event.target).one("touchend", function (event) {
+					fn.call($this, event);
+				});
+			});
+		},
+
 		// tap
 		tap: function tap() {
 			var args = arguments;
@@ -2807,6 +2818,11 @@ var scrollTopBottom = function (m) {
 		}
 
 		m(scrolltb).touchendcancel(end);
+
+		// 事件被取消触发的冒泡	
+		m(scrolltb).windowcancel(function (event) {
+			//console.log(this)
+		});
 
 		function end(event) {
 			event.preventDefault();
@@ -4350,6 +4366,10 @@ var overflow = function (m) {
 					topbottomContent.css("overflow", "hidden");
 				}
 			}
+
+			//			m(event.target).touchmove(function(){
+			//				console.log("3333")
+			//			});
 		}
 
 		m(scrolltb).touchendcancel(end);
@@ -4357,6 +4377,10 @@ var overflow = function (m) {
 		function end(event) {
 			topbottomContent.css("overflow", "scroll");
 		}
+
+		m(scrolltb).windowcancel(function (event) {
+			//console.log(this)
+		});
 	}
 }(mobile);
 

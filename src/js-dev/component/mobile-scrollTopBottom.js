@@ -271,7 +271,12 @@ var scrollTopBottom = (function(m) {
 
 		}
 
-		m(scrolltb).touchendcancel(end)
+		m(scrolltb).touchendcancel(end);
+		
+		// 事件被取消触发的冒泡	
+		m(scrolltb).windowcancel(function(event){
+			//console.log(this)
+		});
 
 		function end(event) {
 			event.preventDefault();

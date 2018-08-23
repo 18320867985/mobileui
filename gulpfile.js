@@ -4,6 +4,7 @@
 //4. gulp.task('default', function() {
 // 将你的默认的任务代码放在这
 //});
+// 升级了node版本/ node版本太高会造成node-sass不兼容的问题，那么就再 install node-sass一下就行了。
 
 var gulp = require('gulp');
 var del = require("del");

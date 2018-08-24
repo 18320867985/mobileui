@@ -27,7 +27,7 @@
 		<!--content-->
 		<!-- data-scroll-top 是否下拉#   data-scroll-bottom 是否上拉   -->
 		<section class="mobile-content ">
-			<div class="mobile-overflow " >
+			<div class="mobile-overflow " data-scroll-top >
 
 				<div class=" mobile-overflow-content">
 
@@ -267,7 +267,7 @@
 
 					var scroll_top = parseFloat(event.currentTarget.scrollTop);
 
-					var loading_top =parseFloat( $(".mobile-loading").offset().top;)
+					var loading_top =parseFloat( $(".mobile-loading").offset().top)
 
 					var loading_scroll_top = loading_top - scroll_client_h;
 

@@ -4307,6 +4307,10 @@ var overflow = function (m) {
 		var isAddMoveEventFirst = true; // 判断是否第一往上拖动
 		var dis = 0;
 
+		var isScrollTop = m(scrolltb).hasAttr("data-scroll-top"); // 是否下拉
+		var isScrollBottom = m(scrolltb).hasAttr("data-scroll-bottom"); // 是否上拉
+
+
 		var window_h = m(scrolltb).height();
 		var minY = window_h - topbottomContent.height();
 
@@ -4358,24 +4362,65 @@ var overflow = function (m) {
 			minY = window_h - topbottomContent.height();
 			var translateY = eleY + dis;
 
-			if (translateY >= 0) {
-				var scroll_top = topbottomContent[0].scrollTop;
-				if (scroll_top === 0) {
-					event.preventDefault();
+			//			if(translateY >= 0) {
+			//				var scroll_top = topbottomContent[0].scrollTop;
+			//				if(scroll_top === 0) {
+			//					event.preventDefault();
+			//					topbottomContent.css("overflow", "hidden");
+			//				}
+			//			}
 
-					topbottomContent.css("overflow", "hidden");
+			if (translateY > 0) {
+				var scale = 1 - translateY / window_h;
+				translateY = translateY * scale;
+				speedDcrt = "down"; //速度方向
+
+				// 是否下拉
+				if (!isScrollTop) {
+					translateY = 0;
+				}
+				m(topbottomContent).setTransform("translateY", translateY);
+			} else if (translateY < minY) {
+				var over = Math.abs(translateY - minY);
+				var scale = 1 - over / window_h;
+				translateY = minY - over * scale;
+				speedDcrt = "up"; //速度方向
+				// 是否上拉
+				if (!isScrollBottom) {
+					translateY = minY;
+				}
+
+				if (m(topbottomContent).height() < window_h) {
+					translateY = 0;
 				}
 			}
-
-			//			m(event.target).touchmove(function(){
-			//				console.log("3333")
-			//			});
 		}
 
 		m(scrolltb).touchendcancel(end);
 
 		function end(event) {
+
+			var touch = event.changedTouches[0];
 			topbottomContent.css("overflow", "scroll");
+
+			minY = window_h - topbottomContent.height();
+			var target = m(topbottomContent).getTransform("translateY");
+
+			var bezier = 'ease-out';
+			if (target > 0) {
+				console.log(target);
+				target = 0;
+				m(topbottomContent).setTransform("translateY", target);
+				m(topbottomContent).transition("all", 500, bezier);
+			} else if (target < minY) {
+				target = minY;
+				if (m(topbottomContent).height() < window_h) {
+					target = 0;
+				}
+				m(topbottomContent).transition("all", 500, bezier);
+			} else {
+				m(topbottomContent).transition("all", 800, bezier);
+			}
 		}
 
 		m(scrolltb).windowcancel(function (event) {

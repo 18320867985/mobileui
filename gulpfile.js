@@ -45,7 +45,7 @@ var paths = {
 	// sass文件
 	scssPath: ['./src/css-dev/scss/**/*.scss'],
 
-	allscss: ['./src/css-dev/scss/mobile.scss'],
+	allscss: ['./src/css-dev/scss/all.scss'],
 
 	htmlPath: ['./src/**/*.html'],
 
@@ -90,7 +90,7 @@ gulp.task("scss", function() {
 	gulp.src(paths.allscss)
 		.pipe(sass().on('error', sass.logError)) // sass编译
 		.pipe(postcss([autoprefixer])) // 自动添加css3缀-webkit-  适合用于手机端 
-		//.pipe(minCss("all.css")) // 压缩css文件
+		.pipe(rename("mobile.css")) // 压缩css文件
 		.pipe(gulp.dest('./src/css'));
 
 	gulp.src(paths.scssPath).pipe(connect.reload());

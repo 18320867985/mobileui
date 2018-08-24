@@ -16,6 +16,7 @@ var rename = require("gulp-rename"); // npm install gulp-rename --save-dev  重�
 var concat = require('gulp-concat'); //npm install gulp-concat --save-dev  整合文件
 var minHtml = require('gulp-htmlmin'); //npm install gulp-htmlmin --save-dev 压缩html，可以压缩页面javascript、css，去除页面空格、注释，删除多余属性等操作
 
+
 var rollup = require('rollup');
 var babel = require('rollup-plugin-babel');
 var uglify = require('rollup-plugin-uglify');

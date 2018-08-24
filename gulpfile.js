@@ -8,7 +8,7 @@
 
 var gulp = require('gulp');
 var del = require("del");
-var minCss = require('gulp-minify-css'); //gulp-minify-css:压缩css文件 npm install gulp-minify-css 
+var minCss = require('gulp-clean-css'); //gulp-minify-css:压缩css文件 npm install gulp-clean-css 
 var connect = require('gulp-connect'); //gulp-connect 创建服务器  npm install --save-dev gulp-connect
 var minJs = require('gulp-uglify'); //压缩javascript文件  npm install gulp-uglify
 var img = require('gulp-imagemin'); //gulp-imagemin:压缩png、jpj、git、svg格式图片 npm install --save-dev gulp-imagemin

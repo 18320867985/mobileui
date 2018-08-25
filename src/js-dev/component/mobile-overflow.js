@@ -29,17 +29,27 @@ var overflow = (function(m) {
 		var isAddMoveEvent = false; // 判断是否往上拖动
 		var isAddMoveEventFirst = true; // 判断是否第一往上拖动
 		var dis = 0;
-		
+
 		var isScrollTop = m(scrolltb).hasAttr("data-scroll-top"); // 是否下拉
 		var isScrollBottom = m(scrolltb).hasAttr("data-scroll-bottom"); // 是否上拉
-
 
 		var window_h = m(scrolltb).height();
 		var minY = window_h - topbottomContent.height();
 
+		var scrollHeight = topbottomContent[0].scrollHeight;
+		var scrollTop = topbottomContent[0].scrollTop;
+		var scrollClientHeight = topbottomContent[0].clientHeight;
+		var scrollClientTop = scrollHeight - scrollClientHeight;
+		var scrollFisrt = true;
+
 		m(scrolltb).touchstart(start);
 
 		function start(event) {
+			scrollHeight = topbottomContent.scrollHeight;
+			scrollTop = topbottomContent.scrollTop;
+			scrollClientHeight = topbottomContent[0].clientHeight;
+			scrollClientTop = scrollHeight - scrollClientHeight;
+			scrollFisrt = true;
 
 			var touch = event.changedTouches[0]
 			startY = touch.clientY;
@@ -48,7 +58,7 @@ var overflow = (function(m) {
 			isLinkFirst = true;
 
 			eleY = m(topbottomContent).getTransform("translateY");
-			m(topbottomContent).css("overflow-y", "scroll");
+			//m(topbottomContent).css("overflow-y", "scroll");
 
 			isAddMoveEvent = false; // 判断是否往上拖动
 			isAddMoveEventFirst = true; // 判断是否第一往上拖动
@@ -62,6 +72,10 @@ var overflow = (function(m) {
 		m(scrolltb).touchmove(move);
 
 		function move(event) {
+			scrollHeight = topbottomContent[0].scrollHeight;
+			scrollTop = topbottomContent[0].scrollTop;
+			scrollClientHeight = topbottomContent[0].clientHeight;
+			scrollClientTop = scrollHeight - scrollClientHeight;
 
 			window_h = m(scrolltb).height();
 			var touch = event.changedTouches[0]
@@ -95,92 +109,85 @@ var overflow = (function(m) {
 
 			minY = window_h - topbottomContent.height();
 			var translateY = eleY + dis;
-
-//			if(translateY >= 0) {
-//				var scroll_top = topbottomContent[0].scrollTop;
-//				if(scroll_top === 0) {
-//					event.preventDefault();
-//					topbottomContent.css("overflow", "hidden");
-//				}
+			
+//			if(translateY > 0 ) {
+//				event.preventDefault();
 //			}
-
-		if(translateY > 0) {
-				var scale = 1 - translateY / window_h;
-				translateY = translateY * scale;
-				speedDcrt = "down"; //速度方向
-
-				// 是否下拉
-				if(!isScrollTop) {
-					translateY = 0;
-
-				}
-				m(topbottomContent).setTransform("translateY", translateY);
-				
-
-			} else if(translateY < minY) {
-				var over = Math.abs(translateY - minY);
-				var scale = 1 - over / window_h;
-				translateY = minY - over * scale;
-				speedDcrt = "up"; //速度方向
-				// 是否上拉
-				if(!isScrollBottom) {
-					translateY = minY;
+			
+			//if(isScrollTop) {
+				if(translateY > 0 ) {
+					if(scrollTop === 0) {
+					
+						//scrollFisrt=false;
+						// 是否下拉
+						event.preventDefault();
+//						var scale = 1 - translateY / window_h;
+//						translateY = translateY * scale;
+//						m(topbottomContent).css("overflow-y", "hidden");
+//						m(topbottomContent).css("overflow-x", "hidden");
+//						m(topbottomContent).setTransform("translateY", translateY);
+					}
 
 				}
 
-				
+			 
+			//}
+			
 
-				if((m(topbottomContent).height()) < (window_h)) {
-					translateY = 0;
+			// 是否下拉
+			if(isScrollBottom) {
+				if(scrollTop >= scrollClientTop) {
+					if(translateY < 0) {
+						event.preventDefault();
+						var scale = 1 - Math.abs(translateY) / window_h;
+						translateY = translateY * scale;
+						m(topbottomContent).css("overflow-y", "hidden");
+						m(topbottomContent).css("overflow-x", "hidden");
+						m(topbottomContent).setTransform("translateY", translateY);
+					}
+
 				}
 
 			}
 
-		
 		}
 
 		m(scrolltb).touchendcancel(end);
 
 		function end(event) {
-			
-			var touch = event.changedTouches[0];
+
+			//var touch = event.changedTouches[0];
 			topbottomContent.css("overflow", "scroll");
-			
+
 			minY = window_h - topbottomContent.height();
 			var target = m(topbottomContent).getTransform("translateY");
-		
+
 			var bezier = 'ease-out';
-				if(target > 0) {
-						console.log(target)
-					target = 0;
-					m(topbottomContent).setTransform("translateY", target);
-					m(topbottomContent).transition("all", 500, bezier);
+			if(target > 0) {
 
-				} else if(target < minY) {
-					target = minY;
-					if(m(topbottomContent).height() < window_h) {
-						target = 0;
-					}
-					m(topbottomContent).transition("all", 500, bezier);
+				target = 0;
+				m(topbottomContent).css("overflow-y", "scroll");
 
-				} else {
-					m(topbottomContent).transition("all", 800, bezier);
-				}
+				m(topbottomContent).setTransform("translateY", target);
+				m(topbottomContent).transition("all", 500, bezier);
 
-			
+			} else if(target < 0) {
+				target = 0;
+				m(topbottomContent).css("overflow-y", "scroll");
+				m(topbottomContent).setTransform("translateY", target);
+				m(topbottomContent).transition("all", 500, bezier);
+
+			}
+
+			m(topbottomContent).css("overflow-x", "hidden");
 
 		}
-		
-		m(scrolltb).windowcancel(function(event){
-				//console.log(this)
+
+		m(scrolltb).windowcancel(function(event) {
+			end();
 		});
-			
-			
 
 	}
-
-
-	
 
 })(mobile);
 

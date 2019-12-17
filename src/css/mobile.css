@@ -448,7 +448,8 @@ select option {
 /*default*/
 .mobile-title {
   padding: .5rem;
-  font-size: 0.75rem; }
+  font-size: 0.75rem;
+  height: 20rem; }
 
 /*display*/
 .mobile-hide {
@@ -501,7 +502,7 @@ select option {
 .mobile-head .mobile-back {
   display: block;
   height: 2rem;
-  line-height: 2rem;
+  line-height: 2.1rem;
   float: left;
   width: 15%;
   outline: none;
@@ -540,7 +541,8 @@ select option {
   position: absolute;
   z-index: 9;
   width: 100%;
-  overflow-y: auto; }
+  overflow-y: auto;
+  height: 10rem; }
 
 /*mobile-footer*/
 .mobile-footer {
@@ -1110,7 +1112,8 @@ select option {
       line-height: 0.85rem;
       height: 1.7rem; }
       .scrolltopbottom li p.mobile-ellipsis {
-        height: 0.85rem; }
+        height: 0.9rem;
+        line-height: 1rem; }
     .scrolltopbottom li .op {
       padding: 0.15rem 0; }
       .scrolltopbottom li .op .price {

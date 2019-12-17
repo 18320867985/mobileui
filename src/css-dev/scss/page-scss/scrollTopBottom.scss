@@ -1,5 +1,7 @@
 
 .scrolltopbottom {
+	
+	
     box-shadow: -2px 0px 3px #ddd;
     background: #fff;
     li{
@@ -15,9 +17,11 @@
        }
         img {
             display: inline-block;
-            width: 120rem/$rem;
+            width: 120rem/$rem; 
             height: 120rem/$rem;
         }
+		
+		
         h5 {
             padding-bottom: .25rem;
             font-size: .7rem;
@@ -37,13 +41,13 @@
             height: 34rem/$rem;
             &.mobile-ellipsis{
                 
-                height: 17rem/$rem;
+                height: 18rem/$rem;
+				line-height: 20rem/$rem;
             }
             
         }
         
-      
-        
+     
         .op{
             padding: 3rem/$rem 0;
             .price
@@ -51,6 +55,7 @@
                 float: left;
                 display: block;
                 color:red;
+				
                 font-size: .7rem;
             }
              

@@ -8,6 +8,7 @@
 
 var gulp = require('gulp');
 var del = require("del");
+var watch = require("gulp-watch");
 var minCss = require('gulp-clean-css'); //gulp-minify-css:压缩css文件 npm install gulp-clean-css 
 var connect = require('gulp-connect'); //gulp-connect 创建服务器  npm install --save-dev gulp-connect
 var minJs = require('gulp-uglify'); //压缩javascript文件  npm install gulp-uglify
@@ -118,7 +119,11 @@ gulp.task("watch", ['connect'], function() {
 	gulp.watch("./src/js-dev/**/*.js", ["build"]);
 
 	//sass合并压缩css文件
-	gulp.watch(paths.scssPath, ['scss']);
+	//gulp.watch(paths.scssPath, ['scss']);
+watch(paths.scssPath,function(){
+	gulp.start("scss");
+} );
+
 
 	//监听html
 	gulp.watch(paths.htmlPath, function() {

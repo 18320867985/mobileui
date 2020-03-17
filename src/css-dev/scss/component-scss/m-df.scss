@@ -1,0 +1,166 @@
+/*m-df 默认 */
+
+@import "../var.scss";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: $font-size;
+    font-family: $font-family;
+    line-height: $line-height;
+    background: $body-bg;
+    color: $body-color;
+}
+
+
+img {
+    display: inline-block;
+}
+
+
+ul {
+    list-style: none;
+}
+
+a:not(.m-btn),
+a:link:not(.m-btn),
+a:active:not(.m-btn) {
+    text-decoration: none;
+    color: $text-primary;
+}
+
+
+/*input*/
+
+input,
+button,
+textarea {
+    outline: none;
+}
+
+input:focus,
+button:focus,
+button:active {
+    outline: none !important;
+}
+
+
+html,
+body,
+.m-bd {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    touch-action: none;
+    background: #ddd;
+    overflow: hidden;
+}
+
+.m-bd {
+
+    > * {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+
+/*display*/
+.m-hide {
+    display: none;
+}
+
+.m-show {
+    display: block;
+}
+
+/*ellipsis*/
+.elp {
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.elp-no {
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.elp-1 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical
+}
+
+.elp-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+}
+
+
+
+/*置顶*/
+.m-zhiding {
+    position: fixed;
+    right: 1rem;
+    bottom: 3rem;
+    z-index: 9999;
+    display: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    line-height: 1.5rem;
+    background: rgba(0, 0, 0, .5);
+    text-align: center;
+
+    &.active {
+        display: block;
+    }
+
+    .iconfont {
+        font-size: 1rem;
+        color: #fff;
+    }
+}
+
+/* placeholder */
+/*webkit*/
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: $text-placeholer !important;
+}
+
+/*IE10+*/
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: $text-placeholer !important;
+}
+
+/*Firefox4-18*/
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: $text-placeholer !important;
+}
+
+/*Firefox19+*/
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: $text-placeholer !important;
+}
+

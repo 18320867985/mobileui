@@ -1,0 +1,188 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+
+        .m-touch-tb {
+             height:100%;
+        }
+       
+         .m-overflow-tb-cnt {
+            padding: .25rem .5rem;
+        }
+
+        .m-overflow-tb-cnt p {
+            padding: .5rem .2rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: .8rem;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd m-touch-df">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl">tab滑动组件下菜单fade</h4>
+            </div>
+         
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+
+            <div class="m-fade-tab">
+                <div class="m-fade-tab-cnt">
+
+                    <!--滑动的内容 m-touch-lr-item是m-touch-lr的宽度 -->
+                    <div class="m-fade-tab-item active">
+                        <div class="m-overflow-tb" >
+                            <div class="m-overflow-tb-cnt">
+
+                            </div>
+                            <div class="m-overflow-tb-loading">
+                                正在加载中...
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <!--底部-->
+        <footer class="m-ft">
+           
+                <div class="m-touch-tab-btn m-touch-tab-btn-bottom">
+                    <div class="m-touch-tab-btn-cnt">
+                        <div class="m-touch-tab-btn-cnt">
+                            <div class="m-touch-tab-btn-item">1</div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+         
+
+        </footer>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+          m(function () {
+
+            // 加载nav 和tab
+            var nav = "";
+            var tab = "";
+            for (var i = 0; i < 4; i++) {
+                nav += `<div class="${i === 0 ? `active` : ``}  m-touch-tab-btn-item" data-tab="#tab${i + 1}">
+                          第 ${i + 1} 屏
+                        </div>  `;
+
+                tab += ` <div class="m-fade-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}">
+                            <div class="m-overflow-tb">
+                                <div class="m-overflow-tb-cnt">
+
+                                </div>
+                                <div class="m-overflow-tb-loading">
+                                      正在加载中...
+                                </div>
+
+                            </div>
+
+                        </div>  `;
+
+            }
+
+            // 触发插件
+              m(".m-touch-tab-btn-cnt").html(nav).parent().mTouchTabBtn();
+              m(".m-fade-tab-cnt").html(tab);
+              m(".m-overflow-tb").mOverflowTb();
+
+            // tap.m.touch.tab.btn触发的事件
+              m(".m-touch-tab-btn").on("tap.m.touch.tab.btn", function (event, el, index) {
+
+                  var id = m(el).attr("data-tab");
+                  m(id).addClass("active").siblings().removeClass("active");
+                  if (!m(id).data("isOne")) {
+                       m(id).data("isOne", true);
+                      ajaxData(m(".m-fade-tab-item").eq(index), index);
+                  }
+  
+            });
+
+           
+            // 拉到底部触发
+            m(".m-overflow-tb").on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
+
+                var $el = m(el).parents(".m-fade-tab-item");
+               ajaxData($el, $el.index());
+
+            });
+
+           // 第一次加载数据
+            var $activeEl = $(".m-fade-tab-item.active");
+            ajaxData($activeEl, 0);
+            $activeEl.data("isOne", true);
+
+            // ajax 加载数据
+            function ajaxData($el, index) {
+
+                if ($el.data("loadingEnd")) {
+                    return;
+                }
+                $el.data("loadingEnd", true);
+
+                m.get("../json/tab.json", function (res) {
+
+                    $el.data("loadingEnd", false);
+                    var page = $el.data("pageindex") || 1;
+                    var docf = document.createDocumentFragment();
+                    for (var i = 0; i < res.length; i++) {
+
+                        var p = document.createElement("p");
+                        p.innerHTML = (index + 1) + "屏==" + page + "页==" + res[i].content;
+                        docf.appendChild(p);
+                    }
+                    $el.data("pageindex", ++page);
+                    $el.find(".m-overflow-tb-cnt").append(docf);
+                }, "json");
+
+            }
+
+
+
+
+
+        });
+
+				  
+    </script>
+
+</body>
+
+</html>

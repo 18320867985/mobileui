@@ -1,0 +1,244 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+
+        .m-touch-lr {
+            height: 100%;
+        }
+
+            .m-touch-lr .m-touch-lr-item img {
+                width: 16rem;
+                height: 10rem;
+            }
+
+        h4 {
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd">
+
+        <!--头部-->
+        <header class="m-hd m-touch-df">
+            <div class="m-hd-top">
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl">touch左右滑动组件</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+
+            <div class="m-touch-tb" data-toggle="m-touch-tb">
+                <div class="m-touch-tb-cnt">
+
+                    <h4>左右滑动</h4>
+                    <div style="height:10rem;">
+                        <div class="m-touch-lr">
+
+                            <div class="m-touch-lr-cnt">
+
+                                <div class="m-touch-lr-item">
+                                    <a href="http://baidu.com"><img src="/images/1.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/2.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/3.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/4.jpg" alt="Alternate Text" /></a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <h4>左右滑动带有滑动条data-bar</h4>
+                    <div style="height:10rem;">
+                        <div class="m-touch-lr" data-bar>
+
+                            <div class="m-touch-lr-cnt">
+
+                                <div class="m-touch-lr-item">
+                                    <a href="http://baidu.com"><img src="/images/1.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/2.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/3.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/4.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="http://baidu.com"><img src="/images/1.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/2.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/3.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/4.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="http://baidu.com"><img src="/images/1.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/2.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/3.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/4.jpg" alt="Alternate Text" /></a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <h4>左右滑动带有滑动条data-bar</h4>
+                    <div style="height:10rem;">
+                        <div class="m-touch-lr" data-bar>
+
+                            <div class="m-touch-lr-cnt">
+
+                                <div class="m-touch-lr-item">
+                                    <a href="http://baidu.com"><img src="/images/1.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/2.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/3.jpg" alt="Alternate Text" /></a>
+                                </div>
+                                <div class="m-touch-lr-item">
+                                    <a href="#"><img src="/images/4.jpg" alt="Alternate Text" /></a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+            // 1.插件模式 m.mTouchLeftRight()  2.组件模式< data-toggle="m-touch-lr">
+            m(".m-touch-lr").eq(0).mTouchLeftRight({ limitLeft: true, limitRight: true, speed: true });
+            m(".m-touch-lr").eq(1).mTouchLeftRight({ limitLeft: true, limitRight: true, speed: true });
+            m(".m-touch-lr").eq(2).mTouchLeftRight({ limitLeft: false, limitRight: false, speed: true });
+         
+            /*
+             * {
+                 * speed: false,        // 滑动速度
+                 * limitLetf: true,     // 禁止left拉动
+                 * limitRight: true,    // 禁止right拉动
+                 * touchTab: true       // 开启tab项
+             * }
+             */
+
+
+            // 触发左右滑动自定义start的事件
+            m(".m-touch-lr").on("m-touch-lr-start", function (event, el, moveY, scrollObj) {
+                /*
+                   event       事件
+                   el          触发元素
+                   moveY       translateY值
+                   scrollObj   滚动对象
+                 */
+                //console.log("event", event);
+                //console.log("el", el);
+                //console.log("moveY", moveY);
+                //console.log("scrollObj", scrollObj);
+
+            });
+
+            // 触发左右滑动自定义move的事件
+            m(".m-touch-lr").on("m-touch-lr-move", function (event, el, moveY, scrollObj) {
+                /*
+                   event       事件
+                   el          触发元素
+                   moveY       translateY值
+                   scrollObj   滚动对象
+                 */
+                //console.log("event", event);
+                //console.log("el", el);
+                //console.log("moveY", moveY);
+                //console.log("scrollObj", scrollObj);
+
+            });
+
+
+            // 触发左右滑动自定义end的事件
+            m(".m-touch-lr").on("m-touch-lr-end", function (event, el, moveY, scrollObj) {
+                /*
+                   event       事件
+                   el          触发元素
+                   moveY       translateY值
+                   scrollObj   滚动对象
+                 */
+                //console.log("event", event);
+                //console.log("el", el);
+                //console.log("moveY", moveY);
+                //console.log("scrollObj", scrollObj);
+
+            });
+
+            // tab 触发自定义的事件
+            m(".m-touch-lr").on("m-touch-lr-tab", function (event, el, index, moveX, scrollObj) {
+                /*
+                   event       事件
+                   el          触发元素
+                   index       索引值
+                   moveX       translateX值
+                   scrollObj   滚动对象
+                 */
+                //console.log("event", event);
+                //console.log("el", el);
+                //console.log("index", index);
+                //console.log("moveX", moveX);
+                //console.log("scrollObj", scrollObj);
+
+            });
+
+
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

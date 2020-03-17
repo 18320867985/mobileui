@@ -1,0 +1,42 @@
+﻿
+@import "../var.scss";
+
+
+// 左右的导航项
+.m-touch-nav-lr {
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+    overflow:hidden;
+    box-shadow: 0 2px 2px rgba(0,0,0,.075), 0 -2px 2px rgba(0,0,0,.075);
+
+
+    .m-touch-nav-cnt {
+        display: inline-block;
+        font-size: 0;
+        white-space: nowrap;
+    }
+
+    .m-touch-nav-item {
+        display: inline-block;
+        font-size: .7rem;
+
+        a {
+            display: block;
+            padding: 0 20rem/$rem;
+            line-height: 40rem/$rem;
+            color: #020202;
+        }
+
+        &.active {
+            background: $text-primary;
+            color: $text-white;
+
+            a {
+                color: $text-white;
+            }
+        }
+    }
+}
+
+

@@ -1,28 +1,41 @@
-import   "./libs/mobile-1.0.0.js";
 
-export {reset} from "./component/mobile-reset.js";
+import "./mobile/mobile-dom";
 
-export {commonStyle} from "./component/mobile-commonStyle.js";
+import "./mobile/mobile-touch";
 
-export {scrollTopBottom} from "./component/mobile-scrollTopBottom.js";
+import "./mobile/mobile-ajax";
 
-export {scrollLeftRight} from  "./component/mobile-scrollLeftRight.js";
+import "./mobile/mobile-transition";
 
-export {slide} from "./component/mobile-slide.js";
+import "./mobile/mobile-transform";
 
-export {tab} from "./component/mobile-tab.js";
+// 组件
+import "./component/m-df";                   // 默认设置
 
-export {aside} from "./component/mobile-aside.js";
+// touch
+import "./component/m-touch-slide";        //slide
+import "./component/m-touch-nav-lr";       //左右滑动菜单
+import "./component/m-touch-nav-tb";       //上下滑动菜单
+import "./component/m-tableview";          //tableview 
+import "./component/m-touch-tab";          //左右tab
+import "./component/m-touch-tab-btn";      //左右tab-btn
+import "./component/m-indexlist";          //indexlist
+import "./component/m-listoption";         //listoption列表操作
+import "./component/m-switch";             //switch
+import "./component/m-checkbtn";           //checkbtn
+import "./component/m-checkbox";           //checkbox
+import "./component/m-message";           //message
+import "./component/m-picker";           //picker
+import "./component/m-lazy";           //lazy
 
-export {fullpage} from "./component/mobile-fullpage.js";
+// overflow
+import "./component/m-overflow-lr";         //左右overflow滑动
+import "./component/m-overflow-tb";         //上下overflow滑动
 
-export {indexlist} from "./component/mobile-indexlist.js";
 
-export {spy} from "./component/mobile-spy.js";
 
-export {tableview} from "./component/mobile-tableview.js";
 
-export {overflow} from "./component/mobile-overflow.js";
+
 
 
 

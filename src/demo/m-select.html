@@ -1,0 +1,118 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+
+
+        .m-cnt{
+           padding:1rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd m-touch-df">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl" id="ttl"> select组件</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+
+            <div class="m-btn m-btn-primary m-btn-block btn1">点击选择的值：2020</div>
+            <br />
+            <div class="m-btn m-btn-success m-btn-block btn2">自动选择的值：商城</div>
+
+        </section>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+            var list = [];
+            for (var i = 2000; i < 2030; i++) {
+                list.push({text:i,val:i,select:i===2020?true:false});
+            }
+
+            //  点击确定选择的值
+            m(".btn1").on("tap", function () {
+                var $btn=m(this);
+                m.mPicker({type:"select", list: list,ttl:"选择日期"}, function (val) {
+
+                    $btn.html("点击选择的值：" + val.select);
+                 
+                });
+
+            });
+
+
+            // 选择组件定位到中间的select事件
+            m("#m-select-2").on("select.m.picker", function (event, el, val) {
+                /*
+                   event       事件
+                   el          触发元素
+                   val          选择的值
+                 */
+                //console.log("event", event);
+                console.log("el", el);
+                console.log("val", val);
+                //m(".m-btn-primary").html("选择的值：" + val);  // 自动选择
+              
+            });
+
+            var list2 = [
+            { text: "美食", val: "美食" } ,
+            { text: "悦单", val: "悦单" } ,
+            { text: "V榜", val: "V榜" } ,
+            { text: "音悦", val: "音悦" } ,
+            { text: "商城", val: "商城",select:true } ,
+            { text: "节目", val: "节目" } ,
+            { text: "饭团", val: "饭团" } ,
+            { text: "资讯", val: "资讯" } ,
+            { text: "我的家", val: "我的家" } ,
+            { text: "美团", val: "美团" } ,
+
+            ];
+            
+            
+            //  自动选择的值
+             m(".btn2").on("tap", function () {
+                  var $btn=m(this);
+                 m.mPicker({ type:"select",list: list2, isShowTip: true,}, function (val) {
+                   
+                  $btn.html("自动选择的值：" + val.select);
+                 
+                });
+
+             });
+         
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

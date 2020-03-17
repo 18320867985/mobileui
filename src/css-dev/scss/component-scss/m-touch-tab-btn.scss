@@ -1,0 +1,52 @@
+﻿
+@import "../var.scss";
+
+
+/*左右滑动的tab的按钮*/
+
+// tab-btn
+.m-touch-tab-btn {
+    position: relative;
+
+    .m-touch-tab-btn-cnt {
+        display: flex;
+        flex-flow: nowrap row;
+        justify-content: center;
+        align-items: center;
+      
+    }
+
+    &.m-touch-tab-btn-top {
+        padding: .2rem 0;
+        border-top: 1px solid $text-line;
+    }
+
+    &.m-touch-tab-btn-bottom {
+        border-top: 1px solid $text-line;
+    }
+
+
+    .m-touch-tab-btn-line {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        display: inline-block;
+        vertical-align: top;
+        border-top: 1px solid $text-primary;
+        border-radius: 5px;
+    }
+}
+.m-touch-tab-btn-item{
+    flex:1;
+
+    text-align:center;
+    padding:.5rem;
+    font-size:.8rem;
+    touch-action:none;
+
+    &.active{
+        color:$text-primary;
+    }
+
+}

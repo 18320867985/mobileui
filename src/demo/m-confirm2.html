@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+        .m-overflow-tb-cnt {
+            padding: 1rem .5rem;
+        }
+
+       
+
+        hr {
+            margin: .5rem 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl">confirm下弹出的信息框 组件</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+            <div class="m-overflow-tb">
+                <div class="m-overflow-tb-cnt">
+
+                    <button class="m-btn m-btn-primary m-btn-block" type="button">confirm信息框</button>
+                    <br />
+                    <button class="m-btn m-btn-success m-btn-block" type="button">confirm信息框 属性设置</button>
+
+                </div>
+
+            </div>
+        </section>
+
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+            
+            // confirm下弹出的信息框 
+            m(".m-btn-primary").tap(function () {
+
+                $.mConfirm2("这是confirm提示框！");
+            });
+
+            // confirm下弹出的信息框 属性设置
+            m(".m-btn-success").tap(function () {
+
+                $.mConfirm2(
+                    "这是confirm提示框！" ,
+
+                    function () {
+
+                        m.mInfo("这是确定的回调函数");
+                    },
+
+                    function () {
+
+                        m.mInfo("这是取消的回调函数");
+                    },
+                    {
+                        ok: "确定按钮" ,
+                        no:"取消按钮"
+                    }
+                );
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
+

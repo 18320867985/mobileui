@@ -1,0 +1,11 @@
+
+@import "../var.scss";
+
+.m-cnt {
+    position:fixed;
+    left:0;
+    right:0;
+    z-index:1;
+    overflow:visible;
+    background: $body-bg;
+}

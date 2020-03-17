@@ -1,0 +1,217 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+        .m-overflow-tb-cnt {
+            padding:1rem .5rem;
+          
+        }
+       .m-overflow-tb h4,p {
+            padding:.5rem;
+        }
+        hr {
+              margin:.5rem 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl">m-checkbtn 组件</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+            <div class="m-overflow-tb">
+                <div class="m-overflow-tb-cnt">
+                    <div class="m-checkbtn">
+                        <div class="m-checkbtn-item  active">
+                            主要
+                        </div>
+                    </div>
+                    <div class="m-checkbtn text-success ">
+                        <div class="m-checkbtn-item active">
+                            成功
+                        </div>
+                    </div>
+                    <div class="m-checkbtn text-warning">
+                        <div class="m-checkbtn-item active">
+                            警告
+                        </div>
+                    </div>
+                    <div class="m-checkbtn  text-danger">
+                        <div class="m-checkbtn-item active">
+                            危险
+                        </div>
+                    </div>
+                    <hr />
+
+                    <h4>m-checkbtn 组件-单选</h4>
+
+                    <div class="m-checkbtn" id="aixin">
+                        <div class="m-checkbtn-item ">
+                            爱心
+                        </div>
+                    </div>
+
+                    <p>选择值为: <span class="m-checkbtn-val"></span></p>
+                    <a class="m-btn m-btn-success m-checkbtn-get">获取选择的值</a>
+                    <a class="m-btn m-btn-danger m-checkbtn-set">设置的值 true </a>
+                    <hr />
+
+                    <h4>m-checkbtn-group 组件 多选</h4>
+                    <div class="m-checkbtn-group ">
+                        <div class="m-checkbtn-group-item" data-val="js">js</div>
+                        <div class="m-checkbtn-group-item " data-val="jquery">jquery</div>
+                        <div class="m-checkbtn-group-item" data-val="java">java</div>
+                        <div class="m-checkbtn-group-item" data-val="c#">c#</div>
+                        <div class="m-checkbtn-group-item " data-val="nodejs">nodejs</div>
+                    </div>
+                    <p>选择值为: <span class="m-checkbtn-group-val"></span></p>
+                    <a class="m-btn m-btn-success m-checkbtn-group-get">获取选择的值</a>
+                    <a class="m-btn m-btn-danger m-checkbtn-group-set">设置的值 [ "js","c#" ] </a>
+                    <a class="m-btn m-btn-warning m-checkbtn-group-fn">设置的值 执行回调函数 [ "js","jquery" ] </a>
+                    <br />
+                    <a class="m-btn  m-checkbtn-group-all">全选</a>
+                    <a class="m-btn  m-checkbtn-group-no">反选</a>
+                    <hr />
+
+                    <h4>m-radiobtn-group 组件-单选</h4>
+                    <div class="m-radiobtn-group">
+                        <div class="m-radiobtn-item" data-val="lingju">灵聚 </div>
+                        <div class="m-radiobtn-item" data-val="tengxun">腾讯 </div>
+                        <div class="m-radiobtn-item" data-val="xunfei">科大讯飞 </div>
+                    </div>
+                    <p>选择值为: <span class="m-radiobtn-group-val"></span></p>
+                    <a class="m-btn m-btn-success m-radiobtn-group-get">获取选择的值</a>
+                    <a class="m-btn m-btn-danger m-radiobtn-group-set">设置的值 "腾讯" </a>
+
+                </div>
+               
+            </div>
+    </section>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+            /*************m-checkbtn-单选****************/ 
+            // m-checkbtn 触发自定义的事件           ,
+            $("#aixin").on("check.m.checkbtn", function (e, el,bl) {
+                console.log(bl, el)
+                bl = !!bl;
+                $(".m-checkbtn-val").text(bl)
+            });
+             // get
+            $(".m-checkbtn-get").tap(function (e) {
+                var v = $("#aixin").mCheckbtn();
+                v = !!v;
+                alert("获取选择的值:"+ v + "");
+
+
+            });
+            // set
+            $(".m-checkbtn-set").tap(function (e) {
+                $("#aixin").mCheckbtn(true);
+
+            });
+
+            /*************m-checkbtn-group多选****************/ 
+ 
+            $(".m-checkbtn-group").on("check.m.checkbtn.group", function (e, arrs) {
+
+                $(".m-checkbtn-group-val").text(JSON.stringify(arrs));
+               // console.log(arrs)
+                //$.alert("","选择的值为:"+arrs);
+            });
+            
+            $(".m-checkbtn-group-get").tap(function (e) {
+                var v = $(".m-checkbtn-group").mCheckbtnGroup();
+               alert("获取选择的值"+"[" + v + "]");
+            });
+
+            $(".m-checkbtn-group-set").tap(function (e) {
+                $(".m-checkbtn-group").mCheckbtnGroup(["js", "c#"]);
+
+            });
+
+            $(".m-checkbtn-group-fn").tap(function (e) {
+
+                $(".m-checkbtn-group").mCheckbtnGroup(function (v) {
+                    var arrs = ["js", "jquery"];
+                    for (var i = 0; i < arrs.length; i++) {
+
+                        if (arrs[i] === v) {
+                            return true;
+                            break;
+                        }
+                    }
+
+                });
+
+            });
+
+            // 全选
+            $(".m-checkbtn-group-all").tap(function () {
+                $(".m-checkbtn-group").mCheckbtnGroup(true);
+
+            });
+
+            // 反选
+            $(".m-checkbtn-group-no").tap(function () {
+                $(".m-checkbtn-group").mCheckbtnGroup(false);
+
+            });
+
+        /***********m-radiobtn-group 组件-单选****************/
+        // set
+        $(".m-radiobtn-group-set").tap(function () {
+            $(".m-radiobtn-group").mRadiobtnGroup("tengxun");
+            // 或者指定下标index
+            //$(".v-radiobtn-group").vradiobtnGroup(1);
+
+        });
+
+        // get
+        $(".m-radiobtn-group-get").tap(function () {
+            var v = $(".m-radiobtn-group").mRadiobtnGroup();
+            alert("选择的值：" + v);
+        });
+
+
+        // 单选 vue-radiobtn-group 自定事件
+        $(".m-radiobtn-group").on("check.m.radiobtn.group", function (e, el,v) {
+            console.log(v, el)
+            $(".m-radiobtn-group-val").text(JSON.stringify(v));
+        });
+
+          
+        });
+    </script>
+
+</body>
+
+</html>
+

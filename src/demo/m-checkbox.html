@@ -1,0 +1,239 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+        .m-overflow-tb-cnt {
+            padding:1rem .5rem;
+          
+        }
+        .m-checkbox {
+            margin-left:.5rem;
+        }
+      .m-overflow-tb h4,p {
+            padding:.5rem;
+      
+        }
+        hr {
+              margin:.5rem 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl">m-checkbox 组件</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+            <div class="m-overflow-tb">
+                <div class="m-overflow-tb-cnt">
+                    <div class="m-checkbox ">
+                        <span class="m-checkbox-item iconfont active"></span>
+                        <span class="m-checkbox-text">主要</span>
+                    </div>
+
+                    <div class="m-checkbox text-success">
+                        <span class="m-checkbox-item iconfont active"></span>
+                        <span class="m-checkbox-text">成功</span>
+                    </div>
+
+                    <div class="m-checkbox text-warning ">
+                        <span class="m-checkbox-item iconfont active"></span>
+                        <span class="m-checkbox-text">警告</span>
+                    </div>
+
+                    <div class="m-checkbox text-danger">
+                        <span class="m-checkbox-item iconfont active"></span>
+                        <span class="m-checkbox-text">危险</span>
+                    </div>
+
+                    <hr />
+                    <h4>m-checkbox 组件-单选</h4>
+
+                    <div class="m-checkbox" id="aixin">
+                        <span class="m-checkbox-item iconfont "></span>
+                    </div>
+
+                    <p>选择值为: <span class="m-checkbox-val"></span></p>
+                    <a class="m-btn m-btn-success m-checkbox-get">获取选择的值</a>
+                    <a class="m-btn m-btn-danger m-checkbox-set">设置的值 true </a>
+                    <hr />
+
+                    <h4>m-checkbox-group 组件 多选</h4>
+
+                    <div class="m-checkbox-group ">
+                        <div class="m-checkbox-group-item" data-val="js">
+                            <span class="m-checkbox-icon iconfont"></span>
+                            <span class="m-checkbox-group-text">js</span>
+                        </div>
+                        <div class="m-checkbox-group-item" data-val="jquery">
+                            <span class="m-checkbox-icon iconfont"></span>
+                            <span class="m-checkbox-group-text">jquery</span>
+                        </div>
+                        <div class="m-checkbox-group-item" data-val="c#">
+                            <span class="m-checkbox-icon iconfont"></span>
+                            <span class="m-checkbox-group-text">c#</span>
+                        </div>
+
+                    </div>
+
+                    <p>选择值为: <span class="m-checkbox-group-val"></span></p>
+                    <a class="m-btn m-btn-success m-checkbox-group-get">获取选择的值</a>
+                    <a class="m-btn m-btn-danger m-checkbox-group-set">设置的值 [ "js","c#" ] </a>
+                    <a class="m-btn m-btn-warning m-checkbox-group-fn">设置的值 执行回调函数 [ "js","jquery" ] </a>
+                    <br />
+                    <a class="m-btn  m-checkbox-group-all">全选</a>
+                    <a class="m-btn  m-checkbox-group-no">反选</a>
+
+                    <hr />
+                    <h4>m-radiobox-group 组件-单选</h4>
+                    <div class="m-radiobox-group">
+                        <div class="m-radiobox-item " data-val="慢">
+                            <span class="m-radiobox-icon iconfont"></span>
+                            <span class="m-radiobox-txt">慢</span>
+                        </div>
+                        <div class="m-radiobox-item " data-val="中">
+                            <span class="m-radiobox-icon iconfont"></span>
+                            <span class="m-radiobox-txt">中</span>
+                        </div>
+                        <div class="m-radiobox-item " data-val="快">
+                            <span class="m-radiobox-icon iconfont"></span>
+                            <span class="m-radiobox-txt">快</span>
+                        </div>
+
+                    </div>
+                    <p>选择值为: <span class="m-radiobox-group-val"></span></p>
+                    <a class="m-btn m-btn-success m-radiobox-group-get">获取选择的值</a>
+                    <a class="m-btn m-btn-danger m-radiobox-group-set">设置的值 "中" </a>
+
+                </div>
+               
+            </div>
+    </section>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+            /*************m-checkbox-单选****************/ 
+            // m-checkbox 触发自定义的事件           ,
+            $("#aixin").on("check.m.checkbox", function (e, el,bl) {
+                console.log(bl, el)
+                bl = !!bl;
+                $(".m-checkbox-val").text(bl)
+            });
+             // get
+            $(".m-checkbox-get").tap(function (e) {
+                var v = $("#aixin").mCheckbox();
+                v = !!v;
+                alert("获取选择的值:"+ v + "");
+
+
+            });
+            // set
+            $(".m-checkbox-set").tap(function (e) {
+                $("#aixin").mCheckbox(true);
+
+            });
+
+            /*************m-checkbox-group多选****************/ 
+ 
+            $(".m-checkbox-group").on("check.m.checkbox.group", function (e,el, arrs) {
+
+                $(".m-checkbox-group-val").text(JSON.stringify(arrs));
+               console.log(arrs)
+                //$.alert("","选择的值为:"+arrs);
+            });
+            
+            $(".m-checkbox-group-get").tap(function (e) {
+                var v = $(".m-checkbox-group").mCheckboxGroup();
+               alert("获取选择的值"+"[" + v + "]");
+            });
+
+            $(".m-checkbox-group-set").tap(function (e) {
+                $(".m-checkbox-group").mCheckboxGroup(["js", "c#"]);
+
+            });
+
+            $(".m-checkbox-group-fn").tap(function (e) {
+
+                $(".m-checkbox-group").mCheckboxGroup(function (v) {
+                    var arrs = ["js", "jquery"];
+                    for (var i = 0; i < arrs.length; i++) {
+
+                        if (arrs[i] === v) {
+                            return true;
+                            break;
+                        }
+                    }
+
+                });
+
+            });
+
+            // 全选
+            $(".m-checkbox-group-all").tap(function () {
+                $(".m-checkbox-group").mCheckboxGroup(true);
+
+            });
+
+            // 反选
+            $(".m-checkbox-group-no").tap(function () {
+                $(".m-checkbox-group").mCheckboxGroup(false);
+
+            });
+
+
+        /*m-radiobox-group 组件-单选*/
+        // set
+        $(".m-radiobox-group-set").tap(function () {
+            $(".m-radiobox-group").mRadioboxGroup("中");
+            // 或者指定下标index
+            //$(".v-radiobtn-group").vradiobtnGroup(1);
+
+        });
+
+        // get
+        $(".m-radiobox-group-get").tap(function () {
+            var v = $(".m-radiobox-group").mRadioboxGroup();
+            alert("选择的值：" + v);
+        });
+
+
+        // 单选 m-radiobtn-group 自定事件
+        $(".m-radiobox-group").on("check.m.radiobox.group", function (e, el,v) {
+            console.log(v, el)
+            $(".m-radiobox-group-val").text(JSON.stringify(v));
+        });
+
+          
+        });
+    </script>
+
+</body>
+
+</html>
+

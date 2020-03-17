@@ -1,5 +1,26 @@
 
-#不提交的版本控制文件
 
- 
+#  node server Dependency directory
 /node_modules
+
+#  node  html Dependency directory
+/html/node_modules
+
+#  node  html-webpack Dependency directory
+/html-webpack/node_modules
+
+# Visual Studio  Dependency directory
+
+/.vs
+/**/*.suo
+/**/*.sqlite
+/**/VSWorkspaceSettings.json
+
+
+# ==============自定义 ==============
+# multiModuleSetting
+#multiModuleSetting.js
+
+# static view css and js
+#src/static/css/view/*.css
+#src/static/js/view/*.js

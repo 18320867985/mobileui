@@ -1,19 +1,10 @@
 
-@import "var.scss";                           // variable   
+@import "var.scss"; // variable  
 
-@import "_media.scss";                  //_media
+@import "common-scss/media.scss"; //_media
 
-@import "_normalize.scss";                            // reset css style 
+@import "common-scss/normalize.scss"; // reset css style 
 
-//@import "mixin.scss";                          // 函数
+@import "component-scss/all.scss"; // component 
 
-@import "_default.scss";                         //   default scss
-
-@import "component-scss/comp-all.scss";          //  组件
-
-@import "page-scss/all-page.scss";          //  pages
-
-//@import "test.scss";                          // 测试   
-
-
-
+@import "page-scss/all-page.scss"; // 子页面scss集合 

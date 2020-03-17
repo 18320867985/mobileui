@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+        .m-overflow-tb-cnt {
+            padding:1rem .5rem;
+          
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl">switch组件</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+            <div class="m-overflow-tb">
+                <div class="m-overflow-tb-cnt">
+                    <div class="m-switch m-switch-inline active" data-toggle="m-switch">
+                        <div class="m-switch-rd"></div>
+                    </div>
+                    <div class="m-switch m-switch-inline m-text-primary active" data-toggle="m-switch">
+                        <div class="m-switch-rd"></div>
+                    </div>
+                    <div class="m-switch m-switch-inline m-text-success active" data-toggle="m-switch">
+                        <div class="m-switch-rd"></div>
+                    </div>
+
+                    <div class="m-switch m-switch-inline m-text-warning active" data-toggle="m-switch">
+                        <div class="m-switch-rd"></div>
+                    </div>
+                    <div class="m-switch m-switch-inline m-text-danger active" data-toggle="m-switch">
+                        <div class="m-switch-rd"></div>
+                    </div>
+
+                </div>
+    </div>
+    </section>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+            // 选择触发事件
+            m(".m-switch").on("switch.m.switch", function (event, el, bl) {
+                console.log("event:", event);
+                console.log("el:", el);   // 当前元素对象
+                console.log("bl:", bl);   // 当前元素对象的激活状态
+
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+

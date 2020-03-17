@@ -1,0 +1,59 @@
+
+// m-overflow-tb
+
+/*.m-overflow-tb::-webkit-scrollbar {
+    display: none;
+}*/
+
+
+@import "../var.scss";
+.m-overflow-tb {
+    width:100%;
+    height: 100%;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    &.m-bar-no::-webkit-scrollbar {
+        display: none;
+    }
+
+   
+}
+
+.m-overflow-tb-cnt {
+    position: relative;
+
+}
+
+.m-overflow-tb-nav {
+
+    > li {
+        font-size: .7rem;
+
+        a {
+            display: block;
+            text-align: center;
+            line-height: 40rem/$rem;
+            color: #020202;
+        }
+
+        &.active {
+            background: $text-success;
+            color: $text-white;
+
+            a {
+                color: $text-white;
+            }
+        }
+    }
+}
+
+.m-overflow-tb-loading {
+
+    line-height:2rem;
+    color: $text-loading;
+    text-align:center;
+    font-size:.7rem;
+}

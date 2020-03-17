@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>tableview列表</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+		<style type="text/css">
+			.m-scroll-content {
+				padding-bottom: .5rem;
+			}
+           h4 {
+               padding-top:.4rem;
+               margin:0 1rem;
+            }
+		</style>
+
+	</head>
+
+	<body>
+		<!--主体-->
+		<div class="m-bd ">
+
+			<!--头部-->
+			<header class="m-hd">
+                <div class="m-hd-top">
+                    <div class="m-hd-top-icon  m-back">
+                        <span class="iconfont icon-back-left "></span>
+                    </div>
+                    <h4 class="m-hd-top-ttl" id="ttl">Mobile触摸页面</h4>
+                </div>
+
+			</header>
+
+			<!--内容-->
+            <section class="m-cnt">
+
+                <div class="m-overflow-tb" data-toggle="m-overflow-tb">
+
+                    <div class="m-touch-tb-cnt">
+                        <h4>列表</h4>
+
+                        <ul class="m-table-view" data-toggle="m-table-view">
+
+                            <li class="m-table-view-cell">
+                                <div class="m-table-view-ttl">
+                                    <h5>
+                                        overflow滑动组件
+                                    </h5>
+                                    <span class="iconfont icon-back-right"></span>
+                                </div>
+
+                                <!--折叠div-->
+                                <ul class="m-table-view-collapse ">
+
+                                    <li class="m-table-view-collapse-cell">
+                                        <a  href="/demo/m-overflow-lr.html">左右滑动组件</a>
+                                        <span class="iconfont icon-back-right"></span>
+                                    </li>
+
+                                    <li class="m-table-view-collapse-cell">
+                                        <a  href="/demo/m-overflow-tb.html">上下滑动组件</a>
+                                        <span class="iconfont icon-back-right"></span>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                        <h4>圆角列表</h4>
+
+                        <ul class="m-table-view m-table-view-rd" data-toggle="m-table-view">
+
+                            <li class="m-table-view-cell">
+                                <div class="m-table-view-ttl">
+                                    <h5>
+                                        overflow滑动组件
+                                    </h5>
+                                    <span class="iconfont icon-back-right"></span>
+                                </div>
+
+                                <!--折叠div-->
+                                <ul class="m-table-view-collapse ">
+
+                                    <li class="m-table-view-collapse-cell">
+                                        <a  href="/demo/m-overflow-lr.html">左右滑动组件</a>
+                                        <span class="iconfont icon-back-right"></span>
+                                    </li>
+
+                                    <li class="m-table-view-collapse-cell">
+                                        <a  href="/demo/m-overflow-tb.html">上下滑动组件</a>
+                                        <span class="iconfont icon-back-right"></span>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            
+                        </ul>
+
+                    </div>
+                </div>
+
+            </section>
+
+		</div>
+
+		<script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+            m(function () {
+                // 拉到底部 触发自定义的事件
+                m(".m-touch-tb").on("m-touch-tb-reachbottom", function (event, el, moveX, obj) {
+                    console.log("拉到底部 触发自定义的事件:m-touch-tb-reachbottom")
+
+                })
+            })
+
+		</script>
+	</body>
+
+</html>

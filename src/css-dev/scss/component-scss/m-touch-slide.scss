@@ -1,0 +1,91 @@
+﻿
+@import "../var.scss";
+
+
+/*slide滑动*/
+
+.m-touch-slide {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    margin-bottom: 15rem/$rem;
+
+    .m-touch-slide-cnt {
+        position: relative;
+        display: inline-block;
+        height: 100%;
+        vertical-align: top;
+        white-space: nowrap;
+        text-align: center;
+        font-size: 0;
+    }
+
+    .m-touch-slide-item {
+        display: inline-block;
+        height: 100%;
+        overflow: hidden;
+        font-size: .7rem;
+        vertical-align: top;
+
+        > * {
+            vertical-align: top;
+        }
+
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.m-touch-slide-radius {
+    position: absolute;
+    z-index: 2;
+    bottom: 1.25rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    height: 0;
+    border: none;
+
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        height: 1px;
+        width: .8rem;
+        border-radius: 5px;
+        background: $text-white;
+        transition: all .4s;
+        border: none;
+
+        &.active {
+            background: $text-danger;
+        }
+
+        & + span {
+            margin-left: .25rem;
+        }
+    }
+
+    &.m-text-left {
+        text-align: left;
+    }
+
+    &.m-text-center {
+        text-align: center;
+    }
+
+    &.m-text-right {
+        text-align: right;
+    }
+}
+

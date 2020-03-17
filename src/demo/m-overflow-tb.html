@@ -1,0 +1,194 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+        .m-confirm .m-confirm-cnt-btn.ok {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl">overflow上下滑动</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+
+            <nav class="m-overflow-tb m-bar-no" data-toggle="m-overflow-tb">
+
+                <div class="m-overflow-tb-cnt">
+                    <ul class="m-listoption" data-toggle="m-listoption">
+
+                        <!--<li class="m-listoption-item">
+                            <div class="m-listoption-item-cnt">
+
+
+                                <div class="m-listoption-item-left">
+                                    <a href="#">
+                                        <img src="../images/头像.png" alt="Alternate Text" />
+                                        <div class="">
+                                            <h4 class="_ttl elp-1">微信群</h4>
+                                            <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
+                                        </div>
+
+                                    </a>
+
+                                </div>
+
+                                <div class="m-listoption-item-option">
+                                    <div class="_item muted">
+                                        默认
+                                    </div>
+                                    <div class="_item success">
+                                        成功
+                                    </div>
+                                    <div class="_item warning">
+                                        警告
+                                    </div>
+                                    <div class="_item danger">
+                                        删除
+                                    </div>
+                                </div>
+                            </div>
+                        </li>-->
+
+                    </ul>
+                </div>
+                <div class="m-overflow-tb-loading">
+                    正在加载中...
+                </div>
+
+            </nav>
+
+        </section>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+            // 拉到顶部触发
+            m(".m-overflow-tb").on("reachtop.m.overflow.tb", function (event, el, scrollObj) {
+
+                //  console.log("reachtop.m.overflow.tb", scrollObj);
+
+            });
+
+            // scroll触发
+            m(".m-overflow-tb").on("scroll.m.overflow.tb", function (event, el, scrollObj) {
+
+                //  console.log("scroll.m.overflow.tb", scrollObj);
+
+            });
+
+            // 拉到底部触发
+            m(".m-overflow-tb").on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
+
+                console.log("reachbottom.m.overflow.tb", scrollObj);
+
+                ajaxData($(".m-overflow-tb"));
+            });
+
+            // 第一次加载数据
+            ajaxData(m(".m-overflow-tb"));
+
+            // ajax 加载数据
+            function ajaxData($el) {
+                if ($el.data("loadingEnd")) {
+
+                    return;
+                }
+                $el.data("loadingEnd", true);
+
+                m.get("../json/tab.json", function (res) {
+
+                    $el.data("loadingEnd", false);
+                    var page = $el.data("pageindex") || 1;
+                    var docf = document.createDocumentFragment();
+                    for (var i = 0; i < res.length; i++) {
+                        var li = document.createElement("li");
+                        li.classList.add("m-listoption-item");
+                        li.innerHTML = listoptionHtml;
+                        docf.appendChild(li);
+                     
+                    }
+                    $el.find(".m-listoption").append(docf);
+                    $el.data("pageindex", ++page);
+
+                }, "json");
+
+            }
+
+            var listoptionHtml = `
+                                <div class="m-listoption-item-cnt">
+
+                                    <!--列表内容-->
+                                    <div class="m-listoption-item-left">
+                                        <a href="http://baidu.com">
+                                            <img src="../images/head.png" alt="Alternate Text" />
+                                            <div class="_contnet">
+                                                <h4 class="_ttl elp-1">微信群</h4>
+                                                <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
+                                            </div>
+
+                                        </a>
+
+                                    </div>
+                                    <!--列表操作项-->
+                                    <div class="m-listoption-item-option">
+                                        <div class="_item muted">
+                                            默认
+                                        </div>
+                                        <div class="_item success">
+                                            成功
+                                        </div>
+                                        <div class="_item warning">
+                                            警告
+                                        </div>
+                                        <div class="_item danger">
+                                            删除
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+
+            // 删除
+            m(document).on("tap", "._item.danger", function (event) {
+
+                var $this = m(this);
+                m.mConfirm("是否确认删除数据？", function () {
+                    $this.parents(".m-listoption-item").remove();
+                }, null, { ok: "删除" });
+
+            });
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

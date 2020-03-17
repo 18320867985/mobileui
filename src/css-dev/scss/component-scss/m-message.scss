@@ -1,0 +1,423 @@
+﻿
+@import "../var.scss";
+
+
+// m-info
+.m-info {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    pointer-events: none;
+
+    &.in {
+        display: flex;
+    }
+
+    .m-info-text {
+        border-radius: .3rem;
+        color: $text-white;
+        padding: .5rem .7rem;
+        font-size: .7rem;
+        background: rgba(0,0,0,.65);
+        animation: m-info-text-dh .6s both;
+    }
+
+    &.top {
+        align-items: flex-start;
+        padding-top: 1rem;
+    }
+
+
+    &.bottom {
+        align-items: flex-end;
+        padding-bottom: 1rem;
+    }
+
+    &.center {
+        align-items: center;
+    }
+
+
+    &.text-primary {
+        .m-info-text {
+            background: rgba($text-primary,.8);
+        }
+    }
+
+    &.text-success {
+        .m-info-text {
+            background: rgba($text-success,.8);
+        }
+    }
+
+    &.text-warning {
+        .m-info-text {
+            background: rgba($text-warning,.8);
+        }
+    }
+
+    &.text-danger {
+        .m-info-text {
+            background: rgba($text-danger,.8);
+        }
+    }
+}
+
+@keyframes m-info-text-dh {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+// m-alert
+
+.m-alert {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: none;
+    background: rgba(0,0,0,.2);
+    justify-content: center;
+    align-items: center;
+
+    &.in {
+        display: flex;
+    }
+
+    .m-alert-cnt {
+        width: 90%;
+        background: $text-white;
+        border-radius: .25rem;
+        box-shadow: 2px 2px 5px rgba(0,0,0,.075),-2px -2px 5px rgba(0,0,0,.075);
+        animation: m-alert-cnt-dh .4s both;
+    }
+
+    .m-alert-cnt-ttl {
+        padding: 1rem .5rem;
+        text-align: center;
+        border-bottom: 1px solid $text-border;
+
+        > ._txt {
+            display: inline-block;
+            text-align: left;
+            color: #444;
+            word-break:break-all;
+            word-wrap:break-word;
+        }
+    }
+
+    .m-alert-cnt-btn {
+        padding: .6rem;
+        text-align: center;
+        color: $text-primary;
+    }
+}
+
+@keyframes m-alert-cnt-dh {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+// m-confirm
+
+.m-confirm {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: none;
+    background: rgba(0,0,0,.2);
+    justify-content: center;
+    align-items: center;
+
+    &.in {
+        display: flex;
+    }
+
+    .m-confirm-cnt {
+        width: 90%;
+        background: $text-white;
+        border-radius: .25rem;
+        box-shadow: 2px 2px 5px rgba(0,0,0,.075),-2px -2px 5px rgba(0,0,0,.075);
+        animation: m-confirm-cnt-dh .4s both;
+    }
+
+    .m-confirm-cnt-ttl {
+        padding: 1rem .5rem;
+        text-align: center;
+        border-bottom: 1px solid $text-border;
+
+        > ._txt {
+            display: inline-block;
+            text-align: left;
+            color: #444;
+        }
+    }
+
+    .m-confirm-cnt-btns {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .m-confirm-cnt-btn {
+        padding: .6rem;
+        text-align: center;
+        flex: 1;
+
+        &.ok {
+            color: $text-primary;
+        }
+
+        &.no {
+            color: $text-gray;
+        }
+
+        & + .m-confirm-cnt-btn {
+            border-left: 1px solid $text-border;
+        }
+    }
+}
+
+@keyframes m-confirm-cnt-dh {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+// m-confirm2 下弹出的信息框
+.m-confirm2 {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: none;
+    background: rgba(0,0,0,.2);
+    justify-content: center;
+    align-items: flex-end;
+
+    &.in {
+        display: flex;
+    }
+
+    .m-confirm2-cnt {
+        width: 95%;
+
+
+        &.in {
+            animation: m-confirm2-cnt-dh-in .4s both;
+        }
+
+        &.out {
+            animation: m-confirm2-cnt-dh-out .4s both;
+        }
+    }
+
+    .m-confirm2-body {
+        display: flex;
+        flex-flow: column nowrap;
+        margin-bottom: .5rem;
+        background: $text-white;
+        border-radius: .25rem;
+        box-shadow: 2px 2px 2px rgba(0,0,0,.075),-2px -2px 2px rgba(0,0,0,.075);
+
+        .m-confirm2-cnt-ttl {
+            padding: 1rem .5rem;
+            text-align: center;
+            border-bottom: 1px solid $text-border;
+
+            > ._txt {
+                display: inline-block;
+                text-align: left;
+                color: #444;
+            }
+        }
+
+        .m-confirm2-cnt-btn {
+            padding: .6rem;
+            text-align: center;
+            flex: 1;
+
+            &.ok {
+                color: $text-primary;
+            }
+
+            &.no {
+                color: $text-gray;
+            }
+
+            & + .m-confirm2-cnt-btn {
+                border-left: 1px solid $text-border;
+            }
+        }
+    }
+
+    .m-confirm2-cnt-cancel {
+        padding: .6rem;
+        margin-bottom: .5rem;
+        color: $text-gray;
+        text-align: center;
+        background: $text-white;
+        border-radius: .25rem;
+        box-shadow: 2px 2px 2px rgba(0,0,0,.075),-2px -2px 2px rgba(0,0,0,.075);
+    }
+}
+
+@keyframes m-confirm2-cnt-dh-in {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes m-confirm2-cnt-dh-out {
+    0% {
+        opacity: 1;
+        transform: none;
+       
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
+
+
+// m-actionsheet下弹出的信息框
+.m-actionsheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: none;
+    background: rgba(0,0,0,.2);
+    justify-content: center;
+    align-items: flex-end;
+
+    &.in {
+        display: flex;
+    }
+
+    .m-actionsheet-cnt {
+        width: 95%;
+
+
+        &.in {
+            animation: m-actionsheet-cnt-dh-in .4s both;
+        }
+
+        &.out {
+            animation: m-actionsheet-cnt-dh-out .4s both;
+        }
+    }
+
+    .m-actionsheet-body {
+        display: flex;
+        flex-flow: column nowrap;
+        margin-bottom: .5rem;
+        background: $text-white;
+        border-radius: .25rem;
+        box-shadow: 2px 2px 2px rgba(0,0,0,.075),-2px -2px 2px rgba(0,0,0,.075);
+
+        .m-actionsheet-cnt-ttl {
+            padding: 1rem .5rem;
+            text-align: center;
+            border-bottom: 1px solid $text-border;
+
+            > ._txt {
+                display: inline-block;
+                text-align: left;
+                color: #444;
+            }
+        }
+
+        .m-actionsheet-cnt-btn {
+            padding: .6rem;
+            text-align: center;
+            flex: 1;
+
+            &.ok {
+                color: $text-primary;
+            }
+
+           
+            & + .m-actionsheet-cnt-btn {
+                border-top: 1px solid $text-border;
+            }
+        }
+    }
+
+    .m-actionsheet-cnt-cancel {
+        padding: .6rem;
+        margin-bottom: .5rem;
+        color: $text-gray;
+        text-align: center;
+        background: $text-white;
+        border-radius: .25rem;
+        box-shadow: 2px 2px 2px rgba(0,0,0,.075),-2px -2px 2px rgba(0,0,0,.075);
+    }
+}
+
+@keyframes m-actionsheet-cnt-dh-in {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes m-actionsheet-cnt-dh-out {
+    0% {
+        opacity: 1;
+        transform: none;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
+

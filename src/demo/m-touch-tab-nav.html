@@ -1,0 +1,184 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+
+       
+        .m-overflow-tb-cnt {
+            padding: .25rem .5rem;
+        }
+
+        .m-overflow-tb-cnt p {
+            padding: .5rem .2rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: .8rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl">touch左右tab滑动组件</h4>
+            </div>
+
+            <nav class="m-touch-nav-lr">
+                <ul class="m-touch-nav-cnt">
+                    <li class="active  m-touch-nav-item">
+                        <a href="javascript:;">首页</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+
+
+            <div class="m-touch-tab">
+                <div class="m-touch-tab-cnt">
+
+                    <!--滑动的内容 m-touch-lr-item是m-touch-lr的宽度 -->
+                    <div class="m-touch-tab-item active">
+                        <div class="m-overflow-tb" data-toggle="m-overflow-tb">
+                            <div class="m-overflow-tb-cnt">
+                               
+                            </div>
+                            <div class="m-overflow-tb-loading">
+                                正在加载中...
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </section>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+            // 加载nav 和tab
+            var nav = "";
+            var tab = "";
+            for (var i = 0; i < 20; i++) {
+                nav += `<li class="${i === 0 ? `active` : ``}  m-touch-nav-item" data-tab="#tab${i + 1}">
+                            <a href="javascript:;">第 ${i + 1} 屏</a>
+                        </li>  `;
+
+                tab += ` <div class="m-touch-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}">
+                            <div class="m-overflow-tb">
+                                <div class="m-overflow-tb-cnt">
+
+                                </div>
+                                <div class="m-overflow-tb-loading">
+                                      正在加载中...
+                                </div>
+
+                            </div>
+
+                        </div>  `;
+
+            }
+
+            // 触发插件
+            m(".m-touch-nav-cnt").html(nav).parent().mTouchNavLr();
+            m(".m-touch-tab-cnt").html(tab).parent().mTouchTab();
+            m(".m-overflow-tb").mOverflowTb();
+
+            // tap.m.touch.nav触发的事件
+            m(".m-touch-nav-cnt").on("tap.m.touch.nav", function (event, el, moveX) {
+
+                var id = m(el).attr("data-tab");
+                m(".m-touch-tab").mTouchTab("set", m(id).index());
+                if (!m(id).data("isOne")) {
+                    m(id).data("isOne", true);
+                   ajaxData(m(id), m(id).index());
+                }
+            
+            });
+
+            // tab 触发自定义的事件
+            m(".m-touch-tab").on("tab.m.touch.tab", function (event, el, index, scrollObj) {
+
+                m(".m-touch-nav-lr").mTouchNavLr("set", m(".m-touch-nav-item").eq(index));
+                if (!m(el).data("isOne")) {
+                     m(el).data("isOne", true);
+                     ajaxData(el, index);  
+                }
+
+            });
+
+            // reachbottom.m.overflow.tb触发自定义的事件 拉到底部触发
+            m(".m-overflow-tb").on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
+
+                var $el = m(el).parents(".m-touch-tab-item");
+               ajaxData($el, $el.index());
+
+            });
+
+            // 第一次加载数据
+            var $activeEl = $(".m-touch-tab-item.active");
+            ajaxData($activeEl, 0);
+            $activeEl.data("isOne", true);
+
+            // ajax 加载数据
+            function ajaxData($el, index) {
+
+                if ($el.data("loadingEnd")) {
+                    return;
+                }
+                $el.data("loadingEnd", true);
+
+                m.get("../json/tab.json", function (res) {
+
+                    $el.data("loadingEnd", false);
+                    var page = $el.data("pageindex") || 1;
+                    var docf = document.createDocumentFragment();
+                    for (var i = 0; i < res.length; i++) {
+
+                        var p = document.createElement("p");
+                        p.innerHTML = (index + 1) + "屏==" + page + "页==" + res[i].content;
+                        docf.appendChild(p);
+                    }
+                    $el.data("pageindex", ++page);
+                    $el.find(".m-overflow-tb-cnt").append(docf);
+                }, "json");
+
+            }
+
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

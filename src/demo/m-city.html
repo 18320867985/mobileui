@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+
+        .m-cnt{
+           padding:1rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd m-touch-df">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl" id="ttl"> city城市选择组件</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+            <p>首先页面引用city.js文件</p>
+            <div class="m-btn m-btn-success m-btn-block btn1">city一级选择：</div>
+            <br />
+
+            <div class="m-btn m-btn-success m-btn-block btn2">city两级选择：</div>
+            <br />
+            <div class="m-btn m-btn-success m-btn-block btn3">city三级选择：</div>
+
+        </section>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/cityData.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+            //  点击确定选择的值
+            m(".btn1").on("tap", function () {
+                var $btn=m(this);
+                m.mPicker({ type: "city1" }, function (val) {
+                    console.log( val.city)
+                    $btn.html("点击选择的值：" + val.city.city1.txt);
+                });
+
+            });
+
+              //  点击确定选择的值
+            m(".btn2").on("tap", function () {
+                var $btn=m(this);
+                m.mPicker({ type: "city2" }, function (val) {
+                    console.log( val.city)
+                    $btn.html("点击选择的值：" + val.city.city1.txt+"-"+val.city.city2.txt);
+                });
+
+            });
+              //  点击确定选择的值
+            m(".btn3").on("tap", function () {
+                var $btn=m(this);
+                m.mPicker({ type: "city3" }, function (val) {
+                    console.log( val.city)
+                    $btn.html("点击选择的值：" +  val.city.city1.txt+"-"+val.city.city2.txt+"-"+val.city.city3.txt);
+                });
+
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+        .m-overflow-tb {
+            padding:.5rem;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd m-touch-df">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl" id="ttl"> datetime日期时间组件</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+            <div class="m-overflow-tb">
+
+
+                <div class="m-btn m-btn-success m-btn-block btn1">选择年的值：</div>
+                <br />
+                <div class="m-btn m-btn-success m-btn-block btn2">选择年-月的值：</div>
+                <br />
+                <div class="m-btn m-btn-success m-btn-block btn3">选择年-月-日的值：</div>
+                <br />
+                <div class="m-btn m-btn-success m-btn-block btn4">选择年-月-日-时的值：</div>
+                <br />
+                <div class="m-btn m-btn-success m-btn-block btn5">选择年-月-日-时-分的值：</div>
+                <br />
+                <div class="m-btn m-btn-success m-btn-block btn6">选择年-月-日-时-分-秒的值：</div>
+                <br />
+                <div class="m-btn m-btn-danger m-btn-block btn-time1">选择时-分值：</div>
+                <br />
+                <div class="m-btn m-btn-danger m-btn-block btn-time2">选择时-分-秒值：</div>
+
+              
+            </div>
+        </section>
+        <footer class="m-ft">
+            <div class="m-ft-nav">
+                <h4 class="m-ft-nav-ttl">页脚</h4>
+            </div>
+
+        </footer>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+          
+            //  date
+            m(".btn1").on("tap", function () {
+               
+                var $btn = m(this);
+                m.mPicker({ type: "date1" }, function (val) {
+                  
+                    $btn.html("选择年的值：" + val.date.date1);
+                   
+                });
+
+            });
+
+             m(".btn2").on("tap", function () {
+                var $btn = m(this);
+                m.mPicker({ type:"date2" }, function (val) {
+                         
+                    $btn.html("选择年-月的值：" + val.date.date1+"-"+val.date.date2);
+                   
+                });
+
+             });
+             m(".btn3").on("tap", function () {
+                var $btn = m(this);
+                m.mPicker({ type:"date3" }, function (val) {
+                     
+                    $btn.html("选择年-月-日的值：" + val.date.date1+"-"+val.date.date2+"-"+val.date.date3);
+                   
+                });
+
+             });
+               m(".btn4").on("tap", function () {
+                var $btn = m(this);
+                m.mPicker({ type:"date4" }, function (val) {
+
+                    $btn.html("选择年-月-日-时的值：" + val.date.date1+"-"+val.date.date2+"-"+val.date.date3+" "+val.date.date4+":00");
+                   
+                });
+
+            });
+
+            m(".btn5").on("tap", function () {
+                var $btn = m(this);
+                 m.mPicker({ type:"date5" }, function (val) {
+
+                    $btn.html("选择年-月-日-时-分的值：" + val.date.date1+"-"+val.date.date2+"-"+val.date.date3+" "+val.date.date4+":"+val.date.date5);
+                   
+                });
+
+            });
+
+            m(".btn6").on("tap", function () {
+                var $btn = m(this);
+                m.mPicker({ type:"date6" }, function (val) {
+
+                    $btn.html("选择年-月-日-时-分-秒的值：" + val.date.date1+"-"+val.date.date2+"-"+val.date.date3+" "+val.date.date4+":"+val.date.date5+":"+val.date.date6);
+                   
+                });
+
+            });
+
+            // time
+             m(".btn-time1").on("tap", function () {
+                var $btn = m(this);
+                m.mPicker({ type:"time2" }, function (val) {
+
+                    $btn.html("选择时-分值：" + val.time.time1+":"+val.time.time2);
+                   
+                });
+
+             });
+             m(".btn-time2").on("tap", function () {
+                var $btn = m(this);
+                 m.mPicker({ type:"time" }, function (val) {
+
+                    $btn.html("选择时-分-秒值：" + val.time.time1+":"+val.time.time2+":"+val.time.time3);
+                   
+                });
+
+            });
+
+
+
+            // 选择组件定位到中间的select事件
+            //m("#m-select-1").on("select.m.picker", function (event, el, val) {
+            //    /*
+            //       event       事件
+            //       el          触发元素
+            //       val          选择的值
+            //     */
+            //    //console.log("event", event);
+            //    console.log("el", el);
+            //    console.log("val", val);
+            //    //m(".m-btn-primary").html("选择的值：" + val);  // 自动选择
+
+            //});
+
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

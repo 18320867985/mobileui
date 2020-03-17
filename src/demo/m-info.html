@@ -1,0 +1,111 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+        .m-overflow-tb-cnt {
+            padding: 1rem .5rem;
+        }
+        hr {
+            margin: .5rem 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+                <h4 class="m-hd-top-ttl">info信息框组件</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt">
+            <div class="m-overflow-tb">
+                <div class="m-overflow-tb-cnt">
+                    <button class="m-btn m-btn-df" type="button">默认定位:center</button>   <br />
+                    <button class="m-btn m-btn-top" type="button">定位:top</button>  <br />
+                    <button class="m-btn m-btn-bottom" type="button">定位:bottom</button> <br />
+                    <button class="m-btn m-btn-primary" type="button">type=primary</button>  <br />
+                    <button class="m-btn m-btn-success" type="button">type=sucess</button>  <br />
+                    <button class="m-btn m-btn-warning" type="button">type=warning</button>  <br />
+                    <button class="m-btn m-btn-danger" type="button">type=danger</button>
+
+
+
+                </div>
+
+            </div>
+        </section>
+
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+            m(".m-btn-df").tap(function () {
+
+                m.mInfo("默认的信息框");
+
+            });
+            m(".m-btn-top").tap(function () {
+                                                
+                m.mInfo("定位:Top", "", "top");
+
+            });
+            m(".m-btn-bottom").tap(function () {
+
+                m.mInfo("定位:Bottom", "", "bottom");
+
+            });
+
+
+            m(".m-btn-primary").tap(function () {
+
+                m.mInfo("primary的信息框", "primary");
+
+            });
+
+            m(".m-btn-success").tap(function () {
+
+                m.mInfo("success的信息框", "success");
+
+            });
+            m(".m-btn-warning").tap(function () {
+
+                m.mInfo("warning的信息框", "warning");
+
+            });
+            m(".m-btn-danger").tap(function () {
+
+                m.mInfo("danger的信息框", "danger");
+
+            });
+
+
+
+
+        });
+    </script>
+
+</body>
+
+</html>
+

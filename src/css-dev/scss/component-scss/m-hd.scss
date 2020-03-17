@@ -1,0 +1,51 @@
+
+
+@import "../var.scss";
+
+/*m-head*/
+$hd-height: 50rem;
+
+.m-hd {
+    position:fixed;
+    top:0;
+    left: 0;
+    right:0;
+    z-index:1;
+    background: #fff;
+    border-bottom: 1px solid $text-line;
+    box-shadow: 1px 0 5px rgba(0,0,0,.075);
+}
+
+
+.m-hd-top {
+    position: relative;
+    height: $hd-height/$rem;
+}
+
+.m-hd-top-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $hd-height/$rem;
+    line-height: $hd-height/$rem;
+    text-align: center;
+    cursor: pointer;
+
+
+    .iconfont {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 1rem;
+        color: $icon-color;
+    }
+}
+
+
+.m-hd-top-ttl {
+    text-align: center;
+    line-height: $hd-height/$rem;
+    color: $h-color;
+    font-size: 18rem/$rem;
+	
+}

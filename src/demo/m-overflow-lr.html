@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile触摸页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
+    <style>
+       
+        .m-overflow-lr-item img {
+            width:320px;
+            height:200px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--主体-->
+    <div class="m-bd">
+
+        <!--头部-->
+        <header class="m-hd">
+            <div class="m-hd-top">
+                <div class="m-hd-top-icon  m-back">
+                    <span class="iconfont icon-back-left "></span>
+                </div>
+
+                <h4 class="m-hd-top-ttl">overflow左右滑动菜单</h4>
+            </div>
+
+        </header>
+
+        <!--内容-->
+        <section class="m-cnt ">
+
+        
+            <nav class="m-overflow-lr" id="m-overflow-lr-center"  >
+                <div class="m-overflow-lr-pwr">
+                    <ul class="m-overflow-lr-cnt">
+                        <li class="m-overflow-lr-item">
+                            <a href="http://baidu.com"><img src="../images/1.jpg" alt="Alternate Text" /></a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="#"><img src="../images/2.jpg" alt="Alternate Text" /></a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="#"><img src="../images/3.jpg" alt="Alternate Text" /></a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="#"><img src="../images/4.jpg" alt="Alternate Text" /></a>
+                        </li>
+                    </ul>
+                </div>
+               
+            </nav>
+
+        </section>
+
+    </div>
+
+    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        m(function () {
+
+           m(".m-overflow-lr").mOverflowLr({bar:true});
+
+           m(".m-overflow-lr").on("reachleft.m.overflow.lr", function (event,el, scrollObj ) {
+
+                console.log("reachleft.m.overflow.lr",scrollObj)
+               // m(".m-hd-top-ttl").html(scrollObj.scrollTop)
+           });
+
+            m(".m-overflow-lr").on("scroll.m.overflow.lr", function (event,el, scrollObj ) {
+
+            console.log("scroll.m.overflow.lr",scrollObj)
+           // m(".m-hd-top-ttl").html(scrollObj.scrollTop)
+            });
+
+            m(".m-overflow-lr").on("reachright.m.overflow.lr", function (event,el, scrollObj ) {
+
+            console.log("reachright.m.overflow.lr",scrollObj)
+            // m(".m-hd-top-ttl").html(scrollObj.scrollTop)
+          });
+
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

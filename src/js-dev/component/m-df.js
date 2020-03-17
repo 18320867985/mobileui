@@ -48,6 +48,10 @@ $(function () {
                 return;
             } else {
 
+                if (m(this).hasAttr("data-router")) {
+                    m.router.link(hrefValue);
+                    return;
+                }
                 window.location.href = hrefValue;
             }
 

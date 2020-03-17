@@ -282,8 +282,11 @@ body,
   background: #ddd;
   overflow: hidden; }
 
-.m-bd > * {
-  -webkit-tap-highlight-color: transparent; }
+.m-bd {
+  left: 0;
+  top: 0; }
+  .m-bd > * {
+    -webkit-tap-highlight-color: transparent; }
 
 /*display*/
 .m-hide {

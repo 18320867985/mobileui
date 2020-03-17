@@ -1,13 +1,10 @@
 
 import "./mobile/mobile-dom";
-
 import "./mobile/mobile-touch";
-
 import "./mobile/mobile-ajax";
-
 import "./mobile/mobile-transition";
-
 import "./mobile/mobile-transform";
+import "./mobile/mobile-router";
 
 // 组件
 import "./component/m-df";                   // 默认设置

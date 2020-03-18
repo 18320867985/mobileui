@@ -38,6 +38,16 @@ $(function () {
     m(window).on("resize", m.setLayout);
 
     // a±Í«©¡¥Ω”
+   
+    m("a").click(function (event) {
+        event.preventDefault();
+    });
+    m(document).on("click", "a", function (event) {
+        event.preventDefault();
+    });
+    m("a").tap(function (event) {
+        event.preventDefault();
+    });
     m(document).on("tap", "a", function (event) {
         event.preventDefault();
 
@@ -57,5 +67,7 @@ $(function () {
 
         }
     });
+
+  
 
 });

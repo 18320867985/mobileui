@@ -4831,6 +4831,16 @@ $(function () {
     m(window).on("resize", m.setLayout);
 
     // a��ǩ����
+
+    m("a").click(function (event) {
+        event.preventDefault();
+    });
+    m(document).on("click", "a", function (event) {
+        event.preventDefault();
+    });
+    m("a").tap(function (event) {
+        event.preventDefault();
+    });
     m(document).on("tap", "a", function (event) {
         event.preventDefault();
 

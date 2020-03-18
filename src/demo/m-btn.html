@@ -1,18 +1,20 @@
 ﻿
 <!-- 1. css  style  区域 -->
 <style>
+     /* 注意！这里样式是全局的
+     局部的为内容区域标签加上id或class
+    */
+    #router-btn .m-overflow-tb-cnt {
+        padding: .5rem;
+    }
 
-     .m-overflow-tb-cnt {
-            padding: .5rem;
-        }
-
-    h5 {
+   #router-btn h5 {
         padding: .5rem;
     }
 </style>
 
 <!--2. 内容区域 区域 -->
-<section class="m-router-cnt">
+<section class="m-router-cnt" id="router-btn">
     <div class="m-overflow-tb">
         <div class="m-overflow-tb-cnt">
 

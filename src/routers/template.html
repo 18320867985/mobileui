@@ -1,10 +1,12 @@
 ﻿<!-- 1. css  style  区域 -->
 <style>
-
-    .pre-box {
+     /* 注意！这里样式是全局的
+     局部的为内容区域标签加上id或class
+    */
+  #template .pre-box {
         padding: .5rem;
-    }
-    pre {
+   }
+  #template  pre {
         white-space:pre-wrap;
         background: #333;
         color: #fff;
@@ -15,20 +17,22 @@
 </style>
 
 <!--2. 内容区域 区域 -->
-<section class="m-router-cnt">
+<section class="m-router-cnt" id="template">
     <div class="m-overflow-tb">
         <div class="m-overflow-tb-cnt">
             <div class="pre-box">
-
                 <pre>
 &lt;!--1.css style 区域标签-->
 &lt;style>
-    .elm {
+    /* 注意！这里样式是全局的
+    局部的为内容区域标签加上id或class
+*/
+    #temp .elm {
     }
 &lt;/style>
 
 &lt;!--2.内容区域标签  -->
-&lt;section class="m-router-cnt">
+&lt;section class="m-router-cnt"id="template">
     &lt;div class="m-overflow-tb">
         &lt;div class="m-overflow-tb-cnt">
                 内容...

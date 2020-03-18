@@ -370,13 +370,14 @@ textarea::-moz-placeholder {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
-/*m-head*/
+/*m-hd*/
 .m-hd {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1;
+  overflow: hidden;
   background: #fff;
   border-bottom: 1px solid #f2f2f2;
   -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.075);
@@ -407,27 +408,18 @@ textarea::-moz-placeholder {
   color: #444;
   font-size: 0.9rem; }
 
-/*设计图width*/
-/*rem 份数*/
-/* 375/18.75 =20px=1rem */
-/*html rem比例*/
-/* text-color*/
+/*m-cnt*/
 .m-cnt {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   z-index: 1;
   overflow: visible;
   background: #f8f8f8; }
 
-/*设计图width*/
-/*rem 份数*/
-/* 375/18.75 =20px=1rem */
-/*html rem比例*/
-/* text-color*/
 /*m-ft*/
 .m-ft {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -2467,23 +2459,23 @@ textarea::-moz-placeholder {
 
 @-webkit-keyframes m-router-dh {
   0% {
-    -webkit-transform: translateX(100%) translateZ(0);
-            transform: translateX(100%) translateZ(0);
+    -webkit-transform: translateZ(0) translateX(100%);
+            transform: translateZ(0) translateX(100%);
     -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075);
             box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075); }
   100% {
-    -webkit-transform: translateX(0) translateZ(0);
-            transform: translateX(0) translateZ(0); } }
+    -webkit-transform: translateZ(0) translateX(0);
+            transform: translateZ(0) translateX(0); } }
 
 @keyframes m-router-dh {
   0% {
-    -webkit-transform: translateX(100%) translateZ(0);
-            transform: translateX(100%) translateZ(0);
+    -webkit-transform: translateZ(0) translateX(100%);
+            transform: translateZ(0) translateX(100%);
     -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075);
             box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075); }
   100% {
-    -webkit-transform: translateX(0) translateZ(0);
-            transform: translateX(0) translateZ(0); } }
+    -webkit-transform: translateZ(0) translateX(0);
+            transform: translateZ(0) translateX(0); } }
 
 .m-router {
   position: fixed;

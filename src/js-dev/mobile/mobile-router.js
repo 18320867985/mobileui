@@ -860,14 +860,14 @@
             var id = "#m-router-" + Router.getId();
             var $p = m(id);
             var transition = "transform  " + Router.transitionTime*t + "ms ease";
-            $p.removeClass("in").translateX($p.width()).transition(transition);
+            $p.removeClass("in").transition(transition).translateX($p.width());
             var _id = Router.getId();
 
             // 监听页面隐藏 触发的事件
             $p.emit("m-router-hide", [$p, _id]);  
 
             var $prevEl = Router.getPrevEl();
-            $prevEl.translateX(0).transition(transition);
+            $prevEl.transition(transition).translateX(0);
             setTimeout(function () {
 
             m("[data-router-id=m-router-" + _id + "]").remove();

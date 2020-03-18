@@ -14,13 +14,12 @@
 }
 
 @keyframes m-router-dh{
-    0%{
-        transform:translateX(100%) translateZ(0);
-        box-shadow:0 -5px 5px rgba(0,0,0,.075);
-
+    0% {
+        transform: translateZ(0) translateX(100%);
+        box-shadow: 0 -5px 5px rgba(0,0,0,.075);
     }
     100% {
-        transform: translateX(0) translateZ(0);
+        transform: translateZ(0) translateX(0);
     }
 }
 

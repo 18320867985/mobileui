@@ -657,7 +657,7 @@
     }
 
     function _setRouterObj(el,obj) {
-        m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
+       m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
         if (obj.routerTilteColor) { m(".m-hd-top-ttl", el).css("color", obj.routerTilteColor);}
         
     }
@@ -803,10 +803,11 @@
             topEl.classList.add("m-router-hd");
             topEl.innerHTML = `<div class="m-hd-top">
             <div class="m-hd-top-icon m-router-back">
-                <span class="iconfont icon-back-left"></span>
+                <span class="iconfont icon-back-left">
+                </span>
             </div>
 
-            <h4 class="m-hd-top-ttl"> </h4>
+            <h4 class="m-hd-top-ttl">  <div class="m-ball-clip-rotate"><div></div></div> </h4>
         </div>`;
             routerEl.appendChild(topEl);
             var contEl = document.createElement("div");

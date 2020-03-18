@@ -225,11 +225,13 @@
                         </li>
 
                     </ul>
-
+                    
                 </div>
             </div>
 
-        </section>
+           
+    
+    </section>
 
     </div>
 
@@ -247,70 +249,15 @@
 
             /*加载js的列表 */
             loadJs: [
-                "../js/m-vd.js",
-                "../js/cityData.js"
+                //"../js/m-vd.js",
+                //"../js/cityData.js"
             ],
             // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
 
             // 生命周期函数--监听页面显示
             onLoad: function (context) {
                 // context 当前路由模块上下文对象
-                console.log("onLoad", context);
-
-                var vd1 = m.vd.create("#form1", context);
-                // 始化验证对象
-                vd1.init();
-                //vd1.reset();  //重设表单并清空所以内容和检测验证
-
-                // 检查验证=>vd1.check(el) 验证当前项;
-                // 验证全部=>vd1.validate();
-
-                // 点击提交验证
-                $(".vd-btn", context).on("tap", function () {
-
-                    // 是否验证成功
-                    vd1.isSuccess(
-                        // success
-                        function (obj) {
-
-                            vd1.reset();
-                            $.mAlert(JSON.stringify(obj));
-
-                        },
-                        // error
-                        function (obj) {
-
-                            //console.log(obj);
-                            $.mAlert(obj.errorMsg, function () { obj.el.focus(); });
-
-                        });
-                });
-
-                // 发送验证码
-                $(".vd-dep-btn", context).click(function () {
-
-                    // 根据name属性获取对象
-                    if (vd1.getObj("phone").bl) {
-
-                        $.mInfo("已发送验证码");
-                    };
-
-                });
-
-                m("#city", context).focus(function () {
-                    m(this).blur();
-                    $.mPicker({ type: "city1" }, function (val) {
-                        m(this).val(val.city.city1.txt);
-                        vd1.check(this);
-                    }.bind(this));
-                });
-
-                m("#router", context).tap(function () {
-
-                    m.router.link("./mr-test.html?name=hqs&&age=28");
-
-                });
-
+               console.log("onLoad", context);
             },
 
             // 生命周期函数--监听页面显示
@@ -323,8 +270,7 @@
             onHide: function (context) {
                 // context 当前路由模块上下文对
                 console.log("onHide", context);
-                m.router.app.page = (m.router.app.page - 1);
-
+               
             },
 
         });

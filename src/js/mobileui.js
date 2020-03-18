@@ -4627,7 +4627,7 @@ css3 transition
 
             var topEl = document.createElement("div");
             topEl.classList.add("m-router-hd");
-            topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"iconfont icon-back-left\"></span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\"> </h4>\n        </div>";
+            topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"iconfont icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  <div class=\"m-ball-clip-rotate\"><div></div></div> </h4>\n        </div>";
             routerEl.appendChild(topEl);
             var contEl = document.createElement("div");
             contEl.classList.add("m-router-hd");
@@ -6169,6 +6169,7 @@ $(function () {
 
             if (obj.isX) {
                 event.preventDefault();
+                event.stopPropagation();
                 obj.$moveElment.transition("none");
                 var translateX = obj.moveElmentX + obj.x;
 
@@ -6202,6 +6203,7 @@ $(function () {
                 obj.$moveElment.translateX(translateX);
                 obj.$moveElment.transition(transition);
                 // 触发自定义的事件
+                obj.isX = false;
                 m(this).emit("switch.m.switch", [this, bl]);
             }
         });
@@ -6212,7 +6214,7 @@ $(function () {
         }, this));
 
         // tap事件
-        m(document).on("tap", ".m-switch", function () {
+        m(self.el).on("tap", function () {
             if (m(this).hasClass("active")) {
                 m(this).removeClass("active");
                 self.setStyle(this, transition);
@@ -6233,7 +6235,7 @@ $(function () {
         var moveElmentWidth = $moveElement.outerWidth();
         var maxWidth = switchWidth - moveElmentWidth;
         if ($witch.hasClass("active")) {
-            console.log(switchWidth);
+            // console.log(switchWidth);
             $moveElement.translateX(maxWidth);
         } else {
             $moveElement.translateX(0);

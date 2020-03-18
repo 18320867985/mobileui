@@ -22,9 +22,10 @@
 <section class="m-router-cnt" id="template">
     <div class="m-overflow-tb">
         <div class="m-overflow-tb-cnt">
+
             <!--内容start -->
- <div class="pre-box">
-     <pre>
+  <div class="pre-box">
+  <pre>
 &lt;!--1.css style 区域标签-->
 &lt;style>
 /* 注意！这里样式是加载渲染后是全局的
@@ -52,7 +53,7 @@
 &lt;/script>
 
 </pre>
-</div>   
+</div>
           <!--内容end -->
         </div>
     </div>
@@ -72,8 +73,8 @@
 
         /*加载js的列表 */
         loadJs: [
-            "../js/m-vd.js",
-            "../js/cityData.js"
+            //"../js/m-vd.js",
+            //"../js/cityData.js"
         ],
         // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
 
@@ -81,10 +82,10 @@
         onLoad: function (context, parameter) {
 
             // context 当前路由模块上下文对象
-            console.log("onLoad:", context);
+            //console.log("onLoad:", context);
 
             // context 当前路由模块接受的参数
-            console.log("parameter:", parameter);
+            //console.log("parameter:", parameter);
 
 
         },
@@ -92,14 +93,13 @@
         // 生命周期函数--监听页面显示
         onShow: function (context) {
             // context 当前路由模块上下文对
-            console.log("onShow", context);
+            //console.log("onShow", context);
         },
 
         // 生命周期函数--监听页面隐藏
         onHide: function (context) {
             // context 当前路由模块上下文对
-            console.log("onHide", context);
-            m.router.app.page = (m.router.app.page - 1);
+           // console.log("onHide", context);
 
         },
 

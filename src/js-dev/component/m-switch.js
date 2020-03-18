@@ -28,12 +28,12 @@
                 obj.moveElmentWidth = $moveElement.outerWidth();
                 obj.maxWidth = obj.switchWidth - obj.moveElmentWidth;
        
-               
             },
             function (event, obj) {
 
                 if (obj.isX) {
                     event.preventDefault();
+                    event.stopPropagation();
                     obj.$moveElment.transition("none");
                     var translateX = obj.moveElmentX + obj.x;
 
@@ -71,7 +71,9 @@
                     obj.$moveElment.translateX(translateX);
                     obj.$moveElment.transition(transition);
                     // 触发自定义的事件
-                    m(this).emit("switch.m.switch", [this,bl] );
+                    obj.isX = false;
+                    m(this).emit("switch.m.switch", [this, bl]);
+                 
 
 
                 }
@@ -87,7 +89,7 @@
         }, this));
 
         // tap事件
-        m(document).on("tap", ".m-switch", function () {
+        m(self.el).on("tap", function () {
             if (m(this).hasClass("active")) {
                 m(this).removeClass("active");
                 self.setStyle(this, transition);
@@ -110,15 +112,13 @@
         var moveElmentWidth = $moveElement.outerWidth();
         var maxWidth = switchWidth - moveElmentWidth;
         if ($witch.hasClass("active")) {
-            console.log(switchWidth);
+           // console.log(switchWidth);
             $moveElement.translateX(maxWidth);
         } else { $moveElement.translateX(0); }
         $moveElement.transition(transition);
     };
 
-  
-   
-
+ 
     function Plugin(option) {
 
         return this.each(function () {

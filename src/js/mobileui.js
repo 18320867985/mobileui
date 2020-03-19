@@ -4263,7 +4263,7 @@ css3 transition
     function _compilerHtml(obj, src, prop, isReplace, fn, id) {
         prop = prop || {};
         Router.get(src, prop, function (data) {
-
+            m(obj).find("._fail-cnt").remove();
             var newElement = Router.htmlStringToDOM(data);
 
             /*----------------------添加 style 标签 兼容 ie9+--------------------------------*/
@@ -4425,7 +4425,8 @@ css3 transition
             var $p = m("#m-router-" + Router.getId());
             m(".m-hd-top-ttl", $p).html("<div class=\"_fail\"> ~<span class=\"iconfont iconshibaibiaoqing\"></span>~</div>");
             //m-router-cnt
-            m($p).append("<div class=\"_fail-cnt\">~\u6570\u636E\u52A0\u8F7D\u5931\u8D25\u4E86~</div>");
+            $p.find("._fail-cnt").remove();
+            $p.append("<div class=\"_fail-cnt\">~\u6570\u636E\u52A0\u8F7D\u5931\u8D25\u4E86~</div>");
         });
     }
 
@@ -4482,7 +4483,6 @@ css3 transition
                     if (!Router.isOneMove) {
                         obj.$moveElment.translateX(0).translateZ(0);
                     }
-
                     obj.$prevEl.translateX(-obj.$prevEl.width() / 2).translateZ(0);
                     obj.$prevEl.transition(transition);
                 } else {
@@ -4636,18 +4636,20 @@ css3 transition
 
             var topEl = document.createElement("div");
             topEl.classList.add("m-router-hd");
-            topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"iconfont icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n          <div class=\"m-ball-clip-rotate\"><div></div>     \n    </div> \n</h4>\n        </div>";
+            topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"iconfont icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n                <div class=\"m-ball-clip-rotate\"><div></div>     \n                </div> \n            </h4>\n        </div>";
             routerEl.appendChild(topEl);
             var contEl = document.createElement("div");
             contEl.classList.add("m-router-hd");
 
             elm.appendChild(routerEl);
+
             var $prevEl = Router.getPrevEl();
             var transition = "transform  " + Router.transitionTime + "ms ease";
             $prevEl.removeClass("in").translateX(-$prevEl.width() / 2).translateZ(0).transition(transition);
             Router.isOneMove = true;
 
             var $el = m("#" + routerEl.id);
+            $el.append("<div class=\"_fail-cnt\"><div class=\"m-ball-clip-rotate\"><div></div></div>");
 
             // 设置url的参数
             var urlParameter = _setUrlParameter(src);
@@ -4767,7 +4769,6 @@ css3 transition
         m(".m-bd").attr("id", id).attr("data-router-id", Router.getId());
     }
 
-    /*===========================================*/
     // 返回上一页的函数
     function mBack() {
         m(document).on("tap", ".m-router-back", function (event) {

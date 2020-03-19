@@ -4420,6 +4420,12 @@ css3 transition
 
                 document.getElementsByTagName("body")[0].appendChild(docDfgTypeInSrc);
             }
+        }, function () {
+            // 加载失败
+            var $p = m("#m-router-" + Router.getId());
+            m(".m-hd-top-ttl", $p).html("<div class=\"_fail\"> ~<span class=\"iconfont iconshibaibiaoqing\"></span>~</div>");
+            //m-router-cnt
+            m($p).append("<div class=\"_fail-cnt\">~\u6570\u636E\u52A0\u8F7D\u5931\u8D25\u4E86~</div>");
         });
     }
 
@@ -4497,6 +4503,9 @@ css3 transition
         m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
         if (obj.routerTilteColor) {
             m(".m-hd-top-ttl", el).css("color", obj.routerTilteColor);
+        }
+        if (obj.routerClass) {
+            m(el).addClass(obj.routerClass);
         }
     }
 
@@ -4627,7 +4636,7 @@ css3 transition
 
             var topEl = document.createElement("div");
             topEl.classList.add("m-router-hd");
-            topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"iconfont icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  <div class=\"m-ball-clip-rotate\"><div></div></div> </h4>\n        </div>";
+            topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"iconfont icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n          <div class=\"m-ball-clip-rotate\"><div></div>     \n    </div> \n</h4>\n        </div>";
             routerEl.appendChild(topEl);
             var contEl = document.createElement("div");
             contEl.classList.add("m-router-hd");
@@ -5613,7 +5622,7 @@ $(function () {
     // show
     MTableView.prototype.show = function ($el) {
 
-        $el.addClass("in").siblings(); //.removeClass("in");
+        $el.addClass("in").siblings().removeClass("in");
     };
 
     MTableView.prototype.hide = function ($el) {

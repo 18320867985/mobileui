@@ -31,7 +31,7 @@
     // show
     MTableView.prototype.show = function ($el) {
 
-        $el.addClass("in").siblings();//.removeClass("in");
+        $el.addClass("in").siblings().removeClass("in");
         
     };
 

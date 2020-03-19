@@ -572,6 +572,13 @@
 
             }
 
+        }, function () {
+            // 加载失败
+             var $p= m("#m-router-" + Router.getId());
+                m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="iconfont iconshibaibiaoqing"></span>~</div>`);
+                //m-router-cnt
+                m($p).append(`<div class="_fail-cnt">~数据加载失败了~</div>`);
+
         });
     }
 
@@ -657,8 +664,9 @@
     }
 
     function _setRouterObj(el,obj) {
-       m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
-        if (obj.routerTilteColor) { m(".m-hd-top-ttl", el).css("color", obj.routerTilteColor);}
+        m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
+        if (obj.routerTilteColor) { m(".m-hd-top-ttl", el).css("color", obj.routerTilteColor); }
+        if (obj.routerClass) { m(el).addClass(obj.routerClass); }
         
     }
 
@@ -807,8 +815,11 @@
                 </span>
             </div>
 
-            <h4 class="m-hd-top-ttl">  <div class="m-ball-clip-rotate"><div></div></div> </h4>
-        </div>`;
+            <h4 class="m-hd-top-ttl">  
+          <div class="m-ball-clip-rotate"><div></div>     
+    </div> 
+</h4>
+        </div>`;  
             routerEl.appendChild(topEl);
             var contEl = document.createElement("div");
             contEl.classList.add("m-router-hd");

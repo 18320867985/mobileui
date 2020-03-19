@@ -34,7 +34,31 @@
 
     &.in {
         animation: m-router-dh .4s ease both;
-        
+    }
+
+    .m-hd-top-ttl ._fail {
+        color: $text-muted;
+
+        .iconfont {
+            font-size: .9rem;
+            vertical-align: middle;
+            margin: 0 .25rem;
+            font-weight:100;
+        }
+    }
+
+    ._fail-cnt {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        color: $text-muted;
+
+        .iconfont {
+            font-size: .9rem;
+            vertical-align: middle;
+            margin: 0 .5rem
+        }
     }
 }
 

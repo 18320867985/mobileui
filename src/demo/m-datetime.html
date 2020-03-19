@@ -1,179 +1,171 @@
-﻿<!doctype html>
-<html>
+﻿
 
-<head>
-    <meta charset="UTF-8">
-    <title>Mobile触摸页面</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
-    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
-    <style>
-        .m-overflow-tb {
-            padding:.5rem;
+<!-- 1. css  style  区域 -->
+<style>
+
+        /* 注意！这里样式是加载渲染后是全局的
+       局部区分为内容区域标签加上id或class
+       路由模块隐藏后style块里样式被删除
+    */
+        #m-datetime  .m-overflow-tb {
+            padding: .5rem;
         }
+</style>
 
-    </style>
+<!--2.内容区域 -->
+<section class="m-router-cnt" id="m-datetime">
+    <div class="m-overflow-tb">
+        <div class="m-overflow-tb-cnt">
 
-</head>
-
-<body>
-    <!--主体-->
-    <div class="m-bd m-touch-df">
-
-        <!--头部-->
-        <header class="m-hd">
-            <div class="m-hd-top">
-
-                <div class="m-hd-top-icon  m-back">
-                    <span class="iconfont icon-back-left "></span>
-                </div>
-
-                <h4 class="m-hd-top-ttl" id="ttl"> datetime日期时间组件</h4>
-            </div>
-
-        </header>
-
-        <!--内容-->
-        <section class="m-cnt">
-            <div class="m-overflow-tb">
-
-
-                <div class="m-btn m-btn-success m-btn-block btn1">选择年的值：</div>
-                <br />
-                <div class="m-btn m-btn-success m-btn-block btn2">选择年-月的值：</div>
-                <br />
-                <div class="m-btn m-btn-success m-btn-block btn3">选择年-月-日的值：</div>
-                <br />
-                <div class="m-btn m-btn-success m-btn-block btn4">选择年-月-日-时的值：</div>
-                <br />
-                <div class="m-btn m-btn-success m-btn-block btn5">选择年-月-日-时-分的值：</div>
-                <br />
-                <div class="m-btn m-btn-success m-btn-block btn6">选择年-月-日-时-分-秒的值：</div>
-                <br />
-                <div class="m-btn m-btn-danger m-btn-block btn-time1">选择时-分值：</div>
-                <br />
-                <div class="m-btn m-btn-danger m-btn-block btn-time2">选择时-分-秒值：</div>
-
-              
-            </div>
-        </section>
-        <footer class="m-ft">
-            <div class="m-ft-nav">
-                <h4 class="m-ft-nav-ttl">页脚</h4>
-            </div>
-
-        </footer>
-
+            <!--内容start -->
+            <div class="m-btn m-btn-success m-btn-block btn1">选择年的值：</div>
+            <br />
+            <div class="m-btn m-btn-success m-btn-block btn2">选择年-月的值：</div>
+            <br />
+            <div class="m-btn m-btn-success m-btn-block btn3">选择年-月-日的值：</div>
+            <br />
+            <div class="m-btn m-btn-success m-btn-block btn4">选择年-月-日-时的值：</div>
+            <br />
+            <div class="m-btn m-btn-success m-btn-block btn5">选择年-月-日-时-分的值：</div>
+            <br />
+            <div class="m-btn m-btn-success m-btn-block btn6">选择年-月-日-时-分-秒的值：</div>
+            <br />
+            <div class="m-btn m-btn-danger m-btn-block btn-time1">选择时-分值：</div>
+            <br />
+            <div class="m-btn m-btn-danger m-btn-block btn-time2">选择时-分-秒值：</div>
+            <!--内容end -->
+        </div>
     </div>
+</section>
 
-    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript">
+<!-- js 区域 -->
+<script type="text/javascript">
 
-        m(function () {
+    /* 路由页面监听事件对象 */
+    m.router.page({
 
-          
+        /* 设置当前路由页面的对象的参数 */
+        setting: {
+            routerTilte: "datetime日期时间组件", // 路由页的标题
+            // routerTilteColor: "red",  // 路由页的标题字体颜色
+            // routerClass:"router-class-1"   // 路由页的class
+        },
+
+        /*加载js的列表 */
+        loadJs: [
+            //"../js/m-vd.js",
+            //"../js/cityData.js"
+        ],
+        // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
+
+        // 生命周期函数--监听页面加载完成
+        onLoad: function (context, parameter) {
+
+            // context 当前路由模块上下文对象
+            //console.log("onLoad:", context);
+
+            // context 当前路由模块接受的参数
+            //console.log("parameter:", parameter);
+            
             //  date
-            m(".btn1").on("tap", function () {
-               
+            m(".btn1",context).on("tap", function () {
+
                 var $btn = m(this);
                 m.mPicker({ type: "date1" }, function (val) {
-                  
+
                     $btn.html("选择年的值：" + val.date.date1);
-                   
+
                 });
 
             });
 
-             m(".btn2").on("tap", function () {
+            m(".btn2",context).on("tap", function () {
                 var $btn = m(this);
-                m.mPicker({ type:"date2" }, function (val) {
-                         
-                    $btn.html("选择年-月的值：" + val.date.date1+"-"+val.date.date2);
-                   
+                m.mPicker({ type: "date2" }, function (val) {
+
+                    $btn.html("选择年-月的值：" + val.date.date1 + "-" + val.date.date2);
+
                 });
 
-             });
-             m(".btn3").on("tap", function () {
+            });
+            m(".btn3",context).on("tap", function () {
                 var $btn = m(this);
-                m.mPicker({ type:"date3" }, function (val) {
-                     
-                    $btn.html("选择年-月-日的值：" + val.date.date1+"-"+val.date.date2+"-"+val.date.date3);
-                   
+                m.mPicker({ type: "date3" }, function (val) {
+
+                    $btn.html("选择年-月-日的值：" + val.date.date1 + "-" + val.date.date2 + "-" + val.date.date3);
+
                 });
 
-             });
-               m(".btn4").on("tap", function () {
+            });
+            m(".btn4",context).on("tap", function () {
                 var $btn = m(this);
-                m.mPicker({ type:"date4" }, function (val) {
+                m.mPicker({ type: "date4" }, function (val) {
 
-                    $btn.html("选择年-月-日-时的值：" + val.date.date1+"-"+val.date.date2+"-"+val.date.date3+" "+val.date.date4+":00");
-                   
+                    $btn.html("选择年-月-日-时的值：" + val.date.date1 + "-" + val.date.date2 + "-" + val.date.date3 + " " + val.date.date4 + ":00");
+
                 });
 
             });
 
-            m(".btn5").on("tap", function () {
+            m(".btn5",context).on("tap", function () {
                 var $btn = m(this);
-                 m.mPicker({ type:"date5" }, function (val) {
+                m.mPicker({ type: "date5" }, function (val) {
 
-                    $btn.html("选择年-月-日-时-分的值：" + val.date.date1+"-"+val.date.date2+"-"+val.date.date3+" "+val.date.date4+":"+val.date.date5);
-                   
+                    $btn.html("选择年-月-日-时-分的值：" + val.date.date1 + "-" + val.date.date2 + "-" + val.date.date3 + " " + val.date.date4 + ":" + val.date.date5);
+
                 });
 
             });
 
-            m(".btn6").on("tap", function () {
+            m(".btn6",context).on("tap", function () {
                 var $btn = m(this);
-                m.mPicker({ type:"date6" }, function (val) {
+                m.mPicker({ type: "date6" }, function (val) {
 
-                    $btn.html("选择年-月-日-时-分-秒的值：" + val.date.date1+"-"+val.date.date2+"-"+val.date.date3+" "+val.date.date4+":"+val.date.date5+":"+val.date.date6);
-                   
+                    $btn.html("选择年-月-日-时-分-秒的值：" + val.date.date1 + "-" + val.date.date2 + "-" + val.date.date3 + " " + val.date.date4 + ":" + val.date.date5 + ":" + val.date.date6);
+
                 });
 
             });
 
             // time
-             m(".btn-time1").on("tap", function () {
+            m(".btn-time1",context).on("tap", function () {
                 var $btn = m(this);
-                m.mPicker({ type:"time2" }, function (val) {
+                m.mPicker({ type: "time2" }, function (val) {
 
-                    $btn.html("选择时-分值：" + val.time.time1+":"+val.time.time2);
-                   
+                    $btn.html("选择时-分值：" + val.time.time1 + ":" + val.time.time2);
+
                 });
 
-             });
-             m(".btn-time2").on("tap", function () {
+            });
+            m(".btn-time2",context).on("tap", function () {
                 var $btn = m(this);
-                 m.mPicker({ type:"time" }, function (val) {
+                m.mPicker({ type: "time" }, function (val) {
 
-                    $btn.html("选择时-分-秒值：" + val.time.time1+":"+val.time.time2+":"+val.time.time3);
-                   
+                    $btn.html("选择时-分-秒值：" + val.time.time1 + ":" + val.time.time2 + ":" + val.time.time3);
+
                 });
 
             });
 
 
 
-            // 选择组件定位到中间的select事件
-            //m("#m-select-1").on("select.m.picker", function (event, el, val) {
-            //    /*
-            //       event       事件
-            //       el          触发元素
-            //       val          选择的值
-            //     */
-            //    //console.log("event", event);
-            //    console.log("el", el);
-            //    console.log("val", val);
-            //    //m(".m-btn-primary").html("选择的值：" + val);  // 自动选择
+        },
 
-            //});
+        // 生命周期函数--监听页面显示
+        onShow: function (context) {
+            // context 当前路由模块上下文对
+            //console.log("onShow", context);
+        },
+
+        // 生命周期函数--监听页面隐藏
+        onHide: function (context) {
+            // context 当前路由模块上下文对
+            // console.log("onHide", context);
+
+        },
+
+    });
+
+</script>
 
 
-        });
-
-
-    </script>
-
-</body>
-
-</html>

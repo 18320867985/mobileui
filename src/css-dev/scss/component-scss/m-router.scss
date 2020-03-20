@@ -43,11 +43,11 @@
             font-size: .9rem;
             vertical-align: middle;
             margin: 0 .25rem;
-            font-weight:100;
+            font-weight: 100;
         }
     }
 
-    ._fail-cnt {
+    ._loading-fail, ._loading-dh {
         display: flex;
         justify-content: center;
         align-items: center;

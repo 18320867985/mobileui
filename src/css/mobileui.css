@@ -2495,7 +2495,7 @@ textarea::-moz-placeholder {
       vertical-align: middle;
       margin: 0 .25rem;
       font-weight: 100; }
-  .m-router ._fail-cnt {
+  .m-router ._loading-fail, .m-router ._loading-dh {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2507,7 +2507,7 @@ textarea::-moz-placeholder {
             align-items: center;
     height: 100%;
     color: #ddd; }
-    .m-router ._fail-cnt .iconfont {
+    .m-router ._loading-fail .iconfont, .m-router ._loading-dh .iconfont {
       font-size: .9rem;
       vertical-align: middle;
       margin: 0 .5rem; }

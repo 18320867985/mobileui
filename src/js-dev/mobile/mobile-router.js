@@ -400,7 +400,8 @@
     function _compilerHtml(obj, src, prop, isReplace, fn,id) {
         prop = prop || {};
         Router.get(src, prop, function (data) {
-            m(obj).find("._fail-cnt").remove();
+
+            m(obj).find("._loading-dh").hide();
             var newElement = Router.htmlStringToDOM(data);
 
             /*----------------------添加 style 标签 兼容 ie9+--------------------------------*/
@@ -577,8 +578,8 @@
              var $p= m("#m-router-" + Router.getId());
                 m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="iconfont iconshibaibiaoqing"></span>~</div>`);
                 //m-router-cnt
-                $p.find("._fail-cnt").remove();
-                $p.append(`<div class="_fail-cnt">~数据加载失败了~</div>`);
+                $p.find("._loading-dh").hide();
+                $p.append(`<div class="_loading-fail">~数据加载失败了~</div>`);
 
         });
     }
@@ -831,7 +832,7 @@
             Router.isOneMove = true;
          
             var $el = m("#" + routerEl.id);
-            $el.append(`<div class="_fail-cnt"><div class="m-ball-clip-rotate"><div></div></div>`);
+            $el.append(`<div class="_loading-dh"><div class="m-ball-clip-rotate"><div></div></div>`);
 
             // 设置url的参数
             var urlParameter = _setUrlParameter(src);

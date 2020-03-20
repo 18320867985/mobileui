@@ -27,7 +27,7 @@
             var _el = e.target;
             var elW = _el.clientWidth;
             var srlW = _el.scrollWidth;
-            var srlLeft = _el.scrollLeft; // _el.scrollLeft; 
+            var srlLeft = self.scrollLef= _el.scrollLeft; // _el.scrollLeft; 
            
 
             // 移动滑动条
@@ -44,6 +44,7 @@
 
             // 滚动顶部触发的事件
             if (srlLeft <= 0) {
+              //  e.stopPropagation();
                 $el.emit("reachleft.m.overflow.lr", [this, { elementWidth: elW, scrollWidth: srlW, scrollLeft: srlLeft }]);
  
             }
@@ -67,6 +68,32 @@
             }
         });
 
+        $el.touch(function () { }, function (event, obj) {
+           // console.log(self.scrollLef);
+            
+            if (obj.isX ) { event.stopPropagation();}
+           
+        });
+
+        $el.find("a").on("tap",function (event) {
+            event.preventDefault();
+
+            var isHref = m(this).hasAttr("href");
+            var hrefValue = m(this).attr("href");
+            if (isHref) {
+                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+                    return;
+                } else {
+
+                    //if (m(this).hasAttr("data-router")) {
+                    m.router.link(hrefValue);
+                    return;
+                    //  }
+                    // window.location.href = hrefValue;
+                }
+
+            }
+        });
     
 
     };

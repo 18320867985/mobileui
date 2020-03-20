@@ -127,7 +127,7 @@
                 }
                 $el.data("loadingEnd", true);
 
-                m.get("../json/tab.json", function (res) {
+                m.get("./json/tab.json", function (res) {
 
                     $el.data("loadingEnd", false);
                     var page = $el.data("pageindex") || 1;

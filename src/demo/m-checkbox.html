@@ -154,7 +154,7 @@
             $(".m-checkbox-get",context).tap(function (e) {
                 var v = $("#aixin",context).mCheckbox();
                 v = !!v;
-                alert("获取选择的值:" + v + "");
+                $.mAlert("获取选择的值:" + v + "");
 
 
             });
@@ -175,7 +175,7 @@
 
             $(".m-checkbox-group-get",context).tap(function (e) {
                 var v = $(".m-checkbox-group",context).mCheckboxGroup();
-                alert("获取选择的值" + "[" + v + "]");
+                $.mAlert("获取选择的值" + "[" + v + "]");
             });
 
             $(".m-checkbox-group-set",context).tap(function (e) {
@@ -224,7 +224,7 @@
             // get
             $(".m-radiobox-group-get",context).tap(function () {
                 var v = $(".m-radiobox-group",context).mRadioboxGroup();
-                alert("选择的值：" + v);
+                 $.mAlert("选择的值：" + v);
             });
 
 

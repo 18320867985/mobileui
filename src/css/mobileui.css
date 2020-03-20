@@ -1816,12 +1816,11 @@ textarea::-moz-placeholder {
     margin: 0; }
   .m-listoption-item-left img {
     -webkit-box-flex: 0;
-        -ms-flex: 0 0;
-            flex: 0 0;
+        -ms-flex: 0 0 2.5rem;
+            flex: 0 0 2.5rem;
     -webkit-box-sizing: content-box;
             box-sizing: content-box;
     display: block;
-    width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%; }
   .m-listoption-item-left ._contnet {

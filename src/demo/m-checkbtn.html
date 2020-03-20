@@ -134,7 +134,7 @@
             $(".m-checkbtn-get",context).tap(function (e) {
                 var v = $("#aixin").mCheckbtn();
                 v = !!v;
-                alert("获取选择的值:" + v + "");
+                 $.mAlert("获取选择的值:" + v + "");
 
 
             });
@@ -155,7 +155,7 @@
 
             $(".m-checkbtn-group-get",context).tap(function (e) {
                 var v = $(".m-checkbtn-group",context).mCheckbtnGroup();
-                alert("获取选择的值" + "[" + v + "]");
+                 $.mAlert("获取选择的值" + "[" + v + "]");
             });
 
             $(".m-checkbtn-group-set",context).tap(function (e) {
@@ -203,7 +203,7 @@
             // get
             $(".m-radiobtn-group-get",context).tap(function () {
                 var v = $(".m-radiobtn-group",context).mRadiobtnGroup();
-                alert("选择的值：" + v);
+                 $.mAlert("选择的值：" + v);
             });
 
 

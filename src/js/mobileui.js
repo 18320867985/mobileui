@@ -4458,6 +4458,7 @@ css3 transition
                 if (translateX > 0) {
                     obj.$moveElment.addClass("m-router-box-shadow");
                 }
+
                 obj.$moveElment.translateX(translateX).translateZ(0);
 
                 // 上一个元素的移动
@@ -6070,7 +6071,7 @@ $(function () {
         var transition = "transform .6s ease";
 
         $touchElement.touchdeletage(".m-listoption-item", function (event, obj) {
-            event.stopPropagation();
+
             var $moveElement = m(this).find(".m-listoption-item-cnt");
             obj.$moveElement = $moveElement;
             obj.moveElmentX = $moveElement.translateX();
@@ -6086,7 +6087,7 @@ $(function () {
 
             if (obj.isX) {
                 event.preventDefault();
-                event.stopPropagation();
+
                 obj.$moveElment.transition("none");
                 var translateX = obj.moveElmentX + obj.x;
 
@@ -6096,7 +6097,10 @@ $(function () {
 
                 if (translateX > 0) {
                     translateX = 0;
+                } else {
+                    event.stopPropagation();
                 }
+
                 obj.$moveElement.translateX(translateX);
                 // 触发自定义的事件
                 m(this).emit("move.m.listoption", [this]);

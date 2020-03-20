@@ -615,7 +615,8 @@
                     translateX = translateX <= 0 ? 0 : translateX;
                     if (translateX > 0) {
                         obj.$moveElment.addClass("m-router-box-shadow");
-                    }
+                    } 
+
                     obj.$moveElment.translateX(translateX).translateZ(0);
 
                     // 上一个元素的移动

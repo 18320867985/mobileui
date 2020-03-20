@@ -31,7 +31,6 @@
 
 
     > a {
-      
         height: 100%;
         width: 100%;
         padding: .25rem;
@@ -52,20 +51,20 @@
     }
 
     img {
-        flex: 0 0 ;
+        flex: 0 0 2.5rem;
         box-sizing: content-box;
         display: block;
-        width: 2.5rem;
+    
         height: 2.5rem;
         border-radius: 50%;
     }
 
-    ._contnet{
-        padding-left:1rem;
-        display:flex;
-       flex-flow:column;
-       justify-content:space-between;
-       align-items:flex-start;
+    ._contnet {
+        padding-left: 1rem;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        align-items: flex-start;
     }
 }
 

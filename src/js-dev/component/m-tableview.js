@@ -25,6 +25,28 @@
             }
 
         });
+
+       
+        m(this.el).on("tap", "a", function (event) {
+
+            event.preventDefault();
+
+            var isHref = m(this).hasAttr("href");
+            var hrefValue = m(this).attr("href");
+            if (isHref) {
+                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+                    return;
+                } else {
+
+                    //if (m(this).hasAttr("data-router")) {
+                    m.router.link(hrefValue);
+                    return;
+                    //  }
+                    // window.location.href = hrefValue;
+                }
+
+            }
+        });
   
     };
 

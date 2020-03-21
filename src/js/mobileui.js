@@ -4847,35 +4847,41 @@ $(function () {
     m("a").click(function (event) {
         event.preventDefault();
     });
+
     m(document).on("click", "a", function (event) {
         event.preventDefault();
     });
+
     m("a").tap(function (event) {
         event.preventDefault();
     });
-    m(document).on("tap", "a", function (event) {
-        event.preventDefault();
 
-        // overflow-lr a ����
-        if (m(this).closest(".m-overflow-lr").length > 0) {
-            return;
-        }
+    //m(document).on("tap", "a", function (event) {
 
-        var isHref = m(this).hasAttr("href");
-        var hrefValue = m(this).attr("href");
-        if (isHref) {
-            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
-                return;
-            } else {
+    //    event.preventDefault();
 
-                //if (m(this).hasAttr("data-router")) {
-                m.router.link(hrefValue);
-                return;
-                //  }
-                // window.location.href = hrefValue;
-            }
-        }
-    });
+    //    // overflow-lr a ����
+    //    if (m(this).closest(".m-overflow-lr").length>0) {
+    //         return;
+    //     }
+
+    //    var isHref = m(this).hasAttr("href");
+    //    var hrefValue = m(this).attr("href");
+    //    if (isHref) {
+    //        if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+    //            return;
+    //        } else {
+
+    //            //if (m(this).hasAttr("data-router")) {
+    //                m.router.link(hrefValue);
+    //                return;
+    //          //  }
+    //           // window.location.href = hrefValue;
+    //        }
+
+    //    }
+    //});
+
 });
 
 // m-touch-slide 
@@ -4894,8 +4900,14 @@ $(function () {
         var $m_touch_slide = m(this.el);
         var $moveElement = $m_touch_slide.find(".m-touch-slide-cnt");
         self.raduisLength = $moveElement.find(".m-touch-slide-item").length;
+        // 一张轮播
+        if (self.raduisLength <= 1) {
+            $moveElement[0].innerHTML += $moveElement[0].innerHTML;
+            $moveElement[0].innerHTML += $moveElement[0].innerHTML;
+        } else {
+            $moveElement[0].innerHTML += $moveElement[0].innerHTML;
+        }
 
-        $moveElement[0].innerHTML += $moveElement[0].innerHTML;
         this.liNodes = $m_touch_slide.find(".m-touch-slide-item");
         this.index = this.liNodes.length / 2;
         $moveElement.translateX(-this.index * $m_touch_slide.outerWidth());
@@ -4918,10 +4930,6 @@ $(function () {
             this.resize();
         }, this));
 
-        // 一张不轮播
-        if (self.raduisLength <= 1) {
-            return;
-        }
         // 自动轮播
         if (self.options.auto) {
             this.autoSlide();
@@ -4957,6 +4965,7 @@ $(function () {
 
             if (obj.isX) {
                 event.preventDefault();
+                event.stopPropagation();
                 // 停止轮播
                 if (self.options.auto) {
                     clearInterval(self.setIntervalId);
@@ -5007,6 +5016,26 @@ $(function () {
             // 开启轮播
             if (self.options.auto) {
                 self.autoSlide();
+            }
+        });
+
+        m(this.el).on("tap", "a", function (event) {
+
+            event.preventDefault();
+
+            var isHref = m(this).hasAttr("href");
+            var hrefValue = m(this).attr("href");
+            if (isHref) {
+                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+                    return;
+                } else {
+
+                    //if (m(this).hasAttr("data-router")) {
+                    m.router.link(hrefValue);
+                    return;
+                    //  }
+                    // window.location.href = hrefValue;
+                }
             }
         });
     };
@@ -5157,6 +5186,7 @@ $(function () {
 
             if (obj.isX) {
                 event.preventDefault();
+                event.stopPropagation();
                 obj.$moveElment.transition("none");
                 var translateX = obj.moveElmentX + obj.x;
 
@@ -5623,6 +5653,26 @@ $(function () {
                 self.hide($tableCell);
             } else {
                 self.show($tableCell);
+            }
+        });
+
+        m(this.el).on("tap", "a", function (event) {
+
+            event.preventDefault();
+
+            var isHref = m(this).hasAttr("href");
+            var hrefValue = m(this).attr("href");
+            if (isHref) {
+                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+                    return;
+                } else {
+
+                    //if (m(this).hasAttr("data-router")) {
+                    m.router.link(hrefValue);
+                    return;
+                    //  }
+                    // window.location.href = hrefValue;
+                }
             }
         });
     };

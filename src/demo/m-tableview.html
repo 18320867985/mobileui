@@ -1,121 +1,150 @@
-﻿<!DOCTYPE html>
-<html>
+﻿
 
-	<head>
-		<meta charset="UTF-8">
-		<title>tableview列表</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
-		<link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
-		<style type="text/css">
-			.m-scroll-content {
-				padding-bottom: .5rem;
-			}
-           h4 {
-               padding-top:.4rem;
-               margin:0 1rem;
-            }
-		</style>
+<!-- 1. css  style  区域 -->
+<style>
 
-	</head>
+        /* 注意！这里样式是加载渲染后是全局的
+       局部区分为内容区域标签加上id或class
+       路由模块隐藏后style块里样式被删除
+    */
+        #m-table-view  .m-scroll-content {
+            padding-bottom: .5rem;
+        }
 
-	<body>
-		<!--主体-->
-		<div class="m-bd ">
+       #m-table-view  h4 {
+            padding-top: .4rem;
+            margin: 0 1rem;
+        }
+</style>
 
-			<!--头部-->
-			<header class="m-hd">
-                <div class="m-hd-top">
-                    <div class="m-hd-top-icon  m-back">
-                        <span class="iconfont icon-back-left "></span>
-                    </div>
-                    <h4 class="m-hd-top-ttl" id="ttl">Mobile触摸页面</h4>
-                </div>
+<!--2.内容区域 -->
+<section class="m-router-cnt" id="m-table-view">
+    <div class="m-overflow-tb">
+        <div class="m-overflow-tb-cnt">
 
-			</header>
+            <!--内容start -->
+            <div class="m-touch-tb-cnt">
+                <h4>列表</h4>
 
-			<!--内容-->
-            <section class="m-cnt">
+                <ul class="m-table-view" data-toggle="m-table-view">
 
-                <div class="m-overflow-tb" data-toggle="m-overflow-tb">
+                    <li class="m-table-view-cell">
+                        <div class="m-table-view-ttl">
+                            <h5>
+                                overflow滑动组件
+                            </h5>
+                            <span class="iconfont icon-back-right"></span>
+                        </div>
 
-                    <div class="m-touch-tb-cnt">
-                        <h4>列表</h4>
+                        <!--折叠div-->
+                        <ul class="m-table-view-collapse ">
 
-                        <ul class="m-table-view" data-toggle="m-table-view">
-
-                            <li class="m-table-view-cell">
-                                <div class="m-table-view-ttl">
-                                    <h5>
-                                        overflow滑动组件
-                                    </h5>
-                                    <span class="iconfont icon-back-right"></span>
-                                </div>
-
-                                <!--折叠div-->
-                                <ul class="m-table-view-collapse ">
-
-                                    <li class="m-table-view-collapse-cell">
-                                        <a  href="/demo/m-overflow-lr.html">左右滑动组件</a>
-                                        <span class="iconfont icon-back-right"></span>
-                                    </li>
-
-                                    <li class="m-table-view-collapse-cell">
-                                        <a  href="/demo/m-overflow-tb.html">上下滑动组件</a>
-                                        <span class="iconfont icon-back-right"></span>
-                                    </li>
-
-                                </ul>
+                            <li class="m-table-view-collapse-cell">
+                                <a href="./demo/m-overflow-lr.html">左右滑动组件</a>
+                                <span class="iconfont icon-back-right"></span>
                             </li>
-                        </ul>
-                        <h4>圆角列表</h4>
 
-                        <ul class="m-table-view m-table-view-rd" data-toggle="m-table-view">
-
-                            <li class="m-table-view-cell">
-                                <div class="m-table-view-ttl">
-                                    <h5>
-                                        overflow滑动组件
-                                    </h5>
-                                    <span class="iconfont icon-back-right"></span>
-                                </div>
-
-                                <!--折叠div-->
-                                <ul class="m-table-view-collapse ">
-
-                                    <li class="m-table-view-collapse-cell">
-                                        <a  href="/demo/m-overflow-lr.html">左右滑动组件</a>
-                                        <span class="iconfont icon-back-right"></span>
-                                    </li>
-
-                                    <li class="m-table-view-collapse-cell">
-                                        <a  href="/demo/m-overflow-tb.html">上下滑动组件</a>
-                                        <span class="iconfont icon-back-right"></span>
-                                    </li>
-
-                                </ul>
+                            <li class="m-table-view-collapse-cell">
+                                <a href="./demo/m-overflow-tb.html">上下滑动组件</a>
+                                <span class="iconfont icon-back-right"></span>
                             </li>
-                            
+
                         </ul>
+                    </li>
+                </ul>
+                <h4>圆角列表</h4>
 
-                    </div>
-                </div>
+                <ul class="m-table-view m-table-view-rd" data-toggle="m-table-view">
 
-            </section>
+                    <li class="m-table-view-cell">
+                        <div class="m-table-view-ttl">
+                            <h5>
+                                overflow滑动组件
+                            </h5>
+                            <span class="iconfont icon-back-right"></span>
+                        </div>
 
-		</div>
+                        <!--折叠div-->
+                        <ul class="m-table-view-collapse ">
 
-		<script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-            m(function () {
-                // 拉到底部 触发自定义的事件
-                m(".m-touch-tb").on("m-touch-tb-reachbottom", function (event, el, moveX, obj) {
-                    console.log("拉到底部 触发自定义的事件:m-touch-tb-reachbottom")
+                            <li class="m-table-view-collapse-cell">
+                                <a href="./demo/m-overflow-lr.html">左右滑动组件</a>
+                                <span class="iconfont icon-back-right"></span>
+                            </li>
 
-                })
+                            <li class="m-table-view-collapse-cell">
+                                <a href="./demo/m-overflow-tb.html">上下滑动组件</a>
+                                <span class="iconfont icon-back-right"></span>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+            <!--内容end -->
+        </div>
+    </div>
+</section>
+
+<!-- js 区域 -->
+<script type="text/javascript">
+
+    /* 路由页面监听事件对象 */
+    m.router.page({
+
+        /* 设置当前路由页面的对象的参数 */
+        setting: {
+            routerTilte: "tableview组件", // 路由页的标题
+            // routerTilteColor: "red",  // 路由页的标题字体颜色
+            // routerClass:"router-class-1"   // 路由页的class
+        },
+
+        /*加载js的列表 */
+        loadJs: [
+            //"../js/m-vd.js",
+            //"../js/cityData.js"
+        ],
+        // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
+
+        // 生命周期函数--监听页面加载完成
+        onLoad: function (context, parameter) {
+
+            // context 当前路由模块上下文对象
+            //console.log("onLoad:", context);
+
+            // context 当前路由模块接受的参数
+            //console.log("parameter:", parameter);
+
+
+            // 触发插件模式
+            m(".m-table-view").mTableView();
+
+             // 拉到底部 触发自定义的事件
+            m(".m-touch-tb",context).on("m-touch-tb-reachbottom", function (event, el, moveX, obj) {
+                console.log("拉到底部 触发自定义的事件:m-touch-tb-reachbottom")
+
             })
 
-		</script>
-	</body>
 
-</html>
+        },
+
+        // 生命周期函数--监听页面显示
+        onShow: function (context) {
+            // context 当前路由模块上下文对
+            //console.log("onShow", context);
+        },
+
+        // 生命周期函数--监听页面隐藏
+        onHide: function (context) {
+            // context 当前路由模块上下文对
+            // console.log("onHide", context);
+
+        },
+
+    });
+
+</script>
+
+

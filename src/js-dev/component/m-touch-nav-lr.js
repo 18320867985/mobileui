@@ -73,6 +73,7 @@
 
                 if (obj.isX) {
                     event.preventDefault();
+                    event.stopPropagation();
                     obj.$moveElment.transition("none");
                     var translateX = obj.moveElmentX + obj.x;
 

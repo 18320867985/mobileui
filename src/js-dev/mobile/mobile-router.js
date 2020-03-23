@@ -592,53 +592,59 @@
 
                 obj.$moveElment = m(this);
                 obj.moveElmentX = obj.$moveElment.translateX();
+                obj.$prevEl = Router.getPrevEl();
             
                 if (obj.x < (obj.$moveElment.width() * 0.95) && (!obj.oneTouch)) {
                     obj.oneTouch = true;
                     obj.isMove = true;
-              
                 }
 
                 self.obj = obj;
             },
 
             function (event, obj) {
-                var id = parseInt(obj.$moveElment.attr("data-router-id") || -1);
-                var _id = Router.getId();
-                if (obj.isX && obj.isMove && id === _id) {
-                    obj.$prevEl = Router.getPrevEl();
+                if (obj.isX) {
+                    if ((!obj.xlt) && (obj.x < 0) && obj.moveElmentX===0) { obj.xlt = true; }
+                  
+                    if (obj.xlt) { return; }
+                    var id = parseInt(obj.$moveElment.attr("data-router-id") || -1);
+                    var _id = Router.getId();
+                    if (obj.isX && obj.isMove && id === _id) {
+                        obj.$prevEl = Router.getPrevEl();
 
-                    event.preventDefault();
-                    obj.$moveElment.transition("none");
-                    var translateX = obj.moveElmentX + obj.x;
-                    obj.$moveElment.removeClass("in");
-                    translateX = translateX <= 0 ? 0 : translateX;
-                    if (translateX > 0) {
-                        obj.$moveElment.addClass("m-router-box-shadow");
-                    } 
+                        event.preventDefault();
+                        obj.$moveElment.transition("none");
+                        var translateX = obj.moveElmentX + obj.x;
+                        obj.$moveElment.removeClass("in");
+                        translateX = translateX <= 0 ? 0 : translateX;
+                        if (translateX > 0) {
+                            obj.$moveElment.addClass("m-router-box-shadow");
+                        }
 
-                    obj.$moveElment.translateX(translateX).translateZ(0);
+                        obj.$moveElment.translateX(translateX).translateZ(0);
 
-                    // 上一个元素的移动
-                    Router.isOneMove = false;
-                    obj.$prevEl.transition("none");
-                    var rt = translateX / obj.$moveElment.width();
-                    var prevWidth = -obj.$prevEl.width() / 2;
-                    var movePrevWidth = prevWidth - prevWidth * rt;
+                        // 上一个元素的移动
+                        Router.isOneMove = false;
+                        obj.$prevEl.transition("none");
+                        var rt = translateX / obj.$moveElment.width();
+                        var prevWidth = -obj.$prevEl.width() / 2;
+                        var movePrevWidth = prevWidth - prevWidth * rt;
 
-                    if (movePrevWidth > 0) {
-                        movePrevWidth = 0;
+                        if (movePrevWidth > 0) {
+                            movePrevWidth = 0;
+                        }
+
+                        obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0);
+
                     }
-                   
-                    obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0);
-
                 }
-
             },
 
             function (event, obj) {
 
                 if (obj.isX) {
+                  //  if (obj.xlt) { obj.xlt = null; return; }
+                    
                     var t = 0.5;
                     if (obj.$moveElment.translateX() < obj.$moveElment.width() / 2) {
 
@@ -659,8 +665,13 @@
                  
                     obj.isMove = false;
                     obj.oneTouch = false;
+                    obj.xlt = null;
+                  
 
                 }
+
+                obj.xlt = null;
+                
 
             });
     }

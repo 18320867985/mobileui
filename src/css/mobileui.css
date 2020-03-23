@@ -1648,7 +1648,8 @@ textarea::-moz-placeholder {
   background: #fff;
   margin-bottom: 0.75rem;
   -ms-touch-action: none;
-      touch-action: none; }
+      touch-action: none;
+  overflow: hidden; }
   .m-touch-tab .m-touch-tab-cnt {
     position: relative;
     display: inline-block;

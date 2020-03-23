@@ -39,6 +39,10 @@
 
                 if (obj.isX) {
                     event.preventDefault();
+                    if ($moveElement.translateX()<0) {
+                        event.stopPropagation();
+                    }
+                    
                     obj.$moveElment.transition("none");
                     var translateX = obj.moveElmentX + obj.x;
 

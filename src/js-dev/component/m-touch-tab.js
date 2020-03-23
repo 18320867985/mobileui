@@ -39,8 +39,17 @@
 
                 if (obj.isX) {
                     event.preventDefault();
-                    if ($moveElement.translateX()<0) {
+                  
+                    if (obj.oneTouch === 1) { return; }
+                    if (($moveElement.translateX() === 0) && (obj.x>0) && (obj.oneTouch === undefined)) {  obj.oneTouch = 1; } else { obj.oneTouch = 2; }
+
+                    if (obj.oneTouch === 1) {
+                       
+                        return; 
+                    }
+                    if (obj.oneTouch === 2) {
                         event.stopPropagation();
+                      
                     }
                     
                     obj.$moveElment.transition("none");
@@ -125,7 +134,8 @@
                     // 触发自定义的事件
                     m(this).emit("end.m.touch.tab", [this, target, obj]);
 
-
+                    obj.oneTouch = undefined;
+               
                 }
 
 

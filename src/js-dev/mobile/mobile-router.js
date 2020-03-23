@@ -607,7 +607,8 @@
                     if ( obj.oneTouch === 1) { return; }
                     if ((!obj.xlt) && (obj.x < 0) && (obj.oneTouch === undefined)) { obj.xlt = true; obj.oneTouch = 1; } else { obj.xlt = false; obj.oneTouch = 2; }
                    
-                    if (obj.xlt && obj.oneTouch===1) { return; }
+                    if (obj.xlt && obj.oneTouch === 1) { return; }
+                 
                     var id = parseInt(obj.$moveElment.attr("data-router-id") || -1);
                     var _id = Router.getId();
                     if (obj.isX && obj.isMove && id === _id) {

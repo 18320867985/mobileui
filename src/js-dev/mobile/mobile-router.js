@@ -594,8 +594,8 @@
                 obj.moveElmentX = obj.$moveElment.translateX();
                 obj.$prevEl = Router.getPrevEl();
             
-                if (obj.x < (obj.$moveElment.width() * 0.95) && (!obj.oneTouch)) {
-                    obj.oneTouch = true;
+                if (obj.x < (obj.$moveElment.width() * 0.95) ) {
+                   
                     obj.isMove = true;
                 }
 
@@ -604,9 +604,10 @@
 
             function (event, obj) {
                 if (obj.isX) {
-                    if ((!obj.xlt) && (obj.x < 0) && obj.moveElmentX===0) { obj.xlt = true; }
-                  
-                    if (obj.xlt) { return; }
+                    if ( obj.oneTouch === 1) { return; }
+                    if ((!obj.xlt) && (obj.x < 0) && (obj.oneTouch === undefined)) { obj.xlt = true; obj.oneTouch = 1; } else { obj.xlt = false; obj.oneTouch = 2; }
+                   
+                    if (obj.xlt && obj.oneTouch===1) { return; }
                     var id = parseInt(obj.$moveElment.attr("data-router-id") || -1);
                     var _id = Router.getId();
                     if (obj.isX && obj.isMove && id === _id) {
@@ -664,13 +665,12 @@
 
                  
                     obj.isMove = false;
-                    obj.oneTouch = false;
-                    obj.xlt = null;
-                  
+              
 
                 }
 
                 obj.xlt = null;
+                obj.oneTouch = undefined;
                 
 
             });

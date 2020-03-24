@@ -31,7 +31,7 @@
 
         }
 
-        m(document).on("tap", ".m-touch-tab-btn-item", function (event) {
+        $m_touch_tab_btn.on("tap", ".m-touch-tab-btn-item", function (event) {
             event.preventDefault();
             self.active(m(this).index());
 

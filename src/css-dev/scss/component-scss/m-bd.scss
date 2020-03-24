@@ -59,6 +59,12 @@ $hd-height: 50rem;
     z-index: 1;
     overflow: visible;
     background: $body-bg;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
 }
 
 /*m-ft*/

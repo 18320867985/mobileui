@@ -8,7 +8,8 @@
     white-space: nowrap;
     width: 100%;
     overflow:hidden;
-    box-shadow: 0 2px 2px rgba(0,0,0,.075), 0 -2px 2px rgba(0,0,0,.075);
+    background:$bg-white;
+    /*box-shadow: 0 2px 2px rgba(0,0,0,.075), 0 -2px 2px rgba(0,0,0,.075);*/
 
 
     .m-touch-nav-cnt {

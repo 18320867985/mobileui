@@ -1,150 +1,172 @@
-﻿<!doctype html>
-<html>
+﻿
 
-<head>
-    <meta charset="UTF-8">
-    <title>Mobile触摸页面</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="../css/font/iconfont.css" />
-    <link rel="stylesheet" type="text/css" href="../css/mobileui.css" />
-    <style>
+<!-- 1. css  style  区域 -->
+<style>
 
-       
-        .m-overflow-tb-cnt {
+        /* 注意！这里样式是加载渲染后是全局的
+       局部区分为内容区域标签加上id或class
+       路由模块隐藏后style块里样式被删除
+    */
+       #m-touch-tab  .m-touch-tab-btn {
+           background:#fff;
+        }
+      #m-touch-tab  .m-overflow-tb-cnt {
             padding: .25rem .5rem;
+            background:#f2f2f2;
         }
 
-        .m-overflow-tb-cnt p {
+
+       #m-touch-tab  .m-touch-tab-item {
+          
+            background:#f2f2f2;
+        }
+       #m-touch-tab  .m-overflow-tb-cnt p {
             padding: .5rem .2rem;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
             font-size: .8rem;
         }
-    </style>
+</style>
 
-</head>
+<!--2.内容区域 -->
+<section class="m-router-cnt" id="m-touch-tab">
 
-<body>
-    <!--主体-->
-    <div class="m-bd">
+    <!--m-router-top 上部 -->
+    <div class="m-router-top">
+        <nav class="m-touch-nav-lr">
+            <ul class="m-touch-nav-cnt">
+                <li class="active  m-touch-nav-item">
+                    <a href="javascript:;">nav导航</a>
+                </li>
 
-        <!--头部-->
-        <header class="m-hd">
-            <div class="m-hd-top">
-                <div class="m-hd-top-icon  m-back">
-                    <span class="iconfont icon-back-left "></span>
-                </div>
+            </ul>
+        </nav>
 
-                <h4 class="m-hd-top-ttl">touch左右tab滑动组件</h4>
-            </div>
+    </div>
 
-            <nav class="m-touch-nav-lr">
-                <ul class="m-touch-nav-cnt">
-                    <li class="active  m-touch-nav-item">
-                        <a href="javascript:;">首页</a>
-                    </li>
+    <!--m-router-bd 中间 -->
+    <div class="m-router-bd">
 
-                </ul>
-            </nav>
+        <div class="m-touch-tab">
+            <div class="m-touch-tab-cnt">
 
-        </header>
+                <!--滑动的内容 m-touch-lr-item是m-touch-lr的宽度 -->
+                <div class="m-touch-tab-item active">
+                    <div class="m-overflow-tb" data-toggle="m-overflow-tb">
+                        <div class="m-overflow-tb-cnt">
 
-        <!--内容-->
-        <section class="m-cnt">
-
-
-            <div class="m-touch-tab">
-                <div class="m-touch-tab-cnt">
-
-                    <!--滑动的内容 m-touch-lr-item是m-touch-lr的宽度 -->
-                    <div class="m-touch-tab-item active">
-                        <div class="m-overflow-tb" data-toggle="m-overflow-tb">
-                            <div class="m-overflow-tb-cnt">
-                               
-                            </div>
-                            <div class="m-overflow-tb-loading">
-                                正在加载中...
-                            </div>
-
+                        </div>
+                        <div class="m-overflow-tb-loading">
+                            正在加载中...
                         </div>
 
                     </div>
 
                 </div>
+
             </div>
-
-
-        </section>
+        </div>
 
     </div>
 
-    <script src="../js/mobileui.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript">
+    <!--m-router-ft 底部 -->
+    <!--<div class="m-router-ft">
 
-        m(function () {
+    </div>-->
 
-            // 加载nav 和tab
+</section>
+
+<!-- js 区域 -->
+<script type="text/javascript">
+
+    /* 路由页面监听事件对象 */
+    m.router.page({
+
+        /* 设置当前路由页面的对象的参数 */
+        setting: {
+            routerTilte: "tab左右滑动组件-nav导航", // 路由页的标题
+            // routerTilteColor: "red",  // 路由页的标题字体颜色
+            // routerClass:"router-class-1"   // 路由页的class
+        },
+
+        /*加载js的列表 */
+        loadJs: [
+            //"../js/m-vd.js",
+            //"../js/cityData.js"
+        ],
+        // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
+
+        // 生命周期函数--监听页面加载完成
+        onLoad: function (context, parameter) {
+
+            // context 当前路由模块上下文对象
+            //console.log("onLoad:", context);
+
+            // context 当前路由模块接受的参数
+            //console.log("parameter:", parameter);
+
+              // 加载nav 和tab
             var nav = "";
             var tab = "";
             for (var i = 0; i < 20; i++) {
                 nav += `<li class="${i === 0 ? `active` : ``}  m-touch-nav-item" data-tab="#tab${i + 1}">
-                            <a href="javascript:;">第 ${i + 1} 屏</a>
-                        </li>  `;
+                                <a href="javascript:;">第 ${i + 1} 屏</a>
+                            </li>  `;
 
                 tab += ` <div class="m-touch-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}">
-                            <div class="m-overflow-tb">
-                                <div class="m-overflow-tb-cnt">
+                                <div class="m-overflow-tb">
+                                    <div class="m-overflow-tb-cnt">
+
+                                    </div>
+                                    <div class="m-overflow-tb-loading">
+                                          正在加载中...
+                                    </div>
 
                                 </div>
-                                <div class="m-overflow-tb-loading">
-                                      正在加载中...
-                                </div>
 
-                            </div>
-
-                        </div>  `;
+                            </div>  `;
 
             }
 
             // 触发插件
-            m(".m-touch-nav-cnt").html(nav).parent().mTouchNavLr();
-            m(".m-touch-tab-cnt").html(tab).parent().mTouchTab();
-            m(".m-overflow-tb").mOverflowTb();
+            m(".m-touch-nav-cnt",context).html(nav).parent().mTouchNavLr();
+            m(".m-touch-tab-cnt",context).html(tab).parent().mTouchTab();
+            m(".m-overflow-tb",context).mOverflowTb();
 
             // tap.m.touch.nav触发的事件
-            m(".m-touch-nav-cnt").on("tap.m.touch.nav", function (event, el, moveX) {
+            m(".m-touch-nav-cnt",context).on("tap.m.touch.nav", function (event, el, moveX) {
 
                 var id = m(el).attr("data-tab");
-                m(".m-touch-tab").mTouchTab("set", m(id).index());
+                m(".m-touch-tab",context).mTouchTab("set", m(id).index());
                 if (!m(id).data("isOne")) {
                     m(id).data("isOne", true);
-                   ajaxData(m(id), m(id).index());
+                    ajaxData(m(id), m(id).index());
                 }
-            
+
             });
 
             // tab 触发自定义的事件
-            m(".m-touch-tab").on("tab.m.touch.tab", function (event, el, index, scrollObj) {
+            m(".m-touch-tab",context).on("tab.m.touch.tab", function (event, el, index, scrollObj) {
 
-                m(".m-touch-nav-lr").mTouchNavLr("set", m(".m-touch-nav-item").eq(index));
+                m(".m-touch-nav-lr",context).mTouchNavLr("set", m(".m-touch-nav-item").eq(index));
                 if (!m(el).data("isOne")) {
-                     m(el).data("isOne", true);
-                     ajaxData(el, index);  
+                    m(el).data("isOne", true);
+                    ajaxData(el, index);
                 }
 
             });
 
             // reachbottom.m.overflow.tb触发自定义的事件 拉到底部触发
-            m(".m-overflow-tb").on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
+            m(".m-overflow-tb",context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
 
                 var $el = m(el).parents(".m-touch-tab-item");
-               ajaxData($el, $el.index());
+                ajaxData($el, $el.index());
 
             });
 
             // 第一次加载数据
-            var $activeEl = $(".m-touch-tab-item.active");
+            var $activeEl = $(".m-touch-tab-item.active",context);
             ajaxData($activeEl, 0);
             $activeEl.data("isOne", true);
 
@@ -156,7 +178,7 @@
                 }
                 $el.data("loadingEnd", true);
 
-                m.get("../json/tab.json", function (res) {
+                m.get("./json/tab.json", function (res) {
 
                     $el.data("loadingEnd", false);
                     var page = $el.data("pageindex") || 1;
@@ -174,11 +196,23 @@
             }
 
 
-        });
+        },
+
+        // 生命周期函数--监听页面显示
+        onShow: function (context) {
+            // context 当前路由模块上下文对
+            //console.log("onShow", context);
+        },
+
+        // 生命周期函数--监听页面隐藏
+        onHide: function (context) {
+            // context 当前路由模块上下文对
+            // console.log("onHide", context);
+
+        },
+
+    });
+
+</script>
 
 
-    </script>
-
-</body>
-
-</html>

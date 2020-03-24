@@ -42,7 +42,6 @@ var autoprefixer = require('autoprefixer'); // npm install --save-dev autoprefix
  * 使用：sass().on('error', sass.logError)
  */
 var sass = require('gulp-sass');
-var img = require('gulp-imagemin'); //gulp-imagemin:压缩png、jpj、git、svg格式图片 npm install --save-dev gulp-imagemin
 var eslint = require("gulp-eslint"); // 检查es5 ees6 js gulp-eshint
 
 
@@ -130,7 +129,7 @@ function sev(src) {
         port: 8888
     });
     console.log("服务器运行的目录："+src);
-};
+}
 
 gulp.task('connect',
     function () {

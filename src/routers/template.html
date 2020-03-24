@@ -20,11 +20,19 @@
 
 <!--2.内容区域 -->
 <section class="m-router-cnt" id="template">
-    <!--内容start -->
-    <div class="m-overflow-tb">
-     <div class="m-overflow-tb-cnt">
-         <div class="pre-box">
-<pre>
+
+    <!--m-router-top 上部 -->
+    <div class="m-router-top">
+
+    </div>
+
+    <!--m-router-bd 中间 -->
+    <div class="m-router-bd">
+     
+        <div class="m-overflow-tb">
+            <div class="m-overflow-tb-cnt">
+                <div class="pre-box">
+                    <pre>
 &lt;!--1.css style 区域标签-->
 &lt;style>
 /* 注意！这里样式是加载渲染后是全局的
@@ -37,11 +45,15 @@
 
 &lt;!--2.内容区域标签  -->
 &lt;section class="m-router-cnt"id="template">
-    &lt;div class="m-overflow-tb">
-        &lt;div class="m-overflow-tb-cnt">
-                内容...
-        &lt;/div>
-    &lt;/div>
+
+ &lt;! 2.1--m-router-top 上部 -->
+    &lt;div class="m-router-top"> &lt;/div>
+
+ &lt;!2.2--m-router-bd 中间 -->&lt;/div>
+
+   &lt;!2.3--m-router-ft 底部 -->
+   &lt;div class="m-router-ft">&lt;/div>
+
 &lt;/section>
 
 &lt;!--3. js区域标签  -->
@@ -69,10 +81,17 @@ m.router.page({
 &lt;/script>
 
 </pre>
+                </div>
             </div>
         </div>
+    
     </div>
-    <!--内容end -->
+
+    <!--m-router-ft 底部 -->
+    <div class="m-router-ft">
+        
+    </div>
+    
 </section>
 
 <!-- js 区域 -->

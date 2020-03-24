@@ -11,8 +11,8 @@
     height: 100%;
     background: #fff;
     margin-bottom: 15rem/$rem;
-    touch-action:none;
-    overflow:hidden;
+    touch-action: none;
+    overflow: hidden;
 
     .m-touch-tab-cnt {
         position: relative;
@@ -30,7 +30,8 @@
         overflow: hidden;
         font-size: .7rem;
         vertical-align: top;
-        touch-action:none;
+        touch-action: none;
+        
 
         > a {
             display: block;

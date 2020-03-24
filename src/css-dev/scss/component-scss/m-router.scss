@@ -85,24 +85,6 @@
     }
 }
 
-.m-router-cnt {
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    overflow: visible;
-    background: $body-bg;
-}
-
-.m-router-ft {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    text-align: center;
-    background: $bg-white;
-}
 
 .m-router-back {
     -webkit-tap-highlight-color: transparent !important;
@@ -114,4 +96,36 @@
 
 .m-router-box-shadow{
     box-shadow:0 -5px 5px rgba(0,0,0,.15);
+}
+
+
+
+.m-router-cnt {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    overflow: visible;
+    background: $body-bg;
+
+    display: flex;
+    flex-flow:column nowrap;
+    justify-content:flex-start;
+    align-items:stretch;
+    width: 100%;
+ 
+}
+
+.m-router-top{
+
+    flex:0 0 auto;
+}
+
+.m-router-bd {
+    flex: 1 1 0;
+    overflow: hidden;
+}
+.m-router-ft {
+    flex: 0 0 auto;
+  
 }

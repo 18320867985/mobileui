@@ -983,12 +983,12 @@
         var $bd = $(".m-router");
         var $header = $(".m-router-hd");
         var $cont = $(".m-router-cnt");
-        var $footer = $(".m-router-ft");
+       // var $footer = $(".m-router-ft");
 
         var $bd_height = parseFloat($bd.height()),
-            $header_height = parseFloat($header.height()),
-            $foote_height = parseFloat($footer.height());
-        var $cont_height = $bd_height - ($header_height + $foote_height);
+            $header_height = parseFloat($header.height());
+          //  $foote_height = parseFloat($footer.height());
+        var $cont_height = $bd_height - $header_height ;
 
         $cont.height($cont_height); // set cnt height
         $cont.css("top", $header_height); // set cnt top

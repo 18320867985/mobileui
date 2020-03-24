@@ -1,0 +1,295 @@
+
+<!-- 1. css  style  区域 -->
+<style>
+
+        /* 注意！这里样式是加载渲染后是全局的
+       局部区分为内容区域标签加上id或class
+       路由模块隐藏后style块里样式被删除
+    */
+        #m-vd  .m-btn.m-btn-block {
+            margin-top: 1.5rem;
+        }
+
+        .m-alert .m-alert-cnt-ttl > ._txt {
+            color: #d9534f;
+        }
+
+         .vd-dep-btn.vd-error {
+            color: #999;
+        }
+</style>
+
+<!--2.内容区域 -->
+<section class="m-router-cnt" id="m-vd">
+    <div class="m-overflow-tb">
+        <div class="m-overflow-tb-cnt">
+
+            <!--内容start -->
+
+            <div class="m-input-group " id="form1">
+
+                <!-- 1步 class="vd-box" -->
+                <div class="m-input vd-box">
+                    <label class="m-input-label">用户名</label>
+
+                    <!-- 2步 class="vd-item" -->
+                    <!-- 3步 name="email" 做为提交数据的对象的属性名 -->
+                    <!-- 4步 [vd-pattern， v-req,vd-pattern,vd-remote,等等，详细请参考vd.帮助文档] -->
+                    <input class="m-input-box vd-item" type="text" vd-req vd-req-msg="用户名不能为空" name="user" maxlength="32" value="" placeholder="输入用户名" />
+
+                </div>
+                <div class="m-input vd-box">
+                    <label class="m-input-label">密码</label>
+                    <input class="m-input-box vd-item" type="text" name="pwd" vd-req vd-req-msg="密码不能为空" vd-compare-emit="pwd2" vd-pattern="^\S{8,32}$" vd-pattern-msg="密码长度8到32位" placeholder="输入密码" />
+                </div>
+
+                <div class="m-input vd-box">
+                    <label class="m-input-label">确认密码</label>
+                    <input class="m-input-box vd-item" type="text" name="pwd2" vd-req vd-req-msg="确认密码不能为空" vd-compare="pwd" vd-compare-msg="两次密码不相同" placeholder="输入密码" />
+                </div>
+
+
+
+                <div class="m-input vd-box">
+                    <label class="m-input-label">手机号码</label>
+                    <input class="m-input-box vd-item" type="text" name="phone" vd-req vd-req-msg="手机号码不能为空" vd-pattern="^1\d{10}$"
+                           vd-pattern-msg="手机格式不对" maxlength="11" vd-remote="../js/m-vd.json" vd-remote-msg="手机号码已存在" placeholder="输入手机号码" />
+                    <!-- vd-dep-btn -->
+                    <button type="button" class="m-input-btn vd-dep-btn" href="">发送</button>
+
+                </div>
+
+                <div class="m-input vd-box">
+                    <label class="m-input-label">验证码</label>
+                    <input class="m-input-box vd-item" type="text" vd-req vd-req-msg="验证码不能为空" vd-remote="../js/m-vd.json"
+                           vd-remote-length="6" vd-remote-msg="验证码不对" name="yzm" maxlength="6" value="" placeholder="输入验证码" />
+
+                </div>
+
+                <div class="m-input  vd-box">
+                    <label class="m-input-label">邮箱</label>
+                    <input class="m-input-box  vd-item" type="text" name="email"
+                           vd-req vd-req-msg="邮箱不能为空" vd-pattern="^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$" vd-pattern-msg="收件人格式不对" value=""
+                           placeholder="输入邮箱" />
+                </div>
+
+                <div class="m-input  vd-box">
+                    <label class="m-input-label">所在省份</label>
+                    <input class="m-input-box  vd-item" type="text" name="city" id="city"
+                           vd-req vd-req-msg="省份不能为空"
+                           placeholder="选择省份" />
+                </div>
+
+
+            </div>
+            <!-- vd-btn 提交按钮-->
+            <button type="button" class="m-btn m-btn-success  m-btn-block vd-btn">提交</button>
+            <!--内容end -->
+        </div>
+    </div>
+</section>
+
+<!-- js 区域 -->
+<script type="text/javascript">
+
+    /* 路由页面监听事件对象 */
+    m.router.page({
+
+        /* 设置当前路由页面的对象的参数 */
+        setting: {
+            routerTilte: "vd表单验证", // 路由页的标题
+            // routerTilteColor: "red",  // 路由页的标题字体颜色
+            // routerClass:"router-class-1"   // 路由页的class
+        },
+
+        /*加载js的列表 */
+        loadJs: [
+            "./js/m-vd.js",
+            "./js/cityData.js"
+        ],
+        // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
+
+        // 生命周期函数--监听页面加载完成
+        onLoad: function (context, parameter) {
+
+            // context 当前路由模块上下文对象
+            //console.log("onLoad:", context);
+
+            // context 当前路由模块接受的参数
+            //console.log("parameter:", parameter);
+
+             // 初始化验证对象
+            var vd1 = m.vd.create("#form1",context);
+            vd1.init();
+            //vd1.reset();  //重设表单并清空所以内容和检测验证
+
+            // 检查验证=>vd1.check(el) 验证当前项;
+            // 验证全部=>vd1.validate();
+
+            // 点击提交验证
+            $(".vd-btn",context).on("click", function () {
+
+                // 是否验证成功
+                vd1.isSuccess(
+                    // success
+                    function (obj) {
+
+                        vd1.reset();
+                        $.mAlert(JSON.stringify(obj));
+
+                    },
+                    // error
+                    function (obj) {
+
+                        //console.log(obj);
+                        $.mAlert(obj.errorMsg, function () { obj.el.focus(); });
+
+                    });
+            });
+
+            // 发送验证码
+            $(".vd-dep-btn",context).click(function () {
+
+                // 根据name属性获取对象
+                if (vd1.getObj("phone").bl) {
+
+                    $.mInfo("已发送验证码");
+                };
+
+            });
+
+            m("#city",context).focus(function () {
+                m(this).blur();
+                $.mPicker({ type: "city1" }, function (val) {
+                    m(this).val(val.city.city1.txt);
+                    vd1.check(this);
+                }.bind(this));
+            });
+
+            // remote 验证验证之前触发
+            $(document).on("onremotebefore", function (e, el) {
+                // console.log("onremotebefore element", el)
+            })
+
+            // remote 验证验证完成触发
+            $(document).on("onremoteafter", function (e, el, v) {
+                //console.log("onremoteafter value:", v)
+            })
+
+
+        },
+
+        // 生命周期函数--监听页面显示
+        onShow: function (context) {
+            // context 当前路由模块上下文对
+            //console.log("onShow", context);
+        },
+
+        // 生命周期函数--监听页面隐藏
+        onHide: function (context) {
+            // context 当前路由模块上下文对
+            // console.log("onHide", context);
+
+        },
+
+    });
+
+</script>
+
+
+<script>
+
+    /*************************** vd表单验证文档************************
+     *
+     1.初始化表单验证对象
+    var vd1=vd.create(".form1",content);  // 表单的 class的名称 ,content上下文
+    // 初始化验证对象
+    vd1.init();
+    //vd1.disabledItem();  //禁用每一项
+    //vd1.reset();  //重设表单并清空所以内容和检测验
+    //vd.isSubmit=false;  禁用提交按钮
+    // 检查验证=>vd1.check(el) 验证当前项;
+    // 验证全部=>vd1.validate();
+
+2. 验证每项的父级 大框添加class="vd-box" 的class
+    每一个项添加class="vd-item" 和  name 属性作为提交数据对象的属性
+    例如name=age，name=sex 对象属性为{age：12,sex:女 }
+
+3 . 验证类型
+
+ a.非空验证 => 验证属性： vd-req
+    验证错误提示信息：vd-req-msg="此字段不能为空"
+
+ b.正则验证 => 验证属性： vd-pattern="^1\d{10}$"
+          验证错误提示信息：vd-pattern-msg="此字段格式不对"
+
+ c.ajax远程验证 => 验证属性： vd-remote="json/remote.json"
+        长度达到才验证：vd-remote-length="6"
+    验证错误提示信息： vd-remote-msg="验证码不对"
+
+    // 远程验证base地址： vd1.baseRemoteUrl="http://sunjin.com";
+    // 指定远程验证的方法:vd-remote-method 默认 get ,  例如html: <input vd-remote-method="post"  class="form-control vd-item"/>
+    // 指定远程验证的方法:vd-remote-res 真或假结果判断 默认为真 ,  例如html: <input vd-remote-res="false"  class="form-control vd-item"/>
+    // 指定远程验证的返回对象的属性名称：vd-remote-obj,   例如html: <input vd-remote-obj="data.isCode"  class="form-control vd-item"/>
+    // 指定远程验证的发送对象的属性名称: vd-remote-name input的属性name的名称，多个用,分开
+     例如html: <input vd-remote-name="code,phone"  class="form-control vd-item"/>
+     名称转换用code=codeName号 是把code属性转换成发送的ajax对象属性codeName  <input vd-remote-name="code=codeName,phone=tel"  class="form-control vd-item"/>
+
+     远程验证之前的 onremotebefore  $(el).on("onremotebefore",function(event,el){ });
+    远程验证之后的 onremoteafter   $(el).on("onremoteafter",function(event,el,data){ });
+
+    // 发送验证码
+    $(".vd-dep-btn").click(function () {
+        // 根据name属性获取对象
+        if (vd1.getObj("c").bl) {
+            $.alert("", "已发送验证码");
+        };
+    });
+
+ d.比较验证=>  验证属性：  vd-compare="pwd"
+      pwd是比较的name="pwd"的字段名称
+           验证错误提示信息：vd-compare-msg="两次密码不能相同"
+      vd-compare-emit="pwd2"  是比较的字段name="pwd"元素上触发的字段
+
+
+4 .单选组=>  验证属性： vd-rd-gp
+      name="gp"=> 为提交数据的对象属性值
+    vd-req=> 为必填
+    vd-req-msg="单选不能为空"为=> 验证非空提示信息
+
+
+5 .checkbox验证=> 验证属性:vd-ck
+     选中的值：vd-ck-true="1"
+          没选中的值vd-ck-false="0"
+           属性设为 vd-req =>为必填
+          验证错误提示信息：vd-req-msg="没有同意协议"
+
+
+
+ 6.复选组框=>  验证属性： vd-ck-gp
+      name="gp"=> 为提交数据的对象属性值
+    vd-req=> 为必填
+    vd-req-msg="单选不能为空"为=> 验证非空提示信息
+
+
+7.提交触发
+$(".vd-btn").on("click", function() {
+
+        // 是否验证成功
+        vd1.isSuccess(
+        // success
+        function(obj) {
+            //vd1.disabledItem();  //禁用每一项
+            //vd1.reset();  //重设表单并清空所以内容和检测验
+            //vd.isSubmit=true; 恢复提交按钮
+            //$.alert("",JSON.stringify(obj));
+        },
+        // error
+        function(obj) {
+        obj.el.focus();
+        });
+});
+
+*************************** vd表单验证文档*************************/
+</script>
+

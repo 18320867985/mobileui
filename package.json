@@ -7,7 +7,9 @@
   "scripts": {
     "del": "gulp  del",
     "dev": " gulp watch",
-    "build": " gulp del && gulp release "
+    "build": " gulp del && gulp release ",
+    "svc-src": "gulp svc-src",
+    "svc-dist": "gulp svc-dist"
   },
   "license": "ISC",
   "dependencies": {},

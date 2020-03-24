@@ -213,3 +213,6 @@ gulp.task('build', async function() {
 	gulp.src(paths.jsPath).pipe(connect.reload());
 
 });
+
+
+

@@ -1905,7 +1905,8 @@ textarea::-moz-placeholder {
       touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
   overflow-y: auto;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  background: #f8f8f8; }
   .m-overflow-tb.m-bar-no::-webkit-scrollbar {
     display: none; }
 

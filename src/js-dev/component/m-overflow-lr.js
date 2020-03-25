@@ -68,10 +68,12 @@
             }
         });
 
-        $el.touch(function () { }, function (event, obj) {
-           // console.log(self.scrollLef);
-            
-            if (obj.isX ) { event.stopPropagation();}
+        $el.touch(function (event) { event.stopPropagation(); }, function (event, obj) {
+         
+            if (obj.isX) {
+                event.stopPropagation();
+  
+            }
            
         });
 

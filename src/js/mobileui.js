@@ -7991,8 +7991,9 @@ $(function () {
             }
         });
 
-        $el.touch(function () {}, function (event, obj) {
-            // console.log(self.scrollLef);
+        $el.touch(function (event) {
+            event.stopPropagation();
+        }, function (event, obj) {
 
             if (obj.isX) {
                 event.stopPropagation();

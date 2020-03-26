@@ -63,9 +63,12 @@
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
-            m("#router-back",context).on("tap", function (event) {
+            // 返回上一页
+            m(".m-btn", context).on("tap", function (event) {
 
-                m.router.back();
+                // 这个阻止冒泡必须加上
+               event.stopPropagation();   
+               m.router.back();
             });
 
    

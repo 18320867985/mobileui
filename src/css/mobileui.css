@@ -371,6 +371,9 @@ textarea::-moz-placeholder {
 /*html rem比例*/
 /* text-color*/
 /*m-hd*/
+body {
+  overflow: hidden; }
+
 .m-hd {
   position: absolute;
   top: 0;

@@ -5,6 +5,9 @@
 /*m-hd*/
 $hd-height: 50rem;
 
+body{
+    overflow:hidden;
+}
 .m-hd {
     position:absolute;
     top:0;
@@ -15,6 +18,7 @@ $hd-height: 50rem;
     background: #fff;
     border-bottom: 1px solid $text-line;
     box-shadow: 1px 0 5px rgba(0,0,0,.075);
+
 }
 
 

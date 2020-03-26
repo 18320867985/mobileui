@@ -766,6 +766,11 @@
         return 0;
 
     };
+    // 获取id
+    Router.getActiveEl = function () {
+
+        return m("#m-router-" + m.router.getId());
+    };
 
     // 删除id
     Router.removeId = function (id) {
@@ -795,8 +800,8 @@
     };
 
     // 添加路由
-    Router.link = function (src, parameter) {
-
+    Router.link = function (src, parameter, isShowBtn) {
+        isShowBtn = typeof isShowBtn === "boolean" ? isShowBtn: true;
         var nowTime = new Date().getTime();
         // 相隔延迟时间的点击
         if ((nowTime - Router.tapTime) > Router.transitionTime) {
@@ -820,6 +825,7 @@
             routerEl.style = "z-index:" + (100 + id);
             routerEl.setAttribute("data-router-id", id);
 
+            if (isShowBtn) {
             var topEl = document.createElement("div");
             topEl.classList.add("m-router-hd");
             topEl.innerHTML = `<div class="m-hd-top">
@@ -832,8 +838,11 @@
                 <div class="m-ball-clip-rotate"><div></div>     
                 </div> 
             </h4>
-        </div>`;  
-            routerEl.appendChild(topEl);
+            </div>`;  
+                routerEl.appendChild(topEl);
+
+            }
+
             var contEl = document.createElement("div");
             contEl.classList.add("m-router-hd");
            
@@ -980,16 +989,15 @@
     function setRouterLayout() {
 
         // 整体框架设置内容height
-        var $bd = $(".m-router");
-        var $header = $(".m-router-hd");
-        var $cont = $(".m-router-cnt");
-       // var $footer = $(".m-router-ft");
+        var $el = m.router.getActiveEl();
+        var $bd =$el;
+        var $header = $(".m-router-hd", $el);
+        var $cont = $(".m-router-cnt", $el);
 
         var $bd_height = parseFloat($bd.height()),
             $header_height = parseFloat($header.height());
-          //  $foote_height = parseFloat($footer.height());
-        var $cont_height = $bd_height - $header_height ;
 
+        var $cont_height = $bd_height - $header_height;
         $cont.height($cont_height); // set cnt height
         $cont.css("top", $header_height); // set cnt top
 
@@ -999,7 +1007,7 @@
     m.extend({
         setRouterLayout: setRouterLayout
     });
-
+    m.setRouterLayout();
     m(window).on("resize", setRouterLayout);
 
 }();

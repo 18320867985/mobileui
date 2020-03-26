@@ -52,31 +52,26 @@ $(function () {
         event.preventDefault();
     });
 
-    //m(document).on("tap", "a", function (event) {
+    m(document).on("tap", "a[data-link]", function (event) {
 
-    //    event.preventDefault();
+        event.preventDefault();
 
-    //    // overflow-lr a Á´½Ó
-    //    if (m(this).closest(".m-overflow-lr").length>0) {
-    //         return;
-    //     }
+        var isHref = m(this).hasAttr("href");
+        var hrefValue = m(this).attr("href");
+        if (isHref) {
+            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+                return;
+            } else {
 
-    //    var isHref = m(this).hasAttr("href");
-    //    var hrefValue = m(this).attr("href");
-    //    if (isHref) {
-    //        if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
-    //            return;
-    //        } else {
+                //if (m(this).hasAttr("data-router")) {
+                    m.router.link(hrefValue);
+                    return;
+              //  }
+               // window.location.href = hrefValue;
+            }
 
-    //            //if (m(this).hasAttr("data-router")) {
-    //                m.router.link(hrefValue);
-    //                return;
-    //          //  }
-    //           // window.location.href = hrefValue;
-    //        }
-
-    //    }
-    //});
+        }
+    });
 
   
 

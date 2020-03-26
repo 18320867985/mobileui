@@ -1,31 +1,48 @@
-﻿<!-- 1. css  style  区域 -->
+<!-- 1. css  style  区域 -->
 <style>
 
   /* 注意！这里样式是加载渲染后是全局的
    局部区分为内容区域标签加上id或class
    路由模块隐藏后style块里样式被删除
 */
-  #template {
-       
-   }
 
+  #template-parameter .pre-box {
+        padding: .5rem;
+   }
+    #template-parameter  pre {
+        white-space:pre-wrap;
+        background: #333;
+        color: #fff;
+        padding:.2rem;
+        border-radius:.25rem;
+        box-shadow: inset 2px 2px 5px rgba(0,0,0,.2);
+    }
 </style>
 
 <!--2.内容区域 -->
-<section class="m-router-cnt" id="template">
+<section class="m-router-cnt" id="template-parameter">
 
     <!--m-router-top 上部 -->
     <div class="m-router-top">
+
     </div>
 
     <!--m-router-bd 中间 -->
     <div class="m-router-bd">
-    </div>
+        <div class="pre-box">
+            <pre>
+                
+             </pre>
+            
+        </div>
 
-    <!--m-router-ft 底部 -->
-    <div class="m-router-ft"> 
-    </div>
-    
+        </div>
+
+        <!--m-router-ft 底部 -->
+        <div class="m-router-ft">
+
+        </div>
+
 </section>
 
 <!-- js 区域 -->
@@ -36,7 +53,7 @@
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
-            routerTilte: "路由标题", // 路由页的标题
+            routerTilte: "接收的路由参数", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
            // routerClass:"router-class-1"   // 路由页的class
         },
@@ -56,6 +73,8 @@
 
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
+
+            m("pre", context).html("接收的参数："+JSON.stringify(parameter));
 
 
         },

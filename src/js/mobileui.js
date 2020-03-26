@@ -4604,6 +4604,11 @@ css3 transition
         }
         return 0;
     };
+    // 获取id
+    Router.getActiveEl = function () {
+
+        return m("#m-router-" + m.router.getId());
+    };
 
     // 删除id
     Router.removeId = function (id) {
@@ -4631,8 +4636,8 @@ css3 transition
     };
 
     // 添加路由
-    Router.link = function (src, parameter) {
-
+    Router.link = function (src, parameter, isShowBtn) {
+        isShowBtn = typeof isShowBtn === "boolean" ? isShowBtn : true;
         var nowTime = new Date().getTime();
         // 相隔延迟时间的点击
         if (nowTime - Router.tapTime > Router.transitionTime) {
@@ -4656,10 +4661,13 @@ css3 transition
             routerEl.style = "z-index:" + (100 + id);
             routerEl.setAttribute("data-router-id", id);
 
-            var topEl = document.createElement("div");
-            topEl.classList.add("m-router-hd");
-            topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"iconfont icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n                <div class=\"m-ball-clip-rotate\"><div></div>     \n                </div> \n            </h4>\n        </div>";
-            routerEl.appendChild(topEl);
+            if (isShowBtn) {
+                var topEl = document.createElement("div");
+                topEl.classList.add("m-router-hd");
+                topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"iconfont icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n                <div class=\"m-ball-clip-rotate\"><div></div>     \n                </div> \n            </h4>\n            </div>";
+                routerEl.appendChild(topEl);
+            }
+
             var contEl = document.createElement("div");
             contEl.classList.add("m-router-hd");
 
@@ -4804,16 +4812,15 @@ css3 transition
     function setRouterLayout() {
 
         // 整体框架设置内容height
-        var $bd = $(".m-router");
-        var $header = $(".m-router-hd");
-        var $cont = $(".m-router-cnt");
-        // var $footer = $(".m-router-ft");
+        var $el = m.router.getActiveEl();
+        var $bd = $el;
+        var $header = $(".m-router-hd", $el);
+        var $cont = $(".m-router-cnt", $el);
 
         var $bd_height = parseFloat($bd.height()),
             $header_height = parseFloat($header.height());
-        //  $foote_height = parseFloat($footer.height());
-        var $cont_height = $bd_height - $header_height;
 
+        var $cont_height = $bd_height - $header_height;
         $cont.height($cont_height); // set cnt height
         $cont.css("top", $header_height); // set cnt top
     }
@@ -4822,7 +4829,7 @@ css3 transition
     m.extend({
         setRouterLayout: setRouterLayout
     });
-
+    m.setRouterLayout();
     m(window).on("resize", setRouterLayout);
 }();
 
@@ -4876,32 +4883,25 @@ $(function () {
         event.preventDefault();
     });
 
-    //m(document).on("tap", "a", function (event) {
+    m(document).on("tap", "a[data-link]", function (event) {
 
-    //    event.preventDefault();
+        event.preventDefault();
 
-    //    // overflow-lr a ����
-    //    if (m(this).closest(".m-overflow-lr").length>0) {
-    //         return;
-    //     }
+        var isHref = m(this).hasAttr("href");
+        var hrefValue = m(this).attr("href");
+        if (isHref) {
+            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+                return;
+            } else {
 
-    //    var isHref = m(this).hasAttr("href");
-    //    var hrefValue = m(this).attr("href");
-    //    if (isHref) {
-    //        if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
-    //            return;
-    //        } else {
-
-    //            //if (m(this).hasAttr("data-router")) {
-    //                m.router.link(hrefValue);
-    //                return;
-    //          //  }
-    //           // window.location.href = hrefValue;
-    //        }
-
-    //    }
-    //});
-
+                //if (m(this).hasAttr("data-router")) {
+                m.router.link(hrefValue);
+                return;
+                //  }
+                // window.location.href = hrefValue;
+            }
+        }
+    });
 });
 
 // m-touch-slide 

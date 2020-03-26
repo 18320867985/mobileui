@@ -5,25 +5,31 @@
    局部区分为内容区域标签加上id或class
    路由模块隐藏后style块里样式被删除
 */
-  #template {
-       
+  #m-router-link {
+        padding: .5rem;
    }
 
 </style>
 
 <!--2.内容区域 -->
-<section class="m-router-cnt" id="template">
+<section class="m-router-cnt" id="m-router-link">
 
     <!--m-router-top 上部 -->
     <div class="m-router-top">
+
     </div>
 
     <!--m-router-bd 中间 -->
     <div class="m-router-bd">
+
+      
+        <button class="m-btn m-btn-warning" id="router-back">router.back返回上一页</button>
+
     </div>
 
     <!--m-router-ft 底部 -->
-    <div class="m-router-ft"> 
+    <div class="m-router-ft">
+        
     </div>
     
 </section>
@@ -36,7 +42,7 @@
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
-            routerTilte: "路由标题", // 路由页的标题
+            routerTilte: "路由back函数", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
            // routerClass:"router-class-1"   // 路由页的class
         },
@@ -57,6 +63,12 @@
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
+            m("#router-back",context).on("tap", function (event) {
+
+                m.router.back();
+            });
+
+   
 
         },
 

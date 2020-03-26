@@ -2586,7 +2586,7 @@ textarea::-moz-placeholder {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 0px;
           flex: 1 1 0;
-  overflow: hidden; }
+  overflow: auto; }
 
 .m-router-ft {
   -webkit-box-flex: 0;

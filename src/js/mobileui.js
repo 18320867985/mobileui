@@ -4503,14 +4503,11 @@ css3 transition
                     if (!Router.isOneMove) {
                         obj.$moveElment.translateX(0).translateZ(0);
                     }
-                    obj.$prevEl.translateX(-obj.$prevEl.width() / 2).translateZ(0);
                     obj.$prevEl.transition(transition);
+                    obj.$prevEl.translateX(-obj.$prevEl.width() / 2).translateZ(0);
                 } else {
 
                     Router.back(t);
-                    obj.$prevEl.translateX(0).translateZ(0);
-                    var transition2 = "transform  " + Router.transitionTime * t + "ms ease";
-                    obj.$prevEl.transition(transition2);
                 }
 
                 obj.isMove = false;
@@ -4675,7 +4672,7 @@ css3 transition
 
             var $prevEl = Router.getPrevEl();
             var transition = "transform  " + Router.transitionTime + "ms ease";
-            $prevEl.removeClass("in").translateX(-$prevEl.width() / 2).translateZ(0).transition(transition);
+            $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
             Router.isOneMove = true;
 
             var $el = m("#" + routerEl.id);
@@ -4718,7 +4715,7 @@ css3 transition
             var id = "#m-router-" + Router.getId();
             var $p = m(id);
             var transition = "transform  " + Router.transitionTime * t + "ms ease";
-            $p.removeClass("in").transition(transition).translateX($p.width());
+            $p.removeClass("in").transition(transition).translateX($p.width()).translateZ(0);
             var _id = Router.getId();
 
             // 监听页面隐藏 触发的事件

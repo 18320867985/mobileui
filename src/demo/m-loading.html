@@ -22,15 +22,17 @@
     </div>
 
 
-    <div class="m-loading">
+    <!--<div class="m-loading">
 
         <div class="m-loading-cnt">
-            <div></div>
-            <div>正在加载...</div>
+            <div class="m-loading-cnt-icon">
+                <span class="iconfont iconloading"></span>
+            </div>
+            <div class="m-loading-cnt-txt">正在加载</div>
 
         </div>
 
-    </div>
+    </div>-->
 </section>
 
 <!-- js 区域 -->
@@ -60,6 +62,16 @@
 
             // context 当前路由模块接受的参数
             console.log("parameter:", parameter);
+
+            m(".m-btn-primary", context).on("tap", function () {
+
+                $.mLoading();   // 显示加载
+
+                setTimeout(function () {
+                    $.mLoadingHide(); // 隐藏加载
+                }, 3000);
+
+            });
 
 
         },

@@ -24,6 +24,7 @@ import "./component/m-checkbox";           //checkbox
 import "./component/m-message";           //message
 import "./component/m-picker";           //picker
 import "./component/m-lazy";           //lazy
+import "./component/m-loading";         //loading
 
 // overflow
 import "./component/m-overflow-lr";         //×óÓÒoverflow»¬¶¯

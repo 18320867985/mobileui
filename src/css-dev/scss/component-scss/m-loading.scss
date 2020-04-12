@@ -7,18 +7,54 @@
 
 .m-loading{
 
-    position:absolute;
+    position:fixed;
     top:0;
     bottom:0;
     left:0;
     right:0;
-    background:red;
-
-
+    z-index:99999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
+.m-loading-cnt {
+    width: 100rem/$rem;
+    height: 100rem/$rem;
+    background: rgba(0,0,0,.6);
+    border-radius:.5rem;
+    display: flex;
+    flex-flow:column;
+    justify-content: center;
+    align-items: center;
+}
 
-//router 加载的路由的动画
+.m-loading-cnt-icon {
+    .iconfont {
+        display:inline-block;
+        vertical-align:middle;
+        font-size: 2rem;
+        color:$bg-white;
+        opacity:.9;
+       animation:m-loading-cnt-icon-dh linear 1.5s  both infinite ;
+    }
+}
+
+.m-loading-cnt-txt {
+    font-size: .6rem;
+    color: $bg-white;
+}
+
+@keyframes m-loading-cnt-icon-dh{
+    0%{
+        transform:rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+//router 加载的路由的
+动画
 .m-ball-clip-rotate {
 
     > div {

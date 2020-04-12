@@ -23,22 +23,23 @@ var indexlist = (function(m) {
 		var clientTop = window_h - (indexlist_h + footer_h + tab_bottom_h);
 		var translateY = ul.height() - indexlistwrap.height();
 
-		indexlist_a.touchstart(function(event) {
-			var v = m(this).text();
-			var group = "[data-group=" + v + "]";
-			var li = ul.find(group);
-			var top = li.offsetTop();
-			if(top > translateY) {
-				top = translateY;
-			}
+		// indexlist_a.touchstart(function(event) {
+		// 	var v = m(this).text();
+		// 	console.log(v)
+		// 	var group = "[data-group=" + v + "]";
+		// 	var li = ul.find(group);
+		// 	var top = li.offsetTop();
+		// 	if(top > translateY) {
+		// 		top = translateY;
+		// 	}
 
-			ul.setTransform("translateY", -top);
-			ul.transition("none");
-			indexlist_a.removeClass("active");
-			m(this).addClass("active");
-			tip.text(v);
+		// 	ul.setTransform("translateY", -top);
+		// 	ul.transition("none");
+		// 	indexlist_a.removeClass("active");
+		// 	m(this).addClass("active");
+		// 	tip.text(v);
 
-		});
+		// });
 
 		indexlist_nav.touchstart(function(event) {
 			event.preventDefault();
@@ -48,7 +49,7 @@ var indexlist = (function(m) {
 				o.name = m(v).text();
 				o.top = m(v).offsetTop();
 				items.push(o);
-
+ 	console.log(v)
 			});
 			window_h = m(window).height();
 			indexlist_h = m(".mobile-indexlist").height();
@@ -59,8 +60,7 @@ var indexlist = (function(m) {
 			translateY = ul.height() - indexlistwrap.height();
 			tip.fadeIn();
 
-		});
-
+		})
 		indexlist_nav.touchmove(function(event) {
 			event.preventDefault();
 			var t = event.changedTouches[0];

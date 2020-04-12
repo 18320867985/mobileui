@@ -1,0 +1,410 @@
+﻿<!-- 1. css  style  区域 -->
+<style>
+
+    /* 注意！这里样式是加载渲染后是全局的
+       局部区分为内容区域标签加上id或class
+       路由模块隐藏后style块里样式被删除
+    */
+    #m-inexlist .m-touch-nav-lr .m-touch-nav-item.active {
+        background: #337ab7;
+        color: #fff;
+    }
+
+    #m-inexlist .m-touch-nav-lr .m-touch-nav-item a {
+        display: block;
+        padding: 0 .8rem;
+        line-height: 1.6rem; 
+    }
+</style>
+
+
+<!--2.内容区域 -->
+<section class="m-router-cnt" id="m-inexlist">
+
+    <!--m-router-top 上部 -->
+    <div class="m-router-top">
+        <nav class="m-touch-nav-lr" id="m-touch-nav-center">
+            <ul class="m-touch-nav-cnt ">
+                <li class="active  m-touch-nav-item" data-spy="A">
+                    <a href="javascript:;">A</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="B">
+                    <a href="javascript:;">B</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="C">
+                    <a href="javascript:;">C</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="D">
+                    <a href="javascript:;">D</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="E">
+                    <a href="javascript:;">E</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="F">
+                    <a href="javascript:;">F</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="G">
+                    <a href="javascript:;">G</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="H">
+                    <a href="javascript:;">H</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="I">
+                    <a href="javascript:;">I</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="J">
+                    <a href="javascript:;">J</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="K">
+                    <a href="javascript:;">K</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="L">
+                    <a href="javascript:;">L</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="M">
+                    <a href="javascript:;">M</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="N">
+                    <a href="javascript:;">N</a>
+
+                </li>
+                <li class="m-touch-nav-item" data-spy="O">
+                    <a href="javascript:;">O</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="P">
+                    <a href="javascript:;">P</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="Q">
+                    <a href="javascript:;">Q</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="R">
+                    <a href="javascript:;">R</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="S">
+                    <a href="javascript:;">S</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="T">
+                    <a href="javascript:;">T</a>
+                </li>
+
+                <li class="m-touch-nav-item" data-spy="U">
+                    <a href="javascript:;">U</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="V">
+                    <a href="javascript:;">V</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="W">
+                    <a href="javascript:;">W</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="X">
+                    <a href="javascript:;">X</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="Y">
+                    <a href="javascript:;">Y</a>
+                </li>
+                <li class="m-touch-nav-item" data-spy="Z">
+                    <a href="javascript:;">Z</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+    <!--m-router-bd 中间 -->
+    <div class="m-router-bd">
+
+        <div class="m-indexlist">
+
+            <ul class="m-indexlist-cnt">
+                <!--ttl-->
+                <li data-group="A" class="m-indexlist-item m-indexlist-ttl">A</li>
+                <li data-value="AKU" data-tags="AKeSu" class="m-indexlist-item">阿克苏机场</li>
+                <li data-value="BPL" data-tags="ALaShanKou" class="m-indexlist-item">阿拉山口机场</li>
+                <li data-value="AAT" data-tags="ALeTai" class="m-indexlist-item">阿勒泰机场</li>
+                <li data-value="NGQ" data-tags="ALiKunSha" class="m-indexlist-item">阿里昆莎机场</li>
+                <li data-value="AQG" data-tags="AnQingTianZhuShan" class="m-indexlist-item">安庆天柱山机场</li>
+                <li data-value="MFM" data-tags="AoMenGuoJi" class="m-indexlist-item">澳门国际机场</li>
+                <!--ttl-->
+                <li data-group="B" class="m-indexlist-item m-indexlist-ttl">B</li>
+                <li data-value="BSD" data-tags="BaoShan" class="m-indexlist-item">保山机场</li>
+                <li data-value="BAV" data-tags="BaoTou" class="m-indexlist-item">包头机场</li>
+                <li data-value="BHY" data-tags="BeiHaiFuCheng" class="m-indexlist-item">北海福成机场</li>
+                <li data-value="NAY" data-tags="BeiJingNanYuan" class="m-indexlist-item">北京南苑机场</li>
+                <li data-value="PEK" data-tags="BeiJingShouDuGuoJi" class="m-indexlist-item">北京首都国际机场</li>
+                <!--ttl-->
+                <li data-group="C" class="m-indexlist-item m-indexlist-ttl">C</li>
+                <li data-value="NBS" data-tags="ChangBaiShan" class="m-indexlist-item">长白山机场</li>
+                <li data-value="CGQ" data-tags="ChangChunLongJiaGuoJi" class="m-indexlist-item">长春龙嘉国际机场</li>
+                <li data-value="CGD" data-tags="ChangDeTaoHuaYuan" class="m-indexlist-item">常德桃花源机场</li>
+                <li data-value="BPX" data-tags="ChangDuBangDa" class="m-indexlist-item">昌都邦达机场</li>
+                <li data-value="CSX" data-tags="ChangShaHuangHuaGuoJi" class="m-indexlist-item">长沙黄花国际机场</li>
+                <li data-value="CIH" data-tags="ChangZhiWangCun" class="m-indexlist-item">长治王村机场</li>
+                <li data-value="CZX" data-tags="ChangZhouBenNiu" class="m-indexlist-item">常州奔牛机场</li>
+                <li data-value="CTU" data-tags="ChengDuShuangLiuGuoJi" class="m-indexlist-item">成都双流国际机场</li>
+                <li data-value="CIF" data-tags="ChiFeng" class="m-indexlist-item">赤峰机场</li>
+                <!--ttl-->
+                <li data-group="D" class="m-indexlist-item m-indexlist-ttl">D</li>
+                <li data-value="DLU" data-tags="DaLi" class="m-indexlist-item">大理机场</li>
+                <li data-value="DLC" data-tags="DaLianZhouShuiZiGuoJi" class="m-indexlist-item">大连周水子国际机场</li>
+                <li data-value="DQA" data-tags="DaQingSaErTu" class="m-indexlist-item">大庆萨尔图机场</li>
+                <li data-value="DAT" data-tags="DaTongDongWangZhuang" class="m-indexlist-item">大同东王庄机场</li>
+                <li data-value="DAX" data-tags="DaZhouHeShi" class="m-indexlist-item">达州河市机场</li>
+                <li data-value="DDG" data-tags="DanDongLangTou" class="m-indexlist-item">丹东浪头机场</li>
+                <li data-value="LUM" data-tags="DeHongMangShi" class="m-indexlist-item">德宏芒市机场</li>
+                <li data-value="DIG" data-tags="DiQingXiangGeLiLa" class="m-indexlist-item">迪庆香格里拉机场</li>
+                <li data-value="DOY" data-tags="DongYing" class="m-indexlist-item">东营机场</li>
+                <li data-value="DNH" data-tags="DunHuang" class="m-indexlist-item">敦煌机场</li>
+                <!--ttl-->
+                <li data-group="E" class="m-indexlist-item m-indexlist-ttl">E</li>
+                <li data-value="DSN" data-tags="EErDuoSi" class="m-indexlist-item">鄂尔多斯机场</li>
+                <li data-value="ENH" data-tags="EnShiXuJiaPing" class="m-indexlist-item">恩施许家坪机场</li>
+                <li data-value="ERL" data-tags="ErLianHaoTeSaiWuSuGuoJi" class="m-indexlist-item">二连浩特赛乌苏国际机场</li>
+                <!--ttl-->
+                <li data-group="F" class="m-indexlist-item m-indexlist-ttl">F</li>
+                <li data-value="FUG" data-tags="FuYangXiGuan" class="m-indexlist-item">阜阳西关机场</li>
+                <li data-value="FOC" data-tags="FuZhouChangLeGuoJi" class="m-indexlist-item">福州长乐国际机场</li>
+                <!--ttl-->
+                <li data-group="G" class="m-indexlist-item m-indexlist-ttl">G</li>
+                <li data-value="KOW" data-tags="GanZhouHuangJin" class="m-indexlist-item">赣州黄金机场</li>
+                <li data-value="GOQ" data-tags="GeErMu" class="m-indexlist-item">格尔木机场</li>
+                <li data-value="GYU" data-tags="GuYuanLiuPanShan" class="m-indexlist-item">固原六盘山机场</li>
+                <li data-value="GYS" data-tags="GuangYuanPanLong" class="m-indexlist-item">广元盘龙机场</li>
+                <li data-value="CAN" data-tags="GuangZhouBaiYunGuoJi" class="m-indexlist-item">广州白云国际机场</li>
+                <li data-value="KWL" data-tags="GuiLinLiangJiangGuoJi" class="m-indexlist-item">桂林两江国际机场</li>
+                <li data-value="KWE" data-tags="GuiYangLongDongBaoGuoJi" class="m-indexlist-item">贵阳龙洞堡国际机场</li>
+                <!--ttl-->
+                <li data-group="H" class="m-indexlist-item m-indexlist-ttl">H</li>
+                <li data-value="HRB" data-tags="HaErBinTaiPingGuoJi" class="m-indexlist-item">哈尔滨太平国际机场</li>
+                <li data-value="HMI" data-tags="HaMi" class="m-indexlist-item">哈密机场</li>
+                <li data-value="HAK" data-tags="HaiKouMeiLanGuoJi" class="m-indexlist-item">海口美兰国际机场</li>
+                <li data-value="HLD" data-tags="HaiLaErDongShanGuoJi" class="m-indexlist-item">海拉尔东山国际机场</li>
+                <li data-value="HDG" data-tags="HanDan" class="m-indexlist-item">邯郸机场</li>
+                <li data-value="HZG" data-tags="HanZhong" class="m-indexlist-item">汉中机场</li>
+                <li data-value="HGH" data-tags="HangZhouXiaoShanGuoJi" class="m-indexlist-item">杭州萧山国际机场</li>
+                <li data-value="HFE" data-tags="HeFeiLuoGangGuoJi" class="m-indexlist-item">合肥骆岗国际机场</li>
+                <li data-value="HTN" data-tags="HeTian" class="m-indexlist-item">和田机场</li>
+                <li data-value="HEK" data-tags="HeiHe" class="m-indexlist-item">黑河机场</li>
+                <li data-value="HET" data-tags="HuHeHaoTeBaiTaGuoJi" class="m-indexlist-item">呼和浩特白塔国际机场</li>
+                <li data-value="HIA" data-tags="HuaiAnLianShui" class="m-indexlist-item">淮安涟水机场</li>
+                <li data-value="TXN" data-tags="HuangShanTunXiGuoJi" class="m-indexlist-item">黄山屯溪国际机场</li>
+                <!--ttl-->
+                <li data-group="I" class="m-indexlist-item m-indexlist-ttl">I</li>
+                <!--ttl-->
+                <li data-group="J" class="m-indexlist-item m-indexlist-ttl">J</li>
+                <li data-value="TNA" data-tags="JiNanYaoQiangGuoJi" class="m-indexlist-item">济南遥墙国际机场</li>
+                <li data-value="JNG" data-tags="JiNingQuFu" class="m-indexlist-item">济宁曲阜机场</li>
+                <li data-value="JXA" data-tags="JiXiXingKaiHu" class="m-indexlist-item">鸡西兴凯湖机场</li>
+                <li data-value="JMU" data-tags="JiaMuSiDongJiao" class="m-indexlist-item">佳木斯东郊机场</li>
+                <li data-value="JGN" data-tags="JiaYuGuan" class="m-indexlist-item">嘉峪关机场</li>
+                <li data-value="JNZ" data-tags="JinZhouXiaoLingZi" class="m-indexlist-item">锦州小岭子机场</li>
+                <li data-value="JDZ" data-tags="JingDeZhen" class="m-indexlist-item">景德镇机场</li>
+                <li data-value="JGS" data-tags="JingGangShan" class="m-indexlist-item">井冈山机场</li>
+                <li data-value="JIU" data-tags="JiuJiangLuShan" class="m-indexlist-item">九江庐山机场</li>
+                <li data-value="JZH" data-tags="JiuZhaiHuangLong" class="m-indexlist-item">九寨黄龙机场</li>
+                <!--ttl-->
+                <li data-group="K" class="m-indexlist-item m-indexlist-ttl">K</li>
+                <li data-value="KHG" data-tags="KaShi" class="m-indexlist-item">喀什机场</li>
+                <li data-value="KRY" data-tags="KeLaMaYi" class="m-indexlist-item">克拉玛依机场</li>
+                <li data-value="KCA" data-tags="KuCheGuiZi" class="m-indexlist-item">库车龟兹机场</li>
+                <li data-value="KRL" data-tags="KuErLe" class="m-indexlist-item">库尔勒机场</li>
+                <li data-value="KMG" data-tags="KunMingWuJiaBaGuoJi" class="m-indexlist-item">昆明巫家坝国际机场</li>
+                <!--ttl-->
+                <li data-group="L" class="m-indexlist-item m-indexlist-ttl">L</li>
+                <li data-value="LXA" data-tags="LaSaGongGa" class="m-indexlist-item">拉萨贡嘎机场</li>
+                <li data-value="LHW" data-tags="LanZhouZhongChuan" class="m-indexlist-item">兰州中川机场</li>
+                <li data-value="LJG" data-tags="LiJiangSanYi" class="m-indexlist-item">丽江三义机场</li>
+                <li data-value="HZH" data-tags="LiPing" class="m-indexlist-item">黎平机场</li>
+                <li data-value="LYG" data-tags="LianYunGangBaiTaBu" class="m-indexlist-item">连云港白塔埠机场</li>
+                <li data-value="LNJ" data-tags="LinCang" class="m-indexlist-item">临沧机场</li>
+                <li data-value="LYI" data-tags="LinYi" class="m-indexlist-item">临沂机场</li>
+                <li data-value="LZY" data-tags="LinZhiMiLin" class="m-indexlist-item">林芝米林机场</li>
+                <li data-value="LZH" data-tags="LiuZhouBaiLian" class="m-indexlist-item">柳州白莲机场</li>
+                <li data-value="LCX" data-tags="LongYanGuanZhiShan" class="m-indexlist-item">龙岩冠豸山机场</li>
+                <li data-value="LZO" data-tags="LuZhouLanTian" class="m-indexlist-item">泸州蓝田机场</li>
+                <li data-value="LYA" data-tags="LuoYangBeiJiao" class="m-indexlist-item">洛阳北郊机场</li>
+                <!--ttl-->
+                <li data-group="M" class="m-indexlist-item m-indexlist-ttl">M</li>
+                <li data-value="NZH" data-tags="ManZhouLiXiJiao" class="m-indexlist-item">满洲里西郊机场</li>
+                <li data-value="MIG" data-tags="MianYangNanJiao" class="m-indexlist-item">绵阳南郊机场</li>
+                <li data-value="OHE" data-tags="MoHeGuLian" class="m-indexlist-item">漠河古莲机场</li>
+                <li data-value="MDG" data-tags="MuDanJiangHaiLang" class="m-indexlist-item">牡丹江海浪机场</li>
+                <!--ttl-->
+                <li data-group="N" class="m-indexlist-item m-indexlist-ttl">N</li>
+                <li data-value="KHN" data-tags="NanChangChangBeiGuoJi" class="m-indexlist-item">南昌昌北国际机场</li>
+                <li data-value="NAO" data-tags="NanChongGaoPing" class="m-indexlist-item">南充高坪机场</li>
+                <li data-value="NKG" data-tags="NanJingLuKouGuoJi" class="m-indexlist-item">南京禄口国际机场</li>
+                <li data-value="NNG" data-tags="NanNingWuXu" class="m-indexlist-item">南宁吴圩机场</li>
+                <li data-value="NTG" data-tags="NanTongXingDong" class="m-indexlist-item">南通兴东机场</li>
+                <li data-value="NNY" data-tags="NanYangJiangYing" class="m-indexlist-item">南阳姜营机场</li>
+                <li data-value="NGB" data-tags="NingBoLiSheGuoJi" class="m-indexlist-item">宁波栎社国际机场</li>
+                <!--ttl-->
+                <li data-group="O" class="m-indexlist-item m-indexlist-ttl">O</li>
+                <!--ttl-->
+                <li data-group="P" class="m-indexlist-item m-indexlist-ttl">P</li>
+                <li data-value="SYM" data-tags="PuErSiMao" class="m-indexlist-item">普洱思茅机场</li>
+                <!--ttl-->
+                <li data-group="Q" class="m-indexlist-item m-indexlist-ttl">Q</li>
+                <li data-value="NDG" data-tags="QiQiHaErSanJiaZi" class="m-indexlist-item">齐齐哈尔三家子机场</li>
+                <li data-value="SHP" data-tags="QinHuangDaoShanHaiGuan" class="m-indexlist-item">秦皇岛山海关机场</li>
+                <li data-value="TAO" data-tags="QingDaoLiuTingGuoJi" class="m-indexlist-item">青岛流亭国际机场</li>
+                <li data-value="JUZ" data-tags="QuZhou" class="m-indexlist-item">衢州机场</li>
+                <li data-value="JJN" data-tags="QuanZhouJinJiang" class="m-indexlist-item">泉州晋江机场</li>
+                <!--ttl-->
+                <li data-group="R" class="m-indexlist-item m-indexlist-ttl">R</li>
+                <li data-value="RKZ" data-tags="RiKaZeHePing" class="m-indexlist-item">日喀则和平机场</li>
+                <!--ttl-->
+                <li data-group="S" class="m-indexlist-item m-indexlist-ttl">S</li>
+                <li data-value="SYX" data-tags="SanYaFengHuangGuoJi" class="m-indexlist-item">三亚凤凰国际机场</li>
+                <li data-value="SWA" data-tags="ShanTouWaiSha" class="m-indexlist-item">汕头外砂机场</li>
+                <li data-value="SHA" data-tags="ShangHaiHongQiaoGuoJi" class="m-indexlist-item">上海虹桥国际机场</li>
+                <li data-value="PVG" data-tags="ShangHaiPuDongGuoJi" class="m-indexlist-item">上海浦东国际机场</li>
+                <li data-value="SZX" data-tags="ShenChouBaoAnGuoJi" class="m-indexlist-item">深圳宝安国际机场</li>
+                <li data-value="SHE" data-tags="ShenYangTaoXianGuoJi" class="m-indexlist-item">沈阳桃仙国际机场</li>
+                <li data-value="SJW" data-tags="ShiJiaZhuangZhengDingGuoJi" class="m-indexlist-item">石家庄正定国际机场</li>
+                <li data-value="WUX" data-tags="SuNanShuoFangGuoJi" class="m-indexlist-item">苏南硕放国际机场</li>
+                <!--ttl-->
+                <li data-group="T" class="m-indexlist-item m-indexlist-ttl">T</li>
+                <li data-value="TCG" data-tags="TaCheng" class="m-indexlist-item">塔城机场</li>
+                <li data-value="TYN" data-tags="TaiYuanWuSuGuoJi" class="m-indexlist-item">太原武宿国际机场</li>
+                <li data-value="HYN" data-tags="TaiZhouLuQiao-HuangYanJiChang" class="m-indexlist-item">台州路桥机场 (黄岩机场)</li>
+                <li data-value="TVS" data-tags="TangShanSanNvHe" class="m-indexlist-item">唐山三女河机场</li>
+                <li data-value="TCZ" data-tags="TengChongTuoFeng" class="m-indexlist-item">腾冲驼峰机场</li>
+                <li data-value="TSN" data-tags="TianJinBinHaiGuoJi" class="m-indexlist-item">天津滨海国际机场</li>
+                <li data-value="TGO" data-tags="TongLiao" class="m-indexlist-item">通辽机场</li>
+                <li data-value="TEN" data-tags="TongRenFengHuang" class="m-indexlist-item">铜仁凤凰机场</li>
+                <!--ttl-->
+                <li data-group="U" class="m-indexlist-item m-indexlist-ttl">U</li>
+                <!--ttl-->
+                <li data-group="V" class="m-indexlist-item m-indexlist-ttl">V</li>
+                <!--ttl-->
+                <li data-group="W" class="m-indexlist-item m-indexlist-ttl">W</li>
+                <li data-value="WXN" data-tags="WanZhouWuQiao" class="m-indexlist-item">万州五桥机场</li>
+                <li data-value="WEF" data-tags="WeiFang" class="m-indexlist-item">潍坊机场</li>
+                <li data-value="WEH" data-tags="WeiHaiDaShuiBo" class="m-indexlist-item">威海大水泊机场</li>
+                <li data-value="WNH" data-tags="WenShanPuZheHei" class="m-indexlist-item">文山普者黑机场</li>
+                <li data-value="WNZ" data-tags="WenZhouYongQiangGuoJi" class="m-indexlist-item">温州永强国际机场</li>
+                <li data-value="WUA" data-tags="WuHai" class="m-indexlist-item">乌海机场</li>
+                <li data-value="WUH" data-tags="WuHanTianHeGuoJi" class="m-indexlist-item">武汉天河国际机场</li>
+                <li data-value="HLH" data-tags="WuLanHaoTe" class="m-indexlist-item">乌兰浩特机场</li>
+                <li data-value="URC" data-tags="WuLuMuQiDiWoBaoGuoJi" class="m-indexlist-item">乌鲁木齐地窝堡国际机场</li>
+                <li data-value="WUS" data-tags="WuYiShan" class="m-indexlist-item">武夷山机场</li>
+                <li data-value="WUZ" data-tags="WuZhouChangZhouDao" class="m-indexlist-item">梧州长洲岛机场</li>
+                <!--ttl-->
+                <li data-group="X" class="m-indexlist-item m-indexlist-ttl">X</li>
+                <li data-value="XIY" data-tags="XiAnXianYangGuoJi" class="m-indexlist-item">西安咸阳国际机场</li>
+                <li data-value="XIC" data-tags="XiChangQingShan" class="m-indexlist-item">西昌青山机场</li>
+                <li data-value="XIL" data-tags="XiLinHaoTe" class="m-indexlist-item">锡林浩特机场</li>
+                <li data-value="XNN" data-tags="XiNingCaoJiaBao" class="m-indexlist-item">西宁曹家堡机场</li>
+                <li data-value="JHG" data-tags="XiShuangBanNaGaSa" class="m-indexlist-item">西双版纳嘎洒机场</li>
+                <li data-value="XMN" data-tags="XiaMenGaoQiGuoJi" class="m-indexlist-item">厦门高崎国际机场</li>
+                <li data-value="HKG" data-tags="XiangGangGuoJi" class="m-indexlist-item">香港国际机场</li>
+                <li data-value="XFN" data-tags="XiangYangLiuJi" class="m-indexlist-item">襄阳刘集机场</li>
+                <li data-value="ACX" data-tags="XingYi" class="m-indexlist-item">兴义机场</li>
+                <li data-value="XUZ" data-tags="XuZhouGuanYin" class="m-indexlist-item">徐州观音机场</li>
+                <!--ttl-->
+                <li data-group="Y" class="m-indexlist-item m-indexlist-ttl">Y</li>
+                <li data-value="ENY" data-tags="YanAnErShiLiBao" class="m-indexlist-item">延安二十里堡机场</li>
+                <li data-value="YNZ" data-tags="YanCheng" class="m-indexlist-item">盐城机场</li>
+                <li data-value="YNJ" data-tags="YanJiChaoYangChuan" class="m-indexlist-item">延吉朝阳川机场</li>
+                <li data-value="YNT" data-tags="YanTaiLaiShanGuoJi" class="m-indexlist-item">烟台莱山国际机场</li>
+                <li data-value="YBP" data-tags="YiBinCaiBa" class="m-indexlist-item">宜宾菜坝机场</li>
+                <li data-value="YIH" data-tags="YiChangSanXia" class="m-indexlist-item">宜昌三峡机场</li>
+                <li data-value="LDS" data-tags="YiChunLinDu" class="m-indexlist-item">伊春林都机场</li>
+                <li data-value="YIN" data-tags="YiNing" class="m-indexlist-item">伊宁机场</li>
+                <li data-value="YIW" data-tags="YiWu" class="m-indexlist-item">义乌机场</li>
+                <li data-value="INC" data-tags="YinChuanHeDong" class="m-indexlist-item">银川河东机场</li>
+                <li data-value="LLF" data-tags="YongZhouLingLing" class="m-indexlist-item">永州零陵机场</li>
+                <li data-value="UYN" data-tags="YuLinYuYang" class="m-indexlist-item">榆林榆阳机场</li>
+                <li data-value="YUS" data-tags="YuShuBaTang" class="m-indexlist-item">玉树巴塘机场</li>
+                <li data-value="YCU" data-tags="YunChengZhangXiao" class="m-indexlist-item">运城张孝机场</li>
+                <!--ttl-->
+                <li data-group="Z" class="m-indexlist-item m-indexlist-ttl">Z</li>
+                <li data-value="ZHA" data-tags="ZhanJiang" class="m-indexlist-item">湛江机场</li>
+                <li data-value="ZAT" data-tags="ZhaoTong" class="m-indexlist-item">昭通机场</li>
+                <li data-value="CGO" data-tags="ZhengZhouXinZhengGuoJi" class="m-indexlist-item">郑州新郑国际机场</li>
+                <li data-value="HJJ" data-tags="ZhiJiang" class="m-indexlist-item">芷江机场</li>
+                <li data-value="CKG" data-tags="ZhongQingJiangBeiGuoJi" class="m-indexlist-item">重庆江北国际机场</li>
+                <li data-value="ZHY" data-tags="ZhongWeiXiangShan" class="m-indexlist-item">中卫香山机场</li>
+                <li data-value="HSN" data-tags="ZhouShanZhuJiaJian" class="m-indexlist-item">舟山朱家尖机场</li>
+                <li data-value="ZUH" data-tags="ZhuHaiSanZao" class="m-indexlist-item">珠海三灶机场</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- js 区域 -->
+<script type="text/javascript">
+
+    /* 路由页面监听事件对象 */
+    m.router.page({
+
+        /* 设置当前路由页面的对象的参数 */
+        setting: {
+            routerTilte: "indexlist上边菜单", // 路由页的标题
+            // routerTilteColor: "red",  // 路由页的标题字体颜色
+            // routerClass:"router-class-1"   // 路由页的class
+        },
+
+        /*加载js的列表 */
+        loadJs: [
+            //"../js/m-vd.js",
+            //"../js/cityData.js"
+        ],
+        // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
+
+        // 生命周期函数--监听页面加载完成
+        onLoad: function (context, parameter) {
+
+            // context 当前路由模块上下文对象
+            //console.log("onLoad:", context);
+
+            // context 当前路由模块接受的参数
+            //console.log("parameter:", parameter);
+
+            m(".m-touch-nav-lr", context).mTouchNavLr({ limitLeft: false, limitRight: false, center: true });
+            m(".m-indexlist", context).mIndexlist();
+
+            // m-touch-nav-tap触发的事件
+            m(".m-touch-nav-lr", context).on("tap.m.touch.nav", function (event, el) {
+
+                var v = m(el).attr("data-spy").trim();
+                var $indexlist_cnt = m(".m-indexlist-cnt", context);
+                var group = "[data-group=" + v + "]";
+                var $li = $indexlist_cnt.find(group);
+                var top = $li.offset().top;
+                $indexlist_cnt.css("overflow-y", "hidden");     // 清除原生滚动
+                $indexlist_cnt.stop().scrollTop(top, 600);
+                $indexlist_cnt.css("overflow-y", "auto");       // 恢复原生滚动
+
+            });
+
+            // m-indexlist滑动触发的scroll.m.indexlist事件
+            m(".m-indexlist", context).on("scroll.m.indexlist", function (event, el, index) {
+
+                m(".m-touch-nav-lr", context).mTouchNavLr("set", m(".m-touch-nav-item").eq(index), true);
+            });
+
+
+        },
+
+        // 生命周期函数--监听页面显示
+        onShow: function (context) {
+            // context 当前路由模块上下文对
+            //console.log("onShow", context);
+        },
+
+        // 生命周期函数--监听页面隐藏
+        onHide: function (context) {
+            // context 当前路由模块上下文对
+            // console.log("onHide", context);
+
+        },
+
+    });
+
+</script>
+
+

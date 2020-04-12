@@ -1,0 +1,207 @@
+
+<!-- 1. css  style  区域 -->
+<style>
+
+        /* 注意！这里样式是加载渲染后是全局的
+       局部区分为内容区域标签加上id或class
+       路由模块隐藏后style块里样式被删除
+    */
+     .m-confirm .m-confirm-cnt-btn.ok {
+            color: red;
+        }
+</style>
+
+<!--2.内容区域 -->
+<section class="m-router-cnt" id="m-lazy">
+    <div class="m-overflow-tb">
+        <div class="m-overflow-tb-cnt">
+            <ul class="m-listoption" >
+
+                <!--<li class="m-listoption-item">
+                <div class="m-listoption-item-cnt">
+
+
+                    <div class="m-listoption-item-left">
+                        <a href="#">
+                            <img src="../images/头像.png" alt="Alternate Text" />
+                            <div class="">
+                                <h4 class="_ttl elp-1">微信群</h4>
+                                <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                    <div class="m-listoption-item-option">
+                        <div class="_item muted">
+                            默认
+                        </div>
+                        <div class="_item success">
+                            成功
+                        </div>
+                        <div class="_item warning">
+                            警告
+                        </div>
+                        <div class="_item danger">
+                            删除
+                        </div>
+                    </div>
+                </div>
+            </li>-->
+
+            </ul>
+        </div>
+        <div class="m-overflow-tb-loading">
+            正在加载中...
+        </div>
+    </div>
+</section>
+
+<!-- js 区域 -->
+<script type="text/javascript">
+
+    /* 路由页面监听事件对象 */
+    m.router.page({
+
+        /* 设置当前路由页面的对象的参数 */
+        setting: {
+            routerTilte: "lazy图片延迟加载", // 路由页的标题
+            // routerTilteColor: "red",  // 路由页的标题字体颜色
+            // routerClass:"router-class-1"   // 路由页的class
+        },
+
+        /*加载js的列表 */
+        loadJs: [
+            //"../js/m-vd.js",
+            //"../js/cityData.js"
+        ],
+        // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
+
+        // 生命周期函数--监听页面加载完成
+        onLoad: function (context, parameter) {
+
+            // context 当前路由模块上下文对象
+            //console.log("onLoad:", context);
+
+            // context 当前路由模块接受的参数
+            //console.log("parameter:", parameter);
+
+
+             // overflow-tb上下滑动的插件模式
+            m(".m-overflow-tb", context).mOverflowTb();
+             // mListoption 触发的插件
+            m(".m-listoption", context).mListoption();
+
+             /* html属性：data-toggle="m-lazy" 页面加载完成触发  替换src的地址的属性： data-lazy="./img/0.jpg"
+               <img class="m-lazy-img"  src="./img/lazy.jpg" alt=""   data-toggle="m-lazy" data-lazy="./img/0.jpg" />
+                 */
+            // 拉到底部触发
+            m(".m-overflow-tb",context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
+
+                console.log("reachbottom.m.overflow.tb", scrollObj);
+
+                ajaxData($(".m-overflow-tb"), context);
+
+            }).mLazy();
+
+            // 第一次加载数据
+            ajaxData(m(".m-overflow-tb",context), function () {
+                m(".m-overflow-tb",context).mLazy("init"); //初始化 执行延迟加载
+            });
+
+
+
+            // ajax 加载数据
+            function ajaxData($el, fn) {
+                if ($el.data("loadingEnd")) {
+
+                    return;
+                }
+                $el.data("loadingEnd", true);
+
+                m.get("./json/tab.json", function (res) {
+
+                    $el.data("loadingEnd", false);
+                    var page = $el.data("pageindex") || 1;
+                    var html = "";
+                    var docf = document.createDocumentFragment();
+                    for (var i = 0; i < res.length; i++) {
+                        var li = document.createElement("li");
+                        li.classList.add("m-listoption-item");
+                        li.innerHTML = listoptionHtml;
+                        docf.appendChild(li);
+
+                    }
+                    $el.find(".m-listoption").append(docf);
+                    if (typeof fn === "function") { fn(); }
+                    $el.data("pageindex", ++page);
+
+                }, "json");
+
+            }
+
+            var listoptionHtml = `
+                                    <div class="m-listoption-item-cnt">
+
+                                        <!--列表内容-->
+                                        <div class="m-listoption-item-left">
+                                            <a href="http://baidu.com">
+                                                <img class="m-lazy-img"  src="./images/lazy.jpg" alt=""  data-lazy="./images/head.png"  />
+                                                <div class="_contnet">
+                                                    <h4 class="_ttl elp-1">微信群</h4>
+                                                    <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
+                                                </div>
+
+                                            </a>
+
+                                        </div>
+                                        <!--列表操作项-->
+                                        <div class="m-listoption-item-option">
+                                            <div class="_item muted">
+                                                默认
+                                            </div>
+                                            <div class="_item success">
+                                                成功
+                                            </div>
+                                            <div class="_item warning">
+                                                警告
+                                            </div>
+                                            <div class="_item danger">
+                                                删除
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+            // 删除
+            m(context).on("tap", "._item.danger", function (event) {
+
+                var $this = m(this);
+                m.mConfirm("是否确认删除数据？", function () {
+                    $this.parents(".m-listoption-item").remove();
+                }, null, { ok: "删除" });
+
+            });
+
+
+        },
+
+        // 生命周期函数--监听页面显示
+        onShow: function (context) {
+            // context 当前路由模块上下文对
+            //console.log("onShow", context);
+        },
+
+        // 生命周期函数--监听页面隐藏
+        onHide: function (context) {
+            // context 当前路由模块上下文对
+            // console.log("onHide", context);
+
+        },
+
+    });
+
+</script>
+
+

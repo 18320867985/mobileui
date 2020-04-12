@@ -1,0 +1,66 @@
+
+
+@import "../var.scss";
+
+$success:$text-success;
+$error:$text-danger;
+
+/*错误显示*/
+.vd-box .vd-req,
+.vd-box .vd-pattern,
+.vd-box .vd-remote,
+.vd-box .vd-compare {
+	display: none;
+	color: $error;
+}
+
+/* 错误 */
+.vd-box .vd-req.vd-error,
+.vd-box .vd-pattern.vd-error,
+.vd-box .vd-remote.vd-error,
+.vd-box .vd-compare.vd-error {
+	display: inline-block;
+}
+
+/*当前的元素 ok*/
+
+.vd-box.vd-ok input.vd-item,
+.vd-box.vd-ok textarea.vd-item,
+.vd-box.vd-ok select.vd-item {
+	color: $success;
+	//border: 1px solid $success;
+}
+
+.vd-box.vd-ok label {
+	color: $success;
+}
+
+.vd-dep-btn.vd-ok {
+	color: $success;
+}
+
+
+/*提交按钮*/
+/*.vd-btn.vd-ok{
+	
+	color:$success;
+}*/
+
+
+/*当前的元素error*/
+.vd-box.vd-error .vd-item.vd-error,
+.vd-box.vd-error input.vd-item.vd-error,
+.vd-box.vd-error textarea.vd-item.vd-error,
+.vd-box.vd-error select.vd-item.vd-error {
+	color: $error;
+	//border: 1px solid $error;
+}
+
+
+.vd-box.vd-error label {
+	color: $error;
+}
+
+.vd-dep-btn.vd-error {
+	color: $error;
+}

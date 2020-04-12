@@ -1,0 +1,116 @@
+
+// indexlist
+@import "../var.scss";
+
+.m-listoption {
+   /*height: 100%;*/
+    width: 100%;
+}
+
+.m-listoption-item {
+    width: 100%;
+    height: 3.5rem;
+    overflow:hidden;
+ 
+
+    & + & {
+        border-top: 1px solid $text-line;
+    }
+}
+.m-listoption-item-cnt {
+    height: 100%;
+    white-space: nowrap;
+    font-size: 0;
+}
+.m-listoption-item-left {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    font-size: .8rem;
+
+
+    > a {
+        height: 100%;
+        width: 100%;
+        padding: .25rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background: #fff;
+    }
+
+    ._txt {
+        text-align: left;
+        color: $text-df;
+    }
+
+    ._ttl {
+        text-align: left;
+        margin: 0;
+    }
+
+    img {
+        flex: 0 0 2.5rem;
+        box-sizing: content-box;
+        display: block;
+    
+        height: 2.5rem;
+        border-radius: 50%;
+    }
+
+    ._contnet {
+        padding-left: 1rem;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+    .m-listoption-item-option {
+        vertical-align: top;
+        display: inline-block;
+        height: 100%;
+
+
+
+        > ._item {
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: .25rem .5rem;
+            background: #fff;
+            font-size: .8rem;
+
+            & + & {
+                border-left: 1px solid $text-line;
+            }
+
+            &.muted {
+                background: $text-muted;
+                color: $text-df;
+            }
+
+            &.danger {
+                background: $text-danger;
+                color: $text-white;
+            }
+
+            &.primary {
+                background: $text-primary;
+                color: $text-white;
+            }
+
+            &.success {
+                background: $text-success;
+                color: $text-white;
+            }
+
+            &.warning {
+                background: $text-warning;
+                color: $text-white;
+            }
+        }
+    }

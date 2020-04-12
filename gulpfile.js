@@ -5,6 +5,7 @@
 // 将你的默认的任务代码放在这
 //});
 // 升级了node版本/ node版本太高会造成node-sass不兼容的问题，那么就再 install node-sass一下就行了。
+// install  --save-dev  babel-preset-latest 最新的转码guize
 
 var gulp = require('gulp');
 var del = require("del");
@@ -25,6 +26,10 @@ var resolve = require('rollup-plugin-node-resolve');
 var commonjs = require('rollup-plugin-commonjs');
 var json = require("rollup-plugin-json");
 
+
+var vue = require('rollup-plugin-vue');
+var vembedCss = require('rollup-plugin-embed-css');
+
 /*
  * .pipe(postcss([autoprefixer]))  // 自动添加css3缀-webkit-  适合用于手机端 
  * */
@@ -37,20 +42,8 @@ var autoprefixer = require('autoprefixer'); // npm install --save-dev autoprefix
  * 使用：sass().on('error', sass.logError)
  */
 var sass = require('gulp-sass');
-var img = require('gulp-imagemin'); //gulp-imagemin:压缩png、jpj、git、svg格式图片 npm install --save-dev gulp-imagemin
 var eslint = require("gulp-eslint"); // 检查es5 ees6 js gulp-eshint
 
-// 文件路径
-var paths = {
-
-	// sass文件
-	scssPath: ['./src/css-dev/scss/**/*.scss'],
-
-	allscss: ['./src/css-dev/scss/all.scss'],
-
-	htmlPath: ['./src/**/*.html'],
-
-}
 
 // 清空目录gulp-del
 gulp.task('del', function(cd) {
@@ -59,7 +52,26 @@ gulp.task('del', function(cd) {
 	del(["./dist"], cd); //gulp-del
 });
 
-/******发布文件*******/
+
+// 文件路径
+var paths = {
+
+    // sass文件
+    scssPath: ['./src/css-dev/**/*.scss'],
+
+    allscss: ['./src/css-dev/scss/all.scss'],
+
+    htmlPath: ['./src/**/*.html'],
+
+    jsPath: ['./src/js-dev/**/*.js']
+
+};
+
+
+var jsName = "mobileui";
+var cssName = "mobileui";
+var jsRootName = "umd";
+var jsFileFormat = "umd";
 
 gulp.task('release', ['concat'], function() {
 
@@ -69,75 +81,100 @@ gulp.task('release', ['concat'], function() {
 	//pipe是进入流管道
 	//gulp.dest() 是复制文件
 
-	gulp.src(['./src/**/*.html']).pipe(gulp.dest('./dist/')); //复制html
+	gulp.src(['./src/**/*.html']).pipe(gulp.dest('./dist')); //复制html
 	gulp.src('./src/css/**/*.css').pipe(minCss()).pipe(gulp.dest('./dist/css')); //复制css
 	gulp.src('./src/js/**/*.js').pipe(minJs()).pipe(gulp.dest('./dist/js/')); //复制js
 	gulp.src('./src/images/**/*.*')
 		//.pipe(img())                     // 压缩图片
 		.pipe(gulp.dest('./dist/images/')); //复制img
-
-	gulp.src(['./src/**/*.json']).pipe(gulp.dest('./dist/')); //json
+		
+	gulp.src('./src/css/font/**/*.*').pipe(minCss()).pipe(gulp.dest('./dist/css/font')); //复制font
+	gulp.src(['./src/json/**/*.json']).pipe(gulp.dest('./dist/json')); //json
 
 });
 
 // 发布的合并js和css文件
 gulp.task("concat", ["scss", "build"]);
 
-/*******************开发*************************/
 
-//sass合并css文件
+//scss合并css文件
 gulp.task("scss", function() {
 
 	gulp.src(paths.allscss)
-		.pipe(sass().on('error', sass.logError)) // sass编译
-		.pipe(postcss([autoprefixer])) // 自动添加css3缀-webkit-  适合用于手机端 
-		.pipe(rename("mobile.css")) // 压缩css文件
+		.pipe(sass().on('error', sass.logError))     // sass编译
+		.pipe(postcss([autoprefixer]))          // 自动添加css3缀-webkit-  适合用于手机端 
+		.pipe( rename(cssName+'.css') )         // 压缩css文件
 		.pipe(gulp.dest('./src/css'));
 
 	gulp.src(paths.scssPath).pipe(connect.reload());
 
 });
 
-//开启http服务器
-gulp.task('connect', function() {
-	connect.server({
-		root: 'src',
-		livereload: true,
-		port: 8888
-	});
+
+gulp.task("html", function() {
+
+	//重启服务器	
+	gulp.src(paths.htmlPath).pipe(connect.reload());
 });
 
+
+//开启http服务器
+
+function sev(src) {
+    src = src || "src";
+    connect.server({
+        root: src,
+        livereload: true,
+        host:"localhost",
+        port: 8888
+    });
+    console.log("服务器运行的目录："+src);
+}
+
+gulp.task('connect',
+    function () {
+        sev();
+    });
+
+gulp.task('svc-src',
+    function () {
+        sev();
+    });
+
+gulp.task('svc-dist',
+    function () {
+        sev("dist");
+	});
+	
+	
 /*
  * watch监听
  * gulp.watch参数说明
  * 1. gulp.watch(path,task);
  * 2.gulp.watch(path,function(){});
  */
-gulp.task("watch", ['connect'], function() {
+gulp.task("watch", ['connect', "scss", "build"], function() {
 
 	//合拼压缩js文件
-	gulp.watch("./src/js-dev/**/*.js", ["build"]);
+	watch(paths.jsPath, function() {
+        gulp.start("build");
+	});
 
 	//sass合并压缩css文件
 	//gulp.watch(paths.scssPath, ['scss']);
-watch(paths.scssPath,function(){
-	gulp.start("scss");
-} );
 
+	watch(paths.scssPath, function() {
+		gulp.start("scss");
+		
+	});
 
 	//监听html
-	gulp.watch(paths.htmlPath, function() {
-		//重启服务器	
-		gulp.src(paths.htmlPath).pipe(connect.reload());
-
+	watch(paths.htmlPath, function() {
+		gulp.start("html");
 	});
 
 });
 
-// 检查js
-gulp.task('t_eslint', function() {
-	//gulp.src(paths.jsBabel).pipe(eslint()).pipe(eslint.format());
-});
 
 gulp.task('build', async function() {
 	const bundle = await rollup.rollup({
@@ -146,26 +183,35 @@ gulp.task('build', async function() {
 		/* 默认情况下，模块的上下文 - 即顶级的this的值为undefined。您可能需要将其更改为其他内容，如 'window'*/
 		context: "window",
 		plugins: [
-
+			
+			vue(),
+			vembedCss(),
 			/*commonjs 转换 es6*/
-			//	resolve(),
-			// commonjs(),  
+			resolve(),
+			commonjs(),  
 
 			babel({
 				exclude: 'node_modules/**',
 				presets: ["es2015-rollup"]
 			}),
+			
 			//uglify(), // 使用uglify压缩js 不能output 输出 format: 'es' 格式 否会报错
 
 		],
 	});
 
 	await bundle.write({
-		file: './src/js/mobile.js',
-		format: 'umd',
-		name: 'mobileui',
+		file: './src/js/' + jsName + '.js',
+		format: jsRootName,
+		name: jsFileFormat,
 		//sourcemap: true,
-		strict: false, //在生成的包中省略`"use strict";`
+		strict: true, //在生成的包中省略`"use strict";`
 	});
+	
+	
+	gulp.src(paths.jsPath).pipe(connect.reload());
 
 });
+
+
+

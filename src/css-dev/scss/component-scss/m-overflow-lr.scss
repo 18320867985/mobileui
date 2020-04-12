@@ -1,0 +1,122 @@
+﻿
+@import "../var.scss";
+
+
+/*左右滑动的菜单*/
+
+.m-overflow-lr::-webkit-scrollbar{
+    display:none;  
+}
+
+.m-overflow-lr {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    background: #fff;
+    touch-action: pan-x;
+
+    &.m-bar-no::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.m-overflow-lr-pwr {
+    height: 100%;
+    width: 100%;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.m-overflow-lr-cnt {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 0;
+    vertical-align:middle;
+}
+
+.m-overflow-lr-item {
+    display: inline-block;
+    font-size:.7rem;
+
+    >a{
+        display:block;
+    }
+    img{
+        vertical-align:top;
+    }
+}
+
+
+// 左右滑动的滑动条
+.m-overflow-lr-bar-pwr {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: .5rem;
+    height: 2px;
+    // background:#ccc;
+    font-size: 0;
+    text-align: center;
+}
+
+.m-overflow-lr-bar {
+    position: relative;
+    display: inline-block;
+    width: 20%;
+    height: .1rem;
+    background: #f2f2f2;
+    box-shadow: inset 0 0 5px rgba(0,0,0,.075);
+    font-size: .7rem;
+    border-radius: 5px;
+    overflow:hidden;
+}
+
+.m-overflow-lr-bar-item {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: .1rem;
+    background: $text-danger;
+    opacity: .8;
+    border-radius: 5px;
+}
+
+
+.m-overflow-lr-nav {
+
+    >li {
+        display: inline-block;
+        font-size: .7rem;
+
+        a {
+            display: block;
+            padding: 0 20rem/$rem;
+            line-height: 40rem/$rem;
+            color: #020202;
+        }
+
+        &.active {
+            background: $text-success;
+            color: $text-white;
+
+            a {
+                color: $text-white;
+            }
+        }
+    }
+
+    
+}
+
+

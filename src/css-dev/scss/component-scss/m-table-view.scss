@@ -1,0 +1,135 @@
+
+/*table-view*/
+
+@import "../var.scss";
+
+.m-table-view {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 10rem/$rem;
+    border: 1px solid $text-border;
+    background: #fff;
+
+    /*圆角table*/
+    &.m-table-view-rd {
+
+        border-radius: 5px;
+    }
+
+    > .m-table-view-cell {
+        display: flex;
+        flex-flow: row wrap;
+        align-content: space-between;
+        margin-left: 10rem/$rem;
+        font-size: 14rem/$rem;
+        overflow: hidden;
+
+        & + .m-table-view-cell {
+            border-top: 1px solid #ddd;
+        }
+
+
+        > .m-table-view-ttl {
+            width: 100%;
+            display: flex;
+            color: #777;
+            padding: 5rem/$rem 0;
+
+            > h5 {
+                display: flex;
+                flex: 1;
+                justify-content: flex-start;
+                align-items: center;
+                text-overflow: ellipsis;
+                padding: 8rem/$rem;
+                font-size: 16rem/$rem;
+                white-space: nowrap;
+                word-wrap: break-word;
+                overflow-x: hidden;
+                
+            }
+        }
+
+        .iconfont {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 10%;
+            font-size:.8rem;
+            color: #999;
+        }
+
+        .m-table-view-ttl > .iconfont {
+            transform: rotate(90deg);
+            transition: all .5s;
+        }
+    }
+}
+
+.m-table-view > .m-table-view-cell.in {
+    .m-table-view-ttl {
+       // color: $text-primary;
+    }
+
+    .m-table-view-ttl > .iconfont {
+        transform: rotate(-90deg);
+    }
+
+    .m-table-view-collapse {
+        display: block;
+        animation: m-table-view-in 1s ease both;
+    }
+}
+
+@keyframes m-table-view-in{
+
+    0% {
+        opacity: 0;
+        transform:translateX(-50px);
+     
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.m-table-view-collapse {
+    width: 100%;
+    background: #f8f8f8;
+    display: none;
+    margin-left: 15rem/$rem;
+
+    > .m-table-view-collapse-cell {
+        display: flex;
+        flex-flow: row wrap;
+        align-content: flex-start;
+        font-size: 14rem/$rem;
+
+        & + .m-table-view-collapse-cell {
+            border-top: 1px solid #ddd;
+        }
+
+        a {
+            display: flex;
+            width: 90%;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10rem/$rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: break-word;
+            overflow-x: hidden;
+        }
+
+        .iconfont {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 10%;
+            font-size: .8rem;
+            color: #999;
+        }
+    }
+}
+

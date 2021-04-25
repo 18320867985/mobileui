@@ -209,6 +209,8 @@ gulp.task('build', async function() {
 	});
 
 	await bundle.write({
+
+
 		file: './src/js/' + jsName + '.js',
 		format: jsRootName,
 		name: jsFileFormat,

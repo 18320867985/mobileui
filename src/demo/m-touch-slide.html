@@ -1,4 +1,4 @@
-﻿
+
 <!-- 1. css  style  区域 -->
 <style>
 
@@ -53,13 +53,13 @@
                     <!--滑动的内容 m-touch-lr-item是m-touch-lr的宽度 -->
 
                     <div class="m-touch-slide-item">
-                        <a href="http://baidu.com"><img src="./images/1.jpg" alt="Alternate Text" /></a>
+                        <a id="router-link" href=""><img src="./images/1.jpg" alt="Alternate Text" /></a>
                     </div>
                     <div class="m-touch-slide-item">
-                        <a href="#"><img src="./images/2.jpg" alt="Alternate Text" /></a>
+                        <a  id="router-link-2"  href="#"><img src="./images/2.jpg" alt="Alternate Text" /></a>
                     </div>
                     <div class="m-touch-slide-item">
-                        <a href="#"><img src="./images/3.jpg" alt="Alternate Text" /></a>
+                        <a id="router-link-3"  href="#"><img src="./images/3.jpg" alt="Alternate Text" /></a>
                     </div>
                     <div class="m-touch-slide-item">
                         <a href="#"><img src="./images/4.jpg" alt="Alternate Text" /></a>
@@ -117,7 +117,7 @@
                // 1.插件模式 m.mTouchSlide()  2.组件模式< data-toggle="m-touch-slide">
             m(".m-touch-slide",context).eq(0).mTouchSlide({ auto: false });
             m(".m-touch-slide",context).eq(1).mTouchSlide({ auto: true });
-            m(".m-touch-slide",context).eq(2).mTouchSlide({ auto: true });
+            //m(".m-touch-slide",context).eq(2).mTouchSlide({ auto: true });
             /*
              * {
 
@@ -186,7 +186,22 @@
 
 
             });
-
+			
+			// 点击跳转
+			m("#router-link",context).on("tap", function (event) {
+			
+			    m.router.link("./demo/router-link-parameter.html", {age:20,name:"mini"});
+			});
+			
+			m("#router-link-2",context).on("tap", function (event) {
+			
+			     m.router.link("./demo/m-touch-tab-menu-bottom.html", {}, false);
+			 });
+			
+			m("#router-link-3",context).on("tap", function (event) {
+			
+			 m.router.link("./demo/router-back.html");
+			});
 
 
         },

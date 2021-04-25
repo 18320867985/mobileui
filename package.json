@@ -46,13 +46,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/18320867985/nodejs-mvc.git"
-  },
-  "bugs": {
-    "url": "https://github.com/18320867985/nodejs-mvc/issues"
-  },
-  "homepage": "https://github.com/18320867985/nodejs-mvc#readme",
-  "directories": {
-    "test": "test"
+    "url": "git+https://github.com/18320867985/mobileui.git"
   }
 }

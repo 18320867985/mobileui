@@ -19,6 +19,7 @@
         }
 </style>
 
+
 <!--2.内容区域 -->
 <section class="m-router-cnt" id="m-touch-slide">
     <div class="m-overflow-tb">
@@ -31,7 +32,7 @@
                     <!--滑动的内容 m-touch-lr-item是m-touch-lr的宽度 -->
 
                     <div class="m-touch-slide-item">
-                        <a href="#"><img src="./images/1.jpg" alt="Alternate Text" /></a>
+                        <a data-link href="./demo/router-link-parameter.html?age=20&sex=女"><img src="./images/1.jpg" alt="Alternate Text" /></a>
                     </div>
                     <div class="m-touch-slide-item">
                         <a href="#"><img src="./images/2.jpg" alt="Alternate Text" /></a>
@@ -47,7 +48,7 @@
 
             </div>
 
-            <h4>自动轮播 添加属性：data-auto</h4>
+            <h4>自动轮播 添加属性：data-auto 99</h4>
             <div class="m-touch-slide">
                 <div class="m-touch-slide-cnt">
                     <!--滑动的内容 m-touch-lr-item是m-touch-lr的宽度 -->
@@ -61,7 +62,7 @@
                     <div class="m-touch-slide-item">
                         <a id="router-link-3"  href="#"><img src="./images/3.jpg" alt="Alternate Text" /></a>
                     </div>
-                    <div class="m-touch-slide-item">
+                    <div  id="router-link-4" class="m-touch-slide-item">
                         <a href="#"><img src="./images/4.jpg" alt="Alternate Text" /></a>
                     </div>
 
@@ -201,7 +202,13 @@
 			m("#router-link-3",context).on("tap", function (event) {
 			
 			 m.router.link("./demo/router-back.html");
-			});
+            });
+
+
+            m("#router-link-4", context).on("tap", function (event) {
+
+                m.router.link("./demo/router-back.html");
+            });
 
 
         },

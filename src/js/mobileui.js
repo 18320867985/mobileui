@@ -4880,7 +4880,7 @@ $(function () {
         event.preventDefault();
     });
 
-    m(document).on("tap", "a[data-link]", function (event) {
+    m(document).on("tap", "a[data-link-btn]", function (event) {
 
         event.preventDefault();
 

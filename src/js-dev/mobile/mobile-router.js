@@ -973,7 +973,7 @@
         m(".m-bd").attr("id", id).attr("data-router-id", Router.getId());
     }
 
-   
+  
     // 返回上一页的函数
     function mBack() {
         m(document).on("tap", ".m-router-back", function (event) {

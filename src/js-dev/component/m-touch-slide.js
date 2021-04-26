@@ -102,7 +102,6 @@
                     var maxLeft = -(self.index - 1) * wraperWidth;
                     var maxRight = -(self.index + 1) * wraperWidth;
                     
-                    event.preventDefault();
                     obj.$moveElment.transition("none");
                     var translateX = obj.moveElmentX + obj.x;
 
@@ -156,10 +155,9 @@
         );
 
 
-        m(this.el).on("tap", "a", function (event) {
+        m(this.el).on("tap", "a[data-link]", function (event) {
 
             event.preventDefault();
-         
             var isHref = m(this).hasAttr("href");
             var hrefValue = m(this).attr("href");
             if (isHref) {

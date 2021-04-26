@@ -39,7 +39,8 @@
 
                 if (obj.isX) {
                     event.preventDefault();
-                  
+
+                    // 阻外层冒泡
                     if (obj.oneTouch === 1) { return; }
                     if (($moveElement.translateX() === 0) && (obj.x>0) && (obj.oneTouch === undefined)) {  obj.oneTouch = 1; } else { obj.oneTouch = 2; }
 

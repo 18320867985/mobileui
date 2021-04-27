@@ -2,15 +2,6 @@
 
 $(function () {
    
-    // 返回上一页的函数
-    function mBack() {
-        m(document).on("tap", ".m-back", function (event) {
-          window.history.back();
-        });
-    }
-
-    mBack();
-
     function setLayout() {
 
         // 整体框架设置内容height

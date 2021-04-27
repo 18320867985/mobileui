@@ -46,14 +46,17 @@
                        
                     }
 
+                   
                     if (translateX > 0) {
                         translateX = 0;
 
                     } else {
                       event.stopPropagation();
                     }
+
                    
                     obj.$moveElement.translateX(translateX);
+
                     // 触发自定义的事件
                     m(this).emit("move.m.listoption", [this]);
 
@@ -64,7 +67,7 @@
             function (event, obj) {
 
                 if (obj.isX) {
-                    event.stopPropagation();
+                  //  event.stopPropagation();
                     var target = obj.$moveElment.translateX();
 
                     if (target < obj.optionWidth / 2) {
@@ -76,24 +79,21 @@
                     obj.$moveElement.translateX(target);
                     obj.$moveElement.transition(transition);
                    
-                
                     // 触发自定义的事件
                     m(this).emit("end.m.listoption", [this]);
 
-
                 }
-
 
             }
 
         );
 
-
         m(document).on("tap", ".m-listoption-item-option", function (event) {
-            event.stopPropagation();
             event.preventDefault();
+            event.stopPropagation();
         });
 
+       
 
     };
 

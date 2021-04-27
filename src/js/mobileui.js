@@ -4832,15 +4832,6 @@ css3 transition
 
 $(function () {
 
-    // ������һҳ�ĺ���
-    function mBack() {
-        m(document).on("tap", ".m-back", function (event) {
-            window.history.back();
-        });
-    }
-
-    mBack();
-
     function setLayout() {
 
         // ��������������height
@@ -6187,13 +6178,14 @@ $(function () {
                 }
 
                 obj.$moveElement.translateX(translateX);
+
                 // 触发自定义的事件
                 m(this).emit("move.m.listoption", [this]);
             }
         }, function (event, obj) {
 
             if (obj.isX) {
-                event.stopPropagation();
+                //  event.stopPropagation();
                 var target = obj.$moveElment.translateX();
 
                 if (target < obj.optionWidth / 2) {
@@ -6211,8 +6203,8 @@ $(function () {
         });
 
         m(document).on("tap", ".m-listoption-item-option", function (event) {
-            event.stopPropagation();
             event.preventDefault();
+            event.stopPropagation();
         });
     };
 

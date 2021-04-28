@@ -16,6 +16,7 @@
         var $m_listoption = m(this.el);
         var transition = "transform .6s ease";
 
+
         // 阻止冒泡
         $m_listoption.parent().touch(function (event, obj) {
             if (obj.isX) {
@@ -29,7 +30,7 @@
             }
         });
       
-        $m_listoption.find(".m-listoption-item").touchdeletage(".m-listoption-item",
+        $m_listoption.touchdeletage(".m-listoption-item",
            
             function (event, obj) {
         

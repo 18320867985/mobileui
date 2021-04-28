@@ -6164,7 +6164,7 @@ $(function () {
             }
         });
 
-        $m_listoption.touchdeletage(".m-listoption-item", function (event, obj) {
+        $m_listoption.find(".m-listoption-item").touchdeletage(".m-listoption-item", function (event, obj) {
 
             var $moveElement = m(this).find(".m-listoption-item-cnt");
             obj.$moveElement = $moveElement;

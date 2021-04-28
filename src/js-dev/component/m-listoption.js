@@ -14,10 +14,25 @@
     MListoption.prototype.running = function () {
 
         var $m_listoption = m(this.el);
-        var $touchElement = $m_listoption.find(".m-listoption-item");
         var transition = "transform .6s ease";
+
+
+
+        // 阻止冒泡
+        //$m_listoption.touch(function () { },function (event, obj) {
+        //    if (obj.isX) {
+
+        //        var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
+
+        //        if ($listoptionEl.translateX() < -10) {
+        //           event.stopPropagation();
+                  
+        //        }
+                
+        //    }
+        //});
       
-        $touchElement.touchdeletage(".m-listoption-item",
+        $m_listoption.touchdeletage(".m-listoption-item",
            
             function (event, obj) {
         
@@ -32,7 +47,7 @@
                
                 // 触发自定义的事件
                 m(this).emit("start.m.listoption", [this]);
-
+           
             },
             function (event, obj) {
 
@@ -48,12 +63,14 @@
 
                    
                     if (translateX > 0) {
-                        translateX = 0;
+                       translateX = 0;
 
                     } else {
-                      event.stopPropagation();
+                        event.stopPropagation();
+                       
                     }
 
+                   
                    
                     obj.$moveElement.translateX(translateX);
 
@@ -92,6 +109,8 @@
             event.preventDefault();
             event.stopPropagation();
         });
+
+
 
        
 

@@ -4475,6 +4475,7 @@ css3 transition
                         obj.$moveElment.addClass("m-router-box-shadow");
                     }
 
+                    // 移动当前的路由页
                     obj.$moveElment.translateX(translateX).translateZ(0);
 
                     // 上一个元素的移动
@@ -6148,10 +6149,23 @@ $(function () {
     MListoption.prototype.running = function () {
 
         var $m_listoption = m(this.el);
-        var $touchElement = $m_listoption.find(".m-listoption-item");
         var transition = "transform .6s ease";
 
-        $touchElement.touchdeletage(".m-listoption-item", function (event, obj) {
+        // 阻止冒泡
+        //$m_listoption.touch(function () { },function (event, obj) {
+        //    if (obj.isX) {
+
+        //        var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
+
+        //        if ($listoptionEl.translateX() < -10) {
+        //           event.stopPropagation();
+
+        //        }
+
+        //    }
+        //});
+
+        $m_listoption.touchdeletage(".m-listoption-item", function (event, obj) {
 
             var $moveElement = m(this).find(".m-listoption-item-cnt");
             obj.$moveElement = $moveElement;

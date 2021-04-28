@@ -624,6 +624,8 @@
                             obj.$moveElment.addClass("m-router-box-shadow");
                         }
 
+                       
+                        // 移动当前的路由页
                         obj.$moveElment.translateX(translateX).translateZ(0);
 
                         // 上一个元素的移动

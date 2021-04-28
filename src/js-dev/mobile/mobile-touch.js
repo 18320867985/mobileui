@@ -56,10 +56,10 @@
                 try {
 
                     //兼容ios的返回键和 window.history.back()
-                    if (event.touches.length ===1) {
+                    if (event.touches.length === 1) {
                         $self.tempObj = [];
                     }
-                   
+
                     var touches = event.targetTouches;
                     var len = touches.length;
                     Object.keys(touches).forEach(function (name) {
@@ -216,15 +216,15 @@
                         $self.startX = touch.clientX - $self.obj.x;
                         $self.startY = touch.clientY - $self.obj.y;
                     }
-                   
+
                     if ($self.tempObj.length === 0) {
                         $self.tempObj = [];
                         $self.isAddMoveEventFirst = true; // 判断是否第一次拖动                     
                         if (typeof endfn === "function") {
-                          
+
                             //event.obj=obj;
                             endfn.call($this, event, $self.obj);
-                          
+
                         }
                     }
 
@@ -246,7 +246,7 @@
         },
 
         // 委托的多指触摸
-        touchdeletage: function (deletage,startfn, movefn, endfn, bl) {
+        touchdeletage: function (deletage, startfn, movefn, endfn, bl) {
 
             var $self = this;
             bl = !!bl;
@@ -269,7 +269,7 @@
                 }
             */
             $self.tempObj = [];
-            m(document).on("touchstart",deletage,function (event) {
+            m(document).on("touchstart", deletage, function (event) {
 
                 var $this = this;
                 try {
@@ -337,7 +337,7 @@
 
             }, bl);
 
-            m(document).on("touchmove", deletage,function (event) {
+            m(document).on("touchmove", deletage, function (event) {
                 var $this = this;
                 try {
 
@@ -403,8 +403,8 @@
                 }
 
             }, bl);
-          
-            m(document).on("touchend", deletage,function (event) {
+
+            m(document).on("touchend", deletage, function (event) {
                 var $this = this;
                 try {
 
@@ -518,9 +518,7 @@
 
             }, bl);
 
-
-
-        }
+        } 
 
     });
 

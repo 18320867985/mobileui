@@ -18,16 +18,16 @@
 
 
         // 阻止冒泡
-        $m_listoption.parent().touch(function (event, obj) {
+        //$m_listoption.parent().touch(function (event, obj) {
          
-                var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
+        //        var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
 
-                if ($listoptionEl.translateX() < -1) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
+        //        if ($listoptionEl.translateX() < -1) {
+        //            event.preventDefault();
+        //            event.stopPropagation();
+        //        }
             
-        });
+        //});
       
         $m_listoption.touchdeletage(".m-listoption-item",
            

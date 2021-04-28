@@ -93,10 +93,10 @@
 
         );
 
-        m(document).on("tap", ".m-listoption-item-option", function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-        });
+        //m(document).on("tap", ".m-listoption-item-option", function (event) {
+        //    event.preventDefault();
+        //    event.stopPropagation();
+        //});
 
     };
 

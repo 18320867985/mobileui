@@ -584,6 +584,7 @@
         });
     }
 
+    // router  move 
     function _moveEl(el,isOneMove) {
 
         m(el).touch(
@@ -860,6 +861,9 @@
             var p = m.extend({}, urlParameter, parameter);
             $el.data("parameter", p);
 
+            // 输出当前的路由页
+            console.log("当前的路由页：",src);
+
             _moveEl($el);
             _compilerHtml(m("#" + routerEl.id).get(0), src, {}, false, function () {
            
@@ -903,7 +907,7 @@
             setTimeout(function () {
 
             m("[data-router-id=m-router-" + _id + "]").remove();
-            $p.remove();
+                $p.remove();
                 Router.removeId(_id);
 
                 // 监听页面显示 触发的事件

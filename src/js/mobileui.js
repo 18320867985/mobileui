@@ -4431,6 +4431,7 @@ css3 transition
         });
     }
 
+    // router  move 
     function _moveEl(el, isOneMove) {
 
         m(el).touch(function (event, obj) {
@@ -4683,6 +4684,9 @@ css3 transition
             parameter = parameter || {};
             var p = m.extend({}, urlParameter, parameter);
             $el.data("parameter", p);
+
+            // 输出当前的路由页
+            console.log("当前的路由页：", src);
 
             _moveEl($el);
             _compilerHtml(m("#" + routerEl.id).get(0), src, {}, false, function () {

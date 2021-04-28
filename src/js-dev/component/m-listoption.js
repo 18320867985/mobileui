@@ -29,7 +29,7 @@
             }
         });
       
-        $m_listoption.touchdeletage(".m-listoption-item",
+        $m_listoption.find(".m-listoption-item").touchdeletage(".m-listoption-item",
            
             function (event, obj) {
         

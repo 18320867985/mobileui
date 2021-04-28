@@ -6153,14 +6153,12 @@ $(function () {
 
         // 阻止冒泡
         $m_listoption.parent().touch(function (event, obj) {
-            if (obj.isX) {
 
-                var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
+            var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
 
-                if ($listoptionEl.translateX() < -1) {
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
-                }
+            if ($listoptionEl.translateX() < -1) {
+                event.preventDefault();
+                event.stopPropagation();
             }
         });
 

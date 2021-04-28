@@ -6152,18 +6152,17 @@ $(function () {
         var transition = "transform .6s ease";
 
         // 阻止冒泡
-        //$m_listoption.touch(function () { },function (event, obj) {
-        //    if (obj.isX) {
+        $m_listoption.parent().touch(function (event, obj) {
+            if (obj.isX) {
 
-        //        var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
+                var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
 
-        //        if ($listoptionEl.translateX() < -10) {
-        //           event.stopPropagation();
-
-        //        }
-
-        //    }
-        //});
+                if ($listoptionEl.translateX() < -1) {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                }
+            }
+        });
 
         $m_listoption.touchdeletage(".m-listoption-item", function (event, obj) {
 

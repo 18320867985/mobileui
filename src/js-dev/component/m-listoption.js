@@ -16,21 +16,18 @@
         var $m_listoption = m(this.el);
         var transition = "transform .6s ease";
 
-
-
         // 阻止冒泡
-        //$m_listoption.touch(function () { },function (event, obj) {
-        //    if (obj.isX) {
+        $m_listoption.parent().touch(function (event, obj) {
+            if (obj.isX) {
 
-        //        var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
+                var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
 
-        //        if ($listoptionEl.translateX() < -10) {
-        //           event.stopPropagation();
-                  
-        //        }
-                
-        //    }
-        //});
+                if ($listoptionEl.translateX() < -1) {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                }
+            }
+        });
       
         $m_listoption.touchdeletage(".m-listoption-item",
            
@@ -58,25 +55,19 @@
                   
                     if (translateX < obj.optionWidth) {
                         translateX = obj.optionWidth;
-                       
                     }
 
-                   
                     if (translateX > 0) {
                        translateX = 0;
 
                     } else {
                         event.stopPropagation();
-                       
                     }
 
-                   
-                   
                     obj.$moveElement.translateX(translateX);
 
                     // 触发自定义的事件
                     m(this).emit("move.m.listoption", [this]);
-
 
                 }
 
@@ -98,7 +89,6 @@
                    
                     // 触发自定义的事件
                     m(this).emit("end.m.listoption", [this]);
-
                 }
 
             }
@@ -109,10 +99,6 @@
             event.preventDefault();
             event.stopPropagation();
         });
-
-
-
-       
 
     };
 
@@ -149,7 +135,6 @@
     $("[data-toggle=m-listoption]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
-
     });
 
 }();

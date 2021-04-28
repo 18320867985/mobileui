@@ -6188,8 +6188,6 @@ $(function () {
 
                 if (translateX > 0) {
                     translateX = 0;
-                } else {
-                    event.stopPropagation();
                 }
 
                 obj.$moveElement.translateX(translateX);

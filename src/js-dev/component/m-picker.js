@@ -52,7 +52,6 @@
 
         m(".m-picker-box-cnt").on("tap", function (event) {
             event.preventDefault();
-
             event.stopPropagation();
 
         });
@@ -649,6 +648,7 @@
         clearTimeout($el.get(0).settimeoutId);
         $el.get(0).settimeoutId = setTimeout(function () {
             $li.addClass("active").siblings().removeClass("active");
+
             // 触发自定义的事件
             $li.emit("select.m.picker", [item, $li.attr("data-val"), $el.attr("data-type")]);
         },600);
@@ -706,7 +706,7 @@
                     m(".m-picker-day").on("tap", ".m-picker-item", function (event) {
                         event.preventDefault();
                         event.stopPropagation();
-                        MPicker.center(this);   // 移动到center
+                        MPicker.center(this); 
 
                     });
 
@@ -743,7 +743,7 @@
                     m(".m-picker-city2").on("tap", ".m-picker-item", function (event) {
                         event.preventDefault();
                         event.stopPropagation();
-                        MPicker.center(this);   // 移动到center
+                        MPicker.center(this);   
 
                     });
 
@@ -777,7 +777,7 @@
                     m(".m-picker-city3").on("tap", ".m-picker-item", function (event) {
                         event.preventDefault();
                         event.stopPropagation();
-                        MPicker.center(this);   // 移动到center
+                        MPicker.center(this);   
 
                     });
 

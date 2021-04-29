@@ -2555,8 +2555,8 @@ body {
     -webkit-tap-highlight-color: transparent !important; }
 
 .m-router-box-shadow {
-  -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.15);
-          box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.15); }
+  -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2); }
 
 .m-router-cnt {
   position: fixed;

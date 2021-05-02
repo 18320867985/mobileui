@@ -178,6 +178,7 @@ var mobileDom = createCommonjsModule(function (module) {
 				}, fx);
 			}
 		}
+
 		// 浅复制 parentObj 父元素 childObj子元素
 		function _extend(parentObj, childObj) {
 

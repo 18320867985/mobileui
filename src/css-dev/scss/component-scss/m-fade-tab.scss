@@ -34,7 +34,10 @@
 
         &.active {
             display: inline-block;
-            animation: mfade-tab-item-dh .8s ease both;
+
+            &.fade {
+                animation: mfade-tab-item-dh .8s ease both;
+            }
         }
     }
 }

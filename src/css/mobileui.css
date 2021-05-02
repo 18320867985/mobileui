@@ -1769,9 +1769,10 @@ body {
     font-size: .7rem;
     vertical-align: top; }
     .m-fade-tab .m-fade-tab-item.active {
-      display: inline-block;
-      -webkit-animation: mfade-tab-item-dh .8s ease both;
-              animation: mfade-tab-item-dh .8s ease both; }
+      display: inline-block; }
+      .m-fade-tab .m-fade-tab-item.active.fade {
+        -webkit-animation: mfade-tab-item-dh .8s ease both;
+                animation: mfade-tab-item-dh .8s ease both; }
 
 @-webkit-keyframes mfade-tab-item-dh {
   0% {

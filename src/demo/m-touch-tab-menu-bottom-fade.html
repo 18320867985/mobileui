@@ -43,7 +43,7 @@
             <div class="m-fade-tab-cnt">
 
                 <!--滑动的内容 m-touch-lr-item是m-touch-lr的宽度 -->
-                <div class="m-fade-tab-item active">
+                <div class="m-fade-tab-item active fade">
                     <div class="m-overflow-tb">
                         <div class="m-overflow-tb-cnt">
 
@@ -115,7 +115,7 @@
                               第 ${i + 1} 屏
                             </div>  `;
 
-                tab += ` <div class="m-fade-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}">
+                tab += ` <div class="m-fade-tab-item ${i === 0 ? `active fade` : ``}"  id="tab${i + 1}">
                                 <div class="m-overflow-tb">
                                     <div class="m-overflow-tb-cnt">
 
@@ -139,10 +139,13 @@
             m(".m-touch-tab-btn",context).on("tap.m.touch.tab.btn", function (event, el, index) {
 
                 var id = m(el).attr("data-tab");
-                m(id).addClass("active").siblings().removeClass("active");
+                m(id).addClass("active ").siblings().removeClass("active ");
                 if (!m(id).data("isOne")) {
+                    m(id).addClass("fade")
                     m(id).data("isOne", true);
-                    ajaxData(m(".m-fade-tab-item",context).eq(index), index);
+                    ajaxData(m(".m-fade-tab-item", context).eq(index), index);
+                } else {
+                    m(id).removeClass("fade")
                 }
 
             });

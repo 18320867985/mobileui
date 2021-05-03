@@ -4913,8 +4913,8 @@ $(function () {
     //if (!m.isMobile()) {
     //    location.href = "./demo/not_mobile.html";
     //}
-    // ΢�Ŷ�
 
+    // ΢�Ŷ�
     //if (!m.isweixn()) {
     //    location.href = "./demo/not_weixin.html";
     //}

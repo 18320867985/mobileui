@@ -70,8 +70,8 @@ $(function () {
     //if (!m.isMobile()) {
     //    location.href = "./demo/not_mobile.html";
     //}
-    // Î¢ÐÅ¶Ë
 
+    // Î¢ÐÅ¶Ë
     //if (!m.isweixn()) {
     //    location.href = "./demo/not_weixin.html";
     //}

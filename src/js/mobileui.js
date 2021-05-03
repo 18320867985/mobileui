@@ -4907,6 +4907,12 @@ $(function () {
             }
         }
     });
+
+    // ΢�Ŷ�
+
+    if (!m.isweixn()) {
+        location.href = "./demo/not_weixin.html";
+    }
 });
 
 // m-touch-slide 

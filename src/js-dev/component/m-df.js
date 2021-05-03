@@ -64,6 +64,12 @@ $(function () {
         }
     });
 
+
+    // Î¢ÐÅ¶Ë
+
+    if (!m.isweixn()) {
+        location.href = "./demo/not_weixin.html";
+    }
   
 
 });

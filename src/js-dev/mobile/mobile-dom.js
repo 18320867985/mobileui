@@ -603,7 +603,17 @@
                 }
             }
             return flag;
-        },
+		},
+
+		//判断微信
+		isweixn() {
+				var ua = navigator.userAgent.toLowerCase();
+				if (ua.match(/MicroMessenger/i) === "micromessenger") {
+					return true;
+				} else {
+					return false;
+				}
+			},
 
 		/* jsonToDate 
 		  /Date(1492048799952)/ 或 1492048799952

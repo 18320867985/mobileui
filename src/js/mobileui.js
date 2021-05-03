@@ -585,6 +585,17 @@ var mobileDom = createCommonjsModule(function (module) {
 				return flag;
 			},
 
+			//判断微信
+			isweixn: function isweixn() {
+				var ua = navigator.userAgent.toLowerCase();
+				if (ua.match(/MicroMessenger/i) === "micromessenger") {
+					return true;
+				} else {
+					return false;
+				}
+			},
+
+
 			/* jsonToDate 
      /Date(1492048799952)/ 或 1492048799952
      fmt=("yyyy-MM-dd HH:mm:ss.S") ==> 2006-07-02 08:09:04.423 

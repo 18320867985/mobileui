@@ -4908,11 +4908,17 @@ $(function () {
         }
     });
 
+    // �ƶ���
+
+    //if (!m.isMobile()) {
+    //    location.href = "./demo/not_mobile.html";
+    //}
     // ΢�Ŷ�
 
-    if (!m.isweixn()) {
-        location.href = "./demo/not_weixin.html";
-    }
+    //if (!m.isweixn()) {
+    //    location.href = "./demo/not_weixin.html";
+    //}
+
 });
 
 // m-touch-slide 

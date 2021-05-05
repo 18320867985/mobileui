@@ -2505,8 +2505,8 @@ body {
   z-index: 100;
   background: #fff; }
   .m-router.in {
-    -webkit-animation: m-router-dh .25s ease both;
-            animation: m-router-dh .25s ease both; }
+    -webkit-animation: m-router-dh .25s  linear both;
+            animation: m-router-dh .25s  linear both; }
   .m-router .m-hd-top-ttl ._fail {
     color: #ddd; }
     .m-router .m-hd-top-ttl ._fail .iconfont {

@@ -33,7 +33,7 @@
     background: #fff;
 
     &.in {
-        animation: m-router-dh .25s ease both;
+        animation: m-router-dh .25s  linear both;
     }
 
     .m-hd-top-ttl ._fail {

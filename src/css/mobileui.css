@@ -2474,7 +2474,7 @@ body {
   right: 0;
   bottom: 0;
   background: #000;
-  opacity: .01; }
+  opacity: .02; }
 
 @-webkit-keyframes m-router-dh {
   0% {
@@ -2483,8 +2483,8 @@ body {
     -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075);
             box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075); }
   100% {
-    -webkit-transform: translateZ(0) translateX(0);
-            transform: translateZ(0) translateX(0); } }
+    -webkit-transform: translateZ(2px) translateX(0);
+            transform: translateZ(2px) translateX(0); } }
 
 @keyframes m-router-dh {
   0% {
@@ -2493,8 +2493,8 @@ body {
     -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075);
             box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075); }
   100% {
-    -webkit-transform: translateZ(0) translateX(0);
-            transform: translateZ(0) translateX(0); } }
+    -webkit-transform: translateZ(2px) translateX(0);
+            transform: translateZ(2px) translateX(0); } }
 
 .m-router {
   position: fixed;
@@ -2505,8 +2505,8 @@ body {
   z-index: 100;
   background: #fff; }
   .m-router.in {
-    -webkit-animation: m-router-dh .4s ease both;
-            animation: m-router-dh .4s ease both; }
+    -webkit-animation: m-router-dh .25s ease both;
+            animation: m-router-dh .25s ease both; }
   .m-router .m-hd-top-ttl ._fail {
     color: #ddd; }
     .m-router .m-hd-top-ttl ._fail .iconfont {

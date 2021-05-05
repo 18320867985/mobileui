@@ -10,7 +10,7 @@
     right: 0;
     bottom: 0;
     background:#000;
-    opacity:.01;
+    opacity:.02;
 }
 
 @keyframes m-router-dh{
@@ -19,7 +19,7 @@
         box-shadow: 0 -5px 5px rgba(0,0,0,.075);
     }
     100% {
-        transform: translateZ(0) translateX(0);
+        transform: translateZ(2px) translateX(0);
     }
 }
 
@@ -33,7 +33,7 @@
     background: #fff;
 
     &.in {
-        animation: m-router-dh .4s ease both;
+        animation: m-router-dh .25s ease both;
     }
 
     .m-hd-top-ttl ._fail {

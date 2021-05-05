@@ -2483,8 +2483,8 @@ body {
     -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075);
             box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075); }
   100% {
-    -webkit-transform: translateZ(2px) translateX(0);
-            transform: translateZ(2px) translateX(0); } }
+    -webkit-transform: translateZ(0) translateX(0);
+            transform: translateZ(0) translateX(0); } }
 
 @keyframes m-router-dh {
   0% {
@@ -2493,8 +2493,8 @@ body {
     -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075);
             box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075); }
   100% {
-    -webkit-transform: translateZ(2px) translateX(0);
-            transform: translateZ(2px) translateX(0); } }
+    -webkit-transform: translateZ(0) translateX(0);
+            transform: translateZ(0) translateX(0); } }
 
 .m-router {
   position: fixed;

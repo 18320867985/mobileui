@@ -16,7 +16,7 @@
 @keyframes m-router-dh{
     0% {
         transform: translateZ(0) translateX(100%);
-        box-shadow: 0 -5px 5px rgba(0,0,0,.075);
+       
     }
     100% {
         transform: translateZ(0) translateX(0);
@@ -33,7 +33,7 @@
     background: #fff;
 
     &.in {
-        animation: m-router-dh .25s  linear both;
+        animation: m-router-dh .2s  linear both;
     }
 
     .m-hd-top-ttl ._fail {
@@ -70,7 +70,7 @@
     z-index: 1;
     background: #fff;
     border-bottom: 1px solid $text-line;
-    box-shadow: 1px 0 5px rgba(0,0,0,.075);
+   box-shadow: 1px 0 5px rgba(0,0,0,.075);
 
     .m-hd-top-ttl-mask {
         padding: .2rem .7rem;
@@ -94,10 +94,10 @@
     }
 }
 
-.m-router-box-shadow{
-    box-shadow:0 -5px 5px rgba(0,0,0,.2);
-}
 
+.m-router-box-move {
+     box-shadow:0 -5px 5px rgba(0,0,0,.2);
+}
 
 
 .m-router-cnt {

@@ -4484,7 +4484,7 @@ css3 transition
                     obj.$moveElment.removeClass("in");
                     translateX = translateX <= 0 ? 0 : translateX;
                     if (translateX > 0) {
-                        obj.$moveElment.addClass("m-router-box-shadow");
+                        obj.$moveElment.addClass("m-router-box-move");
                     }
 
                     // 移动当前的路由页
@@ -4529,6 +4529,8 @@ css3 transition
 
             obj.xlt = null;
             obj.oneTouch = undefined;
+
+            obj.$moveElment.removeClass("m-router-box-move");
         });
     }
 
@@ -4667,7 +4669,7 @@ css3 transition
             routerEl.id = "m-router-" + id;
             routerEl.classList.add("m-router");
             routerEl.classList.add("in"); //
-            routerEl.classList.add("m-router-box-shadow"); //
+            //  routerEl.classList.add("m-router-box-shadow");//
 
             routerEl.style = "z-index:" + (100 + id);
             routerEl.setAttribute("data-router-id", id);

@@ -2479,9 +2479,7 @@ body {
 @-webkit-keyframes m-router-dh {
   0% {
     -webkit-transform: translateZ(0) translateX(100%);
-            transform: translateZ(0) translateX(100%);
-    -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075);
-            box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075); }
+            transform: translateZ(0) translateX(100%); }
   100% {
     -webkit-transform: translateZ(0) translateX(0);
             transform: translateZ(0) translateX(0); } }
@@ -2489,9 +2487,7 @@ body {
 @keyframes m-router-dh {
   0% {
     -webkit-transform: translateZ(0) translateX(100%);
-            transform: translateZ(0) translateX(100%);
-    -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075);
-            box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.075); }
+            transform: translateZ(0) translateX(100%); }
   100% {
     -webkit-transform: translateZ(0) translateX(0);
             transform: translateZ(0) translateX(0); } }
@@ -2505,8 +2501,8 @@ body {
   z-index: 100;
   background: #fff; }
   .m-router.in {
-    -webkit-animation: m-router-dh .25s  linear both;
-            animation: m-router-dh .25s  linear both; }
+    -webkit-animation: m-router-dh .2s  linear both;
+            animation: m-router-dh .2s  linear both; }
   .m-router .m-hd-top-ttl ._fail {
     color: #ddd; }
     .m-router .m-hd-top-ttl ._fail .iconfont {
@@ -2555,7 +2551,7 @@ body {
   .m-router-back:active {
     -webkit-tap-highlight-color: transparent !important; }
 
-.m-router-box-shadow {
+.m-router-box-move {
   -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2);
           box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2); }
 

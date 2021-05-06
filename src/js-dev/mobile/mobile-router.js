@@ -601,6 +601,7 @@
                 }
 
                 self.obj = obj;
+
             },
 
             function (event, obj) {
@@ -621,7 +622,7 @@
                         obj.$moveElment.removeClass("in");
                         translateX = translateX <= 0 ? 0 : translateX;
                         if (translateX > 0) {
-                            obj.$moveElment.addClass("m-router-box-shadow");
+                            obj.$moveElment.addClass("m-router-box-move");
                         }
 
                        
@@ -674,7 +675,7 @@
                 obj.xlt = null;
                 obj.oneTouch = undefined;
                 
-
+                obj.$moveElment.removeClass("m-router-box-move");
             });
     }
 
@@ -821,7 +822,7 @@
             routerEl.id = "m-router-" + id;
             routerEl.classList.add("m-router");
             routerEl.classList.add("in");//
-            routerEl.classList.add("m-router-box-shadow");//
+          //  routerEl.classList.add("m-router-box-shadow");//
 
             routerEl.style = "z-index:" + (100 + id);
             routerEl.setAttribute("data-router-id", id);

@@ -388,7 +388,8 @@ body {
 
 .m-hd-top {
   position: relative;
-  height: 2.5rem; }
+  height: 2.5rem;
+  background: white; }
 
 .m-hd-top-icon {
   position: absolute;
@@ -2164,7 +2165,7 @@ body {
         -ms-flex-flow: column nowrap;
             flex-flow: column nowrap;
     width: 100%;
-    height: 50%;
+    height: 42%;
     background: #fff;
     -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.075), -2px -2px 2px rgba(0, 0, 0, 0.075);
             box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.075), -2px -2px 2px rgba(0, 0, 0, 0.075); }

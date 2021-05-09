@@ -8,308 +8,323 @@
        路由模块隐藏后style块里样式被删除
     */
         #m-touch-nav-tb {
-            display: flex;
-            flex-flow:row;
+                    padding: 1rem;
+                    background:white;
         }
 
        #m-touch-nav-tb .m-cnt-l {
             flex: 0 0 3.5rem;
             height: 100%;
-            border-right: 1px solid #ddd;
+            border: 1px solid #ddd;
         }
 
       #m-touch-nav-tb   .m-cnt-r {
             flex: 1;
         }
+
+    .m-touch-nav-tb-cont {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+
+        border-radius:.5rem;
+        box-shadow: .5rem .5rem .5rem rgba(0,0,0,.1),-.5rem -.5rem .5rem rgba(0,0,0,.1);
+    }
 </style>
 
 <!--2.内容区域 -->
 <section class="m-router-cnt" id="m-touch-nav-tb">
+    <div class="m-touch-nav-tb-cont">
 
-    <div class="m-cnt-l">
-        <nav class="m-touch-nav-tb">
-            <ul class="m-touch-nav-tb-cnt ">
-                <li class="active  m-touch-nav-item">
-                    <a href="javascript:;">center</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">美食</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">悦单</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">V榜</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">音悦</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">商城</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">节目</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">饭团</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">资讯</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">我的家</a>
+        <div class="m-cnt-l">
+            <nav class="m-touch-nav-tb">
+                <ul class="m-touch-nav-tb-cnt ">
+                    <li class="active  m-touch-nav-item">
+                        <a href="javascript:;">center</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">美食</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">悦单</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">V榜</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">音悦</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">商城</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">节目</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">饭团</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">资讯</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">我的家</a>
 
-                </li>
+                    </li>
 
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">MV2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">悦单2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">V榜2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">音悦2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">商城2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">节目2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">饭团2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">资讯2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">我的家2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">MV2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">悦单2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">V榜2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">音悦2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">商城2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">节目2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">饭团2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">资讯2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">我的家2</a>
-                </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">MV2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">悦单2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">V榜2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">音悦2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">商城2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">节目2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">饭团2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">资讯2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">我的家2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">MV2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">悦单2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">V榜2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">音悦2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">商城2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">节目2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">饭团2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">资讯2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">我的家2</a>
+                    </li>
 
-            </ul>
-        </nav>
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="m-cnt-l">
+            <nav class="m-touch-nav-tb">
+                <ul class="m-touch-nav-tb-cnt ">
+                    <li class="active  m-touch-nav-item">
+                        <a href="javascript:;">top</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">美食</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">悦单</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">V榜</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">音悦</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">商城</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">节目</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">饭团</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">资讯</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">我的家</a>
+
+                    </li>
+
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">MV2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">悦单2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">V榜2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">音悦2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">商城2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">节目2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">饭团2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">资讯2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">我的家2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">MV2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">悦单2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">V榜2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">音悦2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">商城2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">节目2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">饭团2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">资讯2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">我的家2</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="m-cnt-l">
+            <nav class="m-touch-nav-tb">
+                <ul class="m-touch-nav-tb-cnt ">
+                    <li class="active  m-touch-nav-item">
+                        <a href="javascript:;">limit</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">美食</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">悦单</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">V榜</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">音悦</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">商城</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">节目</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">饭团</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">资讯</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">我的家</a>
+
+                    </li>
+
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">MV2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">悦单2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">V榜2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">音悦2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">商城2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">节目2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">饭团2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">资讯2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">我的家2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">MV2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">悦单2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">V榜2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">音悦2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">商城2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">节目2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">饭团2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">资讯2</a>
+                    </li>
+                    <li class="m-touch-nav-item">
+                        <a href="javascript:;">我的家2</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
 
     </div>
 
-    <div class="m-cnt-l">
-        <nav class="m-touch-nav-tb">
-            <ul class="m-touch-nav-tb-cnt ">
-                <li class="active  m-touch-nav-item">
-                    <a href="javascript:;">top</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">美食</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">悦单</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">V榜</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">音悦</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">商城</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">节目</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">饭团</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">资讯</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">我的家</a>
-
-                </li>
-
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">MV2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">悦单2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">V榜2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">音悦2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">商城2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">节目2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">饭团2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">资讯2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">我的家2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">MV2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">悦单2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">V榜2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">音悦2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">商城2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">节目2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">饭团2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">资讯2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">我的家2</a>
-                </li>
-
-            </ul>
-        </nav>
-
-    </div>
-
-    <div class="m-cnt-l">
-        <nav class="m-touch-nav-tb">
-            <ul class="m-touch-nav-tb-cnt ">
-                <li class="active  m-touch-nav-item">
-                    <a href="javascript:;">limit</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">美食</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">悦单</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">V榜</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">音悦</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">商城</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">节目</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">饭团</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">资讯</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">我的家</a>
-
-                </li>
-
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">MV2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">悦单2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">V榜2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">音悦2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">商城2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">节目2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">饭团2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">资讯2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">我的家2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">MV2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">悦单2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">V榜2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">音悦2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">商城2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">节目2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">饭团2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">资讯2</a>
-                </li>
-                <li class="m-touch-nav-item">
-                    <a href="javascript:;">我的家2</a>
-                </li>
-
-            </ul>
-        </nav>
-
-    </div>
 </section>
 
 <!-- js 区域 -->
@@ -320,7 +335,7 @@
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
-            routerTilte: "nav上下滑动", // 路由页的标题
+            routerTilte: "nav-上下定位滑动", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
             // routerClass:"router-class-1"   // 路由页的class
         },

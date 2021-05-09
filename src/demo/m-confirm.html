@@ -22,9 +22,6 @@
         <div class="m-overflow-tb-cnt">
 
             <!--内容start -->
-
-            <button class="m-btn m-btn-primary m-btn-block" type="button">confirm信息框</button>
-            <br />
             <button class="m-btn m-btn-success m-btn-block" type="button">confirm信息框 属性设置</button>
             <!--内容end -->
         </div>
@@ -60,12 +57,6 @@
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
             
-            // confirm信息框
-            m(".m-btn-primary", context).tap(function () {
-
-                $.mConfirm("这是confirm提示框！",function(){});
-            });
-
             // confirm信息框  属性设置
             m(".m-btn-success", context).tap(function () {
 

@@ -1,0 +1,19 @@
+
+
+@import "../var.scss";
+
+
+.m-lazy-animation {
+    animation: m-lazy-hd .6s linear both;
+}
+
+
+@keyframes m-lazy-hd {
+    0%{
+        opacity:0;
+
+    }
+    100% {
+        opacity: 1;
+    }
+}

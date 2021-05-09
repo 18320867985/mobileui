@@ -1,0 +1,74 @@
+
+
+@import "../var.scss";
+
+
+.m-switch {
+    position: relative;
+    width: 3rem;
+    height: 1.7rem;
+    box-sizing: content-box;
+    background: $switch;
+    border-radius: 2rem;
+    border: 1px solid $text-line;
+    // box-shadow: inset 2px 2px 5px rgba(0,0,0,.075),inset -2px -2px 5px rgba(0,0,0,.075);
+    &.m-switch-inline {
+        display: inline-block;
+
+        & + & {
+            margin-left: .25rem;
+        }
+    }
+
+    .m-switch-rd {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.7rem;
+        height: 1.7rem;
+        background: $bg-white;
+        border-radius: 50%;
+        border: 2px solid $switch;
+    }
+
+
+    &.m-text-primary {
+        &.active {
+            background: $text-primary;
+
+            .m-switch-rd {
+                border-color: $text-primary;
+            }
+        }
+    }
+
+    &.m-text-success {
+        &.active {
+            background: $text-success;
+
+            .m-switch-rd {
+                border-color: $text-success;
+            }
+        }
+    }
+
+    &.m-text-warning {
+        &.active {
+            background: $text-warning;
+
+            .m-switch-rd {
+                border-color: $text-warning;
+            }
+        }
+    }
+
+    &.m-text-danger {
+        &.active {
+            background: $text-danger;
+
+            .m-switch-rd {
+                border-color: $text-danger;
+            }
+        }
+    }
+}

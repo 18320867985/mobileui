@@ -1,0 +1,92 @@
+﻿
+@import "../var.scss";
+
+@import "../var.scss";
+
+//  m-loadong 的组件
+
+.m-loading{
+
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:99999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.m-loading-cnt {
+    width: 100rem/$rem;
+    height: 100rem/$rem;
+    background: rgba(0,0,0,.6);
+    border-radius:.5rem;
+    display: flex;
+    flex-flow:column;
+    justify-content: center;
+    align-items: center;
+}
+
+.m-loading-cnt-icon {
+    .iconfont {
+        display:inline-block;
+        vertical-align:middle;
+        font-size: 2rem;
+        color:$bg-white;
+        opacity:.9;
+       animation:m-loading-cnt-icon-dh linear 1.5s  both infinite ;
+    }
+}
+
+.m-loading-cnt-txt {
+    font-size: .6rem;
+    color: $bg-white;
+}
+
+@keyframes m-loading-cnt-icon-dh{
+    0%{
+        transform:rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+//router 加载的路由的动画
+.m-ball-clip-rotate {
+
+    > div {
+        background-color: #fff;
+        border-radius: 100%;
+        margin: .1rem;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        border: 2px solid transparent;
+        border-bottom-color: #dcdcdc;
+        height: 1.25rem;
+        width: 1.25rem;
+        background: transparent !important;
+        display: inline-block;
+        vertical-align: middle;
+        animation: m-ball-clip-rotate 0.75s 0s linear infinite;
+    }
+}
+
+@keyframes m-ball-clip-rotate {
+    0% {
+        -webkit-transform: rotate(0deg) scale(1);
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        -webkit-transform: rotate(180deg) scale(0.6);
+        transform: rotate(180deg) scale(0.6);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg) scale(1);
+        transform: rotate(360deg) scale(1);
+    }
+}

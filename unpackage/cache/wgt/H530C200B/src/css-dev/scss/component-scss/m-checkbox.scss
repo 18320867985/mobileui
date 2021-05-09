@@ -1,0 +1,158 @@
+
+@import "../var.scss";
+
+.m-checkbox-group,
+.m-checkbox {
+    .iconfont {
+        font-size: 1.3rem;
+    }
+}
+
+/*v-checkbox*/
+.m-checkbox {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+
+    > * {
+        vertical-align: middle;
+    }
+
+    .m-checkbox-item {
+
+        &:before {
+            content: '\e6c1';
+            color: #999;
+        }
+
+        &.active {
+            &:before {
+                content: '\e678';
+                color: $text-primary;
+            }
+        }
+    }
+
+    &.text-success .m-checkbox-item.active {
+        &:before {
+            color: $text-success;
+        }
+    }
+
+    &.text-warning .m-checkbox-item.active {
+        &:before {
+            color: $text-warning;
+        }
+    }
+
+    &.text-danger .m-checkbox-item.active {
+            &:before {
+                color: $text-danger;
+
+            }
+        }
+
+    }
+    /*v-checkbox-group*/
+.m-checkbox-group {
+    display: inline-block;
+    vertical-align: middle;
+
+
+    .m-checkbox-group-item {
+        display: inline-block;
+        cursor: pointer;
+
+        .m-checkbox-icon {
+            &:before {
+                content: '\e6c1';
+                color: #999;
+            }
+        }
+
+        .m-checkbox-group-txt {
+            font-size: 14px;
+        }
+
+        &.active {
+            .m-checkbox-icon:before {
+                content: '\e678';
+                color: $text-primary;
+            }
+        }
+
+        & + .m-checkbox-group-item {
+            margin-left: 10px;
+        }
+
+        > * {
+            vertical-align: middle;
+        }
+    }
+
+    &.text-success .m-checkbox-group-item.active {
+        .m-checkbox-icon:before {
+            color: $text-success;
+        }
+    }
+
+    &.text-warning .m-checkbox-group-item.active {
+        .m-checkbox-icon:before {
+            color: $text-warning;
+        }
+    }
+
+    &.text-danger .m-checkbox-group-item.active {
+        .m-checkbox-icon:before {
+            color: $text-danger;
+        }
+    }
+}
+    /*v-radiokbox*/
+    .m-radiobox-item {
+        .iconfont {
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+    }
+
+    .m-radiobox-group {
+        display: inline-block;
+        vertical-align: middle;
+
+        .m-radiobox-item {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 14px;
+            color: #777;
+            cursor: pointer;
+
+            > * {
+                vertical-align: middle;
+            }
+
+            .m-radiobox-icon:before {
+                margin-right: 5px;
+                content: '\e6c1';
+                color: #999;
+            }
+
+            .m-radiobox-txt {
+                display: inline-block;
+                margin-left: -5px;
+                font-size: 14px;
+            }
+
+            &.active {
+                .m-radiobox-icon:before {
+                    margin-right: 5px;
+                    content: '\e678';
+                    color: $text-primary;
+                }
+            }
+
+            & + .m-radiobox-item {
+                margin-left: 10px;
+            }
+        }
+    }

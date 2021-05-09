@@ -1,0 +1,49 @@
+
+/*设计图width*/
+$screenwidth:375;
+
+/*rem 份数*/
+$remSize:18.75;
+
+/* 375/18.75 =20px=1rem */
+
+/*html rem比例*/
+//$rem:($screenwidth/$remSize);
+
+$rem:20;
+
+/* text-color*/
+$text-white:#fff;
+$text-primary: darken(#428bca, 6.5%) !default; // #337ab7
+$text-success: #5cb85c !default;
+$text-info: #5bc0de !default;
+$text-warning: #f0ad4e !default;
+$text-danger: #d9534f !default;
+$text-df: #333 !default;
+$text-muted:#ddd !default;
+$text-gray: #777!default;
+$h-color: #444;
+$text-placeholer:#999;
+
+$text-loading: $text-gray;
+$text-line: #f2f2f2;
+$text-border: #ddd;
+
+$font-family:"Helvetica Neue",
+Helvetica,
+sans-serif !default;
+$font-size:.85rem !default;
+
+$line-height:1.4 !default;
+$body-bg:#f8f8f8;
+$body-color: $text-df;
+$icon-color:$h-color;
+
+$bg-white:#fff;
+$switch: #c6c6c6;
+$switch-rd: $text-gray;
+
+ 
+
+
+

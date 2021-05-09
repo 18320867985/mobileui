@@ -1,0 +1,64 @@
+
+/*自定义函数*/
+
+
+/*
+ * 
+ *数字框组件
+ <div class="number" >
+   <button class="minus btn" type="button">-</button>
+  <input class="num" type="number" value="1"data-min="0" data-max="9999" data-step="1" />
+    <button class="plus btn" type="button">+</button>
+ </div>
+ * */
+
+
+@mixin  number($width:90px,$height:24px,$br:#ddd,$fonf-size:14px){
+   
+   .number {
+        
+         width:$width;
+         .btn,
+         .num
+         {
+             display: inline-block;
+             float: left;
+           
+             height: $height;
+             line-height:$height;
+             padding: 0;
+             margin-bottom: 0;
+             text-align: center;
+             font-size: $fonf-size;
+             border-radius:0 ;
+             border: 1px solid $br;
+            
+         }
+         .btn{
+               width:$width*0.3; 
+                background: transparent;
+                 color:#333;
+                 &:active{
+                    background:$text-ash-3; 
+                    border: 1px solid $br;  
+                 }
+         }
+        .num{
+         width:$width * 0.4; 
+            border-left: none;
+            border-right: none;
+             background: #fff;
+           
+        }
+    
+    }
+}
+
+
+// ellipsis
+@mixin ellipsis(){
+    width: 100%;
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+}

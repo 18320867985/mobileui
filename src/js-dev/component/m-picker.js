@@ -22,7 +22,7 @@
     };
 
     MPicker.prototype.running = function () {
-
+		m.router.ismask=true;
         var self = this;
         var $m_touch_tb = m(this.el).addClass("m-picker").find(".m-picker-inner");
         var $moveElement = $m_touch_tb.find(".m-picker-cnt");
@@ -520,6 +520,9 @@
     MPicker.prototype.show = function () {
 
         m(".m-picker").addClass("in").removeClass("out").find(".m-picker-box-cnt").addClass("in").removeClass("out");
+		m.router.ismask=true;
+		
+		
     };
 
     MPicker.prototype.hide = function () {
@@ -528,6 +531,7 @@
         m(".m-picker").find(".m-picker-box-cnt").removeClass("in").addClass("out");
         window.setTimeout(function () {
             m(".m-picker").remove();
+			m.router.ismask=false;
         },400);
 
     };

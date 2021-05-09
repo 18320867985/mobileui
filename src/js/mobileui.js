@@ -3914,7 +3914,7 @@ css3 transition
     };
 
     // base url;
-    Router.transitionTime = 400;
+    Router.transitionTime = 250;
     Router.fineObjs = {};
     Router.baseUrl = "";
     Router.urls = []; // js 加载集合
@@ -4733,7 +4733,7 @@ css3 transition
             Router.tapTime = nowTime;
             var id = "#m-router-" + Router.getId();
             var $p = m(id);
-            var transition = "transform  " + Router.transitionTime * t + "ms ease";
+            var transition = "transform  " + Router.transitionTime * t + "ms linear";
             $p.removeClass("in").transition(transition).translateX($p.width()).translateZ(0);
             var _id = Router.getId();
 
@@ -4921,6 +4921,43 @@ $(function () {
     //    location.href = "./demo/not_weixin.html";
     //}
 
+
+    /*************** h5+ Ӧ������**************/
+
+    // ��չAPI�Ƿ�׼���ã����û���������plusready"�¼�
+    if (window.plus) {
+        plusReady();
+    } else {
+        document.addEventListener("plusready", plusReady, false);
+    }
+
+    // �Ƿ���ָ����ҳ��
+    m.router.istouch = false;
+    m(document).touch(function () {}, function (event, obj) {
+        if (obj.isX) {
+            m.router.istouch = true;
+        }
+    }, function () {
+        m.router.istouch = false;
+    });
+
+    function plusReady() {
+
+        // ���������ء���ť�¼�
+        plus.key.addEventListener("backbutton", function () {
+
+            if (m.router.istouch) {
+                return;
+            } // �Ƿ���ָ����ҳ��
+            if (m.router.ismask) {
+                return;
+            } // �Ƿ��Ѿ���ʾmask
+            m.router.back();
+
+            //Ӧ���л�����̨����
+            if (m.router.getId() === 0) {}
+        });
+    }
 });
 
 // m-touch-slide 
@@ -6895,14 +6932,14 @@ $(function () {
 
                 var elm = document.body || document.documentElement;
                 elm.appendChild(alert);
-
+                m.router.ismask = true;
                 $(".m-alert-cnt-btn.ok").focus();
                 $(".m-alert-cnt-btn.ok").on("tap", function (e) {
-
+                        $(".m-alert").remove();
+                        m.router.ismask = false;
                         if (typeof okfun === "function") {
                                 okfun.call(this);
                         }
-                        $(".m-alert").remove();
                 });
 
                 $(".m-alert-cnt").on("tap", function (event) {
@@ -6962,7 +6999,7 @@ $(function () {
 
                 var elm = document.body || document.documentElement;
                 elm.appendChild(alert);
-
+                m.router.ismask = true;
                 $(".m-confirm-cnt-btn.ok").focus();
                 $(".m-confirm-cnt-btn.ok").on("tap", function (e) {
 
@@ -6970,6 +7007,7 @@ $(function () {
                                 okfun.call(this);
                         }
                         $(".m-confirm").remove();
+                        m.router.ismask = false;
                 });
                 $(".m-confirm-cnt-btn.no").on("tap", function (e) {
 
@@ -6977,6 +7015,7 @@ $(function () {
                                 nofun.call(this);
                         }
                         $(".m-confirm").remove();
+                        m.router.ismask = false;
                 });
                 $(".m-confirm-cnt").on("tap", function (event) {
                         event.stopPropagation();
@@ -7035,7 +7074,7 @@ $(function () {
 
                 var elm = document.body || document.documentElement;
                 elm.appendChild(alert);
-
+                m.router.ismask = true;
                 $(".m-confirm2-cnt-btn.ok").focus();
                 $(".m-confirm2-cnt-btn.ok").on("tap", function (event) {
                         event.stopPropagation();
@@ -7043,6 +7082,7 @@ $(function () {
                         m(this).parents(".m-confirm2-cnt").removeClass("in").addClass("out");
                         setTimeout(function () {
                                 $(".m-confirm2").remove();
+                                m.router.ismask = false;
                                 if (typeof okfun === "function") {
                                         okfun.call(self);
                                 }
@@ -7056,6 +7096,7 @@ $(function () {
 
                         setTimeout(function () {
                                 $(".m-confirm2").remove();
+                                m.router.ismask = false;
                                 if (typeof nofun === "function") {
                                         nofun.call(self);
                                 }
@@ -7071,6 +7112,7 @@ $(function () {
 
                         setTimeout(function () {
                                 $(".m-confirm2").remove();
+                                m.router.ismask = false;
                         }, 400);
                 });
         }
@@ -7117,6 +7159,7 @@ $(function () {
 
                 var elm = document.body || document.documentElement;
                 elm.appendChild(actionsheet);
+                m.router.ismask = true;
 
                 $(".m-actionsheet-cnt-btn.ok").on("tap", function (event) {
                         event.stopPropagation();
@@ -7125,6 +7168,7 @@ $(function () {
                         setTimeout(function () {
                                 item.fn.call(item);
                                 $(".m-actionsheet").remove();
+                                m.router.ismask = false;
                         }, 400);
                 });
 
@@ -7135,6 +7179,7 @@ $(function () {
 
                         setTimeout(function () {
                                 $(".m-actionsheet").remove();
+                                m.router.ismask = false;
                                 if (typeof nofun === "function") {
                                         nofun.call(self);
                                 }
@@ -7150,6 +7195,7 @@ $(function () {
 
                         setTimeout(function () {
                                 $(".m-actionsheet").remove();
+                                m.router.ismask = false;
                         }, 400);
                 });
         }
@@ -7177,7 +7223,7 @@ $(function () {
     };
 
     MPicker.prototype.running = function () {
-
+        m.router.ismask = true;
         var self = this;
         var $m_touch_tb = m(this.el).addClass("m-picker").find(".m-picker-inner");
         var $moveElement = $m_touch_tb.find(".m-picker-cnt");
@@ -7588,6 +7634,7 @@ $(function () {
     MPicker.prototype.show = function () {
 
         m(".m-picker").addClass("in").removeClass("out").find(".m-picker-box-cnt").addClass("in").removeClass("out");
+        m.router.ismask = true;
     };
 
     MPicker.prototype.hide = function () {
@@ -7596,6 +7643,7 @@ $(function () {
         m(".m-picker").find(".m-picker-box-cnt").removeClass("in").addClass("out");
         window.setTimeout(function () {
             m(".m-picker").remove();
+            m.router.ismask = false;
         }, 400);
     };
 
@@ -7957,45 +8005,47 @@ $(function () {
 
 +function () {
 
-        //  m-info
-        m.extend({
-                mLoading: _mLoading
-        });
+    //  m-info
+    m.extend({
+        mLoading: _mLoading
+    });
 
-        function _mLoading() {
+    function _mLoading() {
 
-                $(".m-loading").remove();
+        $(".m-loading").remove();
 
-                var $loading = document.createElement("div");
-                $loading.setAttribute("class", "m-loading");
+        var $loading = document.createElement("div");
+        $loading.setAttribute("class", "m-loading");
 
-                var $loading_cnt = document.createElement("div");
-                $loading_cnt.setAttribute("class", "m-loading-cnt");
+        var $loading_cnt = document.createElement("div");
+        $loading_cnt.setAttribute("class", "m-loading-cnt");
 
-                var $loading_cnt_icon = document.createElement("div");
-                $loading_cnt_icon.setAttribute("class", "m-loading-cnt-icon");
-                $loading_cnt_icon.innerHTML = "<span class=\"iconfont iconloading\"></span>";
+        var $loading_cnt_icon = document.createElement("div");
+        $loading_cnt_icon.setAttribute("class", "m-loading-cnt-icon");
+        $loading_cnt_icon.innerHTML = "<span class=\"iconfont iconloading\"></span>";
 
-                var $loading_cnt_txt = document.createElement("div");
-                $loading_cnt_txt.setAttribute("class", "m-loading-cnt-txt");
-                $loading_cnt_txt.innerHTML = "正在加载";
+        var $loading_cnt_txt = document.createElement("div");
+        $loading_cnt_txt.setAttribute("class", "m-loading-cnt-txt");
+        $loading_cnt_txt.innerHTML = "正在加载";
 
-                $loading_cnt.appendChild($loading_cnt_icon);
-                $loading_cnt.appendChild($loading_cnt_txt);
-                $loading.appendChild($loading_cnt);
+        $loading_cnt.appendChild($loading_cnt_icon);
+        $loading_cnt.appendChild($loading_cnt_txt);
+        $loading.appendChild($loading_cnt);
 
-                var $elm = document.body || document.documentElement; //m.router.getActiveEl();
-                $elm.appendChild($loading);
-        }
+        var $elm = document.body || document.documentElement; //m.router.getActiveEl();
+        $elm.appendChild($loading);
+        m.router.ismask = true;
+    }
 
-        m.extend({
-                mLoadingHide: _mLoadingHide
-        });
+    m.extend({
+        mLoadingHide: _mLoadingHide
+    });
 
-        function _mLoadingHide() {
+    function _mLoadingHide() {
 
-                $(".m-loading").remove();
-        }
+        $(".m-loading").remove();
+        m.router.ismask = false;
+    }
 }();
 
 // m-overflow-lr 左右原生overflow滑动

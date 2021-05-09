@@ -77,4 +77,40 @@ $(function () {
     //}
   
 
+	/*************** h5+ 应用以下**************/
+
+	// 扩展API是否准备好，如果没有则监听“plusready"事件
+	if(window.plus){  
+	    plusReady();  
+	}else{   
+	    document.addEventListener("plusready", plusReady, false);  
+	} 
+	
+	// 是否手指触摸页面
+	m.router.istouch=false;
+	 m(document).touch(function(){},function(event,obj){
+		 if(obj.isX){m.router.istouch=true;  }
+		 },function(){
+		  m.router.istouch=false;
+	 });
+	
+	function  plusReady(){
+		
+		// 监听“返回”按钮事件
+		plus.key.addEventListener("backbutton",function(){
+		
+			if(m.router.istouch){return;} // 是否手指触摸页面
+			if(m.router.ismask){return;} // 是否已经显示mask
+			m.router.back();
+			
+			//应用切换到后台运行
+			if(m.router.getId()===0){
+			
+			}
+		});
+		
+
+	};
+
+
 });

@@ -1,4 +1,4 @@
-﻿
+
 // m-message 信息框
 
 +function () {
@@ -104,15 +104,16 @@
 
         var elm = document.body || document.documentElement;
         elm.appendChild(alert);
-
+		m.router.ismask=true;
         $(".m-alert-cnt-btn.ok").focus();
         $(".m-alert-cnt-btn.ok").on("tap",function (e) {
-           
+           $(".m-alert").remove();
+           m.router.ismask=false;
             if (typeof okfun === "function") {
                 okfun.call(this);
               
             }
-            $(".m-alert").remove();
+          
 
         });
 
@@ -181,7 +182,7 @@
 
         var elm = document.body || document.documentElement;
         elm.appendChild(alert);
-
+		m.router.ismask=true;
         $(".m-confirm-cnt-btn.ok").focus();
         $(".m-confirm-cnt-btn.ok").on("tap", function (e) {
 
@@ -190,15 +191,17 @@
 
             }
             $(".m-confirm").remove();
+			m.router.ismask=false;
 
         });
         $(".m-confirm-cnt-btn.no").on("tap", function (e) {
 
             if (typeof nofun === "function") {
                 nofun.call(this);
-
+				
             }
             $(".m-confirm").remove();
+			m.router.ismask=false;
 
         });
         $(".m-confirm-cnt").on("tap", function (event) {
@@ -260,7 +263,7 @@
 
         var elm = document.body || document.documentElement;
         elm.appendChild(alert);
-
+		m.router.ismask=true;
         $(".m-confirm2-cnt-btn.ok").focus();
         $(".m-confirm2-cnt-btn.ok").on("tap", function (event) {
             event.stopPropagation();
@@ -268,8 +271,10 @@
             m(this).parents(".m-confirm2-cnt").removeClass("in").addClass("out");
             setTimeout(function () {
                 $(".m-confirm2").remove();
+				m.router.ismask=false;
                 if (typeof okfun === "function") {
                     okfun.call(self);
+					
                 }
             }, 400);
             
@@ -282,6 +287,7 @@
 
             setTimeout(function () {
                 $(".m-confirm2").remove();
+				m.router.ismask=false;
                 if (typeof nofun === "function") {
                     nofun.call(self);
 
@@ -300,6 +306,7 @@
 
             setTimeout(function () {
                 $(".m-confirm2").remove();
+				m.router.ismask=false;
             }, 400);
 
         });
@@ -350,6 +357,7 @@
 
         var elm = document.body || document.documentElement;
         elm.appendChild(actionsheet);
+		m.router.ismask=true;
 
         $(".m-actionsheet-cnt-btn.ok").on("tap", function (event) {
             event.stopPropagation();
@@ -358,6 +366,7 @@
             setTimeout(function () {
                 item.fn.call(item);
                 $(".m-actionsheet").remove();
+				m.router.ismask=false;
             }, 400);
             
         });
@@ -369,9 +378,10 @@
 
             setTimeout(function () {
                 $(".m-actionsheet").remove();
+				m.router.ismask=false;
                 if (typeof nofun === "function") {
                     nofun.call(self);
-
+					
                 }
             }, 400);
 
@@ -387,6 +397,7 @@
 
             setTimeout(function () {
                 $(".m-actionsheet").remove();
+				m.router.ismask=false;
             }, 400);
 
         });

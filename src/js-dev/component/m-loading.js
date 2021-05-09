@@ -1,4 +1,4 @@
-﻿+function () {
++function () {
 
     //  m-info
     m.extend({
@@ -29,6 +29,7 @@
 
         var $elm = document.body || document.documentElement;//m.router.getActiveEl();
         $elm.appendChild($loading);
+		m.router.ismask=true;
         
     }
 
@@ -39,7 +40,7 @@
     function _mLoadingHide() {
 
         $(".m-loading").remove();
-
+		m.router.ismask=false;
         
 
     }

@@ -28,7 +28,7 @@
     };
 
     // base url;
-    Router.transitionTime = 400;
+    Router.transitionTime = 250;
     Router.fineObjs = {};
     Router.baseUrl = "";
     Router.urls = [];           // js 加载集合
@@ -898,7 +898,7 @@
             Router.tapTime = nowTime;
             var id = "#m-router-" + Router.getId();
             var $p = m(id);
-            var transition = "transform  " + Router.transitionTime*t + "ms ease";
+            var transition = "transform  " + Router.transitionTime*t + "ms linear";
             $p.removeClass("in").transition(transition).translateX($p.width()).translateZ(0);
             var _id = Router.getId();
 

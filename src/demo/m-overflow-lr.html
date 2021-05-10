@@ -12,7 +12,7 @@
             height: 200px;
         }
 
-    #m-overflow-lr-center2 {
+    #m-overflow-lr-2 {
          margin-top:2rem;
     }
 </style>
@@ -23,9 +23,9 @@
         <div class="m-overflow-tb-cnt">
 
             <!--内容start -->
-            <nav class="m-overflow-lr" id="m-overflow-lr-center"  data-bar>
+            <nav class="m-overflow-lr" id="m-overflow-lr-1" >
                
-                <div class="m-overflow-lr-pwr ">
+                <div class="m-overflow-lr-nav ">
                     <ul class="m-overflow-lr-cnt">
                         <li class="m-overflow-lr-item">
                             <a  href="./demo/router-link-parameter.html?age=28&sex=女"><img src="./images/a.jpg" alt="Alternate Text" /></a>
@@ -46,12 +46,12 @@
             <!--内容end -->
 
             <!--内容start -->
-            <nav class="m-overflow-lr" id="m-overflow-lr-center2">
+            <nav class="m-overflow-lr" id="m-overflow-lr-2">
                 <!-- overflow  导航-->
-                <div class="m-overflow-lr-nav">
+                <div class="m-overflow-lr-nav m-overflow-lr-menu">
                     <ul class="m-overflow-lr-cnt">
 
-                        <li class="m-overflow-lr-item">
+                        <li class="m-overflow-lr-item active">
                             <a href="javascript:;">首页</a>
                         </li>
                         <li class="m-overflow-lr-item">
@@ -80,6 +80,36 @@
                         </li>
                         <li class="m-overflow-lr-item">
                             <a href="javascript:;">我的家</a>
+
+                        </li>
+
+                    
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">MV2</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">悦单2</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">V榜2</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">音悦2</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">商城2</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">节目2</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">饭团2</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">资讯2</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">我的家2</a>
 
                         </li>
                     </ul>
@@ -120,24 +150,26 @@
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
-             m(".m-overflow-lr",context).mOverflowLr();
+            m("#m-overflow-lr-1", context).mOverflowLr({ bar: true });
+
+            m("#m-overflow-lr-2", context).mOverflowLr({ bar: false });
 
             m(".m-overflow-lr",context).on("reachleft.m.overflow.lr", function (event, el, scrollObj) {
 
-                console.log("reachleft.m.overflow.lr", scrollObj)
-                // m(".m-hd-top-ttl").html(scrollObj.scrollTop)
+                console.log("reachleft.m.overflow.lr","已到左开始端触发")
+                // m(".m-hd-top-ttl").html(scrollObj.scrollLeft)
             });
 
             m(".m-overflow-lr",context).on("scroll.m.overflow.lr", function (event, el, scrollObj) {
 
-                console.log("scroll.m.overflow.lr", scrollObj)
-                // m(".m-hd-top-ttl").html(scrollObj.scrollTop)
+                console.log("scroll.m.overflow.lr", "滚动中触发...")
+                //m(".m-hd-top-ttl").html(scrollObj.scrollLeft)
             });
 
             m(".m-overflow-lr",context).on("reachright.m.overflow.lr", function (event, el, scrollObj) {
 
-                console.log("reachright.m.overflow.lr", scrollObj)
-                // m(".m-hd-top-ttl").html(scrollObj.scrollTop)
+                console.log("reachright.m.overflow.lr", "已到右结束端触发")
+                // m(".m-hd-top-ttl").html(scrollObj.scrollLeft)
             });
 
 

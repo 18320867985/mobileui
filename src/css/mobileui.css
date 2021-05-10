@@ -1940,13 +1940,13 @@ body {
   .m-overflow-lr.m-bar-no::-webkit-scrollbar {
     display: none; }
 
-.m-overflow-lr-pwr {
+.m-overflow-lr-nav {
   height: 100%;
   width: 100%;
   -ms-touch-action: pan-x;
       touch-action: pan-x;
   -webkit-overflow-scrolling: touch; }
-  .m-overflow-lr-pwr::-webkit-scrollbar {
+  .m-overflow-lr-nav::-webkit-scrollbar {
     display: none; }
 
 .m-overflow-lr-cnt {
@@ -1967,7 +1967,7 @@ body {
   .m-overflow-lr-item img {
     vertical-align: top; }
 
-.m-overflow-lr-bar-pwr {
+.m-overflow-lr-bar-nav {
   position: absolute;
   z-index: 2;
   left: 0;
@@ -2001,14 +2001,19 @@ body {
   border-radius: 5px; }
 
 /* 导航 */
-.m-overflow-lr-nav {
-  padding: 10px 0;
-  background: #ddd; }
-  .m-overflow-lr-nav .m-overflow-lr-item > a {
+.m-overflow-lr-nav.m-overflow-lr-menu {
+  padding: .3rem 0;
+  background: white;
+  -webkit-box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1) inset, -0.1rem -0.1rem 0.2rem rgba(0, 0, 0, 0.1) inset;
+          box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1) inset, -0.1rem -0.1rem 0.2rem rgba(0, 0, 0, 0.1) inset; }
+  .m-overflow-lr-nav.m-overflow-lr-menu .m-overflow-lr-item > a {
     display: block;
-    padding: .25rem .5rem; }
-  .m-overflow-lr-nav .m-overflow-lr-item + .m-overflow-lr-item {
-    border-left: 1px solid red; }
+    padding: .3rem .7rem;
+    font-size: .7rem; }
+  .m-overflow-lr-nav.m-overflow-lr-menu .m-overflow-lr-item.active {
+    background: #337ab7; }
+    .m-overflow-lr-nav.m-overflow-lr-menu .m-overflow-lr-item.active a {
+      color: #fff; }
 
 /*设计图width*/
 /*rem 份数*/

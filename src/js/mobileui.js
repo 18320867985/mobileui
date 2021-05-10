@@ -8076,9 +8076,10 @@ $(function () {
 
     MOverflowLr.prototype.run = function () {
         var self = this;
-        var $el = m(self.el).find(".m-overflow-lr-pwr");
+        var $el = m(self.el).find(".m-overflow-lr-nav");
         $el.css("overflow-x", "scroll");
         var winW = $el.outerWidth();
+
         // 设置滑动条
         if (self.options.bar) {
             self.setBar();
@@ -8134,6 +8135,8 @@ $(function () {
             if (obj.isX) {
                 event.stopPropagation();
             }
+        }, function (event) {
+            event.stopPropagation();
         });
 
         $el.find("a").on("tap", function (event) {
@@ -8142,7 +8145,7 @@ $(function () {
             var isHref = m(this).hasAttr("href");
             var hrefValue = m(this).attr("href");
             if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
                     return;
                 } else {
 
@@ -8159,7 +8162,7 @@ $(function () {
     MOverflowLr.prototype.setBar = function (x) {
         var $m_touch_lr = m(this.el);
         var pwr = document.createElement("div");
-        pwr.classList.add("m-overflow-lr-bar-pwr");
+        pwr.classList.add("m-overflow-lr-bar-nav");
         var bar = document.createElement("div");
         bar.classList.add("m-overflow-lr-bar");
         var item = document.createElement("div");

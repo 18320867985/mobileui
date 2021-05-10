@@ -9,10 +9,10 @@
     var MOverflowTb = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MOverflowTb.prototype.running = function () {
+    MOverflowTb.prototype.run = function () {
         var $el =m( this.el);
         $el.css("overflow-y", "scroll");
  

@@ -4687,7 +4687,7 @@ css3 transition
             elm.appendChild(routerEl);
 
             var $prevEl = Router.getPrevEl();
-            var transition = "transform  " + (Router.transitionTime + 150) + "ms linear";
+            var transition = "transform  " + (Router.transitionTime + 150) + "ms linear 100ms";
             $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
             Router.isOneMove = true;
 

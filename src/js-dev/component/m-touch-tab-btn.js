@@ -8,10 +8,10 @@
     var MTouchTabBtn = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchTabBtn.prototype.running = function () {
+    MTouchTabBtn.prototype.run = function () {
         var self = this;
         var $m_touch_tab_btn = m(this.el);
 

@@ -798,7 +798,6 @@
 
         return m(".m-bd");
         
-
     };
 
     // 添加路由
@@ -851,7 +850,7 @@
             elm.appendChild(routerEl);
           
             var $prevEl = Router.getPrevEl();
-            var transition = "transform  " + (Router.transitionTime+150 )+ "ms linear";
+            var transition = "transform  " + (Router.transitionTime+150 )+ "ms linear 100ms";
             $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
             Router.isOneMove = true;
          
@@ -1016,5 +1015,3 @@
     m(window).on("resize", setRouterLayout);
 
 }();
-
-

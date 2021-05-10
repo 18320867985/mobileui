@@ -8,10 +8,10 @@
     var MListoption = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MListoption.prototype.running = function () {
+    MListoption.prototype.run = function () {
 
         var $m_listoption = m(this.el);
         var transition = "transform .6s ease";

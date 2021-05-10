@@ -15,12 +15,12 @@
 
 @keyframes m-router-dh{
     0% {
-		opacity: .8;
+	
         transform: translateZ(0) translateX(100%);
        
     }
     100% {
-		opacity: 1;
+		
         transform: translateZ(0) translateX(0);
     }
 }
@@ -121,6 +121,7 @@
 .m-router-top{
 
     flex:0 0 auto;
+   
 }
 
 .m-router-bd {

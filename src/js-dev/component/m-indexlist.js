@@ -10,10 +10,10 @@
         this.items = [];
         this.scrollItems = [];
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MIndexlist.prototype.running = function () {
+    MIndexlist.prototype.run = function () {
 
         var $indexlist_nav = m(this.el).find(".m-indexlist-gp");
         var $indexlist_a = m(this.el).find(".m-indexlist-gp-ttl");

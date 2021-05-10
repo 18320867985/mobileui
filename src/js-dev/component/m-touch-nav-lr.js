@@ -8,10 +8,10 @@
     var MTouchNavLr = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchNavLr.prototype.running = function () {
+    MTouchNavLr.prototype.run = function () {
         var self = this;
         var $m_touch_lr = m(this.el);
         var $moveElement = $m_touch_lr.find(".m-touch-nav-cnt");

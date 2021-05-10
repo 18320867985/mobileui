@@ -8,11 +8,11 @@
     var MSwitch = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
        
     };
 
-    MSwitch.prototype.running = function () {
+    MSwitch.prototype.run = function () {
         var self = this;
         var $witch = m(this.el);
         var transition = "transform .4s ease";

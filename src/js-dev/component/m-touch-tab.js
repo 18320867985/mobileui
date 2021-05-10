@@ -8,10 +8,10 @@
     var MTouchTab = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchTab.prototype.running = function () {
+    MTouchTab.prototype.run = function () {
         var self = this;
         var $m_touch_lr = m(this.el);
         var $moveElement = $m_touch_lr.find(".m-touch-tab-cnt");

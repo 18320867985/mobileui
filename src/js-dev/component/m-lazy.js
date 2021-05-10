@@ -11,7 +11,7 @@
         this.el = el;
         this.oldsrc = "";
         this.options = options;
-        this.running();
+        this.run();
       
 
     };
@@ -20,7 +20,7 @@
         timing: 400
     };
 
-    MLazy.prototype.running = function () {
+    MLazy.prototype.run = function () {
 
 
         if (this.el === window || this.el === document) {

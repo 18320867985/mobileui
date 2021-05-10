@@ -18,10 +18,10 @@
         this.options = options;
         this.createHtml();
         this.el = m(".m-picker");
-        this.running();
+        this.run();
     };
 
-    MPicker.prototype.running = function () {
+    MPicker.prototype.run = function () {
 		m.router.ismask=true;
         var self = this;
         var $m_touch_tb = m(this.el).addClass("m-picker").find(".m-picker-inner");

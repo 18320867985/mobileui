@@ -8,10 +8,10 @@
     var MOverflowLr = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MOverflowLr.prototype.running = function () {
+    MOverflowLr.prototype.run = function () {
         var self = this;
         var $el = m(self.el).find(".m-overflow-lr-pwr");
         $el.css("overflow-x", "scroll");
@@ -42,7 +42,7 @@
                
             }
 
-            // 滚动顶部触发的事件
+            // 滚动顶 部触发的事件
             if (srlLeft <= 0) {
               //  e.stopPropagation();
                 $el.emit("reachleft.m.overflow.lr", [this, { elementWidth: elW, scrollWidth: srlW, scrollLeft: srlLeft }]);
@@ -67,6 +67,8 @@
                
             }
         });
+
+
 
         $el.touch(function (event) { event.stopPropagation(); }, function (event, obj) {
          

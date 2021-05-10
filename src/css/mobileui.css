@@ -2000,19 +2000,15 @@ body {
   opacity: .8;
   border-radius: 5px; }
 
-.m-overflow-lr-nav > li {
-  display: inline-block;
-  font-size: .7rem; }
-  .m-overflow-lr-nav > li a {
+/* 导航 */
+.m-overflow-lr-nav {
+  padding: 10px 0;
+  background: #ddd; }
+  .m-overflow-lr-nav .m-overflow-lr-item > a {
     display: block;
-    padding: 0 1rem;
-    line-height: 2rem;
-    color: #020202; }
-  .m-overflow-lr-nav > li.active {
-    background: #5cb85c;
-    color: #fff; }
-    .m-overflow-lr-nav > li.active a {
-      color: #fff; }
+    padding: .25rem .5rem; }
+  .m-overflow-lr-nav .m-overflow-lr-item + .m-overflow-lr-item {
+    border-left: 1px solid red; }
 
 /*设计图width*/
 /*rem 份数*/
@@ -2463,21 +2459,17 @@ body {
 
 @-webkit-keyframes m-router-dh {
   0% {
-    opacity: .8;
     -webkit-transform: translateZ(0) translateX(100%);
             transform: translateZ(0) translateX(100%); }
   100% {
-    opacity: 1;
     -webkit-transform: translateZ(0) translateX(0);
             transform: translateZ(0) translateX(0); } }
 
 @keyframes m-router-dh {
   0% {
-    opacity: .8;
     -webkit-transform: translateZ(0) translateX(100%);
             transform: translateZ(0) translateX(100%); }
   100% {
-    opacity: 1;
     -webkit-transform: translateZ(0) translateX(0);
             transform: translateZ(0) translateX(0); } }
 

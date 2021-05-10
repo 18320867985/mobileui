@@ -8,10 +8,10 @@
     var MTouchSlide = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchSlide.prototype.running = function () {
+    MTouchSlide.prototype.run = function () {
 
         var self = this;
         var $m_touch_slide = m(this.el);

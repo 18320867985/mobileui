@@ -4687,7 +4687,7 @@ css3 transition
             elm.appendChild(routerEl);
 
             var $prevEl = Router.getPrevEl();
-            var transition = "transform  " + (Router.transitionTime + 150) + "ms linear";
+            var transition = "transform  " + (Router.transitionTime + 150) + "ms linear 100ms";
             $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
             Router.isOneMove = true;
 
@@ -4983,10 +4983,10 @@ $(function () {
     var MTouchSlide = function MTouchSlide(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchSlide.prototype.running = function () {
+    MTouchSlide.prototype.run = function () {
 
         var self = this;
         var $m_touch_slide = m(this.el);
@@ -5218,10 +5218,10 @@ $(function () {
     var MTouchNavLr = function MTouchNavLr(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchNavLr.prototype.running = function () {
+    MTouchNavLr.prototype.run = function () {
         var self = this;
         var $m_touch_lr = m(this.el);
         var $moveElement = $m_touch_lr.find(".m-touch-nav-cnt");
@@ -5481,10 +5481,10 @@ $(function () {
     var MTouchNavTb = function MTouchNavTb(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchNavTb.prototype.running = function () {
+    MTouchNavTb.prototype.run = function () {
         var self = this;
         var $m_touch_tb = m(this.el);
         var $moveElement = $m_touch_tb.find(".m-touch-nav-tb-cnt");
@@ -5730,10 +5730,10 @@ $(function () {
     var MTableView = function MTableView(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTableView.prototype.running = function () {
+    MTableView.prototype.run = function () {
         var self = this;
         m(this.el).find(".m-table-view-ttl").on("tap", function (event) {
             event.stopPropagation();
@@ -5813,10 +5813,10 @@ $(function () {
     var MTouchTab = function MTouchTab(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchTab.prototype.running = function () {
+    MTouchTab.prototype.run = function () {
         var self = this;
         var $m_touch_lr = m(this.el);
         var $moveElement = $m_touch_lr.find(".m-touch-tab-cnt");
@@ -5983,10 +5983,10 @@ $(function () {
     var MTouchTabBtn = function MTouchTabBtn(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchTabBtn.prototype.running = function () {
+    MTouchTabBtn.prototype.run = function () {
         var self = this;
         var $m_touch_tab_btn = m(this.el);
 
@@ -6083,10 +6083,10 @@ $(function () {
         this.items = [];
         this.scrollItems = [];
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MIndexlist.prototype.running = function () {
+    MIndexlist.prototype.run = function () {
 
         var $indexlist_nav = m(this.el).find(".m-indexlist-gp");
         var $indexlist_a = m(this.el).find(".m-indexlist-gp-ttl");
@@ -6222,10 +6222,10 @@ $(function () {
     var MListoption = function MListoption(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MListoption.prototype.running = function () {
+    MListoption.prototype.run = function () {
 
         var $m_listoption = m(this.el);
         var transition = "transform .6s ease";
@@ -6339,10 +6339,10 @@ $(function () {
     var MSwitch = function MSwitch(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MSwitch.prototype.running = function () {
+    MSwitch.prototype.run = function () {
         var self = this;
         var $witch = m(this.el);
         var transition = "transform .4s ease";
@@ -7235,10 +7235,10 @@ $(function () {
         this.options = options;
         this.createHtml();
         this.el = m(".m-picker");
-        this.running();
+        this.run();
     };
 
-    MPicker.prototype.running = function () {
+    MPicker.prototype.run = function () {
         m.router.ismask = true;
         var self = this;
         var $m_touch_tb = m(this.el).addClass("m-picker").find(".m-picker-inner");
@@ -7922,14 +7922,14 @@ $(function () {
         this.el = el;
         this.oldsrc = "";
         this.options = options;
-        this.running();
+        this.run();
     };
 
     MLazy.DEFAULTS = {
         timing: 400
     };
 
-    MLazy.prototype.running = function () {
+    MLazy.prototype.run = function () {
 
         if (this.el === window || this.el === document) {
 
@@ -8071,10 +8071,10 @@ $(function () {
     var MOverflowLr = function MOverflowLr(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MOverflowLr.prototype.running = function () {
+    MOverflowLr.prototype.run = function () {
         var self = this;
         var $el = m(self.el).find(".m-overflow-lr-pwr");
         $el.css("overflow-x", "scroll");
@@ -8104,7 +8104,7 @@ $(function () {
                 self.moveBar(srlLeft);
             }
 
-            // 滚动顶部触发的事件
+            // 滚动顶 部触发的事件
             if (srlLeft <= 0) {
                 //  e.stopPropagation();
                 $el.emit("reachleft.m.overflow.lr", [this, { elementWidth: elW, scrollWidth: srlW, scrollLeft: srlLeft }]);
@@ -8233,10 +8233,10 @@ $(function () {
     var MOverflowTb = function MOverflowTb(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MOverflowTb.prototype.running = function () {
+    MOverflowTb.prototype.run = function () {
         var $el = m(this.el);
         $el.css("overflow-y", "scroll");
 

@@ -11,6 +11,10 @@
             width: 320px;
             height: 200px;
         }
+
+    #m-overflow-lr-center2 {
+         margin-top:2rem;
+    }
 </style>
 
 <!--2.内容区域 -->
@@ -19,20 +23,64 @@
         <div class="m-overflow-tb-cnt">
 
             <!--内容start -->
-            <nav class="m-overflow-lr" id="m-overflow-lr-center">
-                <div class="m-overflow-lr-pwr">
+            <nav class="m-overflow-lr" id="m-overflow-lr-center"  data-bar>
+               
+                <div class="m-overflow-lr-pwr ">
                     <ul class="m-overflow-lr-cnt">
                         <li class="m-overflow-lr-item">
-                            <a href="http://baidu.com"><img src="./images/a.jpg" alt="Alternate Text" /></a>
+                            <a  href="./demo/router-link-parameter.html?age=28&sex=女"><img src="./images/a.jpg" alt="Alternate Text" /></a>
                         </li>
                         <li class="m-overflow-lr-item">
-                            <a href="#"><img src="./images/b.jpg" alt="Alternate Text" /></a>
+                            <a  href="./demo/router-link-parameter.html?age=28&qq=724485868@qq.com"><img src="./images/b.jpg" alt="Alternate Text" /></a>
                         </li>
                         <li class="m-overflow-lr-item">
                             <a href="#"><img src="./images/c.jpg" alt="Alternate Text" /></a>
                         </li>
                         <li class="m-overflow-lr-item">
                             <a href="#"><img src="./images/d.jpg" alt="Alternate Text" /></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+            <!--内容end -->
+
+            <!--内容start -->
+            <nav class="m-overflow-lr" id="m-overflow-lr-center2">
+                <!-- overflow  导航-->
+                <div class="m-overflow-lr-nav">
+                    <ul class="m-overflow-lr-cnt">
+
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">首页</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">MV</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">悦单</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">V榜</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">音悦</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">商城</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">节目</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">饭团</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">资讯</a>
+                        </li>
+                        <li class="m-overflow-lr-item">
+                            <a href="javascript:;">我的家</a>
+
                         </li>
                     </ul>
                 </div>
@@ -72,7 +120,7 @@
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
-             m(".m-overflow-lr",context).mOverflowLr({ bar: true });
+             m(".m-overflow-lr",context).mOverflowLr();
 
             m(".m-overflow-lr",context).on("reachleft.m.overflow.lr", function (event, el, scrollObj) {
 

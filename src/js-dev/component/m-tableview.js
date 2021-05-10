@@ -8,10 +8,10 @@
     var MTableView = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTableView.prototype.running = function () {
+    MTableView.prototype.run = function () {
         var self = this;
         m(this.el).find(".m-table-view-ttl").on("tap", function (event) {
             event.stopPropagation();

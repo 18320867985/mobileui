@@ -4507,7 +4507,7 @@ css3 transition
 
                     // 移动当前的路由页 透明度
                     var _window_w = m(window).width();
-                    obj.maskEl.css("opacity", 0.7 - translateX / _window_w);
+                    obj.maskEl.css("opacity", 0.5 - translateX / _window_w);
                 }
             }
         }, function (event, obj) {

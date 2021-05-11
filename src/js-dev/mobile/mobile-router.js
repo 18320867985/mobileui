@@ -594,6 +594,8 @@
                 obj.$moveElment = m(this);
                 obj.moveElmentX = obj.$moveElment.translateX();
                 obj.$prevEl = Router.getPrevEl();
+                var _id = Router.getId();
+                obj.maskEl = m("[data-router-id=m-router-" + _id + "]");
             
                 if (obj.x < (obj.$moveElment.width() * 0.95) ) {
                    
@@ -645,8 +647,7 @@
 
                         // 移动当前的路由页 透明度
                         var _window_w = m(window).width();
-                        var $mask = m("[data-router-id=m-router-" + _id+"]");
-                        $mask.css("opacity", (0.5-translateX /(_window_w)));
+                        obj.maskEl.css("opacity", (0.7-translateX /(_window_w)));
 
                     }
                 }
@@ -655,20 +656,22 @@
             function (event, obj) {
 
                 if (obj.isX) {
-                  //  if (obj.xlt) { obj.xlt = null; return; }
-                    
+              
                     var t = 0.5;
+                    var transition = "transform  " + Router.transitionTime * t + "ms ease";
                     if (obj.$moveElment.translateX() < obj.$moveElment.width() / 2) {
                         
-                        var transition = "transform  " + Router.transitionTime*t + "ms ease";
                         obj.$moveElment.transition(transition);
                         if (!Router.isOneMove) { obj.$moveElment.translateX(0).translateZ(0); }
                         obj.$prevEl.transition(transition);
                         obj.$prevEl.translateX(-obj.$prevEl.width() / 2).translateZ(0);
 
                     } else {
-        
+                     
+                        obj.maskEl.css("opacity", 0);
+                        obj.maskEl.transition(transition);
                         Router.back(t); 
+                       
       
                     }
 

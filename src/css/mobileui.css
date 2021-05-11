@@ -2459,7 +2459,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #000;
+  background: #333;
   opacity: 0; }
 
 @-webkit-keyframes m-router-dh {
@@ -2538,8 +2538,8 @@ body {
     -webkit-tap-highlight-color: transparent !important; }
 
 .m-router-box-move {
-  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
-          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5); }
+  -webkit-box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5); }
 
 .m-router-cnt {
   position: fixed;

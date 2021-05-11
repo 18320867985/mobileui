@@ -4502,6 +4502,11 @@ css3 transition
                     }
 
                     obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0);
+
+                    // 移动当前的路由页 透明度
+                    var _window_w = m(window).width();
+                    var $mask = m("[data-router-id=m-router-" + _id + "]");
+                    $mask.css("opacity", 0.5 - translateX / _window_w);
                 }
             }
         }, function (event, obj) {
@@ -4739,12 +4744,11 @@ css3 transition
 
             // 监听页面隐藏 触发的事件
             $p.emit("m-router-hide", [$p, _id]);
-
+            m("[data-router-id=m-router-" + _id + "]").css("opacity", 0).remove();
             var $prevEl = Router.getPrevEl();
             $prevEl.transition(transition).translateX(0);
             setTimeout(function () {
 
-                m("[data-router-id=m-router-" + _id + "]").remove();
                 $p.remove();
                 Router.removeId(_id);
 
@@ -8148,14 +8152,25 @@ $(function () {
                 if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
                     return;
                 } else {
-
-                    //if (m(this).hasAttr("data-router")) {
                     m.router.link(hrefValue);
                     return;
-                    //  }
-                    // window.location.href = hrefValue;
                 }
             }
+        });
+
+        // 导航 m-overflow-lr-menu 
+        var $el_parent = m(self.el).find(".m-overflow-lr-nav.m-overflow-lr-menu");
+        var $el_menu = $el_parent.find(".m-overflow-lr-item");
+        $el_menu.on("tap", function (event) {
+
+            m(this).addClass("active").siblings().removeClass("active");
+
+            // 定位到左边
+            // $el_parent.scrollLeft(m(this).offsetLeft(),200)；
+
+            // 定位到中间
+            var $el_parent_w = $el_parent.outerWidth();
+            console.log($el_parent_w);
         });
     };
 

@@ -625,9 +625,10 @@
                             obj.$moveElment.addClass("m-router-box-move");
                         }
 
-                       
                         // 移动当前的路由页
                         obj.$moveElment.translateX(translateX).translateZ(0);
+                    
+
 
                         // 上一个元素的移动
                         Router.isOneMove = false;
@@ -641,6 +642,11 @@
                         }
 
                         obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0);
+
+                        // 移动当前的路由页 透明度
+                        var _window_w = m(window).width();
+                        var $mask = m("[data-router-id=m-router-" + _id+"]");
+                        $mask.css("opacity", (0.5-translateX /(_window_w)));
 
                     }
                 }
@@ -903,12 +909,12 @@
 
             // 监听页面隐藏 触发的事件
             $p.emit("m-router-hide", [$p, _id]);  
-
+            m("[data-router-id=m-router-" + _id + "]").css("opacity",0).remove();
             var $prevEl = Router.getPrevEl();
             $prevEl.transition(transition).translateX(0);
             setTimeout(function () {
 
-            m("[data-router-id=m-router-" + _id + "]").remove();
+         
                 $p.remove();
                 Router.removeId(_id);
 

@@ -69,8 +69,6 @@
             }
         });
 
-
-
         $el.touch(function (event) { event.stopPropagation(); }, function (event, obj) {
          
             if (obj.isX) {
@@ -89,17 +87,29 @@
                 if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
                     return;
                 } else {
-
-                    //if (m(this).hasAttr("data-router")) {
                     m.router.link(hrefValue);
                     return;
-                    //  }
-                    // window.location.href = hrefValue;
                 }
 
             }
         });
-    
+
+        // 导航 m-overflow-lr-menu 
+        var $el_parent = m(self.el).find(".m-overflow-lr-nav.m-overflow-lr-menu");
+        var $el_menu = $el_parent.find(".m-overflow-lr-item");
+        $el_menu.on("tap", function (event) {
+
+            m(this).addClass("active").siblings().removeClass("active");
+         
+            // 定位到左边
+           // $el_parent.scrollLeft(m(this).offsetLeft(),200)；
+
+           // 定位到中间
+            var $el_parent_w = $el_parent.outerWidth();
+            console.log($el_parent_w);
+
+        });
+
 
     };
 

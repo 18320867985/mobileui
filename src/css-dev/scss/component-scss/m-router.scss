@@ -10,7 +10,8 @@
     right: 0;
     bottom: 0;
     background:#000;
-    opacity:.01;
+    opacity:0;
+    
 }
 
 @keyframes m-router-dh{
@@ -98,7 +99,7 @@
 
 
 .m-router-box-move {
-     box-shadow:0 -5px 5px rgba(0,0,0,.2);
+     box-shadow:0 0 1rem rgba(0,0,0,.5);
 }
 
 
@@ -115,7 +116,7 @@
     justify-content:flex-start;
     align-items:stretch;
     width: 100%;
- 
+   
 }
 
 .m-router-top{

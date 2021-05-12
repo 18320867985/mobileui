@@ -3022,8 +3022,12 @@ var mobileDom = createCommonjsModule(function (module) {
 				if (opt.timeout > 0) {
 					abortTimeoutId = setTimeout(function () {
 						xhr.onreadystatechange = function () {};
-						xhr.abort();
-						opt.error("timeout");
+						try {
+							xhr.abort();
+							opt.error("timeout");
+						} catch (exp) {
+							console.log("timeout");
+						}
 					}, opt.timeout);
 				}
 			};

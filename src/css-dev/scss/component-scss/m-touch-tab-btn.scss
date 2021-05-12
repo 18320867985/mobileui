@@ -9,21 +9,27 @@
     position: relative;
 
     .m-touch-tab-btn-cnt {
-
         display: flex;
         flex-flow: nowrap row;
         justify-content: center;
         align-items: center;
-      
     }
 
     &.m-touch-tab-btn-top {
         padding: .2rem 0;
         border-top: 1px solid $text-line;
+
+        .m-touch-tab-btn-item {
+            padding: .3rem .2rem;
+        }
     }
 
     &.m-touch-tab-btn-bottom {
         border-top: 1px solid $text-line;
+
+        .m-touch-tab-btn-item {
+            padding:.6rem .2rem;
+        }
     }
 
 
@@ -41,7 +47,6 @@
 .m-touch-tab-btn-item{
     flex:1;
     text-align:center;
-    padding:.5rem;
     font-size:.8rem;
     touch-action:none;
 

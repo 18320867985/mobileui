@@ -1698,8 +1698,12 @@ body {
   .m-touch-tab-btn.m-touch-tab-btn-top {
     padding: .2rem 0;
     border-top: 1px solid #f2f2f2; }
+    .m-touch-tab-btn.m-touch-tab-btn-top .m-touch-tab-btn-item {
+      padding: .3rem .2rem; }
   .m-touch-tab-btn.m-touch-tab-btn-bottom {
     border-top: 1px solid #f2f2f2; }
+    .m-touch-tab-btn.m-touch-tab-btn-bottom .m-touch-tab-btn-item {
+      padding: .6rem .2rem; }
   .m-touch-tab-btn .m-touch-tab-btn-line {
     position: absolute;
     left: 0;
@@ -1715,7 +1719,6 @@ body {
       -ms-flex: 1;
           flex: 1;
   text-align: center;
-  padding: .5rem;
   font-size: .8rem;
   -ms-touch-action: none;
       touch-action: none; }

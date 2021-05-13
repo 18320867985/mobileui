@@ -911,8 +911,6 @@
             var $prevEl = Router.getPrevEl();
             $prevEl.transition(transition).translateX(0);
             setTimeout(function () {
-
-         
                 $p.remove();
                 Router.removeId(_id);
 
@@ -963,10 +961,8 @@
     // 生命周期函数--监听页面隐藏
     Router.onHide = function (el,fn) {
 
-        m(el).on("m-router-hide", function (event, $p,id) {
-           
+        m(el).on("m-router-hide", function (event, $p,id) {   
             if (Router.getId() === id) { fn.call($p, $p); }
-           
         });
     };
 

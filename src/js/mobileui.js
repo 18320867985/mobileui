@@ -4754,7 +4754,6 @@ css3 transition
             var $prevEl = Router.getPrevEl();
             $prevEl.transition(transition).translateX(0);
             setTimeout(function () {
-
                 $p.remove();
                 Router.removeId(_id);
 
@@ -4805,7 +4804,6 @@ css3 transition
     Router.onHide = function (el, fn) {
 
         m(el).on("m-router-hide", function (event, $p, id) {
-
             if (Router.getId() === id) {
                 fn.call($p, $p);
             }

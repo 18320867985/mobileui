@@ -645,7 +645,7 @@
 
                         // 移动当前的路由页 透明度
                         var _window_w = m(window).width();
-                        obj.maskEl.css("opacity", (0.4-translateX /(_window_w)));
+                        obj.maskEl.css("opacity", (0.5-translateX /(_window_w)));
 
                     }
                 }

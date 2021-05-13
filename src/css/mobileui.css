@@ -2541,8 +2541,8 @@ body {
     -webkit-tap-highlight-color: transparent !important; }
 
 .m-router-box-move {
-  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3); }
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2); }
 
 .m-router-cnt {
   position: fixed;

@@ -73,9 +73,9 @@
     }
 
     var _mOverflowTb = $.fn.mOverflowTb;
-    $.fn.mOverflowTb = Plugin;
+    m.fn.mOverflowTb = Plugin;
 
-    $("[data-toggle=m-overflow-tb]").each(function (e) {
+    m("[data-toggle=m-overflow-tb]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

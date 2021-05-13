@@ -25,7 +25,7 @@
 
         if (this.el === window || this.el === document) {
 
-            $(window).on("scroll", $.proxy(this._scrollImg, this));
+            m(window).on("scroll", $.proxy(this._scrollImg, this));
 
         }
         else if (this.el.nodeType === 1) {
@@ -103,9 +103,9 @@
     }
 
     var _mLazy = $.fn.mLazy;
-    $.fn.mLazy = Plugin;
+    m.fn.mLazy = Plugin;
 
-    $(window).on("load.m-lazy", function () {
+    m(window).on("load.m-lazy", function () {
         $("[data-toggle=m-lazy]").each(function () {
             var $this = $(this);
             var src = $this.attr("data-lazy") || "";

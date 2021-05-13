@@ -269,9 +269,9 @@
     }
 
     var _mTouchNavTb = $.fn.mTouchNavTb;
-    $.fn.mTouchNavTb = Plugin;
+    m.fn.mTouchNavTb = Plugin;
 
-    $("[data-toggle=m-touch-nav-tb]").each(function (e) {
+    m("[data-toggle=m-touch-nav-tb]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

@@ -144,9 +144,9 @@
     }
 
     var _mIndexlist = $.fn.mIndexlist;
-    $.fn.mIndexlist = Plugin;
+    m.fn.mIndexlist = Plugin;
 
-    $("[data-toggle=m-indexlist]").each(function (e) {
+    m("[data-toggle=m-indexlist]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

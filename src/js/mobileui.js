@@ -131,7 +131,7 @@ var mobileDom = createCommonjsModule(function (module) {
 			time = typeof time === "number" ? time : 400;
 			x = typeof x === "number" ? x : parseFloat(x);
 			x = isNaN(x) ? 0 : x;
-			var fx = 10;
+			var fx = 20;
 			var speed = 100;
 
 			self.clearTimeId = self.clearTimeId || 0;
@@ -4886,8 +4886,7 @@ $(function () {
     m.setLayout();
     m(window).on("resize", m.setLayout);
 
-    // a��ǩ����
-
+    // ��ֹĬ����Ϊ
     m("a").click(function (event) {
         event.preventDefault();
     });
@@ -4907,15 +4906,11 @@ $(function () {
         var isHref = m(this).hasAttr("href");
         var hrefValue = m(this).attr("href");
         if (isHref) {
-            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
                 return;
             } else {
-
-                //if (m(this).hasAttr("data-router")) {
                 m.router.link(hrefValue);
                 return;
-                //  }
-                // window.location.href = hrefValue;
             }
         }
     });
@@ -4943,6 +4938,7 @@ $(function () {
 
     // �Ƿ���ָ����ҳ��
     m.router.istouch = false;
+
     m(document).touch(function () {}, function (event, obj) {
         if (obj.isX) {
             m.router.istouch = true;
@@ -4964,15 +4960,14 @@ $(function () {
             } // �Ƿ��Ѿ���ʾmask
             m.router.back();
 
-            // �˳�appӦ��
-
+            // �˳�appӦ�� 
             if (m.router.getId() === 0) {
                 // �˳�Ӧ��
                 if (!m.router._quitOne) {
 
                     m.router._quitTime1 = new Date().getTime();
                     m.router._quitOne = true;
-                    console.log(m.router._quitTime1);
+                    //console.log(m.router._quitTime1);
                 } else {
                     m.router._quitTime2 = new Date().getTime();
 
@@ -5213,9 +5208,9 @@ $(function () {
     }
 
     var _mTouchSlide = $.fn.mTouchSlide;
-    $.fn.mTouchSlide = Plugin;
+    m.fn.mTouchSlide = Plugin;
 
-    $("[data-toggle=m-touch-slide]").each(function (e) {
+    m("[data-toggle=m-touch-slide]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5476,9 +5471,9 @@ $(function () {
     }
 
     var _mTouchNavLr = $.fn.mTouchNavLr;
-    $.fn.mTouchNavLr = Plugin;
+    m.fn.mTouchNavLr = Plugin;
 
-    $("[data-toggle=m-touch-nav]").each(function (e) {
+    m("[data-toggle=m-touch-nav]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5727,9 +5722,9 @@ $(function () {
     }
 
     var _mTouchNavTb = $.fn.mTouchNavTb;
-    $.fn.mTouchNavTb = Plugin;
+    m.fn.mTouchNavTb = Plugin;
 
-    $("[data-toggle=m-touch-nav-tb]").each(function (e) {
+    m("[data-toggle=m-touch-nav-tb]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5808,9 +5803,9 @@ $(function () {
     }
 
     var _mTableView = $.fn.mTableView;
-    $.fn.mTableView = Plugin;
+    m.fn.mTableView = Plugin;
 
-    $("[data-toggle=m-table-view]").each(function (e) {
+    m("[data-toggle=m-table-view]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5978,9 +5973,9 @@ $(function () {
     }
 
     var _mTouchTab = $.fn.mTouchTab;
-    $.fn.mTouchTab = Plugin;
+    m.fn.mTouchTab = Plugin;
 
-    $("[data-toggle=m-touch-tab]").each(function (e) {
+    m("[data-toggle=m-touch-tab]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -6076,9 +6071,9 @@ $(function () {
     }
 
     var _mTouchTabBtn = $.fn.mTouchTabBtn;
-    $.fn.mTouchTabBtn = Plugin;
+    m.fn.mTouchTabBtn = Plugin;
 
-    $("[data-toggle=m-touch-tab-btn]").each(function (e) {
+    m("[data-toggle=m-touch-tab-btn]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -6217,9 +6212,9 @@ $(function () {
     }
 
     var _mIndexlist = $.fn.mIndexlist;
-    $.fn.mIndexlist = Plugin;
+    m.fn.mIndexlist = Plugin;
 
-    $("[data-toggle=m-indexlist]").each(function (e) {
+    m("[data-toggle=m-indexlist]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -6334,9 +6329,9 @@ $(function () {
     }
 
     var _mListoption = $.fn.mListoption;
-    $.fn.mListoption = Plugin;
+    m.fn.mListoption = Plugin;
 
-    $("[data-toggle=m-listoption]").each(function (e) {
+    m("[data-toggle=m-listoption]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -6488,7 +6483,7 @@ $(function () {
         $(this).emit("check.m.checkbtn", [this, bl]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
 
         mCheckbtn: function mCheckbtn(v) {
             if (typeof v !== "undefined") {
@@ -6508,7 +6503,7 @@ $(function () {
         }
     });
 
-    $(document).on("tap", ".m-checkbtn-group-item", function (e) {
+    m(document).on("tap", ".m-checkbtn-group-item", function (e) {
 
         e.preventDefault();
         $(this).toggleClass("active");
@@ -6525,10 +6520,10 @@ $(function () {
         });
 
         // 触发自定义的事件
-        $(this).trigger("check.m.checkbtn.group", [arrs]);
+        m(this).trigger("check.m.checkbtn.group", [arrs]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
 
         mCheckbtnGroup: function mCheckbtnGroup(args) {
             var items = $(this).find(".m-checkbtn-group-item");
@@ -6622,44 +6617,44 @@ $(function () {
         }
     });
 
-    $(document).on("tap", ".m-radiobtn-item", function (e) {
+    m(document).on("tap", ".m-radiobtn-item", function (e) {
         e.preventDefault();
         var p = $(this).parents(".m-radiobtn-group");
         p.find(".m-radiobtn-item").removeClass("active");
-        $(this).addClass("active");
+        m(this).addClass("active");
 
         // 触发自定义的事件
-        $(this).trigger("check.m.radiobtn.group", [this, $(this).attr("data-val")]);
+        m(this).trigger("check.m.radiobtn.group", [this, $(this).attr("data-val")]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
 
         mRadiobtnGroup: function mRadiobtnGroup(index) {
 
             if (arguments.length >= 1) {
                 if (!isNaN(index)) {
                     index = Number(index);
-                    $(this).find(".m-radiobtn-item").removeClass("active");
-                    $(this).find(".m-radiobtn-item").eq(index).addClass("active");
+                    m(this).find(".m-radiobtn-item").removeClass("active");
+                    m(this).find(".m-radiobtn-item").eq(index).addClass("active");
 
                     // 触发自定义的事件
                     var $active = $(this).find(".m-radiobtn-item.active");
 
-                    $(this).trigger("check.m.radiobtn.group", [$active.get(0), $active.attr("data-val")]);
+                    m(this).trigger("check.m.radiobtn.group", [$active.get(0), $active.attr("data-val")]);
                 } else if (typeof index === "string") {
-                    var $list = $(this).find(".m-radiobtn-item");
+                    var $list = m(this).find(".m-radiobtn-item");
                     $list.removeClass("active");
                     $list.each(function () {
 
                         var v = $.trim($(this).attr("data-val") || "");
                         if (index === v) {
-                            $(this).addClass("active");
+                            m(this).addClass("active");
                         }
                     });
 
                     // 触发自定义的事件
                     var $active2 = $(this).find(".m-radiobtn-item.active");
-                    $(this).trigger("check.m.radiobtn.group", [$active2.get(0), $active2.attr("data-val")]);
+                    m(this).trigger("check.m.radiobtn.group", [$active2.get(0), $active2.attr("data-val")]);
                 }
             } else {
 
@@ -6710,7 +6705,7 @@ $(function () {
 
 (function () {
     // 单选组 m-checkbox-group
-    $(document).on("tap", ".m-checkbox-group-item", function (e) {
+    m(document).on("tap", ".m-checkbox-group-item", function (e) {
         e.preventDefault();
         $(this).toggleClass("active");
         var p = $(this).parents(".m-checkbox-group");
@@ -6721,10 +6716,10 @@ $(function () {
         });
 
         // 触发自定义的事件
-        $(this).trigger("check.m.checkbox.group", [p, vals]);
+        m(this).trigger("check.m.checkbox.group", [p, vals]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
         mCheckboxGroup: function mCheckboxGroup(args) {
             var items = $(this).find(".m-checkbox-group-item");
 
@@ -6799,7 +6794,7 @@ $(function () {
 (function () {
 
     // 单选 m-radiobox
-    $(document).on("tap", ".m-radiobox-item", function (e) {
+    m(document).on("tap", ".m-radiobox-item", function (e) {
         e.preventDefault();
         var p = $(this).parents(".m-radiobox-group");
         $(".m-radiobox-item", p).removeClass("active");
@@ -6810,7 +6805,7 @@ $(function () {
         $(this).trigger("check.m.radiobox.group", [this, v]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
 
         mRadioboxGroup: function mRadioboxGroup(args) {
             var items = $(this).find(".m-radiobox-item");
@@ -6827,7 +6822,7 @@ $(function () {
                 });
 
                 // 触发自定义的事件
-                $(this).trigger("check.m.radiobox.group", [$(this).find(".m-radiobox-item.active").get(0), v]);
+                m(this).trigger("check.m.radiobox.group", [$(this).find(".m-radiobox-item.active").get(0), v]);
             } else if (typeof args === "number") {
 
                 items.removeClass("active");
@@ -6854,7 +6849,7 @@ $(function () {
 
                 return;
             } else {
-                return $(this).find(".m-radiobox-item.active").attr("data-val") || "";
+                return m(this).find(".m-radiobox-item.active").attr("data-val") || "";
             }
         }
     });
@@ -7943,7 +7938,7 @@ $(function () {
 
         if (this.el === window || this.el === document) {
 
-            $(window).on("scroll", $.proxy(this._scrollImg, this));
+            m(window).on("scroll", $.proxy(this._scrollImg, this));
         } else if (this.el.nodeType === 1) {
             $(this.el).css("position", "relative");
             $(this.el).on("scroll", $.proxy(this._scrollImgByElement, this));
@@ -8016,9 +8011,9 @@ $(function () {
     }
 
     var _mLazy = $.fn.mLazy;
-    $.fn.mLazy = Plugin;
+    m.fn.mLazy = Plugin;
 
-    $(window).on("load.m-lazy", function () {
+    m(window).on("load.m-lazy", function () {
         $("[data-toggle=m-lazy]").each(function () {
             var $this = $(this);
             var src = $this.attr("data-lazy") || "";
@@ -8084,6 +8079,10 @@ $(function () {
         this.run();
     };
 
+    MOverflowLr.DEFAULT = {
+        tapTime: 250
+    };
+
     MOverflowLr.prototype.run = function () {
         var self = this;
         var $el = m(self.el).find(".m-overflow-lr-nav");
@@ -8138,6 +8137,7 @@ $(function () {
             }
         });
 
+        // 移动阻止冒泡行为
         $el.touch(function (event) {
             event.stopPropagation();
         }, function (event, obj) {
@@ -8149,6 +8149,7 @@ $(function () {
             event.stopPropagation();
         });
 
+        // 点击router 跳转
         $el.find("a").on("tap", function (event) {
             event.preventDefault();
 
@@ -8172,7 +8173,7 @@ $(function () {
             m(this).addClass("active").siblings().removeClass("active");
 
             // 定位到左边
-            // $el_parent.scrollLeft(m(this).offsetLeft(),200)；
+            $el_parent.scrollLeft(m(this).offsetLeft(), MOverflowLr.DEFAULT.tapTime);
 
             // 定位到中间
             var $el_parent_w = $el_parent.outerWidth();
@@ -8242,9 +8243,9 @@ $(function () {
     }
 
     var _mOverflowLr = $.fn.mOverflowLr;
-    $.fn.mOverflowLr = Plugin;
+    m.fn.mOverflowLr = Plugin;
 
-    $("[data-toggle=m-overflow-lr]").each(function (e) {
+    m("[data-toggle=m-overflow-lr]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -8317,9 +8318,9 @@ $(function () {
     }
 
     var _mOverflowTb = $.fn.mOverflowTb;
-    $.fn.mOverflowTb = Plugin;
+    m.fn.mOverflowTb = Plugin;
 
-    $("[data-toggle=m-overflow-tb]").each(function (e) {
+    m("[data-toggle=m-overflow-tb]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });

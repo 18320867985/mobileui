@@ -263,9 +263,9 @@
     }
 
     var _mTouchSlide = $.fn.mTouchSlide;
-    $.fn.mTouchSlide = Plugin;
+    m.fn.mTouchSlide = Plugin;
 
-    $("[data-toggle=m-touch-slide]").each(function (e) {
+    m("[data-toggle=m-touch-slide]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

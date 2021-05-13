@@ -15,7 +15,7 @@
     });
 
 
-    $.fn.extend({
+    m.fn.extend({
 
         mCheckbtn: function (v) {
             if (typeof v !== "undefined") {
@@ -36,7 +36,7 @@
         }
     });
 
-    $(document).on("tap", ".m-checkbtn-group-item", function (e) {
+    m(document).on("tap", ".m-checkbtn-group-item", function (e) {
 
         e.preventDefault();
         $(this).toggleClass("active");
@@ -54,11 +54,11 @@
         });
 
         // 触发自定义的事件
-        $(this).trigger("check.m.checkbtn.group", [arrs]);
+        m(this).trigger("check.m.checkbtn.group", [arrs]);
     });
 
 
-    $.fn.extend({
+    m.fn.extend({
 
         mCheckbtnGroup: function (args) {
             var items = $(this).find(".m-checkbtn-group-item");
@@ -166,46 +166,46 @@
     });
 
 
-    $(document).on("tap", ".m-radiobtn-item", function (e) {
+    m(document).on("tap", ".m-radiobtn-item", function (e) {
         e.preventDefault();
         var p = $(this).parents(".m-radiobtn-group");
         p.find(".m-radiobtn-item").removeClass("active");
-        $(this).addClass("active");
+        m(this).addClass("active");
 
         // 触发自定义的事件
-        $(this).trigger("check.m.radiobtn.group", [this, $(this).attr("data-val")]);
+        m(this).trigger("check.m.radiobtn.group", [this, $(this).attr("data-val")]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
 
         mRadiobtnGroup: function (index) {
 
             if (arguments.length >= 1) {
                 if (!isNaN(index)) {
                     index = Number(index);
-                    $(this).find(".m-radiobtn-item").removeClass("active");
-                    $(this).find(".m-radiobtn-item").eq(index).addClass("active");
+                    m(this).find(".m-radiobtn-item").removeClass("active");
+                    m(this).find(".m-radiobtn-item").eq(index).addClass("active");
 
                     // 触发自定义的事件
                     var $active = $(this).find(".m-radiobtn-item.active");
                    
-                    $(this).trigger("check.m.radiobtn.group", [$active.get(0) ,$active.attr("data-val")]);
+                    m(this).trigger("check.m.radiobtn.group", [$active.get(0) ,$active.attr("data-val")]);
                 }
                 else if (typeof index === "string") {
-                    var $list = $(this).find(".m-radiobtn-item");
+                    var $list = m(this).find(".m-radiobtn-item");
                     $list.removeClass("active");
                     $list.each(function () {
 
                         var v = $.trim($(this).attr("data-val") || "");
                         if (index === v) {
-                            $(this).addClass("active");
+                            m(this).addClass("active");
                         }
 
                     });
 
                     // 触发自定义的事件
                     var $active2 = $(this).find(".m-radiobtn-item.active");
-                    $(this).trigger("check.m.radiobtn.group", [$active2.get(0), $active2.attr("data-val")]);
+                    m(this).trigger("check.m.radiobtn.group", [$active2.get(0), $active2.attr("data-val")]);
                 }
             } else {
               

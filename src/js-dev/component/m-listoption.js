@@ -128,9 +128,9 @@
     }
 
     var _mListoption = $.fn.mListoption;
-    $.fn.mListoption = Plugin;
+    m.fn.mListoption = Plugin;
 
-    $("[data-toggle=m-listoption]").each(function (e) {
+    m("[data-toggle=m-listoption]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });

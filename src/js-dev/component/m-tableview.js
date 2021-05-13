@@ -84,9 +84,9 @@
     }
 
     var _mTableView = $.fn.mTableView;
-    $.fn.mTableView = Plugin;
+    m.fn.mTableView = Plugin;
 
-    $("[data-toggle=m-table-view]").each(function (e) {
+    m("[data-toggle=m-table-view]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

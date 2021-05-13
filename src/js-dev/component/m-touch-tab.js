@@ -185,9 +185,9 @@
     }
 
     var _mTouchTab = $.fn.mTouchTab;
-    $.fn.mTouchTab = Plugin;
+    m.fn.mTouchTab = Plugin;
 
-    $("[data-toggle=m-touch-tab]").each(function (e) {
+    m("[data-toggle=m-touch-tab]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

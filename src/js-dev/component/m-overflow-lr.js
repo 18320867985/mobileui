@@ -11,6 +11,10 @@
         this.run();
     };
 
+    MOverflowLr.DEFAULT = {
+        tapTime:250
+    }
+
     MOverflowLr.prototype.run = function () {
         var self = this;
         var $el = m(self.el).find(".m-overflow-lr-nav");
@@ -19,7 +23,7 @@
 
         // 设置滑动条
         if (self.options.bar) {
-            self.setBar();
+            self.setBar(); 
         }
 
         // document
@@ -69,15 +73,16 @@
             }
         });
 
+        // 移动阻止冒泡行为
         $el.touch(function (event) { event.stopPropagation(); }, function (event, obj) {
          
             if (obj.isX) {
                 event.stopPropagation();
-  
             }
            
         }, function (event) { event.stopPropagation(); });
 
+         // 点击router 跳转
         $el.find("a").on("tap",function (event) {
             event.preventDefault();
 
@@ -102,7 +107,7 @@
             m(this).addClass("active").siblings().removeClass("active");
          
             // 定位到左边
-           // $el_parent.scrollLeft(m(this).offsetLeft(),200)；
+            $el_parent.scrollLeft(m(this).offsetLeft(), MOverflowLr.DEFAULT.tapTime);
 
            // 定位到中间
             var $el_parent_w = $el_parent.outerWidth();
@@ -176,9 +181,9 @@
     }
 
     var _mOverflowLr = $.fn.mOverflowLr;
-    $.fn.mOverflowLr = Plugin;
+    m.fn.mOverflowLr = Plugin;
 
-    $("[data-toggle=m-overflow-lr]").each(function (e) {
+    m("[data-toggle=m-overflow-lr]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

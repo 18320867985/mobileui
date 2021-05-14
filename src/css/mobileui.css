@@ -2049,8 +2049,8 @@ body {
 
 .m-indexlist-gp {
   position: absolute;
-  right: 0;
   top: 0;
+  right: 0;
   bottom: 0;
   z-index: 2;
   display: -webkit-box;
@@ -2060,23 +2060,34 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-flow: nowrap column;
           flex-flow: nowrap column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 1.5rem;
   background: rgba(0, 0, 0, 0.1); }
   .m-indexlist-gp .m-indexlist-gp-ttl {
     -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    width: 1.4rem;
-    height: .7rem;
-    color: #333;
-    text-align: center; }
+        -ms-flex: 1 1  .7rem;
+            flex: 1 1  .7rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 .2rem;
+    font-size: .7rem;
+    color: #333; }
     .m-indexlist-gp .m-indexlist-gp-ttl.active {
-      color: #337ab7;
-      /* background: $text-primary;*/ }
+      color: white;
+      background: #337ab7;
+      border-radius: 5px; }
 
 .m-indexlist-tip {
   position: absolute;

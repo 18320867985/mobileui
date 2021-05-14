@@ -40,27 +40,36 @@
 
 .m-indexlist-gp {
     position: absolute;
-    right: 0;
+  
     top: 0;
-    bottom: 0;
+
+    right:0;
+    bottom:0;
     z-index: 2;
     display: flex;
     flex-flow: nowrap column;
-    justify-content: space-around;
-    align-items: center;
+   justify-content:space-between;
+    align-items:center;
+    width:1.5rem;
+   
  
     background: rgba(0,0,0,.1);
 
     .m-indexlist-gp-ttl {
-        flex: 1;
-        width: 1.4rem;
-        height:.7rem;
-        color: $text-df;
-        text-align:center;
+       flex: 1 1  .7rem ;
+       display:flex;
+       justify-content:center;
+       align-items:center;
+       padding: 0 .2rem;
+       
+       font-size:.7rem;
+       color: $text-df;
+      
        
         &.active {
-            color: $text-primary;
-            /* background: $text-primary;*/
+            color:white;
+            background: $text-primary;
+            border-radius:5px;
         }
     }
 }

@@ -5243,6 +5243,7 @@ $(function () {
         });
 
         self.speedSetIntervalId = 0; // 计算速度定时器id
+
         $m_touch_lr.touch(function (event, obj) {
             event.preventDefault();
             obj.moveElmentX = $moveElement.translateX();
@@ -5268,7 +5269,7 @@ $(function () {
                     self.speedlateX3 = parseFloat(self.speedlateX2) - parseFloat(self.speedlateX);
                     self.speedlateX = self.speedlateX2;
                     self.speedScroll = self.speedlateX3;
-                }, 20);
+                }, 50);
             }
             //  }
 
@@ -5328,7 +5329,7 @@ $(function () {
                     self.speedScroll = -200;
                 }
 
-                target = target + self.speedScroll * (wraperWidth / 20);
+                target = target + self.speedScroll * (wraperWidth / 120);
 
                 //  }
 
@@ -5531,7 +5532,7 @@ $(function () {
                     self.speedlateY3 = parseFloat(self.speedlateY2) - parseFloat(self.speedlateY);
                     self.speedlateY = self.speedlateY2;
                     self.speedScroll = self.speedlateY3;
-                }, 20);
+                }, 50);
             }
             //   }
 
@@ -5585,7 +5586,7 @@ $(function () {
                     self.speedScroll = -200;
                 }
 
-                target = target + self.speedScroll * (wraperHeight / 20);
+                target = target + self.speedScroll * (wraperHeight / 120);
                 //   }
 
                 if (target > 0) {
@@ -7329,7 +7330,7 @@ $(function () {
                         self.speedlateY3 = parseFloat(self.speedlateY2) - parseFloat(self.speedlateY);
                         self.speedlateY = self.speedlateY2;
                         self.speedScroll = self.speedlateY3;
-                    }, 20);
+                    }, 50);
                 }
             }, function (event, obj) {
 
@@ -7368,7 +7369,7 @@ $(function () {
                         self.speedScroll = -200;
                     }
 
-                    target = target + self.speedScroll * (wraperHeight / 50);
+                    target = target + self.speedScroll * (wraperHeight / 160);
 
                     // picker-item  first element
                     var middelHeight = wraperHeight / 2 - liHeight / 2;
@@ -8078,6 +8079,7 @@ $(function () {
 
     MOverflowLr.DEFAULT = {
         tapTime: 250
+
     };
 
     MOverflowLr.prototype.run = function () {

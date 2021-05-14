@@ -33,6 +33,7 @@
         });
 
         self.speedSetIntervalId = 0;  // 计算速度定时器id
+
         $m_touch_lr.touch(
 
             function (event, obj) {
@@ -61,7 +62,7 @@
                             self.speedlateX = self.speedlateX2;
                             self.speedScroll = self.speedlateX3;
                            
-                        }, 20);
+                        }, 50);
                     }
               //  }
 
@@ -126,8 +127,7 @@
                             self.speedScroll = -200;
                         }
 
-
-                        target = target + self.speedScroll * (wraperWidth / 20);
+                        target = target + self.speedScroll * (wraperWidth / 120);
 
                   //  }
 

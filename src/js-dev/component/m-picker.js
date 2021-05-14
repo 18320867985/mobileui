@@ -121,7 +121,7 @@
                             self.speedScroll = self.speedlateY3;
 
 
-                        }, 20);
+                        }, 50);
                     }
 
                 },
@@ -167,7 +167,7 @@
                             self.speedScroll = -200;
                         }
 
-                        target = target + self.speedScroll * (wraperHeight / 50);
+                        target = target + self.speedScroll * (wraperHeight / 160);
 
                         // picker-item  first element
                         var middelHeight = wraperHeight / 2 - liHeight/2;

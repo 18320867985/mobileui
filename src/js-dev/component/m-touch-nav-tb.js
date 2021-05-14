@@ -63,7 +63,7 @@
                             self.speedScroll = self.speedlateY3;
                           
 
-                        }, 20);
+                        }, 50);
                     }
              //   }
 
@@ -126,7 +126,7 @@
                             self.speedScroll = -200;
                         }
 
-                        target = target + self.speedScroll * (wraperHeight/20);
+                        target = target + self.speedScroll * (wraperHeight/120);
                  //   }
 
                     if (target > 0) {

@@ -2006,9 +2006,7 @@ body {
 /* 导航 */
 .m-overflow-lr-nav.m-overflow-lr-menu {
   padding: .3rem 0;
-  background: white;
-  -webkit-box-shadow: 0rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1) inset, 0rem -0.1rem 0.2rem rgba(0, 0, 0, 0.1) inset;
-          box-shadow: 0rem 0.1rem 0.2rem rgba(0, 0, 0, 0.1) inset, 0rem -0.1rem 0.2rem rgba(0, 0, 0, 0.1) inset; }
+  background: white; }
   .m-overflow-lr-nav.m-overflow-lr-menu .m-overflow-lr-item > a {
     display: block;
     padding: .3rem .7rem;

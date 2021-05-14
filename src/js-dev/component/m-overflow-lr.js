@@ -12,7 +12,8 @@
     };
 
     MOverflowLr.DEFAULT = {
-        tapTime:250
+        tapTime: 250,
+        
     }
 
     MOverflowLr.prototype.run = function () {

@@ -601,7 +601,7 @@
                    
                     obj.isMove = true;
                 }
-
+               // obj.window_w = m(window).width();
                 self.obj = obj;
 
             },
@@ -643,9 +643,8 @@
 
                         obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0);
 
-                        // 移动mask页 透明度
-                        var _window_w = m(window).width();
-                        obj.maskEl.css("opacity", (0.4-translateX /(_window_w*1.3)));
+                        // 移动mask页 透明度             
+                        //obj.maskEl.css("opacity", (0.1 - translateX / (obj.window_w*10)));
                     }
                 }
             },

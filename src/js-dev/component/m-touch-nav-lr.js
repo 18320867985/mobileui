@@ -127,7 +127,7 @@
                             self.speedScroll = -200;
                         }
 
-                        target = target + self.speedScroll * (wraperWidth / 120);
+                        target = target + self.speedScroll * (wraperWidth / 100);
 
                   //  }
 

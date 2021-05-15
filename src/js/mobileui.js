@@ -5329,7 +5329,7 @@ $(function () {
                     self.speedScroll = -200;
                 }
 
-                target = target + self.speedScroll * (wraperWidth / 120);
+                target = target + self.speedScroll * (wraperWidth / 100);
 
                 //  }
 
@@ -5586,7 +5586,7 @@ $(function () {
                     self.speedScroll = -200;
                 }
 
-                target = target + self.speedScroll * (wraperHeight / 120);
+                target = target + self.speedScroll * (wraperHeight / 200);
                 //   }
 
                 if (target > 0) {
@@ -7369,7 +7369,7 @@ $(function () {
                         self.speedScroll = -200;
                     }
 
-                    target = target + self.speedScroll * (wraperHeight / 160);
+                    target = target + self.speedScroll * (wraperHeight / 200);
 
                     // picker-item  first element
                     var middelHeight = wraperHeight / 2 - liHeight / 2;

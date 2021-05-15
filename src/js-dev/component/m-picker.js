@@ -167,7 +167,7 @@
                             self.speedScroll = -200;
                         }
 
-                        target = target + self.speedScroll * (wraperHeight / 160);
+                        target = target + self.speedScroll * (wraperHeight / 200);
 
                         // picker-item  first element
                         var middelHeight = wraperHeight / 2 - liHeight/2;

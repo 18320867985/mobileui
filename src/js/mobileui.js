@@ -5233,13 +5233,16 @@ $(function () {
             event.stopPropagation();
 
             // 选中的样式移动
-            if (self.options.left) {
+            //if (self.options.left) {
 
-                self.left.call(self, this); // 移动到left
-            } else {
+            //    self.left.call(self, this); // 移动到left
+            //}
+            //else {
 
-                self.center.call(self, this); // 移动到center
-            }
+            //    self.center.call(self, this);   // 移动到center
+            //}
+
+            self.center.call(self, this); // 移动到center
         });
 
         self.speedSetIntervalId = 0; // 计算速度定时器id
@@ -5435,13 +5438,16 @@ $(function () {
     MTouchNavLr.prototype.set = function (el, bl) {
         var self = this;
         // 选中的样式移动
-        if (self.options.left) {
+        //if (self.options.left) {
 
-            self.left.call(self, el, bl); // 移动到left
-        } else {
+        //    self.left.call(self, el,bl); // 移动到left
+        //}
+        //else {
 
-            self.center.call(self, el, bl); // 移动到center
-        }
+        //    self.center.call(self, el,bl);   // 移动到center
+        //}
+
+        self.center.call(self, el, bl); // 移动到center
     };
 
     function Plugin(option, el, bl) {
@@ -5456,8 +5462,8 @@ $(function () {
                 var o = {};
                 o.limitLeft = $this.hasAttr("data-limit-left");
                 o.limitRight = $this.hasAttr("data-limit-right");
-                o.left = $this.hasAttr("data-left");
-                o.center = $this.hasAttr("data-center");
+                //  o.left = $this.hasAttr("data-left");
+                //  o.center = $this.hasAttr("data-center");
                 var p = $.extend({}, o, options);
                 $this.data('m-touch-nav', data = new MTouchNavLr(this, p));
             }
@@ -5497,13 +5503,15 @@ $(function () {
             event.stopPropagation();
 
             // 选中的样式移动
-            if (self.options.top) {
+            //if (self.options.top) {
 
-                self.top.call(self, this); // 移动到top
-            } else {
+            //    self.top.call(self, this); // 移动到top
+            //}
+            //else {
 
-                self.center.call(self, this); // 移动到center
-            }
+            //    self.center.call(self, this);   // 移动到center
+            //}
+            self.center.call(self, this); // 移动到center
         });
 
         self.speedSetIntervalId = 0; // 计算速度定时器id
@@ -5685,13 +5693,16 @@ $(function () {
     MTouchNavTb.prototype.set = function (el, bl) {
         var self = this;
         // 选中的样式移动
-        if (self.options.top) {
+        //if (self.options.top) {
 
-            self.top.call(self, el, bl); // 移动到left
-        } else {
+        //    self.top.call(self, el, bl); // 移动到left
+        //}
+        //else {
 
-            self.center.call(self, el, bl); // 移动到center
-        }
+        //    self.center.call(self, el, bl);   // 移动到center
+        //}
+
+        self.center.call(self, el, bl); // 移动到center
     };
 
     function Plugin(option, el, bl) {
@@ -5707,7 +5718,7 @@ $(function () {
                 o.limitTop = $this.hasAttr("data-limit-top");
                 o.limitBottom = $this.hasAttr("data-limit-bottom");
                 o.top = $this.hasAttr("data-top");
-                o.center = $this.hasAttr("data-center");
+                // o.center = $this.hasAttr("data-center");
 
                 var p = $.extend({}, o, options);
                 $this.data('m-touch-nav-tb', data = new MTouchNavTb(this, p));
@@ -8078,7 +8089,8 @@ $(function () {
     };
 
     MOverflowLr.DEFAULT = {
-        tapTime: 250
+        tapTime: 200,
+        center: true
 
     };
 
@@ -8113,7 +8125,7 @@ $(function () {
                 self.moveBar(srlLeft);
             }
 
-            // 滚动顶 部触发的事件
+            // 滚动顶部触发的事件
             if (srlLeft <= 0) {
                 //  e.stopPropagation();
                 $el.emit("reachleft.m.overflow.lr", [this, { elementWidth: elW, scrollWidth: srlW, scrollLeft: srlLeft }]);
@@ -8167,16 +8179,22 @@ $(function () {
         // 导航 m-overflow-lr-menu 
         var $el_parent = m(self.el).find(".m-overflow-lr-nav.m-overflow-lr-menu");
         var $el_menu = $el_parent.find(".m-overflow-lr-item");
+        var $el_menu_w2 = $el_menu.outerWidth() / 2;
+
         $el_menu.on("tap", function (event) {
 
             m(this).addClass("active").siblings().removeClass("active");
 
             // 定位到左边
-            $el_parent.scrollLeft(m(this).offsetLeft(), MOverflowLr.DEFAULT.tapTime);
+
+            //  $el_parent.scrollLeft(m(this).offsetLeft(), MOverflowLr.DEFAULT.tapTime);
 
             // 定位到中间
-            var $el_parent_w = $el_parent.outerWidth();
-            console.log($el_parent_w);
+            var $el_parent_w = $el_parent.outerWidth() / 2;
+            $el_parent.scrollLeft(m(this).offsetLeft() - ($el_parent_w - $el_menu_w2), MOverflowLr.DEFAULT.tapTime);
+
+            // tap选中触发的事件
+            m(this).emit("tap.m.overflow.lr", [this]);
         });
     };
 
@@ -8231,6 +8249,8 @@ $(function () {
             if (!data) {
                 var o = {};
                 o.bar = $this.hasAttr("data-bar");
+                //o.center = MOverflowLr.DEFAULT.center;
+                //o.center = $this.hasAttr("data-center");
                 var p = $.extend({}, o, options);
                 $this.data('m-overflow-lr', data = new MOverflowLr(this, p));
             }

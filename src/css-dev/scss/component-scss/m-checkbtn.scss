@@ -87,20 +87,35 @@
         margin-left: 1rem;
     }
 
-    .m-radiobtn-item {
-        float: left;
-        padding: .5rem .75rem;
-        color: #666;
-        background: #f0f0f0;
-        border-radius: .5rem;
-        cursor: pointer;
+.m-radiobtn-item {
+    float: left;
+    padding: .5rem .75rem;
+    color: #666;
+    background: #f0f0f0;
+    border-radius: .5rem;
+    cursor: pointer;
 
-        &.m-radiobtn-item {
-            margin-left: .5rem;
-        }
+    &.m-radiobtn-item {
+        margin-left: .5rem;
 
         &.active {
             background: $text-primary;
-            color: #fff;
+            color: $bg-white;
+        }
+
+        &.active.text-success {
+            background: $text-success;
+            color: $bg-white;
+        }
+
+        &.active.text-warning {
+            background: $text-warning;
+            color: $bg-white;
+        }
+
+        &.active.text-danger {
+            background: $text-danger;
+            color: $bg-white;
         }
     }
+}

@@ -21,14 +21,16 @@
             event.stopPropagation();
 
             // 选中的样式移动
-            if (self.options.left) {
+            //if (self.options.left) {
 
-                self.left.call(self, this); // 移动到left
-            }
-            else {
+            //    self.left.call(self, this); // 移动到left
+            //}
+            //else {
 
-                self.center.call(self, this);   // 移动到center
-            }
+            //    self.center.call(self, this);   // 移动到center
+            //}
+
+            self.center.call(self, this);   // 移动到center
 
         });
 
@@ -248,14 +250,16 @@
     MTouchNavLr.prototype.set = function (el,bl) {
         var self = this;
         // 选中的样式移动
-        if (self.options.left) {
+        //if (self.options.left) {
 
-            self.left.call(self, el,bl); // 移动到left
-        }
-        else {
+        //    self.left.call(self, el,bl); // 移动到left
+        //}
+        //else {
 
-            self.center.call(self, el,bl);   // 移动到center
-        }
+        //    self.center.call(self, el,bl);   // 移动到center
+        //}
+
+        self.center.call(self, el, bl);   // 移动到center
     };
 
     function Plugin(option,el,bl) {
@@ -270,8 +274,8 @@
                 var o = {};
                 o.limitLeft = $this.hasAttr("data-limit-left");
                 o.limitRight = $this.hasAttr("data-limit-right");
-                o.left = $this.hasAttr("data-left");
-                o.center = $this.hasAttr("data-center");
+              //  o.left = $this.hasAttr("data-left");
+              //  o.center = $this.hasAttr("data-center");
                 var p = $.extend({}, o, options);
                 $this.data('m-touch-nav', data = new MTouchNavLr(this, p));
             }

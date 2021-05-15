@@ -56,7 +56,7 @@
             align-items: center;
             width: 10%;
             font-size:.8rem;
-            color: #999;
+            color: $table-view-icon;
         }
 
         .m-table-view-ttl > .iconfont {
@@ -68,7 +68,7 @@
 
 .m-table-view > .m-table-view-cell.in {
     .m-table-view-ttl {
-       // color: $text-primary;
+        
     }
 
     .m-table-view-ttl > .iconfont {
@@ -96,7 +96,7 @@
 
 .m-table-view-collapse {
     width: 100%;
-    background: #f8f8f8;
+    background: $body-bg;
     display: none;
     margin-left: 15rem/$rem;
 
@@ -107,7 +107,7 @@
         font-size: 14rem/$rem;
 
         & + .m-table-view-collapse-cell {
-            border-top: 1px solid #ddd;
+            border-top: 1px solid $text-border;
         }
 
         a {
@@ -120,6 +120,7 @@
             white-space: nowrap;
             word-wrap: break-word;
             overflow-x: hidden;
+            color:$active;
         }
 
         .iconfont {
@@ -128,7 +129,7 @@
             align-items: center;
             width: 10%;
             font-size: .8rem;
-            color: #999;
+            color:$table-view-icon;
         }
     }
 }

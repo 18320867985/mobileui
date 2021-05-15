@@ -26,11 +26,11 @@
             display: block;
             padding: 0 20rem/$rem;
             line-height: 40rem/$rem;
-            color: #020202;
+            
         }
 
         &.active {
-            background: $text-primary;
+            background: $active;
             color: $text-white;
 
             a {

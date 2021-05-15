@@ -13,35 +13,63 @@ $remSize:18.75;
 $rem:20;
 
 /* text-color*/
+$font-family: "Helvetica Neue", Helvetica, sans-serif !default;
+$font-size: .85rem !default;
+$line-height: 1.4 !default;
+
+
 $text-white:#fff;
-$text-primary: darken(#428bca, 6.5%) !default; // #337ab7
+$text-muted: #ddd !default;
+$text-primary: darken(#428bca, 6.5%) !default; 
 $text-success: #5cb85c !default;
 $text-info: #5bc0de !default;
 $text-warning: #f0ad4e !default;
 $text-danger: #d9534f !default;
-$text-df: #333 !default;
-$text-muted:#ddd !default;
-$text-gray: #777!default;
-$h-color: #444;
-$text-placeholer:#999;
 
+$text-df: #333 !default;
+$text-gray: #777!default;
+
+
+/*选中激活样式*/
+$active: $text-success; 
+
+/*body*/
+$body-bg: #f8f8f8;
+$bg-white: #fff;
+
+
+/*loding组件*/
 $text-loading: $text-gray;
+
+/*线条*/
 $text-line: #f2f2f2;
+
+/*边框颜色*/
 $text-border: #ddd;
 
-$font-family:"Helvetica Neue",
-Helvetica,
-sans-serif !default;
-$font-size:.85rem !default;
+/*input 提示文字*/
+$text-placeholer:#999;
 
-$line-height:1.4 !default;
-$body-bg:#f8f8f8;
-$body-color: $text-df;
-$icon-color:$h-color;
+/*标题文字*/
+$h-color: #444;
 
-$bg-white:#fff;
+
+/*路由页标题*/
+$router-ttl: $h-color;
+$router-back-icon: $text-gray;
+
+/*icon图标*/
+$icon-color: $h-color;
+
+/*switch 组件*/
 $switch: #c6c6c6;
 $switch-rd: $text-gray;
+
+/*table-view 组件 */
+$table-view-icon: #999;
+
+/*check 组件*/
+$check-icon: #999;
 
  
 

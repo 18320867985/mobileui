@@ -12,7 +12,8 @@
     };
 
     MOverflowLr.DEFAULT = {
-        tapTime: 250,
+        tapTime: 200,
+        center:true
         
     }
 
@@ -48,7 +49,7 @@
                
             }
 
-            // 滚动顶 部触发的事件
+            // 滚动顶部触发的事件
             if (srlLeft <= 0) {
               //  e.stopPropagation();
                 $el.emit("reachleft.m.overflow.lr", [this, { elementWidth: elW, scrollWidth: srlW, scrollLeft: srlLeft }]);
@@ -103,16 +104,22 @@
         // 导航 m-overflow-lr-menu 
         var $el_parent = m(self.el).find(".m-overflow-lr-nav.m-overflow-lr-menu");
         var $el_menu = $el_parent.find(".m-overflow-lr-item");
+        var $el_menu_w2 = $el_menu.outerWidth() / 2;
+
         $el_menu.on("tap", function (event) {
 
             m(this).addClass("active").siblings().removeClass("active");
          
             // 定位到左边
-            $el_parent.scrollLeft(m(this).offsetLeft(), MOverflowLr.DEFAULT.tapTime);
+
+            //  $el_parent.scrollLeft(m(this).offsetLeft(), MOverflowLr.DEFAULT.tapTime);
 
            // 定位到中间
-            var $el_parent_w = $el_parent.outerWidth();
-            console.log($el_parent_w);
+            var $el_parent_w = $el_parent.outerWidth()/2;
+            $el_parent.scrollLeft(m(this).offsetLeft() - ($el_parent_w - $el_menu_w2), MOverflowLr.DEFAULT.tapTime);
+
+            // tap选中触发的事件
+            m(this).emit("tap.m.overflow.lr", [this]);
 
         });
 
@@ -169,6 +176,8 @@
             if (!data) {
                 var o = {};
                 o.bar = $this.hasAttr("data-bar");
+                //o.center = MOverflowLr.DEFAULT.center;
+                //o.center = $this.hasAttr("data-center");
                 var p = $.extend({}, o, options);
                 $this.data('m-overflow-lr', data = new MOverflowLr(this, p));
             }

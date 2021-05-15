@@ -13,7 +13,16 @@ body {
     font-family: $font-family;
     line-height: $line-height;
     background: $body-bg;
-    color: $body-color;
+    color: $text-df;
+}
+
+
+a,
+a:not(.m-btn),
+a:link:not(.m-btn),
+a:active:not(.m-btn) {
+    text-decoration: none;
+    color: $text-df;
 }
 
 
@@ -26,12 +35,6 @@ ul {
     list-style: none;
 }
 
-a:not(.m-btn),
-a:link:not(.m-btn),
-a:active:not(.m-btn) {
-    text-decoration: none;
-    color: $text-primary;
-}
 
 
 /*input*/

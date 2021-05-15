@@ -50,7 +50,7 @@
     flex-flow: nowrap column;
    justify-content:space-between;
     align-items:center;
-    width:1.5rem;
+    width:1.4rem;
    
  
     background: rgba(0,0,0,.1);
@@ -68,7 +68,7 @@
        
         &.active {
             color:white;
-            background: $text-primary;
+            background: $active;
             border-radius:5px;
         }
     }
@@ -95,7 +95,7 @@
     height:2rem;
     border-radius: 5px;
     background: rgba(0,0,0,.1);
-    color: $text-primary;
+    color:$active;
     font-weight:bold;
     font-size:1rem;
    

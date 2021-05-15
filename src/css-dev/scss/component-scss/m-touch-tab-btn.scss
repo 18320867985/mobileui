@@ -28,7 +28,7 @@
         border-top: 1px solid $text-line;
 
         .m-touch-tab-btn-item {
-            padding:.6rem .2rem;
+            padding: .6rem .2rem;
         }
     }
 
@@ -40,7 +40,7 @@
         z-index: 1;
         display: inline-block;
         vertical-align: top;
-        border-top: 1px solid $text-primary;
+        border-top: 1px solid $active;
         border-radius: 5px;
     }
 }
@@ -51,7 +51,7 @@
     touch-action:none;
 
     &.active{
-        color:$text-primary;
+        color:$active;
     }
 
 }

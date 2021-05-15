@@ -111,7 +111,7 @@
             <a class="m-btn m-btn-success m-radiobox-group-get">获取选择的值</a>
             <a class="m-btn m-btn-danger m-radiobox-group-set">设置的值 "中" </a>
 
-            <h4>m-radiobox-group 组件-单选-成功</h4>
+            <hr />
             <div class="m-radiobox-group" id="m-radiobox-group2">
                 <div class="m-radiobox-item text-success " data-val="慢">
                     <span class="m-radiobox-icon iconfont"></span>
@@ -130,7 +130,7 @@
 
             <p>选择值为: <span class="m-radiobox-group-val2"></span></p>
             <a class="m-btn m-btn-success m-radiobox-group-get2">获取选择的值</a>
-            <a class="m-btn m-btn-danger m-radiobox-group-set2">设置的值 "中" </a>
+            <a class="m-btn m-btn-danger m-radiobox-group-set2">设置的值 "快" </a>
 
             <!--内容end -->
         </div>
@@ -237,7 +237,7 @@
             /*m-radiobox-group 组件-单选*/
             // set
             $(".m-radiobox-group-set",context).tap(function () {
-                $(".m-radiobox-group",context).mRadioboxGroup("中");
+                $("#m-radiobox-group1",context).mRadioboxGroup("中");
                 // 或者指定下标index
                 //$(".v-radiobtn-group").vradiobtnGroup(1);
 
@@ -245,7 +245,7 @@
 
             // get
             $(".m-radiobox-group-get",context).tap(function () {
-                var v = $(".m-radiobox-group",context).mRadioboxGroup();
+                var v = $("#m-radiobox-group1",context).mRadioboxGroup();
                  $.mAlert("选择的值：" + v);
             });
 
@@ -256,10 +256,12 @@
                 $(".m-radiobox-group-val",context).text(JSON.stringify(v));
             });
 
+
+
             /*m-radiobox-group 组件-单选*/
             // set
             $(".m-radiobox-group-set2", context).tap(function () {
-                $(".m-radiobox-group2", context).mRadioboxGroup("中");
+                $("#m-radiobox-group2", context).mRadioboxGroup("快");
                 // 或者指定下标index
                 //$(".v-radiobtn-group").vradiobtnGroup(1);
 
@@ -267,7 +269,9 @@
 
             // get
             $(".m-radiobox-group-get2", context).tap(function () {
-                var v = $(".m-radiobox-group2", context).mRadioboxGroup();
+            
+                var v = $("#m-radiobox-group2", context).mRadioboxGroup();
+                console.log(v)
                 $.mAlert("选择的值：" + v);
             });
 

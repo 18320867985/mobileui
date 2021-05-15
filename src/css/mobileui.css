@@ -2762,8 +2762,8 @@ textarea::-moz-placeholder {
     -webkit-tap-highlight-color: transparent !important; }
 
 .m-router-box-move {
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
+  -webkit-box-shadow: -10px 0 10px rgba(0, 0, 0, 0.3);
+          box-shadow: -10px 0 10px rgba(0, 0, 0, 0.3); }
 
 .m-router-cnt {
   position: fixed;

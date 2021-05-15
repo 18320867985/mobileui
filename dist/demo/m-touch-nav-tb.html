@@ -12,11 +12,11 @@
                     background:white;
         }
 
-       #m-touch-nav-tb .m-cnt-l {
-            flex: 0 0 3.5rem;
-            height: 100%;
-            border: 1px solid #ddd;
-        }
+            #m-touch-nav-tb .m-cnt-l {
+                flex: 0 0 3.5rem;
+                height: 100%;
+                border: 1px solid #5cb85c;
+            }
 
       #m-touch-nav-tb   .m-cnt-r {
             flex: 1;
@@ -25,12 +25,14 @@
     .m-touch-nav-tb-cont {
         display: flex;
         flex-flow: row;
-        justify-content: space-between;
+        justify-content: space-around;
         height: 100%;
-        padding: 1rem;
-
-        border-radius:.5rem;
-        box-shadow: 1px 1px 1px rgba(0,0,0,.05) inset,-1px -1px 1px rgba(0,0,0,.05) inset;
+      
+    }
+     /*重写选中样式*/
+    .m-touch-nav-tb  .m-touch-nav-item.active {
+        background: #5cb85c;
+        color: #fff;
     }
 </style>
 
@@ -42,7 +44,10 @@
             <nav class="m-touch-nav-tb">
                 <ul class="m-touch-nav-tb-cnt ">
                     <li class="active  m-touch-nav-item">
-                        <a href="javascript:;">center</a>
+                        <a href="javascript:;">点击定位</a>
+                    </li>
+                    <li class=" m-touch-nav-item">
+                        <a href="javascript:;">到了中间</a>
                     </li>
                     <li class="m-touch-nav-item">
                         <a href="javascript:;">美食</a>
@@ -137,7 +142,7 @@
             <nav class="m-touch-nav-tb">
                 <ul class="m-touch-nav-tb-cnt ">
                     <li class="active  m-touch-nav-item">
-                        <a href="javascript:;">top</a>
+                        <a href="javascript:;">顶部限拉</a>
                     </li>
                     <li class="m-touch-nav-item">
                         <a href="javascript:;">美食</a>
@@ -220,102 +225,7 @@
                         <a href="javascript:;">资讯2</a>
                     </li>
                     <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
-
-                </ul>
-            </nav>
-
-        </div>
-
-        <div class="m-cnt-l">
-            <nav class="m-touch-nav-tb">
-                <ul class="m-touch-nav-tb-cnt ">
-                    <li class="active  m-touch-nav-item">
-                        <a href="javascript:;">limit</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">美食</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家</a>
-
-                    </li>
-
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
+                        <a href="javascript:;">底部限拉</a>
                     </li>
 
                 </ul>
@@ -357,9 +267,9 @@
             //console.log("parameter:", parameter);
 
              // 1.插件模式 m.mTouchNavTb()  2.组件模式< data-toggle="m-touch-nav-tb">
-            m(".m-touch-nav-tb",context).eq(0).mTouchNavTb({ limitTop: false, limitBottom: false, center: true });
-            m(".m-touch-nav-tb",context).eq(1).mTouchNavTb({ limitTop: false, limitBottom: false, top: true });
-            m(".m-touch-nav-tb",context).eq(2).mTouchNavTb({ limitTop: true, limitBottom: true });
+            m(".m-touch-nav-tb",context).eq(0).mTouchNavTb({ limitTop: false, limitBottom: false });
+     
+            m(".m-touch-nav-tb",context).eq(1).mTouchNavTb({ limitTop: true, limitBottom: true });
 
             // m-touch-nav-tb-tap触发的事件
             m(".m-touch-nav-tb",context).on("tap.m.touch.nav.tb", function (event, el, moveY) {

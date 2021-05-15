@@ -5594,7 +5594,7 @@ $(function () {
                     self.speedScroll = -200;
                 }
 
-                target = target + self.speedScroll * (wraperHeight / 200);
+                target = target + self.speedScroll * (wraperHeight / 120);
                 //   }
 
                 if (target > 0) {
@@ -8089,7 +8089,7 @@ $(function () {
     };
 
     MOverflowLr.DEFAULT = {
-        tapTime: 200,
+        tapTime: 250,
         center: true
 
     };

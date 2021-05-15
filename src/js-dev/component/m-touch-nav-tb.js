@@ -126,7 +126,7 @@
                             self.speedScroll = -200;
                         }
 
-                        target = target + self.speedScroll * (wraperHeight/200);
+                        target = target + self.speedScroll * (wraperHeight/120);
                  //   }
 
                     if (target > 0) {

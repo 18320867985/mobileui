@@ -41,6 +41,7 @@
 <!--2.内容区域 -->
 <section class="m-router-cnt" id="m-nav-loaing">
     <div class="m-cnt-l">
+
         <nav class="m-touch-nav-tb">
             <ul class="m-touch-nav-tb-cnt ">
                 <li class="active  m-touch-nav-item">
@@ -121,8 +122,28 @@
 
             }
 
+           
+         
+
+            // m-touch-nav-tb-tap触发的事件
+            m(".m-touch-nav-tb", context).on("tap.m.touch.nav.tb", function (event, el, moveY) {
+
+                /*
+                 * event 事件对象
+                 * el触发的元素
+                 * moveY 左右元移动的translateY值
+                 *
+                 */
+                // console.log("event", event);
+                 console.log("el", el);
+                console.log("tap.m.touch.nav.tb 事件");
+
+            });
+
             // 触发插件
-            m(".m-touch-nav-tb-cnt",context).html(nav).parent().mTouchNavTb();
+            // 1.插件模式 m.mTouchNavTb()  2.组件模式< data-toggle="m-touch-nav-tb">
+            m(".m-touch-nav-tb-cnt", context).html(nav).parent().mTouchNavTb({ limitTop: false, limitBottom: false });;
+
             m(".m-cnt-r",context).html(tab)
             m(".m-overflow-tb", context).mOverflowTb();
 

@@ -12,7 +12,7 @@
     };
 
     MOverflowLr.DEFAULT = {
-        tapTime: 200,
+        tapTime: 250,
         center:true
         
     }

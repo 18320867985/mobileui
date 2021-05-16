@@ -120,7 +120,8 @@
             white-space: nowrap;
             word-wrap: break-word;
             overflow-x: hidden;
-            color: $table-view-color;
+            color:$active;
+            font-size:.7rem;
         }
 
         .iconfont {

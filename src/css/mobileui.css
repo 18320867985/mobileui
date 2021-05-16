@@ -287,7 +287,8 @@ a:not(.m-btn),
 a:link:not(.m-btn),
 a:active:not(.m-btn) {
   text-decoration: none;
-  color: #333; }
+  color: #333;
+  -webkit-tap-highlight-color: transparent; }
 
 img {
   display: inline-block; }
@@ -360,6 +361,24 @@ body,
   text-overflow: ellipsis;
   word-wrap: break-word;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; }
+
+.elp-3 {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal !important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; }
+
+.elp-4 {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal !important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical; }
 
 /*置顶*/
@@ -1647,10 +1666,10 @@ textarea::-moz-placeholder {
     font-size: .7rem; }
     .m-touch-nav-lr .m-touch-nav-item a {
       display: block;
-      padding: 0 1rem;
-      line-height: 2rem; }
+      padding: 0 0.75rem;
+      line-height: 1.8rem; }
     .m-touch-nav-lr .m-touch-nav-item.active {
-      background: #5cb85c;
+      background: #337ab7;
       color: #fff; }
       .m-touch-nav-lr .m-touch-nav-item.active a {
         color: #fff; }
@@ -1690,7 +1709,7 @@ textarea::-moz-placeholder {
       color: #020202;
       text-align: center; }
     .m-touch-nav-tb .m-touch-nav-item.active {
-      background: #5cb85c;
+      background: #337ab7;
       color: #fff; }
       .m-touch-nav-tb .m-touch-nav-item.active a {
         color: #fff; }
@@ -1823,7 +1842,7 @@ textarea::-moz-placeholder {
     z-index: 1;
     display: inline-block;
     vertical-align: top;
-    border-top: 1px solid #5cb85c;
+    border-top: 1px solid #337ab7;
     border-radius: 5px; }
 
 .m-touch-tab-btn-item {
@@ -1835,7 +1854,7 @@ textarea::-moz-placeholder {
   -ms-touch-action: none;
       touch-action: none; }
   .m-touch-tab-btn-item.active {
-    color: #5cb85c; }
+    color: #337ab7; }
 
 /*设计图width*/
 /*rem 份数*/
@@ -2173,7 +2192,7 @@ textarea::-moz-placeholder {
     font-size: .7rem;
     color: #333; }
   .m-overflow-lr-nav.m-overflow-lr-menu .m-overflow-lr-item.active {
-    background: #5cb85c; }
+    background: #337ab7; }
     .m-overflow-lr-nav.m-overflow-lr-menu .m-overflow-lr-item.active a {
       color: #fff; }
 
@@ -2257,7 +2276,7 @@ textarea::-moz-placeholder {
     color: #333; }
     .m-indexlist-gp .m-indexlist-gp-ttl.active {
       color: white;
-      background: #5cb85c;
+      background: #337ab7;
       border-radius: 5px; }
 
 .m-indexlist-tip {
@@ -2285,7 +2304,7 @@ textarea::-moz-placeholder {
   height: 2rem;
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.1);
-  color: #5cb85c;
+  color: #337ab7;
   font-weight: bold;
   font-size: 1rem;
   display: -webkit-box;
@@ -3018,3 +3037,99 @@ body {
   100% {
     -webkit-transform: rotate(360deg) scale(1);
     transform: rotate(360deg) scale(1); } }
+
+/*设计图width*/
+/*rem 份数*/
+/* 375/18.75 =20px=1rem */
+/*html rem比例*/
+/* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
+/* m-card*/
+.m-card {
+  margin: .5rem;
+  padding: .25rem;
+  border-radius: 5px;
+  background: #fff;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); }
+
+.m-card-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: wrap row;
+          flex-flow: wrap row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .m-card-list.list-2 .m-card {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 2% 2% 0 0;
+    width: 47%; }
+  .m-card-list.list-2 .m-card:nth-child(odd) {
+    margin-left: 2%; }
+  .m-card-list.list-2 .m-card-img {
+    height: 8.3rem; }
+  .m-card-list.list-2 .m-card-title {
+    font-size: .8rem;
+    color: #444; }
+  .m-card-list.list-2 .m-card-icon-r {
+    font-size: .8rem; }
+
+.m-card-img {
+  display: inline-block;
+  width: 100%; }
+
+.m-card-body {
+  padding: .5rem; }
+
+.m-card-title {
+  font-size: 1rem;
+  color: #444; }
+
+.m-card-text {
+  padding-top: .25rem;
+  color: #777777;
+  font-size: .8rem; }
+
+.m-card-icon {
+  margin-top: .5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  justify-items: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.m-card-icon-l span {
+  color: #d9534f;
+  font-weight: bold; }
+
+.m-card-icon-l span:nth-child(2) {
+  margin-left: -.25rem;
+  font-size: 1rem; }

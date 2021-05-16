@@ -204,7 +204,6 @@
         // 触发自定义的事件
         if (!bl) { $li.emit("tap.m.touch.nav", [item, moveX]); }
        
-
     };
 
     // position center

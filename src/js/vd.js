@@ -463,8 +463,11 @@
                             // 获取校验指定的属性
                            if(remoteObjectString){
                               data= self.getObjectPropByString(data,remoteObjectString);
-                           }
+                            }
+
+                            data = Number(data);
                             data = !!data;
+                            //console.log(data)
                             $(el).trigger("onremoteafter", [el,data]);
 
                             // 真

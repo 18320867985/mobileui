@@ -1,240 +1,74 @@
 ﻿
-
 <!-- 1. css  style  区域 -->
 <style>
 
-        /* 注意！这里样式是加载渲染后是全局的
+    /* 注意！这里样式是加载渲染后是全局的
        局部区分为内容区域标签加上id或class
        路由模块隐藏后style块里样式被删除
     */
-        #m-touch-nav-tb {
-                    padding: 1rem;
-                    background:white;
-        }
-
-            #m-touch-nav-tb .m-cnt-l {
-                flex: 0 0 3.5rem;
-                height: 100%;
-                border: 1px solid #5cb85c;
-            }
-
-      #m-touch-nav-tb   .m-cnt-r {
-            flex: 1;
-        }
-
-    .m-touch-nav-tb-cont {
+    #m-nav-loaing {
+        width: 100%;
         display: flex;
-        flex-flow: row;
-        justify-content: space-around;
-        height: 100%;
-      
+        flex-flow: nowrap row;
     }
-     /*重写选中样式*/
-    .m-touch-nav-tb  .m-touch-nav-item.active {
-        background: #5cb85c;
-        color: #fff;
-    }
+
+        #m-nav-loaing .m-cnt-l {
+            flex: 0 0 3.5rem;
+            height: 100%;
+            border-right: 1px solid #ddd;
+        }
+
+        #m-nav-loaing .m-cnt-r {
+            flex: 1 1;
+            height: 100%;
+        }
+
+
+        #m-nav-loaing .m-overflow-tb-cnt {
+            padding: 0 .5rem;
+        }
+
+            #m-nav-loaing .m-overflow-tb-cnt p {
+                padding: 2px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                font-size: .8rem;
+                line-height: 2rem;
+            }
 </style>
 
 <!--2.内容区域 -->
-<section class="m-router-cnt" id="m-touch-nav-tb">
-    <div class="m-touch-nav-tb-cont">
+<section class="m-router-cnt" id="m-nav-loaing">
 
-        <div class="m-cnt-l">
-            <nav class="m-touch-nav-tb">
-                <ul class="m-touch-nav-tb-cnt ">
-                    <li class="active  m-touch-nav-item">
-                        <a href="javascript:;">点击定位</a>
-                    </li>
-                    <li class=" m-touch-nav-item">
-                        <a href="javascript:;">到了中间</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">美食</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家</a>
+    <!--左边菜单 上下touch-nav滑动区-->
+    <div class="m-cnt-l">
+        <nav class="m-touch-nav-tb">
+            <ul class="m-touch-nav-tb-cnt ">
+                <li class="active  m-touch-nav-item">
+                    <a href="javascript:;">center</a>
+                </li>
 
-                    </li>
+            </ul>
+        </nav>
+    </div>
 
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
+    <!--右边内容区域-->
+    <div class="m-cnt-r">
+        <div class="m-touch-nav-tb-item">
+            <!--上下overfolw 滑动区-->
+            <div class="m-overflow-tb" data-toggle="m-overflow-tb">
+                <div class="m-overflow-tb-cnt">
 
-                </ul>
-            </nav>
+                </div>
+                <div class="m-overflow-tb-loading">
+                    正在加载中...
+                </div>
 
-        </div>
-
-        <div class="m-cnt-l">
-            <nav class="m-touch-nav-tb">
-                <ul class="m-touch-nav-tb-cnt ">
-                    <li class="active  m-touch-nav-item">
-                        <a href="javascript:;">顶部限拉</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">美食</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家</a>
-
-                    </li>
-
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">底部限拉</a>
-                    </li>
-
-                </ul>
-            </nav>
-
+            </div>
         </div>
 
     </div>
-
 </section>
 
 <!-- js 区域 -->
@@ -245,7 +79,7 @@
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
-            routerTilte: "nav-上下定位滑动", // 路由页的标题
+            routerTilte: "touch-nav上下滑动", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
             // routerClass:"router-class-1"   // 路由页的class
         },
@@ -266,13 +100,35 @@
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
-             // 1.插件模式 m.mTouchNavTb()  2.组件模式< data-toggle="m-touch-nav-tb">
-            m(".m-touch-nav-tb",context).eq(0).mTouchNavTb({ limitTop: false, limitBottom: false });
-     
-            m(".m-touch-nav-tb",context).eq(1).mTouchNavTb({ limitTop: true, limitBottom: true });
+              // 加载nav 和tab
+            var nav = "";
+            var tab = "";
 
-            // m-touch-nav-tb-tap触发的事件
-            m(".m-touch-nav-tb",context).on("tap.m.touch.nav.tb", function (event, el, moveY) {
+            for (var i = 0; i < 40; i++) {
+                nav += `<li class="${i === 0 ? `active` : ``}  m-touch-nav-item" data-tab="#tab${i + 1}">
+                                    <a href="javascript:;">第 ${i + 1} 屏</a>
+                                </li>  `;
+
+                tab += ` <div class="m-touch-nav-tb-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}">
+                                    <div class="m-overflow-tb"  >
+                                        <div class="m-overflow-tb-cnt">
+
+                                        </div>
+                                        <div class="m-overflow-tb-loading">
+                                              正在加载中...
+                                        </div>
+
+                                    </div>
+
+                                </div>  `;
+
+            }
+
+           
+         
+
+            // touch-nav 上下滑动组件的tap触发的事件
+            m(".m-touch-nav-tb", context).on("tap.m.touch.nav.tb", function (event, el, moveY) {
 
                 /*
                  * event 事件对象
@@ -281,57 +137,73 @@
                  *
                  */
                 // console.log("event", event);
-                // console.log("el", el);
-                //console.log("moveY", moveY);
+                 console.log("el", el);
+                console.log("tap.m.touch.nav.tb 事件");
 
             });
 
+            // 触发插件
+            // 1.插件模式 m.mTouchNavTb()  2.组件模式< data-toggle="m-touch-nav-tb">
+            // touch-nav 上下滑动组件
+            m(".m-touch-nav-tb-cnt", context).html(nav).parent().mTouchNavTb({ limitTop: false, limitBottom: false });;
 
-            // 触发上下滑动自定义start的事件
-            m(".m-touch-nav-tb",context).on("start.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
-                /*
-                   event       事件
-                   el          触发元素
-                   moveY       translateY值
-                   scrollObj   滚动对象
-                 */
-                //console.log("event", event);
-                //console.log("el", el);
-                //console.log("moveY", moveY);
-                //console.log("scrollObj", scrollObj);
+            m(".m-cnt-r", context).html(tab)
+
+            // overflow 上下滑动组件
+            m(".m-overflow-tb", context).mOverflowTb();
+
+
+            // tap.m.touch.nav.tb触发的事件
+            m(".m-touch-nav-tb",context).on("tap.m.touch.nav.tb", function (event, el, moveY) {
+
+                var id = m(el).attr("data-tab");
+                m(id).addClass("active").siblings().removeClass("active");
+
+                if (!m(id).data("isOne")) {
+                    m(id).data("isOne", true);
+                    ajaxData(m(id), m(id).index());
+                }
+            });
+
+
+            // 拉到底部触发
+            m(".m-overflow-tb",context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
+
+                var $el = m(el).parents(".m-touch-nav-tb-item");
+                ajaxData($el, $el.index());
 
             });
 
-            // 触发上下滑动自定义move的事件
-            m(".m-touch-nav-tb",context).on("move.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
-                /*
-                   event       事件
-                   el          触发元素
-                   moveY       translateY值
-                   scrollObj   滚动对象
-                 */
-                //console.log("event", event);
-                //console.log("el", el);
-                //console.log("moveY", moveY);
-                //console.log("scrollObj", scrollObj);
+            // 第一次加载数据
+            var $activeEl = $(".m-touch-nav-tb-item.active",context);
+            ajaxData($activeEl, 0);
+            $activeEl.data("isOne", true);
 
-            });
+            // ajax 加载数据
+            function ajaxData($el, index) {
 
-            // 触发上下滑动自定义end的事件
-            m(".m-touch-nav-tb").on("end.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
-                /*
-                   event       事件
-                   el          触发元素
-                   moveY       translateY值
-                   scrollObj   滚动对象
-                 */
-                //console.log("event", event);
-                //console.log("el", el);
-                //console.log("moveY", moveY);
-                //console.log("scrollObj", scrollObj);
+                if ($el.data("loadingEnd")) {
+                    return;
+                }
+                $el.data("loadingEnd", true);
 
-            });
+                m.get("./json/tab.json", function (res) {
 
+                    $el.data("loadingEnd", false);
+                    var page = $el.data("pageindex") || 1;
+                    var docf = document.createDocumentFragment();
+                    for (var i = 0; i < res.length; i++) {
+
+                        var p = document.createElement("p");
+                        p.classList.add("elp-1");
+                        p.innerHTML = (index + 1) + "屏==" + page + "页==" + res[i].content;
+                        docf.appendChild(p);
+                    }
+                    $el.data("pageindex", ++page);
+                    $el.find(".m-overflow-tb-cnt").append(docf);
+                }, "json");
+
+            }
 
 
         },

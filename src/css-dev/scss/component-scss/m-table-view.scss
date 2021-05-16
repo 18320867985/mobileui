@@ -32,7 +32,7 @@
         > .m-table-view-ttl {
             width: 100%;
             display: flex;
-            color: #777;
+            color: $table-view-color;
             padding: 5rem/$rem 0;
 
             > h5 {
@@ -120,7 +120,7 @@
             white-space: nowrap;
             word-wrap: break-word;
             overflow-x: hidden;
-            color:$active;
+            color: $table-view-color;
         }
 
         .iconfont {
@@ -129,7 +129,7 @@
             align-items: center;
             width: 10%;
             font-size: .8rem;
-            color:$table-view-icon;
+            color: $table-view-icon;
         }
     }
 }

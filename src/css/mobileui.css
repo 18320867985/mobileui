@@ -1599,7 +1599,7 @@ textarea::-moz-placeholder {
       white-space: nowrap;
       word-wrap: break-word;
       overflow-x: hidden;
-      color: #5cb85c; }
+      color: #777; }
     .m-table-view-collapse > .m-table-view-collapse-cell .iconfont {
       display: -webkit-box;
       display: -ms-flexbox;

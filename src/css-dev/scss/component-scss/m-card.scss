@@ -70,9 +70,9 @@
     color: lighten($h-color,20%);
     font-size: .8rem;
 }
-.m-card-icon{
+.m-card-btn{
 
-     margin-top:.5rem;
+     margin-top:1rem;
     display:flex;
 
      flex-flow:row nowrap;
@@ -81,18 +81,5 @@
      align-items:center;
      
  
-}
-
-.m-card-icon-l {
-
-    span {
-        color: $text-danger;
-        font-weight: bold;
-    }
-
-    span:nth-child(2) { margin-left:-.25rem;
-        font-size: 1rem;
-        
-    }
 }
 

@@ -3110,8 +3110,8 @@ body {
   color: #777777;
   font-size: .8rem; }
 
-.m-card-icon {
-  margin-top: .5rem;
+.m-card-btn {
+  margin-top: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3127,10 +3127,99 @@ body {
       -ms-flex-align: center;
           align-items: center; }
 
-.m-card-icon-l span {
-  color: #d9534f;
-  font-weight: bold; }
+/*设计图width*/
+/*rem 份数*/
+/* 375/18.75 =20px=1rem */
+/*html rem比例*/
+/* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
+/* m-media*/
+.m-media {
+  margin: .5rem;
+  padding: .25rem;
+  border-radius: 5px;
+  background: #fff;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); }
 
-.m-card-icon-l span:nth-child(2) {
-  margin-left: -.25rem;
+.m-media-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: wrap row;
+          flex-flow: wrap row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .m-media-list.list-2 .m-media {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 2% 2% 0 0;
+    width: 47%; }
+  .m-media-list.list-2 .m-media:nth-child(odd) {
+    margin-left: 2%; }
+  .m-media-list.list-2 .m-media-img {
+    height: 8.3rem; }
+  .m-media-list.list-2 .m-media-title {
+    font-size: .8rem;
+    color: #444; }
+  .m-media-list.list-2 .m-media-icon {
+    margin: .5rem 0 0 0; }
+  .m-media-list.list-2 .m-media-icon-l {
+    color: #d9534f;
+    font-size: .8rem; }
+  .m-media-list.list-2 .m-media-icon-r {
+    font-size: .8rem; }
+
+.m-media-img {
+  display: inline-block;
+  width: 100%; }
+
+.m-media-body {
+  padding: .5rem; }
+
+.m-media-title {
+  font-size: 1rem;
+  color: #444; }
+
+.m-media-text {
+  padding-top: .25rem;
+  color: #777777;
+  font-size: .8rem; }
+
+.m-media-icon {
+  margin: 1rem 0 .5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  justify-items: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.m-media-icon-l {
+  color: #d9534f;
   font-size: 1rem; }

@@ -34,6 +34,7 @@
 
         });
 
+  
         self.speedSetIntervalId = 0;  // 计算速度定时器id
 
         $m_touch_lr.touch(
@@ -174,6 +175,7 @@
             }
 
         );
+
 
     };
 

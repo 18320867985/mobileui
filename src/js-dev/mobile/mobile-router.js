@@ -727,8 +727,28 @@
             Router.reqSync(obj, urls, onload);
         }
 
+        // 执行页面的函数
+        Router.runBindFn();
+
     }
 
+    // bind 函数
+    Router.bindObj = {};
+    Router.bindFn = function (fn) {
+
+        if (typeof fn === "function") { Array.prototype.push.call(Router.bindObj, fn); };
+       
+    };
+
+     // 执行 函数
+    Router.runBindFn = function (fn) {
+
+        for (var pros in Router.bindObj) {
+
+            if (typeof Router.bindObj[pros] === "function") { Router.bindObj[pros]();};
+        }
+
+    };
 
     Router.ajax = m.ajax;
 
@@ -774,7 +794,7 @@
 
     };
 
-    // 获取当前激活路由页
+    // 获取当前激活路由页元素
     Router.getActiveEl = function () {
 
         return m("#m-router-" + m.router.getId());

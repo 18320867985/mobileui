@@ -38,15 +38,32 @@ $(function () {
        
     });
 
-    m("a").tap(function (event) {
-        event.preventDefault();
-    });
+    // 绑定函数 router.link 运行时执行 
+    m.router.bindFn(function () {
 
+        //获取当前激活路由页元素
+        var $activeEl = m.router.getActiveEl();
 
-    m(document).on("tap", "a[data-link-btn]", function (event) {
+        // m-media组件 a[data-link] 链接跳转
+        m(".m-media-list", $activeEl).on("tap", "a[data-link]", function (event) {
 
-        event.preventDefault();
-        m.router.alink.call(this);
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+
+        });
+
+        // m-slide组件 a[data-link] 链接跳转
+        m(".m-touch-slide", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+
+        });
+
+     
+
     });
 
 

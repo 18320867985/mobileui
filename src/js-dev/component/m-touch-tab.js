@@ -144,15 +144,7 @@
 
         );
 
-
-        m(this.el).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            m.router.alink.call(this);
-            
-        });
-
-
+     
 
     };
 

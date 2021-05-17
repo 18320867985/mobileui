@@ -203,7 +203,7 @@
 
                    
                         var li = `  <li class="m-media">
-                                    <a href="">
+                                    <a data-link href="./demo/m-card.html?ttl=列表详情">
                                         <img class="m-media-img" src="./${res[i].img}">
 
                                         <div class="m-media-body">
@@ -225,9 +225,6 @@
 
                         lis += li;
                     }
-
-                 
-                    console.log(lis);
 
                     $el.data("pageindex", ++page);
                     $el.find(".m-overflow-tb-cnt .m-media-list").append(lis);

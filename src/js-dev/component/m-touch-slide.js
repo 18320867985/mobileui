@@ -89,7 +89,7 @@
              
             },
             function (event, obj) {
-              
+               
                 if (obj.isX) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -153,16 +153,6 @@
             }
 
         );
-
-
-        m(this.el).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            m.router.alink.call(this);
-           
-        });
-
-
 
 
     };

@@ -4588,7 +4588,30 @@ css3 transition
         } else {
             Router.reqSync(obj, urls, onload);
         }
+
+        // 执行页面的函数
+        Router.runBindFn();
     }
+
+    // bind 函数
+    Router.bindObj = {};
+    Router.bindFn = function (fn) {
+
+        if (typeof fn === "function") {
+            Array.prototype.push.call(Router.bindObj, fn);
+        }
+    };
+
+    // 执行 函数
+    Router.runBindFn = function (fn) {
+
+        for (var pros in Router.bindObj) {
+
+            if (typeof Router.bindObj[pros] === "function") {
+                Router.bindObj[pros]();
+            }
+        }
+    };
 
     Router.ajax = m.ajax;
 
@@ -4630,7 +4653,7 @@ css3 transition
         return 0;
     };
 
-    // 获取当前激活路由页
+    // 获取当前激活路由页元素
     Router.getActiveEl = function () {
 
         return m("#m-router-" + m.router.getId());
@@ -4918,14 +4941,27 @@ $(function () {
         event.preventDefault();
     });
 
-    m("a").tap(function (event) {
-        event.preventDefault();
-    });
+    // �󶨺��� router.link ����ʱִ�� 
+    m.router.bindFn(function () {
 
-    m(document).on("tap", "a[data-link-btn]", function (event) {
+        //��ȡ��ǰ����·��ҳԪ��
+        var $activeEl = m.router.getActiveEl();
 
-        event.preventDefault();
-        m.router.alink.call(this);
+        // m-media��� a[data-link] ������ת
+        m(".m-media-list", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+        });
+
+        // m-slide��� a[data-link] ������ת
+        m(".m-touch-slide", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+        });
     });
 
     // �ƶ���
@@ -5126,12 +5162,6 @@ $(function () {
             if (self.options.auto) {
                 self.autoSlide();
             }
-        });
-
-        m(this.el).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            m.router.alink.call(this);
         });
     };
 
@@ -5946,12 +5976,6 @@ $(function () {
 
                 obj.oneTouch = undefined;
             }
-        });
-
-        m(this.el).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            m.router.alink.call(this);
         });
     };
 
@@ -8165,12 +8189,15 @@ $(function () {
             if (obj.isX) {
                 event.stopPropagation();
             }
+            if (obj.isY) {
+                event.stopPropagation();
+            }
         }, function (event) {
             event.stopPropagation();
         });
 
         // 点击router 跳转
-        $el.find("a").on("tap", function (event) {
+        $el.find("a[data-link]").on("tap", function (event) {
             event.preventDefault();
             m.router.alink.call(this);
         });

@@ -81,11 +81,14 @@
             if (obj.isX) {
                 event.stopPropagation();
             }
+            if (obj.isY) {
+                event.stopPropagation();
+            }
            
         }, function (event) { event.stopPropagation(); });
 
          // 点击router 跳转
-        $el.find("a").on("tap",function (event) {
+        $el.find("a[data-link]").on("tap",function (event) {
             event.preventDefault();
             m.router.alink.call(this);
         });

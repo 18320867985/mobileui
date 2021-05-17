@@ -3223,3 +3223,5 @@ body {
 .m-media-icon-l {
   color: #d9534f;
   font-size: 1rem; }
+  .m-media-icon-l span:nth-child(2) {
+    margin-left: -.25rem; }

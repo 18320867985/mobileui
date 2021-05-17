@@ -87,4 +87,7 @@
     .m-media-icon-l {
         color: $text-danger;
         font-size: 1rem;
+        span:nth-child(2){
+            margin-left:-.25rem;
+        }
     }

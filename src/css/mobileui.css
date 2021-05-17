@@ -442,7 +442,9 @@ textarea::-moz-placeholder {
 .m-btn {
   display: inline-block;
   margin: 0 0 .5rem 0;
+  padding: 0.45rem 1rem;
   color: #333;
+  font-size: .75rem;
   font-weight: 400;
   text-align: center;
   white-space: nowrap;
@@ -452,9 +454,6 @@ textarea::-moz-placeholder {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  border: 1px solid transparent;
-  padding: 0.5rem 0.7rem;
-  font-size: .85rem;
   border-radius: 0.25rem;
   background-color: #fff;
   background-clip: padding-box;
@@ -1812,7 +1811,8 @@ textarea::-moz-placeholder {
 /*check 组件*/
 /*左右滑动的tab的按钮*/
 .m-touch-tab-btn {
-  position: relative; }
+  position: relative;
+  background: #fff; }
   .m-touch-tab-btn .m-touch-tab-btn-cnt {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1828,10 +1828,9 @@ textarea::-moz-placeholder {
         -ms-flex-align: center;
             align-items: center; }
   .m-touch-tab-btn.m-touch-tab-btn-top {
-    padding: .2rem 0;
-    border-top: 1px solid #f2f2f2; }
+    border-bottom: 1px solid #f2f2f2; }
     .m-touch-tab-btn.m-touch-tab-btn-top .m-touch-tab-btn-item {
-      padding: .3rem .2rem; }
+      padding: .4rem .2rem; }
   .m-touch-tab-btn.m-touch-tab-btn-bottom {
     border-top: 1px solid #f2f2f2; }
     .m-touch-tab-btn.m-touch-tab-btn-bottom .m-touch-tab-btn-item {
@@ -2087,6 +2086,7 @@ textarea::-moz-placeholder {
       color: #fff; }
 
 .m-overflow-tb-loading {
+  margin-top: 1rem;
   line-height: 2rem;
   color: #777;
   text-align: center;

@@ -7,6 +7,7 @@
 // tab-btn
 .m-touch-tab-btn {
     position: relative;
+    background: $bg-white;
 
     .m-touch-tab-btn-cnt {
         display: flex;
@@ -16,16 +17,16 @@
     }
 
     &.m-touch-tab-btn-top {
-        padding: .2rem 0;
-        border-top: 1px solid $text-line;
+        border-bottom: 1px solid $text-line;
 
         .m-touch-tab-btn-item {
-            padding: .3rem .2rem;
+            padding: .4rem .2rem;
         }
     }
 
     &.m-touch-tab-btn-bottom {
         border-top: 1px solid $text-line;
+
 
         .m-touch-tab-btn-item {
             padding: .6rem .2rem;

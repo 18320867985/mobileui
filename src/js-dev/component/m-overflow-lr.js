@@ -87,18 +87,7 @@
          // 点击router 跳转
         $el.find("a").on("tap",function (event) {
             event.preventDefault();
-
-            var isHref = m(this).hasAttr("href");
-            var hrefValue = m(this).attr("href");
-            if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
-                    return;
-                } else {
-                    m.router.link(hrefValue);
-                    return;
-                }
-
-            }
+            m.router.alink.call(this);
         });
 
         // 导航 m-overflow-lr-menu 

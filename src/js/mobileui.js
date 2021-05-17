@@ -4641,6 +4641,24 @@ css3 transition
         _setRouterObj(Router.getActiveEl(), settingObj);
     };
 
+    //  a标签 链接属性data-link 跳转
+    Router.alink = function () {
+        var isHref = m(this).hasAttr("href");
+        var hrefValue = m(this).attr("href");
+        if (isHref) {
+            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
+                return;
+            } else {
+
+                //if (m(this).hasAttr("data-router")) {
+                m.router.link(hrefValue);
+                return;
+                //  }
+                // window.location.href = hrefValue;
+            }
+        }
+    };
+
     // 删除id
     Router.removeId = function (id) {
 
@@ -4907,17 +4925,7 @@ $(function () {
     m(document).on("tap", "a[data-link-btn]", function (event) {
 
         event.preventDefault();
-
-        var isHref = m(this).hasAttr("href");
-        var hrefValue = m(this).attr("href");
-        if (isHref) {
-            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
-                return;
-            } else {
-                m.router.link(hrefValue);
-                return;
-            }
-        }
+        m.router.alink.call(this);
     });
 
     // �ƶ���
@@ -5123,20 +5131,7 @@ $(function () {
         m(this.el).on("tap", "a[data-link]", function (event) {
 
             event.preventDefault();
-            var isHref = m(this).hasAttr("href");
-            var hrefValue = m(this).attr("href");
-            if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
-                    return;
-                } else {
-
-                    //if (m(this).hasAttr("data-router")) {
-                    m.router.link(hrefValue);
-                    return;
-                    //  }
-                    // window.location.href = hrefValue;
-                }
-            }
+            m.router.alink.call(this);
         });
     };
 
@@ -5956,20 +5951,7 @@ $(function () {
         m(this.el).on("tap", "a[data-link]", function (event) {
 
             event.preventDefault();
-            var isHref = m(this).hasAttr("href");
-            var hrefValue = m(this).attr("href");
-            if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
-                    return;
-                } else {
-
-                    //if (m(this).hasAttr("data-router")) {
-                    m.router.link(hrefValue);
-                    return;
-                    //  }
-                    // window.location.href = hrefValue;
-                }
-            }
+            m.router.alink.call(this);
         });
     };
 
@@ -8190,17 +8172,7 @@ $(function () {
         // 点击router 跳转
         $el.find("a").on("tap", function (event) {
             event.preventDefault();
-
-            var isHref = m(this).hasAttr("href");
-            var hrefValue = m(this).attr("href");
-            if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
-                    return;
-                } else {
-                    m.router.link(hrefValue);
-                    return;
-                }
-            }
+            m.router.alink.call(this);
         });
 
         // 导航 m-overflow-lr-menu 

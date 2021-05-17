@@ -785,6 +785,27 @@
         _setRouterObj(Router.getActiveEl(), settingObj);
     }
 
+    //  a标签 链接属性data-link 跳转
+    Router.alink = function () {
+        var isHref = m(this).hasAttr("href");
+        var hrefValue = m(this).attr("href");
+        if (isHref) {
+            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
+                return;
+            } else {
+
+                //if (m(this).hasAttr("data-router")) {
+                m.router.link(hrefValue);
+                return;
+                //  }
+                // window.location.href = hrefValue;
+            }
+
+        }
+    }
+
+
+
     // 删除id
     Router.removeId = function (id) {
 

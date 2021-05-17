@@ -46,18 +46,7 @@ $(function () {
     m(document).on("tap", "a[data-link-btn]", function (event) {
 
         event.preventDefault();
-
-        var isHref = m(this).hasAttr("href");
-        var hrefValue = m(this).attr("href");
-        if (isHref) {
-            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
-                return;
-            } else {
-                m.router.link(hrefValue);
-                return;
-            }
-
-        }
+        m.router.alink.call(this);
     });
 
 

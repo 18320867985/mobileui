@@ -161,7 +161,7 @@
             var isHref = m(this).hasAttr("href");
             var hrefValue = m(this).attr("href");
             if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
                     return;
                 } else {
 

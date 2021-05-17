@@ -4005,8 +4005,9 @@ css3 transition
             urls = urls instanceof Array ? urls : [];
         }
 
-        var $el = m("#m-router-" + Router.getId());
+        var $el = Router.getActiveEl(); //m( "#m-router-" + Router.getId());
         _setRouterObj($el, obj);
+        // console.log(obj);
 
         // 遍历器
         var activeUrls = _activeUrls(urls);
@@ -4041,7 +4042,7 @@ css3 transition
             urls = urls instanceof Array ? urls : [];
         }
 
-        var $el = m("#m-router-" + Router.getId());
+        var $el = Router.getActiveEl(); //m("#m-router-" + Router.getId());
         _setRouterObj(el, obj);
 
         // 遍历器
@@ -4545,6 +4546,7 @@ css3 transition
     }
 
     function _setRouterObj(el, obj) {
+
         m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
         if (obj.routerTilteColor) {
             m(".m-hd-top-ttl", el).css("color", obj.routerTilteColor);
@@ -4627,10 +4629,16 @@ css3 transition
         }
         return 0;
     };
-    // 获取id
+
+    // 获取当前激活路由页
     Router.getActiveEl = function () {
 
         return m("#m-router-" + m.router.getId());
+    };
+
+    // 设置路由页top区域
+    Router.setting = function (settingObj) {
+        _setRouterObj(Router.getActiveEl(), settingObj);
     };
 
     // 删除id
@@ -5118,7 +5126,7 @@ $(function () {
             var isHref = m(this).hasAttr("href");
             var hrefValue = m(this).attr("href");
             if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
+                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
                     return;
                 } else {
 
@@ -5942,6 +5950,25 @@ $(function () {
                 m(this).emit("end.m.touch.tab", [this, target, obj]);
 
                 obj.oneTouch = undefined;
+            }
+        });
+
+        m(this.el).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            var isHref = m(this).hasAttr("href");
+            var hrefValue = m(this).attr("href");
+            if (isHref) {
+                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
+                    return;
+                } else {
+
+                    //if (m(this).hasAttr("data-router")) {
+                    m.router.link(hrefValue);
+                    return;
+                    //  }
+                    // window.location.href = hrefValue;
+                }
             }
         });
     };

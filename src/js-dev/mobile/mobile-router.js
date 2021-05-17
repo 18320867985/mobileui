@@ -118,8 +118,9 @@
             urls = urls instanceof Array ? urls : [];
         }
             
-        var $el =m( "#m-router-" + Router.getId());
+        var $el = Router.getActiveEl(); //m( "#m-router-" + Router.getId());
         _setRouterObj($el, obj);
+       // console.log(obj);
                    
          // 遍历器
         var activeUrls = _activeUrls(urls);
@@ -154,7 +155,7 @@
                 urls = urls instanceof Array ? urls : [];
             }
 
-        var $el = m("#m-router-" + Router.getId());
+        var $el = Router.getActiveEl(); //m("#m-router-" + Router.getId());
         _setRouterObj(el, obj);
            
             // 遍历器
@@ -681,7 +682,8 @@
             });
     }
 
-    function _setRouterObj(el,obj) {
+    function _setRouterObj(el, obj) {
+        
         m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
         if (obj.routerTilteColor) { m(".m-hd-top-ttl", el).css("color", obj.routerTilteColor); }
         if (obj.routerClass) { m(el).addClass(obj.routerClass); }
@@ -727,6 +729,7 @@
 
     }
 
+
     Router.ajax = m.ajax;
 
     // get
@@ -770,11 +773,17 @@
         return 0;
 
     };
-    // 获取id
+
+    // 获取当前激活路由页
     Router.getActiveEl = function () {
 
         return m("#m-router-" + m.router.getId());
     };
+
+    // 设置路由页top区域
+    Router.setting = function (settingObj) {
+        _setRouterObj(Router.getActiveEl(), settingObj);
+    }
 
     // 删除id
     Router.removeId = function (id) {

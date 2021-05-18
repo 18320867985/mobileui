@@ -333,6 +333,15 @@ body,
 .m-show {
   display: block; }
 
+.text-center {
+  text-align: center; }
+
+.text-left {
+  text-align: left; }
+
+.text-right {
+  text-align: right; }
+
 /*ellipsis*/
 .elp {
   max-width: 100%;
@@ -3238,6 +3247,10 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  justify-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   width: 100%; }
 
 .m-media-auto-l, .m-media-auto-r {
@@ -3254,9 +3267,9 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -ms-flex-line-pack: start;
       align-content: flex-start;
   width: 50%; }

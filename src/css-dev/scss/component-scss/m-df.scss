@@ -84,6 +84,19 @@ body,
     display: block;
 }
 
+.text-center{
+    text-align:center;
+
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
 /*ellipsis*/
 .elp {
     max-width: 100%;

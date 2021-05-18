@@ -807,6 +807,7 @@
 
     //  a标签 链接属性data-link 跳转
     Router.alink = function () {
+       
         var isHref = m(this).hasAttr("href");
         var hrefValue = m(this).attr("href");
         if (isHref) {
@@ -823,8 +824,6 @@
 
         }
     }
-
-
 
     // 删除id
     Router.removeId = function (id) {
@@ -1028,15 +1027,13 @@
     }
 
   
-    // 返回上一页的函数
+    // 返回上一页
     function mBack() {
         m(document).on("tap", ".m-router-back", function (event) {
             event.preventDefault();
             Router.back();
         });
     }
-
-    mBack();
 
     function setRouterLayout() {
 
@@ -1059,7 +1056,10 @@
     m.extend({
         setRouterLayout: setRouterLayout
     });
-    m.setRouterLayout();
+
+
+    mBack(); //返回上一页 
+    m.setRouterLayout(); //整体框架设置内容
     m(window).on("resize", setRouterLayout);
 
 }();

@@ -53,10 +53,12 @@
 }
 
 .m-overflow-tb-loading {
-
-    margin-top:1rem;
-    line-height:2rem;
+    line-height: 2rem;
     color: $text-loading;
-    text-align:center;
-    font-size:.7rem;
+    text-align: center;
+    font-size: .7rem;
+    &.loading-top{
+
+        margin-top:.5rem;
+    }
 }

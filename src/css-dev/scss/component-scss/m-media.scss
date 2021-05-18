@@ -24,17 +24,19 @@
     flex-flow: wrap row;
     justify-content: space-between;
     align-items: center;
+    text-align:left;
+     
 
     &.list-2 {
 
         .m-media {
             box-sizing: border-box;
-            margin: 2% 2% 0 0;
+            margin: 0 2% 2% 0;
             width: 47%;
         }
 
         .m-media:last-child {
-            margin-bottom: 2%;
+         //   margin-bottom: 2%;
         }
 
         .m-media:nth-child(odd) {
@@ -49,6 +51,7 @@
 
 .m-media-list.list-2, .m-media-auto-l, .m-media-auto-r {
 
+     padding-top:2%;
     .m-media-title {
         font-size: .8rem;
         color: $h-color;
@@ -124,7 +127,7 @@
     width: 50%;
 
     .m-media:last-child {
-        margin-bottom: 4%;
+       // margin-bottom: 4%;
     }
 
     .m-media-img {
@@ -135,11 +138,11 @@
 
 
 .m-media-auto-l .m-media {
-    margin: 4% 2% 0% 4%;
+    margin: 0 2% 4% 4%;
 
    
 }
 
 .m-media-auto-r .m-media {
-    margin: 4% 4% 0% 2%;
+    margin: 0 4% 4% 2%;
 }

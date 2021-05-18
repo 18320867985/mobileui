@@ -250,6 +250,7 @@
                     // var docf = document.createDocumentFragment();
                     var lis_l = ""; lis_r = "";
 
+                     // 左右边轮动添加
                     var $el_l = $el.find(".m-overflow-tb-cnt .m-media-auto-l");
                     var $el_r = $el.find(".m-overflow-tb-cnt .m-media-auto-r");
                     var $el_l_h = $el_l.height();
@@ -257,7 +258,6 @@
                     var $el_l_last_h = $el_l.find(".m-media").last().height();
                     var $el_r_last_h = $el_r.find(".m-media").last().height();
                     var intoL = false;
-               
                     if ($el_l_h - $el_r_h >= 0) {
                         
                         intoVal = Math.ceil(($el_l_h - $el_r_h) / $el_r_last_h);
@@ -295,6 +295,19 @@
                                     </a>
                                 </li>`;
 
+                         // 左右边轮动添加
+                        if (intoVal <= 0) {
+                            
+                            if (i % 2 === 0) {
+
+                                // 左边列表
+                                lis_l += li;
+                            } else {
+
+                                // 右边列表
+                                lis_r += li;
+                            }
+                        }
                        
                         if (intoVal >0) {
                             if (intoL) {
@@ -308,22 +321,9 @@
                                 lis_r += li;
                                 intoVal--;
                             }
+
+                           
                         }
-
-                        if (intoVal<=0) {
-                            if (i % 2 == 0) {
-
-                                // 左边列表
-                                lis_l += li;
-                            } else {
-
-                                // 右边列表
-                                lis_r += li;
-                            }
-                        }
-
-
-                       
 
                     }
 

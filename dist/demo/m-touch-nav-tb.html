@@ -257,6 +257,7 @@
                     var $el_l_last_h = $el_l.find(".m-media").last().height();
                     var $el_r_last_h = $el_r.find(".m-media").last().height();
                     var intoL = false;
+                    
                
                     if ($el_l_h - $el_r_h >= 0) {
                         
@@ -295,6 +296,19 @@
                                     </a>
                                 </li>`;
 
+
+                        if (intoVal <= 0) {
+                            
+                            if (i % 2 === 0) {
+
+                                // 左边列表
+                                lis_l += li;
+                            } else {
+
+                                // 右边列表
+                                lis_r += li;
+                            }
+                        }
                        
                         if (intoVal >0) {
                             if (intoL) {
@@ -308,22 +322,9 @@
                                 lis_r += li;
                                 intoVal--;
                             }
+
+                           
                         }
-
-                        if (intoVal<=0) {
-                            if (i % 2 == 0) {
-
-                                // 左边列表
-                                lis_l += li;
-                            } else {
-
-                                // 右边列表
-                                lis_r += li;
-                            }
-                        }
-
-
-                       
 
                     }
 

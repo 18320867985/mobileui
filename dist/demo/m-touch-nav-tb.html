@@ -122,7 +122,7 @@
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
-            routerTilte: "touch-nav上下滑动", // 路由页的标题
+            routerTilte: "touch-nav 侧边上下滑动菜单", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
             // routerClass:"router-class-1"   // 路由页的class
         },
@@ -250,6 +250,7 @@
                     // var docf = document.createDocumentFragment();
                     var lis_l = ""; lis_r = "";
 
+                     // 左右边轮动添加
                     var $el_l = $el.find(".m-overflow-tb-cnt .m-media-auto-l");
                     var $el_r = $el.find(".m-overflow-tb-cnt .m-media-auto-r");
                     var $el_l_h = $el_l.height();
@@ -257,8 +258,6 @@
                     var $el_l_last_h = $el_l.find(".m-media").last().height();
                     var $el_r_last_h = $el_r.find(".m-media").last().height();
                     var intoL = false;
-                    
-               
                     if ($el_l_h - $el_r_h >= 0) {
                         
                         intoVal = Math.ceil(($el_l_h - $el_r_h) / $el_r_last_h);
@@ -276,7 +275,7 @@
 
 
                         var li = `  <li class="m-media">
-                                    <a data-link href="./demo/m-card.html?ttl=列表详情">
+                                    <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
                                         <img class="m-media-img" src="./${res[i].img}">
 
                                         <div class="m-media-body">
@@ -296,7 +295,7 @@
                                     </a>
                                 </li>`;
 
-
+                         // 左右边轮动添加
                         if (intoVal <= 0) {
                             
                             if (i % 2 === 0) {

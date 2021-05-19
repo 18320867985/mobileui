@@ -140,11 +140,11 @@
 
                     var page = indexPage++;
                     var lis = "";
-                    for (var i = 0; i < 4; i++) {
+                    for (var i = 0; i < 6; i++) {
 
 
                         var li = `  <li class="m-media">
-                                    <a data-link href="./demo/m-card.html?ttl=列表详情">
+                                    <a data-link href="./demo/m-card.html?ttl=第${page}页的详情 &&img=${res[i].img}">
                                         <img class="m-media-img" src="./${res[i].img}">
 
                                         <div class="m-media-body">

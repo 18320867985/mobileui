@@ -3067,47 +3067,25 @@ body {
 /* m-card*/
 .m-card {
   margin: .5rem;
-  padding: .25rem;
   border-radius: 5px;
   background: #fff;
   -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
           box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); }
 
-.m-card-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: wrap row;
-          flex-flow: wrap row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; }
-  .m-card-list.list-2 .m-card {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    margin: 2% 2% 0 0;
-    width: 47%; }
-  .m-card-list.list-2 .m-card:nth-child(odd) {
-    margin-left: 2%; }
-  .m-card-list.list-2 .m-card-img {
-    height: 8.3rem; }
-  .m-card-list.list-2 .m-card-title {
-    font-size: .8rem;
-    color: #444; }
-  .m-card-list.list-2 .m-card-icon-r {
-    font-size: .8rem; }
+.m-card-head {
+  margin-bottom: .25rem;
+  padding: .5rem;
+  font-size: .9rem;
+  border-bottom: 1px solid #ddd; }
 
 .m-card-img {
   display: inline-block;
-  width: 100%; }
+  width: 100%;
+  padding: .25rem; }
 
 .m-card-body {
-  padding: .5rem; }
+  padding: .5rem;
+  margin-bottom: .5rem 0; }
 
 .m-card-title {
   font-size: 1rem;
@@ -3118,8 +3096,7 @@ body {
   color: #777777;
   font-size: .8rem; }
 
-.m-card-btn {
-  margin-top: 1rem;
+.m-card-footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3133,7 +3110,9 @@ body {
   justify-items: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  padding: .5rem;
+  border-top: 1px solid #ddd; }
 
 /*设计图width*/
 /*rem 份数*/

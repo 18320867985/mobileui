@@ -885,8 +885,8 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
-.m-checkbox-group .iconfont,
-.m-checkbox .iconfont {
+.m-checkbox-group .icon,
+.m-checkbox .icon {
   font-size: 1.3rem; }
 
 /*v-checkbox*/
@@ -936,7 +936,7 @@ textarea::-moz-placeholder {
     color: #d9534f; }
 
 /*v-radiokbox*/
-.m-radiobox-item .iconfont {
+.m-radiobox-item .icon {
   font-size: 1.3rem;
   line-height: 1; }
 
@@ -1544,7 +1544,7 @@ textarea::-moz-placeholder {
         white-space: nowrap;
         word-wrap: break-word;
         overflow-x: hidden; }
-    .m-table-view > .m-table-view-cell .m-icon {
+    .m-table-view > .m-table-view-cell .icon {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -1557,13 +1557,13 @@ textarea::-moz-placeholder {
       width: 10%;
       font-size: .8rem;
       color: #999; }
-    .m-table-view > .m-table-view-cell .m-table-view-ttl > .m-icon {
+    .m-table-view > .m-table-view-cell .m-table-view-ttl > .icon {
       -webkit-transform: rotate(90deg);
               transform: rotate(90deg);
       -webkit-transition: all .5s;
       transition: all .5s; }
 
-.m-table-view > .m-table-view-cell.in .m-table-view-ttl > .m-icon {
+.m-table-view > .m-table-view-cell.in .m-table-view-ttl > .icon {
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg); }
 
@@ -1628,7 +1628,7 @@ textarea::-moz-placeholder {
       overflow-x: hidden;
       color: #337ab7;
       font-size: .7rem; }
-    .m-table-view-collapse > .m-table-view-collapse-cell .m-icon {
+    .m-table-view-collapse > .m-table-view-collapse-cell .icon {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;

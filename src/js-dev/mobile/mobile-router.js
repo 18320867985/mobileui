@@ -882,7 +882,7 @@
             topEl.classList.add("m-router-hd");
             topEl.innerHTML = `<div class="m-hd-top">
             <div class="m-hd-top-icon m-router-back">
-                <span class="iconfont icon-back-left">
+                <span class="m-icon m-back-left">
                 </span>
             </div>
 

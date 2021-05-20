@@ -9,10 +9,8 @@
     margin: 10rem/$rem;
     border: 1px solid $text-border;
     background: #fff;
-
     /*圆角table*/
     &.m-table-view-rd {
-
         border-radius: 5px;
     }
 
@@ -46,20 +44,19 @@
                 white-space: nowrap;
                 word-wrap: break-word;
                 overflow-x: hidden;
-                
             }
         }
 
-        .iconfont {
+        .m-icon {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 10%;
-            font-size:.8rem;
+            font-size: .8rem;
             color: $table-view-icon;
         }
 
-        .m-table-view-ttl > .iconfont {
+        .m-table-view-ttl > .m-icon {
             transform: rotate(90deg);
             transition: all .5s;
         }
@@ -68,10 +65,9 @@
 
 .m-table-view > .m-table-view-cell.in {
     .m-table-view-ttl {
-        
     }
 
-    .m-table-view-ttl > .iconfont {
+    .m-table-view-ttl > .m-icon {
         transform: rotate(-90deg);
     }
 
@@ -120,11 +116,11 @@
             white-space: nowrap;
             word-wrap: break-word;
             overflow-x: hidden;
-            color:$active;
-            font-size:.7rem;
+            color: $active;
+            font-size: .7rem;
         }
 
-        .iconfont {
+        .m-icon {
             display: flex;
             justify-content: center;
             align-items: center;

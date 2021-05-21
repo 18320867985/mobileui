@@ -2,7 +2,7 @@
 @import "../var.scss";
 
 /*icon*/
-.m-icon-cnt {
+.icon-cnt {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -10,7 +10,7 @@
      margin-left:-1%;
 }
 
-.m-icon-item {
+.icon-item {
     
     display:flex;
      flex-flow: column nowrap;
@@ -22,25 +22,30 @@
     text-align: center;
     background: $bg-white;
 
-    + .m-icon-item {
+    + .icon-item {
         border-bottom: none;
     }
 
 
-    .m-icon {
+    .icon {
         font-size: 1.5rem;
         flex:1;
+        display:flex;
+        flex-flow: row nowrap;
+        justify-content:center;
+        align-items:center;
+
     }
 
     .name {
         margin: .25rem 0;
-        flex:2;
+        flex:1;
         display:flex;
         justify-content:center;
         align-items:center;        
     }
 }
 
-.m-icon-item{
+.icon-item{
     margin-left: 1%;
 }

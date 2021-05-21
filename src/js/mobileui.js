@@ -4441,7 +4441,7 @@ css3 transition
         }, function () {
             // 加载失败
             var $p = m("#m-router-" + Router.getId());
-            m(".m-hd-top-ttl", $p).html("<div class=\"_fail\"> ~<span class=\"iconfont iconshibaibiaoqing\"></span>~</div>");
+            m(".m-hd-top-ttl", $p).html("<div class=\"_fail\"> ~<span class=\"icon icon-nanguo\"></span>~</div>");
             //m-router-cnt
             $p.find("._loading-dh").hide();
             $p.append("<div class=\"_loading-fail\">~\u6570\u636E\u52A0\u8F7D\u5931\u8D25\u4E86~</div>");

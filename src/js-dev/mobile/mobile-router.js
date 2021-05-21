@@ -577,7 +577,7 @@
         }, function () {
             // 加载失败
              var $p= m("#m-router-" + Router.getId());
-                m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="iconfont iconshibaibiaoqing"></span>~</div>`);
+                m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="icon icon-nanguo"></span>~</div>`);
                 //m-router-cnt
                 $p.find("._loading-dh").hide();
                 $p.append(`<div class="_loading-fail">~数据加载失败了~</div>`);

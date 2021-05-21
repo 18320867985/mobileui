@@ -887,7 +887,7 @@ textarea::-moz-placeholder {
 /*check 组件*/
 .m-checkbox-group .icon,
 .m-checkbox .icon {
-  font-size: 1.3rem; }
+  font-size: 1.6rem; }
 
 /*v-checkbox*/
 .m-checkbox {
@@ -937,7 +937,7 @@ textarea::-moz-placeholder {
 
 /*v-radiokbox*/
 .m-radiobox-item .icon {
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   line-height: 1; }
 
 .m-radiobox-group {
@@ -1555,7 +1555,7 @@ textarea::-moz-placeholder {
           -ms-flex-align: center;
               align-items: center;
       width: 10%;
-      font-size: .8rem;
+      font-size: 1rem;
       color: #999; }
     .m-table-view > .m-table-view-cell .m-table-view-ttl > .icon {
       -webkit-transform: rotate(90deg);
@@ -1639,7 +1639,7 @@ textarea::-moz-placeholder {
           -ms-flex-align: center;
               align-items: center;
       width: 10%;
-      font-size: .8rem;
+      font-size: 1rem;
       color: #999; }
 
 /*设计图width*/
@@ -2861,10 +2861,10 @@ body {
   line-height: 2.5rem;
   text-align: center;
   cursor: pointer; }
-  .m-hd-top-icon .iconfont {
+  .m-hd-top-icon .icon {
     display: inline-block;
     vertical-align: middle;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #777; }
 
 .m-hd-top-ttl {

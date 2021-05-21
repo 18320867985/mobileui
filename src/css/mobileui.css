@@ -3332,7 +3332,8 @@ body {
             justify-content: center;
     -webkit-box-align: center;
         -ms-flex-align: center;
-            align-items: center; }
+            align-items: center;
+    color: #444; }
   .icon-item .name {
     margin: .25rem 0;
     -webkit-box-flex: 1;
@@ -3346,7 +3347,8 @@ body {
             justify-content: center;
     -webkit-box-align: center;
         -ms-flex-align: center;
-            align-items: center; }
+            align-items: center;
+    color: #444; }
 
 .icon-item {
   margin-left: 1%; }

@@ -13,7 +13,17 @@ body {
     font-family: $font-family;
     line-height: $line-height;
     background: $body-bg;
-    color: $body-color;
+    color: $text-df;
+}
+
+
+a,
+a:not(.m-btn),
+a:link:not(.m-btn),
+a:active:not(.m-btn) {
+    text-decoration: none;
+    color: $text-df;
+    -webkit-tap-highlight-color:transparent;
 }
 
 
@@ -26,12 +36,6 @@ ul {
     list-style: none;
 }
 
-a:not(.m-btn),
-a:link:not(.m-btn),
-a:active:not(.m-btn) {
-    text-decoration: none;
-    color: $text-primary;
-}
 
 
 /*input*/
@@ -80,6 +84,19 @@ body,
     display: block;
 }
 
+.text-center{
+    text-align:center;
+
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
 /*ellipsis*/
 .elp {
     max-width: 100%;
@@ -113,6 +130,28 @@ body,
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical
 }
+
+.elp-3 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical
+}
+
+
+.elp-4 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical
+}
+
 
 
 

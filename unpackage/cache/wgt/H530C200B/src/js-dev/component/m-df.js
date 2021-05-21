@@ -28,8 +28,7 @@ $(function () {
     m.setLayout();
     m(window).on("resize", m.setLayout);
 
-    // a标签链接
-   
+    // 阻止默认行为
     m("a").click(function (event) {
         event.preventDefault();
     });
@@ -39,29 +38,32 @@ $(function () {
        
     });
 
-    m("a").tap(function (event) {
-        event.preventDefault();
-    });
+    // 绑定函数 router.link 运行时执行 
+    m.router.bindFn(function () {
 
-    m(document).on("tap", "a[data-link-btn]", function (event) {
+        //获取当前激活路由页元素
+        var $activeEl = m.router.getActiveEl();
 
-        event.preventDefault();
+        // m-media组件 a[data-link] 链接跳转
+        m(".m-media-list", $activeEl).on("tap", "a[data-link]", function (event) {
 
-        var isHref = m(this).hasAttr("href");
-        var hrefValue = m(this).attr("href");
-        if (isHref) {
-            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
-                return;
-            } else {
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
 
-                //if (m(this).hasAttr("data-router")) {
-                    m.router.link(hrefValue);
-                    return;
-              //  }
-               // window.location.href = hrefValue;
-            }
+        });
 
-        }
+        // m-slide组件 a[data-link] 链接跳转
+        m(".m-touch-slide", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+
+        });
+
+     
+
     });
 
 
@@ -81,18 +83,16 @@ $(function () {
 
 	// 扩展API是否准备好，如果没有则监听“plusready"事件
 	if(window.plus){  
-	    plusReady();  
-	}else{   
-	    document.addEventListener("plusready", plusReady, false);  
-	} 
+        plusReady();
+    }
+    else {   
+        document.addEventListener("plusready", plusReady, false);
+    } 
 	
 	// 是否手指触摸页面
-	m.router.istouch=false;
-	 m(document).touch(function(){},function(event,obj){
-		 if(obj.isX){m.router.istouch=true;  }
-		 },function(){
-		  m.router.istouch=false;
-	 });
+    m.router.istouch = false;
+
+	m(document).touch(function(){},function(event,obj){if(obj.isX){m.router.istouch=true;  }}, function () {m.router.istouch=false;});
 	
 	function  plusReady(){
 		
@@ -103,15 +103,14 @@ $(function () {
 			if(m.router.ismask){return;} // 是否已经显示mask
 			m.router.back();
 			
-			// 退出app应用
-			 
+			// 退出app应用 
 			if(m.router.getId()===0){
 				// 退出应用
 				if(!m.router._quitOne){
 					
 					m.router._quitTime1 =new Date().getTime();
 					m.router._quitOne=true;
-					console.log(m.router._quitTime1);
+					//console.log(m.router._quitTime1);
 				}else{
 					m.router._quitTime2 =new Date().getTime();
 					
@@ -120,12 +119,9 @@ $(function () {
 						plus.runtime.quit(); return;
 					}
 					m.router._quitTime1 =new Date().getTime();
-					
-					
+	
 				}
-				
-				
-				
+
 			}
 		});
 		

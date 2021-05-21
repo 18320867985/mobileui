@@ -44,7 +44,7 @@
 
 (function () {
     // 单选组 m-checkbox-group
-    $(document).on("tap", ".m-checkbox-group-item", function (e) {
+    m(document).on("tap", ".m-checkbox-group-item", function (e) {
         e.preventDefault();
         $(this).toggleClass("active");
         var p = $(this).parents(".m-checkbox-group");
@@ -56,13 +56,13 @@
         });
 
         // 触发自定义的事件
-        $(this).trigger("check.m.checkbox.group", [p, vals]);
+        m(this).trigger("check.m.checkbox.group", [p, vals]);
 
     });
 
     
 
-    $.fn.extend({
+    m.fn.extend({
         mCheckboxGroup: function (args) {
             var items = $(this).find(".m-checkbox-group-item");
 
@@ -148,7 +148,7 @@
 (function () {
 
     // 单选 m-radiobox
-    $(document).on("tap", ".m-radiobox-item", function (e) {
+    m(document).on("tap", ".m-radiobox-item", function (e) {
         e.preventDefault();
         var p = $(this).parents(".m-radiobox-group");
         $(".m-radiobox-item", p).removeClass("active");
@@ -160,7 +160,7 @@
     });
 
 
-    $.fn.extend({
+    m.fn.extend({
 
         mRadioboxGroup: function (args) {
             var items = $(this).find(".m-radiobox-item");
@@ -177,7 +177,7 @@
                 });
 
                 // 触发自定义的事件
-                $(this).trigger("check.m.radiobox.group", [$(this).find(".m-radiobox-item.active").get(0), v]);
+                m(this).trigger("check.m.radiobox.group", [$(this).find(".m-radiobox-item.active").get(0), v]);
 
             }
 
@@ -209,7 +209,7 @@
 
                 return;
             } else {
-                return $(this).find(".m-radiobox-item.active").attr("data-val") || "";
+                return m(this).find(".m-radiobox-item.active").attr("data-val") || "";
             }
 
 

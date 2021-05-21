@@ -8,17 +8,24 @@
     var MOverflowLr = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MOverflowLr.prototype.running = function () {
+    MOverflowLr.DEFAULT = {
+        tapTime: 250,
+        center:true
+        
+    }
+
+    MOverflowLr.prototype.run = function () {
         var self = this;
-        var $el = m(self.el).find(".m-overflow-lr-pwr");
+        var $el = m(self.el).find(".m-overflow-lr-nav");
         $el.css("overflow-x", "scroll");
         var winW = $el.outerWidth();
+
         // 设置滑动条
         if (self.options.bar) {
-            self.setBar();
+            self.setBar(); 
         }
 
         // document
@@ -68,42 +75,53 @@
             }
         });
 
+        // 移动阻止冒泡行为
         $el.touch(function (event) { event.stopPropagation(); }, function (event, obj) {
          
             if (obj.isX) {
                 event.stopPropagation();
-  
+            }
+            if (obj.isY) {
+                event.stopPropagation();
             }
            
-        });
+        }, function (event) { event.stopPropagation(); });
 
-        $el.find("a").on("tap",function (event) {
+         // 点击router 跳转
+        $el.find("a[data-link]").on("tap",function (event) {
             event.preventDefault();
-
-            var isHref = m(this).hasAttr("href");
-            var hrefValue = m(this).attr("href");
-            if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
-                    return;
-                } else {
-
-                    //if (m(this).hasAttr("data-router")) {
-                    m.router.link(hrefValue);
-                    return;
-                    //  }
-                    // window.location.href = hrefValue;
-                }
-
-            }
+            m.router.alink.call(this);
         });
-    
+
+        // 导航 m-overflow-lr-menu 
+        var $el_parent = m(self.el).find(".m-overflow-lr-nav.m-overflow-lr-menu");
+        var $el_menu = $el_parent.find(".m-overflow-lr-item");
+        var $el_menu_w2 = $el_menu.outerWidth() / 2;
+
+        $el_menu.on("tap", function (event) {
+
+            m(this).addClass("active").siblings().removeClass("active");
+         
+            // 定位到左边
+
+            //  $el_parent.scrollLeft(m(this).offsetLeft(), MOverflowLr.DEFAULT.tapTime);
+
+           // 定位到中间
+            var $el_parent_w = $el_parent.outerWidth()/2;
+            $el_parent.scrollLeft(m(this).offsetLeft() - ($el_parent_w - $el_menu_w2), MOverflowLr.DEFAULT.tapTime);
+
+            // tap选中触发的事件
+            m(this).emit("tap.m.overflow.lr", [this]);
+
+        });
+
 
     };
 
     MOverflowLr.prototype.setBar = function (x) {
         var $m_touch_lr = m(this.el);
         var pwr = document.createElement("div");
-        pwr.classList.add("m-overflow-lr-bar-pwr");
+        pwr.classList.add("m-overflow-lr-bar-nav");
         var bar = document.createElement("div");
         bar.classList.add("m-overflow-lr-bar");
         var item = document.createElement("div");
@@ -150,6 +168,8 @@
             if (!data) {
                 var o = {};
                 o.bar = $this.hasAttr("data-bar");
+                //o.center = MOverflowLr.DEFAULT.center;
+                //o.center = $this.hasAttr("data-center");
                 var p = $.extend({}, o, options);
                 $this.data('m-overflow-lr', data = new MOverflowLr(this, p));
             }
@@ -163,9 +183,9 @@
     }
 
     var _mOverflowLr = $.fn.mOverflowLr;
-    $.fn.mOverflowLr = Plugin;
+    m.fn.mOverflowLr = Plugin;
 
-    $("[data-toggle=m-overflow-lr]").each(function (e) {
+    m("[data-toggle=m-overflow-lr]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

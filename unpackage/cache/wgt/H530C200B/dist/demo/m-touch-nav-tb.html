@@ -1,330 +1,117 @@
-
-
 <!-- 1. css  style  区域 -->
 <style>
 
-        /* 注意！这里样式是加载渲染后是全局的
+    /* 注意！这里样式是加载渲染后是全局的
        局部区分为内容区域标签加上id或class
        路由模块隐藏后style块里样式被删除
     */
-        #m-touch-nav-tb {
-                    padding: 1rem;
-                    background:white;
-        }
+    #m-nav-loaing {
+        width: 100%;
+        display: flex;
+        flex-flow: nowrap row;
+    }
 
-       #m-touch-nav-tb .m-cnt-l {
+        #m-nav-loaing .m-cnt-l {
             flex: 0 0 3.5rem;
             height: 100%;
-            border: 1px solid #ddd;
+            border-right: 1px solid #ddd;
         }
 
-      #m-touch-nav-tb   .m-cnt-r {
-            flex: 1;
+        #m-nav-loaing .m-cnt-r {
+            flex: 1 1;
+            height: 100%;
         }
 
-    .m-touch-nav-tb-cont {
-        display: flex;
-        flex-flow: row;
-        justify-content: space-between;
-        height: 100%;
-        padding: 1rem;
 
-        border-radius:.5rem;
-        box-shadow: .2rem .2rem .2rem rgba(0,0,0,.1),-.2rem -.2rem .2rem rgba(0,0,0,.1);
-    }
+        #m-nav-loaing .m-overflow-tb-cnt {
+        }
 </style>
 
 <!--2.内容区域 -->
-<section class="m-router-cnt" id="m-touch-nav-tb">
-    <div class="m-touch-nav-tb-cont">
+<section class="m-router-cnt" id="m-nav-loaing">
 
-        <div class="m-cnt-l">
-            <nav class="m-touch-nav-tb">
-                <ul class="m-touch-nav-tb-cnt ">
-                    <li class="active  m-touch-nav-item">
-                        <a href="javascript:;">center</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">美食</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家</a>
+    <!--左边菜单 上下touch-nav滑动区-->
+    <div class="m-cnt-l">
+        <nav class="m-touch-nav-tb">
+            <ul class="m-touch-nav-tb-cnt ">
+                <li class="active  m-touch-nav-item">
+                    <a href="javascript:;">center</a>
+                </li>
 
-                    </li>
+            </ul>
+        </nav>
+    </div>
 
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
+    <!--右边内容区域-->
+    <div class="m-cnt-r">
+        <div class="m-touch-nav-tb-item">
+            <!--上下overfolw 滑动区-->
+            <div class="m-overflow-tb" data-toggle="m-overflow-tb">
+                <div class="m-overflow-tb-cnt">
 
-                </ul>
-            </nav>
+                    <!--两列高度自动 -->
+                    <div class="m-media-auto">
 
-        </div>
+                        <ul class="m-media-list m-media-auto-l">
 
-        <div class="m-cnt-l">
-            <nav class="m-touch-nav-tb">
-                <ul class="m-touch-nav-tb-cnt ">
-                    <li class="active  m-touch-nav-item">
-                        <a href="javascript:;">top</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">美食</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家</a>
+                            <li class="m-media">
+                                <a data-link href="./demo/m-card.html?ttl=列表详情">
+                                    <img class="m-media-img" src="./images/shop-1.webp">
 
-                    </li>
+                                    <div class="m-media-body">
+                                        <h5 class="m-media-title  elp-2">雅鹿自由自在 21年连衣裙2021年季女装新款装新品气质典雅减龄大码显瘦裙子女 9306 七分袖 M</h5>
 
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
+                                        <p class="m-media-text elp-4">裙子款式好看，摸着舒适，当晚洗后没有发现掉色的现象，</p>
 
-                </ul>
-            </nav>
+                                        <div class="m-media-icon">
+                                            <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
 
-        </div>
+                                            <div class="m-media-icon-r"><span>看相似的</span></div>
+                                        </div>
 
-        <div class="m-cnt-l">
-            <nav class="m-touch-nav-tb">
-                <ul class="m-touch-nav-tb-cnt ">
-                    <li class="active  m-touch-nav-item">
-                        <a href="javascript:;">limit</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">美食</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家</a>
+                                    </div>
 
-                    </li>
 
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">MV2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">悦单2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">V榜2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">音悦2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">商城2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">节目2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">饭团2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">资讯2</a>
-                    </li>
-                    <li class="m-touch-nav-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
+                                </a>
+                            </li>
 
-                </ul>
-            </nav>
+                        </ul>
 
+                        <ul class="m-media-list m-media-auto-r">
+
+                            <li class="m-media">
+                                <a data-link href="./demo/m-card.html?ttl=列表详情">
+                                    <img class="m-media-img" src="./images/shop-5.webp">
+
+                                    <div class="m-media-body">
+                                        <h5 class="m-media-title  elp-2">雅鹿自由自在 21年连衣裙2021年季女装新款装新品气质典雅减龄大码显瘦裙子女 9306 七分袖 M</h5>
+
+                                        <p class="m-media-text elp-4">裙子款式好看，摸着舒适</p>
+
+                                        <div class="m-media-icon">
+                                            <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
+
+                                            <div class="m-media-icon-r"><span>看相似的</span></div>
+                                        </div>
+
+                                    </div>
+
+
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="m-overflow-tb-loading">
+                    正在加载中...
+                </div>
+
+            </div>
         </div>
 
     </div>
-
 </section>
 
 <!-- js 区域 -->
@@ -335,7 +122,7 @@
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
-            routerTilte: "nav-上下定位滑动", // 路由页的标题
+            routerTilte: "touch-nav 侧边上下滑动菜单", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
             // routerClass:"router-class-1"   // 路由页的class
         },
@@ -356,13 +143,47 @@
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
-             // 1.插件模式 m.mTouchNavTb()  2.组件模式< data-toggle="m-touch-nav-tb">
-            m(".m-touch-nav-tb",context).eq(0).mTouchNavTb({ limitTop: false, limitBottom: false, center: true });
-            m(".m-touch-nav-tb",context).eq(1).mTouchNavTb({ limitTop: false, limitBottom: false, top: true });
-            m(".m-touch-nav-tb",context).eq(2).mTouchNavTb({ limitTop: true, limitBottom: true });
+            // 加载nav 和tab
+            var nav = "";
+            var tab = "";
+            var navs = ["京东超市", "数码电器", "京东美食", "京东商城", "京东服饰", "京东生鲜", "京东到家", "充值缴费", "领券", "领金贴", "手机", "家居厨具", "京东美食", "美妆护肤", "男装", "女装", "内衣配饰", "数码", "珠宝", "医药保健", "箱包", "玩具乐器", "汽摩生活", "二手商品", "计生情趣", "生活旅游", "图书文娱", "京东服务", "拍卖", "工业品", "宠物鲜花", "PLUS会员"];
+            for (var i = 0; i < navs.length; i++) {
+                nav += `<li class="${i === 0 ? `active` : ``}  m-touch-nav-item" data-tab="#tab${i + 1}">
+                                    <a href="javascript:;">${navs[i]} </a>
+                                </li>  `;
 
-            // m-touch-nav-tb-tap触发的事件
-            m(".m-touch-nav-tb",context).on("tap.m.touch.nav.tb", function (event, el, moveY) {
+                tab += ` <div class="m-touch-nav-tb-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}" data-ttl="${navs[i]}">
+                                    <div class="m-overflow-tb"  >
+                                        <div class="m-overflow-tb-cnt">
+                                              <!--两列高度自动 -->
+                                            <div class="m-media-auto">
+
+                                                <ul class="m-media-list m-media-auto-l">
+
+                                                </ul>
+
+                                                <ul class="m-media-list m-media-auto-r">
+
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="m-overflow-tb-loading">
+                                              正在加载中...
+                                        </div>
+
+                                    </div>
+
+                                </div>  `;
+
+            }
+
+
+
+
+            // touch-nav 上下滑动组件的tap触发的事件
+            m(".m-touch-nav-tb", context).on("tap.m.touch.nav.tb", function (event, el, moveY) {
 
                 /*
                  * event 事件对象
@@ -371,56 +192,147 @@
                  *
                  */
                 // console.log("event", event);
-                // console.log("el", el);
-                //console.log("moveY", moveY);
+                console.log("el", el);
+                console.log("tap.m.touch.nav.tb 事件");
 
             });
 
+            // 触发插件
+            // 1.插件模式 m.mTouchNavTb()  2.组件模式< data-toggle="m-touch-nav-tb">
+            // touch-nav 上下滑动组件
+            m(".m-touch-nav-tb-cnt", context).html(nav).parent().mTouchNavTb({ limitTop: false, limitBottom: false });;
 
-            // 触发上下滑动自定义start的事件
-            m(".m-touch-nav-tb",context).on("start.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
-                /*
-                   event       事件
-                   el          触发元素
-                   moveY       translateY值
-                   scrollObj   滚动对象
-                 */
-                //console.log("event", event);
-                //console.log("el", el);
-                //console.log("moveY", moveY);
-                //console.log("scrollObj", scrollObj);
+            m(".m-cnt-r", context).html(tab)
+
+            // overflow 上下滑动组件
+            m(".m-overflow-tb", context).mOverflowTb();
+
+
+            // tap.m.touch.nav.tb触发的事件
+            m(".m-touch-nav-tb", context).on("tap.m.touch.nav.tb", function (event, el, moveY) {
+
+                var id = m(el).attr("data-tab");
+                m(id).addClass("active").siblings().removeClass("active");
+
+                if (!m(id).data("isOne")) {
+                    m(id).data("isOne", true);
+                    ajaxData(m(id), m(id).index());
+                }
+            });
+
+
+            // 拉到底部触发
+            m(".m-overflow-tb", context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
+
+                var $el = m(el).parents(".m-touch-nav-tb-item");
+                ajaxData($el, $el.index());
 
             });
 
-            // 触发上下滑动自定义move的事件
-            m(".m-touch-nav-tb",context).on("move.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
-                /*
-                   event       事件
-                   el          触发元素
-                   moveY       translateY值
-                   scrollObj   滚动对象
-                 */
-                //console.log("event", event);
-                //console.log("el", el);
-                //console.log("moveY", moveY);
-                //console.log("scrollObj", scrollObj);
+            // 第一次加载数据
+            var $activeEl = $(".m-touch-nav-tb-item.active", context);
+            ajaxData($activeEl, 0);
+            $activeEl.data("isOne", true);
 
-            });
+            // ajax 加载数据
+            function ajaxData($el, index) {
 
-            // 触发上下滑动自定义end的事件
-            m(".m-touch-nav-tb").on("end.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
-                /*
-                   event       事件
-                   el          触发元素
-                   moveY       translateY值
-                   scrollObj   滚动对象
-                 */
-                //console.log("event", event);
-                //console.log("el", el);
-                //console.log("moveY", moveY);
-                //console.log("scrollObj", scrollObj);
+                if ($el.data("loadingEnd")) {
+                    return;
+                }
+                $el.data("loadingEnd", true);
+                var ttl = $el.attr("data-ttl");
 
-            });
+                m.get("./json/tab.json", function (res) {
+
+                    $el.data("loadingEnd", false);
+                    var page = $el.data("pageindex") || 1;
+                    // var docf = document.createDocumentFragment();
+                    var lis_l = ""; lis_r = "";
+
+                     // 左右边轮动添加
+                    var $el_l = $el.find(".m-overflow-tb-cnt .m-media-auto-l");
+                    var $el_r = $el.find(".m-overflow-tb-cnt .m-media-auto-r");
+                    var $el_l_h = $el_l.height();
+                    var $el_r_h = $el_r.height();
+                    var $el_l_last_h = $el_l.find(".m-media").last().height();
+                    var $el_r_last_h = $el_r.find(".m-media").last().height();
+                    var intoL = false;
+                    if ($el_l_h - $el_r_h >= 0) {
+                        
+                        intoVal = Math.ceil(($el_l_h - $el_r_h) / $el_r_last_h);
+                        intoVal = isNaN(intoVal) ? 0 : intoVal;
+                        intoL = false;
+                    } else {
+                        intoVal = Math.ceil(($el_r_h - $el_l_h) / $el_l_last_h);
+                        intoVal = isNaN(intoVal) ? 0 : intoVal;
+                        intoL = true;
+                    }
+
+                  
+            
+                    for (var i = 0; i < res.length; i++) {
+
+
+                        var li = `  <li class="m-media">
+                                    <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
+                                        <img class="m-media-img" src="./${res[i].img}">
+
+                                        <div class="m-media-body">
+                                            <h5 class="m-media-title elp-1 ">${ttl}</h5>
+
+                                            <p class="m-media-text elp-4">${res[i].content}</p>
+
+                                            <div class="m-media-icon">
+                                                <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
+
+                                                <div class="m-media-icon-r"><span>看相似的</span></div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </a>
+                                </li>`;
+
+                         // 左右边轮动添加
+                        if (intoVal <= 0) {
+                            
+                            if (i % 2 === 0) {
+
+                                // 左边列表
+                                lis_l += li;
+                            } else {
+
+                                // 右边列表
+                                lis_r += li;
+                            }
+                        }
+                       
+                        if (intoVal >0) {
+                            if (intoL) {
+
+                                // 左边列表
+                                lis_l += li;
+                                intoVal--;
+                            } else {
+
+                                // 右边列表
+                                lis_r += li;
+                                intoVal--;
+                            }
+
+                           
+                        }
+
+                    }
+
+                    $el.data("pageindex", ++page);
+                    $el.find(".m-overflow-tb-cnt .m-media-auto-l").append(lis_l);
+                    $el.find(".m-overflow-tb-cnt .m-media-auto-r").append(lis_r);
+                }, "json");
+
+            }
 
 
 

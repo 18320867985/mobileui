@@ -8,10 +8,10 @@
     var MListoption = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MListoption.prototype.running = function () {
+    MListoption.prototype.run = function () {
 
         var $m_listoption = m(this.el);
         var transition = "transform .6s ease";
@@ -128,9 +128,9 @@
     }
 
     var _mListoption = $.fn.mListoption;
-    $.fn.mListoption = Plugin;
+    m.fn.mListoption = Plugin;
 
-    $("[data-toggle=m-listoption]").each(function (e) {
+    m("[data-toggle=m-listoption]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });

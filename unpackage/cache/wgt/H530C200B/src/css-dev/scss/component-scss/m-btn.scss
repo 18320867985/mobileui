@@ -2,36 +2,37 @@
 @import "../var.scss";
 
     /*m-m-btn*/
-    .m-btn {
-        display: inline-block;
-        margin: 0 0 .5rem 0;
-        color: $body-color;
-        font-weight: 400;
-        text-align: center;
-        white-space: nowrap;
-        text-decoration: none;
-        vertical-align: middle;
-        user-select: none;
-        border: 1px solid transparent;
-        padding: 0.5rem 0.7rem;
-        font-size: .85rem;
-        border-radius: 0.25rem;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid $text-muted;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+.m-btn {
+    display: inline-block;
+    margin: 0 0 .5rem 0;
+    padding: 0.45rem 1rem;
 
-        & + & {
-            margin-left: .5rem;
-        }
+    color: $text-df;
+    font-size: .75rem;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: middle;
 
-        &.m-btn-block {
-            display: block;
-            width: 95%;
-            margin: .5rem auto;
-            text-align: center;
-        }
+    user-select: none;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid $text-muted;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    & + & {
+        margin-left: .5rem;
     }
+
+    &.m-btn-block {
+        display: block;
+        width: 95%;
+        margin: .5rem auto;
+        text-align: center;
+    }
+}
 
     .m-btn:active, .m-btn.active {
         background-color: lighten($text-muted,5%);

@@ -118,8 +118,9 @@
             urls = urls instanceof Array ? urls : [];
         }
             
-        var $el =m( "#m-router-" + Router.getId());
+        var $el = Router.getActiveEl(); //m( "#m-router-" + Router.getId());
         _setRouterObj($el, obj);
+       // console.log(obj);
                    
          // 遍历器
         var activeUrls = _activeUrls(urls);
@@ -154,7 +155,7 @@
                 urls = urls instanceof Array ? urls : [];
             }
 
-        var $el = m("#m-router-" + Router.getId());
+        var $el = Router.getActiveEl(); //m("#m-router-" + Router.getId());
         _setRouterObj(el, obj);
            
             // 遍历器
@@ -576,7 +577,7 @@
         }, function () {
             // 加载失败
              var $p= m("#m-router-" + Router.getId());
-                m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="iconfont iconshibaibiaoqing"></span>~</div>`);
+                m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="icon icon-nanguo"></span>~</div>`);
                 //m-router-cnt
                 $p.find("._loading-dh").hide();
                 $p.append(`<div class="_loading-fail">~数据加载失败了~</div>`);
@@ -594,12 +595,14 @@
                 obj.$moveElment = m(this);
                 obj.moveElmentX = obj.$moveElment.translateX();
                 obj.$prevEl = Router.getPrevEl();
+                var _id = Router.getId();
+                obj.maskEl = m("[data-router-id=m-router-" + _id + "]");
             
                 if (obj.x < (obj.$moveElment.width() * 0.95) ) {
                    
                     obj.isMove = true;
                 }
-
+               // obj.window_w = m(window).width();
                 self.obj = obj;
 
             },
@@ -625,10 +628,9 @@
                             obj.$moveElment.addClass("m-router-box-move");
                         }
 
-                       
                         // 移动当前的路由页
                         obj.$moveElment.translateX(translateX).translateZ(0);
-
+                    
                         // 上一个元素的移动
                         Router.isOneMove = false;
                         obj.$prevEl.transition("none");
@@ -642,6 +644,8 @@
 
                         obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0);
 
+                        // 移动mask页 透明度             
+                        //obj.maskEl.css("opacity", (0.1 - translateX / (obj.window_w*10)));
                     }
                 }
             },
@@ -649,26 +653,25 @@
             function (event, obj) {
 
                 if (obj.isX) {
-                  //  if (obj.xlt) { obj.xlt = null; return; }
-                    
+              
                     var t = 0.5;
+                    var transition = "transform  " + Router.transitionTime * t + "ms ease";
                     if (obj.$moveElment.translateX() < obj.$moveElment.width() / 2) {
                         
-                        var transition = "transform  " + Router.transitionTime*t + "ms ease";
                         obj.$moveElment.transition(transition);
                         if (!Router.isOneMove) { obj.$moveElment.translateX(0).translateZ(0); }
                         obj.$prevEl.transition(transition);
                         obj.$prevEl.translateX(-obj.$prevEl.width() / 2).translateZ(0);
 
                     } else {
-        
+                     
+                        obj.maskEl.css("opacity", 0);
+                        obj.maskEl.transition(transition);
                         Router.back(t); 
-      
+                       
                     }
 
-                 
                     obj.isMove = false;
-              
 
                 }
 
@@ -679,7 +682,8 @@
             });
     }
 
-    function _setRouterObj(el,obj) {
+    function _setRouterObj(el, obj) {
+        
         m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
         if (obj.routerTilteColor) { m(".m-hd-top-ttl", el).css("color", obj.routerTilteColor); }
         if (obj.routerClass) { m(el).addClass(obj.routerClass); }
@@ -723,7 +727,28 @@
             Router.reqSync(obj, urls, onload);
         }
 
+        // 执行页面的函数
+        Router.runBindFn();
+
     }
+
+    // bind 函数
+    Router.bindObj = {};
+    Router.bindFn = function (fn) {
+
+        if (typeof fn === "function") { Array.prototype.push.call(Router.bindObj, fn); };
+       
+    };
+
+     // 执行 函数
+    Router.runBindFn = function (fn) {
+
+        for (var pros in Router.bindObj) {
+
+            if (typeof Router.bindObj[pros] === "function") { Router.bindObj[pros]();};
+        }
+
+    };
 
     Router.ajax = m.ajax;
 
@@ -768,11 +793,37 @@
         return 0;
 
     };
-    // 获取id
+
+    // 获取当前激活路由页元素
     Router.getActiveEl = function () {
 
         return m("#m-router-" + m.router.getId());
     };
+
+    // 设置路由页top区域
+    Router.setting = function (settingObj) {
+        _setRouterObj(Router.getActiveEl(), settingObj);
+    }
+
+    //  a标签 链接属性data-link 跳转
+    Router.alink = function () {
+       
+        var isHref = m(this).hasAttr("href");
+        var hrefValue = m(this).attr("href");
+        if (isHref) {
+            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
+                return;
+            } else {
+
+                //if (m(this).hasAttr("data-router")) {
+                m.router.link(hrefValue);
+                return;
+                //  }
+                // window.location.href = hrefValue;
+            }
+
+        }
+    }
 
     // 删除id
     Router.removeId = function (id) {
@@ -831,7 +882,7 @@
             topEl.classList.add("m-router-hd");
             topEl.innerHTML = `<div class="m-hd-top">
             <div class="m-hd-top-icon m-router-back">
-                <span class="iconfont icon-back-left">
+                <span class="icon icon-back-left">
                 </span>
             </div>
 
@@ -903,12 +954,10 @@
 
             // 监听页面隐藏 触发的事件
             $p.emit("m-router-hide", [$p, _id]);  
-
+            m("[data-router-id=m-router-" + _id + "]").css("opacity",0).remove();
             var $prevEl = Router.getPrevEl();
             $prevEl.transition(transition).translateX(0);
             setTimeout(function () {
-
-            m("[data-router-id=m-router-" + _id + "]").remove();
                 $p.remove();
                 Router.removeId(_id);
 
@@ -959,10 +1008,8 @@
     // 生命周期函数--监听页面隐藏
     Router.onHide = function (el,fn) {
 
-        m(el).on("m-router-hide", function (event, $p,id) {
-           
+        m(el).on("m-router-hide", function (event, $p,id) {   
             if (Router.getId() === id) { fn.call($p, $p); }
-           
         });
     };
 
@@ -980,15 +1027,13 @@
     }
 
   
-    // 返回上一页的函数
+    // 返回上一页
     function mBack() {
         m(document).on("tap", ".m-router-back", function (event) {
             event.preventDefault();
             Router.back();
         });
     }
-
-    mBack();
 
     function setRouterLayout() {
 
@@ -1011,7 +1056,10 @@
     m.extend({
         setRouterLayout: setRouterLayout
     });
-    m.setRouterLayout();
+
+
+    mBack(); //返回上一页 
+    m.setRouterLayout(); //整体框架设置内容
     m(window).on("resize", setRouterLayout);
 
 }();

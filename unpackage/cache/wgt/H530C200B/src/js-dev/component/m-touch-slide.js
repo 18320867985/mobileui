@@ -8,10 +8,10 @@
     var MTouchSlide = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchSlide.prototype.running = function () {
+    MTouchSlide.prototype.run = function () {
 
         var self = this;
         var $m_touch_slide = m(this.el);
@@ -89,7 +89,7 @@
              
             },
             function (event, obj) {
-              
+               
                 if (obj.isX) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -153,29 +153,6 @@
             }
 
         );
-
-
-        m(this.el).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            var isHref = m(this).hasAttr("href");
-            var hrefValue = m(this).attr("href");
-            if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
-                    return;
-                } else {
-
-                    //if (m(this).hasAttr("data-router")) {
-                   m.router.link(hrefValue);
-                    return;
-                    //  }
-                    // window.location.href = hrefValue;
-                }
-
-            }
-        });
-
-
 
 
     };
@@ -263,9 +240,9 @@
     }
 
     var _mTouchSlide = $.fn.mTouchSlide;
-    $.fn.mTouchSlide = Plugin;
+    m.fn.mTouchSlide = Plugin;
 
-    $("[data-toggle=m-touch-slide]").each(function (e) {
+    m("[data-toggle=m-touch-slide]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

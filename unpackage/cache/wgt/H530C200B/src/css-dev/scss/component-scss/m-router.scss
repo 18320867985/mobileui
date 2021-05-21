@@ -1,7 +1,7 @@
-/*m-df 默认 */
+
+/*router m-df 默认 */
 
 @import "../var.scss";
-
 
 .m-router-mask {
     position: fixed;
@@ -10,7 +10,8 @@
     right: 0;
     bottom: 0;
     background:#000;
-    opacity:.01;
+    opacity:0;
+    
 }
 
 @keyframes m-router-dh{
@@ -35,19 +36,24 @@
     background: #fff;
 
     &.in {
-        animation: m-router-dh .25s  linear both;
+        animation: m-router-dh .25s linear both;
     }
 
-    .m-hd-top-ttl ._fail {
-        color: $text-muted;
+    .m-hd-top-ttl {
+        color: $router-ttl;
 
-        .iconfont {
-            font-size: .9rem;
-            vertical-align: middle;
-            margin: 0 .25rem;
-            font-weight: 100;
+        ._fail {
+            color: $text-muted;
+
+            .icon {
+                font-size: .9rem;
+                vertical-align: middle;
+                margin: 0 .25rem;
+                font-weight: 100;
+            }
         }
     }
+
 
     ._loading-fail, ._loading-dh {
         display: flex;
@@ -56,7 +62,7 @@
         height: 100%;
         color: $text-muted;
 
-        .iconfont {
+        .icon {
             font-size: .9rem;
             vertical-align: middle;
             margin: 0 .5rem
@@ -96,11 +102,9 @@
     }
 }
 
-
 .m-router-box-move {
-     box-shadow:0 -5px 5px rgba(0,0,0,.2);
+     box-shadow:-10px 0 10px rgba(0,0,0,.3);
 }
-
 
 .m-router-cnt {
     position: fixed;
@@ -115,7 +119,7 @@
     justify-content:flex-start;
     align-items:stretch;
     width: 100%;
- 
+   
 }
 
 .m-router-top{
@@ -131,4 +135,90 @@
 .m-router-ft {
     flex: 0 0 auto;
   
+}
+
+/*router m-hd*/
+$hd-height: 50rem;
+
+body {
+    overflow: hidden;
+}
+
+.m-hd {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid $text-line;
+    box-shadow: 1px 0 5px rgba(0,0,0,.075);
+}
+
+
+.m-hd-top {
+    position: relative;
+    height: $hd-height/$rem;
+    background: white;
+}
+
+.m-hd-top-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $hd-height/$rem;
+    line-height: $hd-height/$rem;
+    text-align: center;
+    cursor: pointer;
+
+
+    .icon {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 1.5rem;
+        color: $router-back-icon;
+    }
+}
+
+
+.m-hd-top-ttl {
+    text-align: center;
+    line-height: $hd-height/$rem;
+    color: $h-color;
+    font-size: 18rem/$rem;
+}
+
+/*m-cnt*/
+.m-cnt {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    overflow: visible;
+    background: $body-bg;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+}
+
+/*m-ft*/
+$m-ft-height: 50rem/$rem;
+
+.m-ft {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    text-align: center;
+    background: $bg-white;
+}
+
+.m-ft-nav-ttl {
+    height: $m-ft-height;
+    line-height: $m-ft-height;
 }

@@ -129,7 +129,7 @@
         time = typeof time === "number" ? time : 400;
         x = typeof x === "number" ? x : parseFloat(x);
         x = isNaN(x) ? 0 : x;
-        var fx = 10;
+        var fx = 20;
         var speed = 100;
 
         self.clearTimeId = self.clearTimeId || 0;

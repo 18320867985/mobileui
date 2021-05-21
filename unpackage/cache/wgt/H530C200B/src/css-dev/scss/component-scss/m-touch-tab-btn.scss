@@ -7,23 +7,30 @@
 // tab-btn
 .m-touch-tab-btn {
     position: relative;
+    background: $bg-white;
 
     .m-touch-tab-btn-cnt {
-
         display: flex;
         flex-flow: nowrap row;
         justify-content: center;
         align-items: center;
-      
     }
 
     &.m-touch-tab-btn-top {
-        padding: .2rem 0;
-        border-top: 1px solid $text-line;
+        border-bottom: 1px solid $text-line;
+
+        .m-touch-tab-btn-item {
+            padding: .4rem .2rem;
+        }
     }
 
     &.m-touch-tab-btn-bottom {
         border-top: 1px solid $text-line;
+
+
+        .m-touch-tab-btn-item {
+            padding: .6rem .2rem;
+        }
     }
 
 
@@ -34,19 +41,18 @@
         z-index: 1;
         display: inline-block;
         vertical-align: top;
-        border-top: 1px solid $text-primary;
+        border-top: 1px solid $active;
         border-radius: 5px;
     }
 }
 .m-touch-tab-btn-item{
     flex:1;
     text-align:center;
-    padding:.5rem;
     font-size:.8rem;
     touch-action:none;
 
     &.active{
-        color:$text-primary;
+        color:$active;
     }
 
 }

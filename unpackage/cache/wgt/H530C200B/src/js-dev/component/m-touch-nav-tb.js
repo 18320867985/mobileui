@@ -8,10 +8,10 @@
     var MTouchNavTb = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchNavTb.prototype.running = function () {
+    MTouchNavTb.prototype.run = function () {
         var self = this;
         var $m_touch_tb = m(this.el);
         var $moveElement = $m_touch_tb.find(".m-touch-nav-tb-cnt");
@@ -22,15 +22,15 @@
             event.stopPropagation();
 
             // 选中的样式移动
-            if (self.options.top) {
+            //if (self.options.top) {
 
-                self.top.call(self, this); // 移动到top
-            }
-            else {
+            //    self.top.call(self, this); // 移动到top
+            //}
+            //else {
 
-                self.center.call(self, this);   // 移动到center
-            }
-
+            //    self.center.call(self, this);   // 移动到center
+            //}
+            self.center.call(self, this);   // 移动到center
         });
         
         self.speedSetIntervalId = 0;  // 计算速度定时器id
@@ -63,7 +63,7 @@
                             self.speedScroll = self.speedlateY3;
                           
 
-                        }, 20);
+                        }, 50);
                     }
              //   }
 
@@ -126,7 +126,7 @@
                             self.speedScroll = -200;
                         }
 
-                        target = target + self.speedScroll * (wraperHeight/20);
+                        target = target + self.speedScroll * (wraperHeight/120);
                  //   }
 
                     if (target > 0) {
@@ -231,14 +231,16 @@
     MTouchNavTb.prototype.set = function (el, bl) {
         var self = this;
         // 选中的样式移动
-        if (self.options.top) {
+        //if (self.options.top) {
 
-            self.top.call(self, el, bl); // 移动到left
-        }
-        else {
+        //    self.top.call(self, el, bl); // 移动到left
+        //}
+        //else {
 
-            self.center.call(self, el, bl);   // 移动到center
-        }
+        //    self.center.call(self, el, bl);   // 移动到center
+        //}
+
+        self.center.call(self, el, bl);   // 移动到center
     };
 
     function Plugin(option, el, bl) {
@@ -254,7 +256,7 @@
                 o.limitTop = $this.hasAttr("data-limit-top");
                 o.limitBottom = $this.hasAttr("data-limit-bottom");
                 o.top = $this.hasAttr("data-top");
-                o.center = $this.hasAttr("data-center");
+               // o.center = $this.hasAttr("data-center");
             
                 var p = $.extend({}, o, options);
                 $this.data('m-touch-nav-tb', data = new MTouchNavTb(this, p));
@@ -269,9 +271,9 @@
     }
 
     var _mTouchNavTb = $.fn.mTouchNavTb;
-    $.fn.mTouchNavTb = Plugin;
+    m.fn.mTouchNavTb = Plugin;
 
-    $("[data-toggle=m-touch-nav-tb]").each(function (e) {
+    m("[data-toggle=m-touch-nav-tb]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

@@ -10,10 +10,10 @@
         this.items = [];
         this.scrollItems = [];
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MIndexlist.prototype.running = function () {
+    MIndexlist.prototype.run = function () {
 
         var $indexlist_nav = m(this.el).find(".m-indexlist-gp");
         var $indexlist_a = m(this.el).find(".m-indexlist-gp-ttl");
@@ -144,9 +144,9 @@
     }
 
     var _mIndexlist = $.fn.mIndexlist;
-    $.fn.mIndexlist = Plugin;
+    m.fn.mIndexlist = Plugin;
 
-    $("[data-toggle=m-indexlist]").each(function (e) {
+    m("[data-toggle=m-indexlist]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

@@ -32,22 +32,22 @@
 
 
             <div class="m-checkbox ">
-                <span class="m-checkbox-item iconfont active"></span>
+                <span class="m-checkbox-item icon  active"></span>
                 <span class="m-checkbox-text">主要</span>
             </div>
 
             <div class="m-checkbox text-success">
-                <span class="m-checkbox-item iconfont active"></span>
+                <span class="m-checkbox-item icon active"></span>
                 <span class="m-checkbox-text">成功</span>
             </div>
 
             <div class="m-checkbox text-warning ">
-                <span class="m-checkbox-item iconfont active"></span>
+                <span class="m-checkbox-item icon active"></span>
                 <span class="m-checkbox-text">警告</span>
             </div>
 
             <div class="m-checkbox text-danger">
-                <span class="m-checkbox-item iconfont active"></span>
+                <span class="m-checkbox-item icon active"></span>
                 <span class="m-checkbox-text">危险</span>
             </div>
 
@@ -55,7 +55,7 @@
             <h4>m-checkbox 组件-单选</h4>
 
             <div class="m-checkbox" id="aixin">
-                <span class="m-checkbox-item iconfont "></span>
+                <span class="m-checkbox-item icon "></span>
             </div>
 
             <p>选择值为: <span class="m-checkbox-val"></span></p>
@@ -67,15 +67,15 @@
 
             <div class="m-checkbox-group ">
                 <div class="m-checkbox-group-item" data-val="js">
-                    <span class="m-checkbox-icon iconfont"></span>
+                    <span class="m-checkbox-icon icon"></span>
                     <span class="m-checkbox-group-text">js</span>
                 </div>
                 <div class="m-checkbox-group-item" data-val="jquery">
-                    <span class="m-checkbox-icon iconfont"></span>
+                    <span class="m-checkbox-icon icon"></span>
                     <span class="m-checkbox-group-text">jquery</span>
                 </div>
                 <div class="m-checkbox-group-item" data-val="c#">
-                    <span class="m-checkbox-icon iconfont"></span>
+                    <span class="m-checkbox-icon icon"></span>
                     <span class="m-checkbox-group-text">c#</span>
                 </div>
 
@@ -90,25 +90,47 @@
             <a class="m-btn  m-checkbox-group-no">反选</a>
 
             <hr />
-            <h4>m-radiobox-group 组件-单选</h4>
-            <div class="m-radiobox-group">
+            <h4>m-radiobox-group 组件-单选-默认</h4>
+            <div class="m-radiobox-group" id="m-radiobox-group1">
                 <div class="m-radiobox-item " data-val="慢">
-                    <span class="m-radiobox-icon iconfont"></span>
+                    <span class="m-radiobox-icon icon"></span>
                     <span class="m-radiobox-txt">慢</span>
                 </div>
                 <div class="m-radiobox-item " data-val="中">
-                    <span class="m-radiobox-icon iconfont"></span>
+                    <span class="m-radiobox-icon icon"></span>
                     <span class="m-radiobox-txt">中</span>
                 </div>
                 <div class="m-radiobox-item " data-val="快">
-                    <span class="m-radiobox-icon iconfont"></span>
+                    <span class="m-radiobox-icon icon"></span>
                     <span class="m-radiobox-txt">快</span>
                 </div>
 
             </div>
+
             <p>选择值为: <span class="m-radiobox-group-val"></span></p>
             <a class="m-btn m-btn-success m-radiobox-group-get">获取选择的值</a>
             <a class="m-btn m-btn-danger m-radiobox-group-set">设置的值 "中" </a>
+
+            <hr />
+            <div class="m-radiobox-group" id="m-radiobox-group2">
+                <div class="m-radiobox-item text-success " data-val="慢">
+                    <span class="m-radiobox-icon icon"></span>
+                    <span class="m-radiobox-txt">慢</span>
+                </div>
+                <div class="m-radiobox-item text-success" data-val="中">
+                    <span class="m-radiobox-icon icon"></span>
+                    <span class="m-radiobox-txt">中</span>
+                </div>
+                <div class="m-radiobox-item text-success " data-val="快">
+                    <span class="m-radiobox-icon icon"></span>
+                    <span class="m-radiobox-txt">快</span>
+                </div>
+
+            </div>
+
+            <p>选择值为: <span class="m-radiobox-group-val2"></span></p>
+            <a class="m-btn m-btn-success m-radiobox-group-get2">获取选择的值</a>
+            <a class="m-btn m-btn-danger m-radiobox-group-set2">设置的值 "快" </a>
 
             <!--内容end -->
         </div>
@@ -215,7 +237,7 @@
             /*m-radiobox-group 组件-单选*/
             // set
             $(".m-radiobox-group-set",context).tap(function () {
-                $(".m-radiobox-group",context).mRadioboxGroup("中");
+                $("#m-radiobox-group1",context).mRadioboxGroup("中");
                 // 或者指定下标index
                 //$(".v-radiobtn-group").vradiobtnGroup(1);
 
@@ -223,17 +245,42 @@
 
             // get
             $(".m-radiobox-group-get",context).tap(function () {
-                var v = $(".m-radiobox-group",context).mRadioboxGroup();
+                var v = $("#m-radiobox-group1",context).mRadioboxGroup();
                  $.mAlert("选择的值：" + v);
             });
 
 
             // 单选 m-radiobtn-group 自定事件
-            $(".m-radiobox-group",context).on("check.m.radiobox.group", function (e, el, v) {
+            $("#m-radiobox-group1",context).on("check.m.radiobox.group", function (e, el, v) {
                 console.log(v, el)
                 $(".m-radiobox-group-val",context).text(JSON.stringify(v));
             });
 
+
+
+            /*m-radiobox-group 组件-单选*/
+            // set
+            $(".m-radiobox-group-set2", context).tap(function () {
+                $("#m-radiobox-group2", context).mRadioboxGroup("快");
+                // 或者指定下标index
+                //$(".v-radiobtn-group").vradiobtnGroup(1);
+
+            });
+
+            // get
+            $(".m-radiobox-group-get2", context).tap(function () {
+            
+                var v = $("#m-radiobox-group2", context).mRadioboxGroup();
+                console.log(v)
+                $.mAlert("选择的值：" + v);
+            });
+
+
+            // 单选 m-radiobtn-group 自定事件
+            $("#m-radiobox-group2", context).on("check.m.radiobox.group", function (e, el, v) {
+                console.log(v, el)
+                $(".m-radiobox-group-val2", context).text(JSON.stringify(v));
+            });
 
 
 

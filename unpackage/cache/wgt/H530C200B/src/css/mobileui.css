@@ -4,11 +4,35 @@
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*设计图width*/
 /*rem 份数*/
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 @media screen and (max-width: 319px) {
   html {
     font-size: 17.06667px; } }
@@ -233,6 +257,18 @@ th {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 * {
   padding: 0;
   margin: 0;
@@ -246,17 +282,19 @@ body {
   background: #f8f8f8;
   color: #333; }
 
+a,
+a:not(.m-btn),
+a:link:not(.m-btn),
+a:active:not(.m-btn) {
+  text-decoration: none;
+  color: #333;
+  -webkit-tap-highlight-color: transparent; }
+
 img {
   display: inline-block; }
 
 ul {
   list-style: none; }
-
-a:not(.m-btn),
-a:link:not(.m-btn),
-a:active:not(.m-btn) {
-  text-decoration: none;
-  color: #337ab7; }
 
 /*input*/
 input,
@@ -295,6 +333,15 @@ body,
 .m-show {
   display: block; }
 
+.text-center {
+  text-align: center; }
+
+.text-left {
+  text-align: left; }
+
+.text-right {
+  text-align: right; }
+
 /*ellipsis*/
 .elp {
   max-width: 100%;
@@ -323,6 +370,24 @@ body,
   text-overflow: ellipsis;
   word-wrap: break-word;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; }
+
+.elp-3 {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal !important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; }
+
+.elp-4 {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal !important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical; }
 
 /*置顶*/
@@ -370,95 +435,25 @@ textarea::-moz-placeholder {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
-/*m-hd*/
-body {
-  overflow: hidden; }
-
-.m-hd {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  overflow: hidden;
-  background: #fff;
-  border-bottom: 1px solid #f2f2f2;
-  -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.075);
-          box-shadow: 1px 0 5px rgba(0, 0, 0, 0.075); }
-
-.m-hd-top {
-  position: relative;
-  height: 2.5rem;
-  background: white; }
-
-.m-hd-top-icon {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2.5rem;
-  line-height: 2.5rem;
-  text-align: center;
-  cursor: pointer; }
-  .m-hd-top-icon .iconfont {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 1rem;
-    color: #444; }
-
-.m-hd-top-ttl {
-  text-align: center;
-  line-height: 2.5rem;
-  color: #444;
-  font-size: 0.9rem; }
-
-/*m-cnt*/
-.m-cnt {
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  overflow: visible;
-  background: #f8f8f8;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  width: 100%; }
-
-/*m-ft*/
-.m-ft {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  text-align: center;
-  background: #fff; }
-
-.m-ft-nav-ttl {
-  height: 2.5rem;
-  line-height: 2.5rem; }
-
-/*设计图width*/
-/*rem 份数*/
-/* 375/18.75 =20px=1rem */
-/*html rem比例*/
-/* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*m-m-btn*/
 .m-btn {
   display: inline-block;
   margin: 0 0 .5rem 0;
+  padding: 0.45rem 1rem;
   color: #333;
+  font-size: .75rem;
   font-weight: 400;
   text-align: center;
   white-space: nowrap;
@@ -468,9 +463,6 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  border: 1px solid transparent;
-  padding: 0.5rem 0.7rem;
-  font-size: .85rem;
   border-radius: 0.25rem;
   background-color: #fff;
   background-clip: padding-box;
@@ -621,6 +613,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-switch {
   position: relative;
   width: 3rem;
@@ -665,6 +669,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*m-input*/
 .m-input-group {
   background: #fff;
@@ -759,17 +775,29 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-checkbtn {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  margin-left: 15px;
+  margin-left: .75rem;
   cursor: pointer; }
   .m-checkbtn .m-checkbtn-item {
-    padding: 5px 10px;
+    padding: .25rem  .5rem;
     color: #666;
     background: #f0f0f0;
-    border-radius: 10px;
+    border-radius: .5rem;
     cursor: pointer; }
     .m-checkbtn .m-checkbtn-item.active {
       background: #337ab7;
@@ -787,19 +815,19 @@ body {
 .m-checkbtn-group {
   position: relative;
   display: inline-block;
-  margin-left: 15px;
+  margin-left: .75rem;
   vertical-align: middle;
   cursor: pointer; }
   .m-checkbtn-group .m-checkbtn-group-item {
     display: inline-block;
     vertical-align: middle;
-    padding: 5px 10px;
+    padding: .25rem .5rem;
     color: #666;
     background: #f0f0f0;
-    border-radius: 10px;
+    border-radius: .5rem;
     cursor: pointer; }
     .m-checkbtn-group .m-checkbtn-group-item + .m-checkbtn-group .m-checkbtn-group-item {
-      margin-left: 15px; }
+      margin-left: .75rem; }
     .m-checkbtn-group .m-checkbtn-group-item.active {
       background: #337ab7;
       color: #fff; }
@@ -816,29 +844,50 @@ body {
 .m-radiobtn-group {
   display: inline-block;
   vertical-align: middle;
-  margin-left: 20px; }
+  margin-left: 1rem; }
 
 .m-radiobtn-item {
   float: left;
-  padding: 10px 15px;
+  padding: .5rem .75rem;
   color: #666;
   background: #f0f0f0;
-  border-radius: 10px;
+  border-radius: .5rem;
   cursor: pointer; }
   .m-radiobtn-item.m-radiobtn-item {
-    margin-left: 10px; }
-  .m-radiobtn-item.active {
-    background: #337ab7;
-    color: #fff; }
+    margin-left: .5rem; }
+    .m-radiobtn-item.m-radiobtn-item.active {
+      background: #337ab7;
+      color: #fff; }
+    .m-radiobtn-item.m-radiobtn-item.active.text-success {
+      background: #5cb85c;
+      color: #fff; }
+    .m-radiobtn-item.m-radiobtn-item.active.text-warning {
+      background: #f0ad4e;
+      color: #fff; }
+    .m-radiobtn-item.m-radiobtn-item.active.text-danger {
+      background: #d9534f;
+      color: #fff; }
 
 /*设计图width*/
 /*rem 份数*/
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
-.m-checkbox-group .iconfont,
-.m-checkbox .iconfont {
-  font-size: 1.3rem; }
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
+.m-checkbox-group .icon,
+.m-checkbox .icon {
+  font-size: 1.6rem; }
 
 /*v-checkbox*/
 .m-checkbox {
@@ -871,12 +920,12 @@ body {
       content: '\e6c1';
       color: #999; }
     .m-checkbox-group .m-checkbox-group-item .m-checkbox-group-txt {
-      font-size: 14px; }
+      font-size: .8rem; }
     .m-checkbox-group .m-checkbox-group-item.active .m-checkbox-icon:before {
       content: '\e678';
       color: #337ab7; }
     .m-checkbox-group .m-checkbox-group-item + .m-checkbox-group-item {
-      margin-left: 10px; }
+      margin-left: .5rem; }
     .m-checkbox-group .m-checkbox-group-item > * {
       vertical-align: middle; }
   .m-checkbox-group.text-success .m-checkbox-group-item.active .m-checkbox-icon:before {
@@ -887,8 +936,8 @@ body {
     color: #d9534f; }
 
 /*v-radiokbox*/
-.m-radiobox-item .iconfont {
-  font-size: 1.3rem;
+.m-radiobox-item .icon {
+  font-size: 1.6rem;
   line-height: 1; }
 
 .m-radiobox-group {
@@ -897,31 +946,49 @@ body {
   .m-radiobox-group .m-radiobox-item {
     display: inline-block;
     vertical-align: middle;
-    font-size: 14px;
+    font-size: .7rem;
     color: #777;
     cursor: pointer; }
     .m-radiobox-group .m-radiobox-item > * {
       vertical-align: middle; }
     .m-radiobox-group .m-radiobox-item .m-radiobox-icon:before {
-      margin-right: 5px;
+      margin-right: .25rem;
       content: '\e6c1';
       color: #999; }
     .m-radiobox-group .m-radiobox-item .m-radiobox-txt {
       display: inline-block;
-      margin-left: -5px;
+      margin-left: -.25rem;
       font-size: 14px; }
     .m-radiobox-group .m-radiobox-item.active .m-radiobox-icon:before {
-      margin-right: 5px;
+      margin-right: .25rem;
       content: '\e678';
       color: #337ab7; }
+    .m-radiobox-group .m-radiobox-item.active.text-success .m-radiobox-icon:before {
+      color: #5cb85c; }
+    .m-radiobox-group .m-radiobox-item.active.text-warning .m-radiobox-icon:before {
+      color: #f0ad4e; }
+    .m-radiobox-group .m-radiobox-item.active.text-danger .m-radiobox-icon:before {
+      color: #d9534f; }
     .m-radiobox-group .m-radiobox-item + .m-radiobox-item {
-      margin-left: 10px; }
+      margin-left: .5rem; }
 
 /*设计图width*/
 /*rem 份数*/
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-info {
   position: fixed;
   left: 0;
@@ -1329,6 +1396,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*slide滑动*/
 .m-touch-slide {
   position: relative;
@@ -1398,6 +1477,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-table-view {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1432,7 +1523,7 @@ body {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      color: #777;
+      color: #666;
       padding: 0.25rem 0; }
       .m-table-view > .m-table-view-cell > .m-table-view-ttl > h5 {
         display: -webkit-box;
@@ -1453,7 +1544,7 @@ body {
         white-space: nowrap;
         word-wrap: break-word;
         overflow-x: hidden; }
-    .m-table-view > .m-table-view-cell .iconfont {
+    .m-table-view > .m-table-view-cell .icon {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -1464,15 +1555,15 @@ body {
           -ms-flex-align: center;
               align-items: center;
       width: 10%;
-      font-size: .8rem;
+      font-size: 1rem;
       color: #999; }
-    .m-table-view > .m-table-view-cell .m-table-view-ttl > .iconfont {
+    .m-table-view > .m-table-view-cell .m-table-view-ttl > .icon {
       -webkit-transform: rotate(90deg);
               transform: rotate(90deg);
       -webkit-transition: all .5s;
       transition: all .5s; }
 
-.m-table-view > .m-table-view-cell.in .m-table-view-ttl > .iconfont {
+.m-table-view > .m-table-view-cell.in .m-table-view-ttl > .icon {
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg); }
 
@@ -1534,8 +1625,10 @@ body {
       text-overflow: ellipsis;
       white-space: nowrap;
       word-wrap: break-word;
-      overflow-x: hidden; }
-    .m-table-view-collapse > .m-table-view-collapse-cell .iconfont {
+      overflow-x: hidden;
+      color: #337ab7;
+      font-size: .7rem; }
+    .m-table-view-collapse > .m-table-view-collapse-cell .icon {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -1546,7 +1639,7 @@ body {
           -ms-flex-align: center;
               align-items: center;
       width: 10%;
-      font-size: .8rem;
+      font-size: 1rem;
       color: #999; }
 
 /*设计图width*/
@@ -1554,6 +1647,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-touch-nav-lr {
   position: relative;
   white-space: nowrap;
@@ -1570,9 +1675,8 @@ body {
     font-size: .7rem; }
     .m-touch-nav-lr .m-touch-nav-item a {
       display: block;
-      padding: 0 1rem;
-      line-height: 2rem;
-      color: #020202; }
+      padding: 0 0.75rem;
+      line-height: 1.8rem; }
     .m-touch-nav-lr .m-touch-nav-item.active {
       background: #337ab7;
       color: #fff; }
@@ -1584,6 +1688,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*上下滑动的菜单*/
 .m-touch-nav-tb {
   position: relative;
@@ -1641,6 +1757,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*左右滑动的菜单*/
 .m-touch-tab {
   position: relative;
@@ -1648,7 +1776,6 @@ body {
   width: 100%;
   height: 100%;
   background: #fff;
-  margin-bottom: 0.75rem;
   -ms-touch-action: none;
       touch-action: none;
   overflow: hidden; }
@@ -1678,9 +1805,22 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*左右滑动的tab的按钮*/
 .m-touch-tab-btn {
-  position: relative; }
+  position: relative;
+  background: #fff; }
   .m-touch-tab-btn .m-touch-tab-btn-cnt {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1696,10 +1836,13 @@ body {
         -ms-flex-align: center;
             align-items: center; }
   .m-touch-tab-btn.m-touch-tab-btn-top {
-    padding: .2rem 0;
-    border-top: 1px solid #f2f2f2; }
+    border-bottom: 1px solid #f2f2f2; }
+    .m-touch-tab-btn.m-touch-tab-btn-top .m-touch-tab-btn-item {
+      padding: .4rem .2rem; }
   .m-touch-tab-btn.m-touch-tab-btn-bottom {
     border-top: 1px solid #f2f2f2; }
+    .m-touch-tab-btn.m-touch-tab-btn-bottom .m-touch-tab-btn-item {
+      padding: .6rem .2rem; }
   .m-touch-tab-btn .m-touch-tab-btn-line {
     position: absolute;
     left: 0;
@@ -1715,7 +1858,6 @@ body {
       -ms-flex: 1;
           flex: 1;
   text-align: center;
-  padding: .5rem;
   font-size: .8rem;
   -ms-touch-action: none;
       touch-action: none; }
@@ -1727,6 +1869,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*左右滑动的菜单*/
 .m-fade-tab {
   position: relative;
@@ -1734,7 +1888,6 @@ body {
   width: 100%;
   height: 100%;
   background: #fff;
-  margin-bottom: 0.75rem;
   -ms-touch-action: none;
       touch-action: none; }
   .m-fade-tab .m-fade-tab-cnt {
@@ -1776,6 +1929,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-listoption {
   /*height: 100%;*/
   width: 100%; }
@@ -1887,6 +2052,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-overflow-tb {
   width: 100%;
   height: 100%;
@@ -1920,12 +2097,26 @@ body {
   color: #777;
   text-align: center;
   font-size: .7rem; }
+  .m-overflow-tb-loading.loading-top {
+    margin-top: .5rem; }
 
 /*设计图width*/
 /*rem 份数*/
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*左右滑动的菜单*/
 .m-overflow-lr::-webkit-scrollbar {
   display: none; }
@@ -1940,13 +2131,13 @@ body {
   .m-overflow-lr.m-bar-no::-webkit-scrollbar {
     display: none; }
 
-.m-overflow-lr-pwr {
+.m-overflow-lr-nav {
   height: 100%;
   width: 100%;
   -ms-touch-action: pan-x;
       touch-action: pan-x;
   -webkit-overflow-scrolling: touch; }
-  .m-overflow-lr-pwr::-webkit-scrollbar {
+  .m-overflow-lr-nav::-webkit-scrollbar {
     display: none; }
 
 .m-overflow-lr-cnt {
@@ -1967,7 +2158,7 @@ body {
   .m-overflow-lr-item img {
     vertical-align: top; }
 
-.m-overflow-lr-bar-pwr {
+.m-overflow-lr-bar-nav {
   position: absolute;
   z-index: 2;
   left: 0;
@@ -2000,18 +2191,18 @@ body {
   opacity: .8;
   border-radius: 5px; }
 
-.m-overflow-lr-nav > li {
-  display: inline-block;
-  font-size: .7rem; }
-  .m-overflow-lr-nav > li a {
+/* 导航 */
+.m-overflow-lr-nav.m-overflow-lr-menu {
+  padding: .3rem 0;
+  background: white; }
+  .m-overflow-lr-nav.m-overflow-lr-menu .m-overflow-lr-item > a {
     display: block;
-    padding: 0 1rem;
-    line-height: 2rem;
-    color: #020202; }
-  .m-overflow-lr-nav > li.active {
-    background: #5cb85c;
-    color: #fff; }
-    .m-overflow-lr-nav > li.active a {
+    padding: .3rem .7rem;
+    font-size: .7rem;
+    color: #333; }
+  .m-overflow-lr-nav.m-overflow-lr-menu .m-overflow-lr-item.active {
+    background: #337ab7; }
+    .m-overflow-lr-nav.m-overflow-lr-menu .m-overflow-lr-item.active a {
       color: #fff; }
 
 /*设计图width*/
@@ -2019,6 +2210,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-indexlist {
   position: relative;
   height: 100%; }
@@ -2045,12 +2248,10 @@ body {
 
 .m-indexlist-gp {
   position: absolute;
-  right: 0;
   top: 0;
+  right: 0;
   bottom: 0;
   z-index: 2;
-  height: 100%;
-  padding: .2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2058,17 +2259,18 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-flow: nowrap column;
           flex-flow: nowrap column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 1.4rem;
   background: rgba(0, 0, 0, 0.1); }
   .m-indexlist-gp .m-indexlist-gp-ttl {
     -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    color: #333;
+        -ms-flex: 1 1  .7rem;
+            flex: 1 1  .7rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2077,13 +2279,14 @@ body {
             justify-content: center;
     -webkit-box-align: center;
         -ms-flex-align: center;
-            align-items: center; }
+            align-items: center;
+    padding: 0 .2rem;
+    font-size: .7rem;
+    color: #333; }
     .m-indexlist-gp .m-indexlist-gp-ttl.active {
-      width: 1rem;
-      height: 1rem;
-      border-radius: 5px;
-      color: #fff;
-      background: #337ab7; }
+      color: white;
+      background: #337ab7;
+      border-radius: 5px; }
 
 .m-indexlist-tip {
   position: absolute;
@@ -2128,6 +2331,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*picker*/
 .m-picker {
   position: fixed;
@@ -2165,7 +2380,7 @@ body {
         -ms-flex-flow: column nowrap;
             flex-flow: column nowrap;
     width: 100%;
-    height: 42%;
+    height: 44%;
     background: #fff;
     -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.075), -2px -2px 2px rgba(0, 0, 0, 0.075);
             box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.075), -2px -2px 2px rgba(0, 0, 0, 0.075); }
@@ -2267,7 +2482,7 @@ body {
       width: 100%; }
     .m-picker .m-picker-inner .m-picker-item {
       font-size: .7rem;
-      line-height: 2rem;
+      line-height: 1.8rem;
       text-align: center; }
       .m-picker .m-picker-inner .m-picker-item.active {
         font-size: .8rem;
@@ -2276,13 +2491,13 @@ body {
     .m-picker .m-picker-inner .m-picker-item-last,
     .m-picker .m-picker-inner .m-picker-line,
     .m-picker .m-picker-inner .m-picker-item {
-      height: 2rem; }
+      height: 1.8rem; }
     .m-picker .m-picker-inner .m-picker-line {
       position: absolute;
       top: 50%;
       overflow: hidden;
       width: 100%;
-      margin-top: -1rem;
+      margin-top: -0.9rem;
       border-top: 1px solid #5cb85c;
       border-bottom: 1px solid #5cb85c;
       pointer-events: none; }
@@ -2380,6 +2595,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-lazy-animation {
   -webkit-animation: m-lazy-hd .6s linear both;
           animation: m-lazy-hd .6s linear both; }
@@ -2401,6 +2628,18 @@ body {
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*错误显示*/
 .vd-box .vd-req,
 .vd-box .vd-pattern,
@@ -2446,12 +2685,24 @@ body {
 .vd-dep-btn.vd-error {
   color: #d9534f; }
 
-/*m-df 默认 */
+/*router m-df 默认 */
 /*设计图width*/
 /*rem 份数*/
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-router-mask {
   position: fixed;
   top: 0;
@@ -2459,7 +2710,7 @@ body {
   right: 0;
   bottom: 0;
   background: #000;
-  opacity: .01; }
+  opacity: 0; }
 
 @-webkit-keyframes m-router-dh {
   0% {
@@ -2486,15 +2737,17 @@ body {
   z-index: 100;
   background: #fff; }
   .m-router.in {
-    -webkit-animation: m-router-dh .25s  linear both;
-            animation: m-router-dh .25s  linear both; }
-  .m-router .m-hd-top-ttl ._fail {
-    color: #ddd; }
-    .m-router .m-hd-top-ttl ._fail .iconfont {
-      font-size: .9rem;
-      vertical-align: middle;
-      margin: 0 .25rem;
-      font-weight: 100; }
+    -webkit-animation: m-router-dh .25s linear both;
+            animation: m-router-dh .25s linear both; }
+  .m-router .m-hd-top-ttl {
+    color: #444; }
+    .m-router .m-hd-top-ttl ._fail {
+      color: #ddd; }
+      .m-router .m-hd-top-ttl ._fail .icon {
+        font-size: .9rem;
+        vertical-align: middle;
+        margin: 0 .25rem;
+        font-weight: 100; }
   .m-router ._loading-fail, .m-router ._loading-dh {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2507,7 +2760,7 @@ body {
             align-items: center;
     height: 100%;
     color: #ddd; }
-    .m-router ._loading-fail .iconfont, .m-router ._loading-dh .iconfont {
+    .m-router ._loading-fail .icon, .m-router ._loading-dh .icon {
       font-size: .9rem;
       vertical-align: middle;
       margin: 0 .5rem; }
@@ -2537,8 +2790,8 @@ body {
     -webkit-tap-highlight-color: transparent !important; }
 
 .m-router-box-move {
-  -webkit-box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2); }
+  -webkit-box-shadow: -10px 0 10px rgba(0, 0, 0, 0.3);
+          box-shadow: -10px 0 10px rgba(0, 0, 0, 0.3); }
 
 .m-router-cnt {
   position: fixed;
@@ -2578,16 +2831,119 @@ body {
       -ms-flex: 0 0 auto;
           flex: 0 0 auto; }
 
+/*router m-hd*/
+body {
+  overflow: hidden; }
+
+.m-hd {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  overflow: hidden;
+  background: #fff;
+  border-bottom: 1px solid #f2f2f2;
+  -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.075);
+          box-shadow: 1px 0 5px rgba(0, 0, 0, 0.075); }
+
+.m-hd-top {
+  position: relative;
+  height: 2.5rem;
+  background: white; }
+
+.m-hd-top-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  cursor: pointer; }
+  .m-hd-top-icon .icon {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.5rem;
+    color: #777; }
+
+.m-hd-top-ttl {
+  text-align: center;
+  line-height: 2.5rem;
+  color: #444;
+  font-size: 0.9rem; }
+
+/*m-cnt*/
+.m-cnt {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  overflow: visible;
+  background: #f8f8f8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  width: 100%; }
+
+/*m-ft*/
+.m-ft {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  text-align: center;
+  background: #fff; }
+
+.m-ft-nav-ttl {
+  height: 2.5rem;
+  line-height: 2.5rem; }
+
 /*设计图width*/
 /*rem 份数*/
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 /*设计图width*/
 /*rem 份数*/
 /* 375/18.75 =20px=1rem */
 /*html rem比例*/
 /* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
 .m-loading {
   position: fixed;
   top: 0;
@@ -2690,3 +3046,309 @@ body {
   100% {
     -webkit-transform: rotate(360deg) scale(1);
     transform: rotate(360deg) scale(1); } }
+
+/*设计图width*/
+/*rem 份数*/
+/* 375/18.75 =20px=1rem */
+/*html rem比例*/
+/* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
+/* m-card*/
+.m-card {
+  margin: .5rem;
+  border-radius: 5px;
+  background: #fff;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); }
+
+.m-card-head {
+  margin-bottom: .25rem;
+  padding: .5rem;
+  font-size: .9rem;
+  border-bottom: 1px solid #ddd; }
+
+.m-card-img {
+  display: inline-block;
+  width: 100%;
+  padding: .25rem; }
+
+.m-card-body {
+  padding: .5rem;
+  margin-bottom: .5rem 0; }
+
+.m-card-title {
+  font-size: 1rem;
+  color: #444; }
+
+.m-card-text {
+  padding-top: .25rem;
+  color: #777777;
+  font-size: .8rem; }
+
+.m-card-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  justify-items: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: .5rem;
+  border-top: 1px solid #ddd; }
+
+/*设计图width*/
+/*rem 份数*/
+/* 375/18.75 =20px=1rem */
+/*html rem比例*/
+/* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
+/* m-media*/
+.m-media {
+  margin: .5rem .5rem 0 .5rem;
+  padding: .25rem;
+  border-radius: 5px;
+  background: #fff;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); }
+  .m-media:last-child {
+    margin-bottom: .5rem; }
+
+.m-media-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: wrap row;
+          flex-flow: wrap row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: left; }
+  .m-media-list.list-2 .m-media {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0 2% 2% 0;
+    width: 47%; }
+  .m-media-list.list-2 .m-media:nth-child(odd) {
+    margin-left: 2%; }
+  .m-media-list.list-2 .m-media-img {
+    height: 8.3rem; }
+
+.m-media-list.list-2, .m-media-auto-l, .m-media-auto-r {
+  padding-top: 2%; }
+  .m-media-list.list-2 .m-media-title, .m-media-auto-l .m-media-title, .m-media-auto-r .m-media-title {
+    font-size: .8rem;
+    color: #444; }
+  .m-media-list.list-2 .m-media-icon, .m-media-auto-l .m-media-icon, .m-media-auto-r .m-media-icon {
+    margin: .5rem 0 0 0; }
+  .m-media-list.list-2 .m-media-icon-l, .m-media-auto-l .m-media-icon-l, .m-media-auto-r .m-media-icon-l {
+    color: #d9534f;
+    font-size: .8rem; }
+  .m-media-list.list-2 .m-media-icon-r, .m-media-auto-l .m-media-icon-r, .m-media-auto-r .m-media-icon-r {
+    font-size: .8rem; }
+
+.m-media-img {
+  display: inline-block;
+  width: 100%; }
+
+.m-media-body {
+  padding: .5rem; }
+
+.m-media-title {
+  font-size: 1rem;
+  color: #444; }
+
+.m-media-text {
+  padding-top: .25rem;
+  color: #777777;
+  font-size: .8rem; }
+
+.m-media-icon {
+  margin: 1rem 0 .5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  justify-items: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.m-media-icon-l {
+  color: #d9534f;
+  font-size: 1rem; }
+  .m-media-icon-l span:nth-child(2) {
+    margin-left: -.25rem; }
+
+.m-media-auto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  justify-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%; }
+
+.m-media-auto-l, .m-media-auto-r {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: wrap row;
+          flex-flow: wrap row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  width: 50%; }
+  .m-media-auto-l .m-media-img, .m-media-auto-r .m-media-img {
+    width: 100%;
+    height: auto; }
+
+.m-media-auto-l .m-media {
+  margin: 0 2% 4% 4%; }
+
+.m-media-auto-r .m-media {
+  margin: 0 4% 4% 2%; }
+
+/*设计图width*/
+/*rem 份数*/
+/* 375/18.75 =20px=1rem */
+/*html rem比例*/
+/* text-color*/
+/*选中激活样式*/
+/*body*/
+/*loding组件*/
+/*线条*/
+/*边框颜色*/
+/*input 提示文字*/
+/*标题文字*/
+/*路由页标题*/
+/*icon图标*/
+/*switch 组件*/
+/*table-view 组件 */
+/*check 组件*/
+/*icon*/
+.icon-cnt {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding: .25rem;
+  margin-left: -1%; }
+
+.icon-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 24%;
+  margin-bottom: .25rem;
+  padding: .25rem;
+  text-align: center;
+  background: #fff; }
+  .icon-item + .icon-item {
+    border-bottom: none; }
+  .icon-item .icon {
+    font-size: 1.5rem;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #444; }
+  .icon-item .name {
+    margin: .25rem 0;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #444; }
+
+.icon-item {
+  margin-left: 1%; }

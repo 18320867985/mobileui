@@ -7,26 +7,7 @@
        局部区分为内容区域标签加上id或class
        路由模块隐藏后style块里样式被删除
     */
-      #m-touch-tab  .m-touch-tab-btn {
-           background:#fff;
-        }
-      #m-touch-tab  .m-overflow-tb-cnt {
-            padding: .25rem .5rem;
-         
-        }
-
-
-       #m-touch-tab  .m-touch-tab-item {
-          
-            background:#f2f2f2;
-        }
-       #m-touch-tab  .m-overflow-tb-cnt p {
-            padding: .5rem .2rem;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            font-size: .8rem;
-        }
+     
 </style>
 
 <!--2.内容区域 -->
@@ -47,9 +28,35 @@
                 <div class="m-touch-tab-item active">
                     <div class="m-overflow-tb" data-toggle="m-overflow-tb">
                         <div class="m-overflow-tb-cnt">
+                            <ul class="m-media-list list-2">
+
+                                <!-- 动态加载元素-->
+                                <li class="m-media">
+                                    <a href="">
+                                        <img class="m-media-img" src="./images/shop-1.webp">
+
+                                        <div class="m-media-body">
+                                            <h5 class="m-media-title  elp-1">雅鹿自由自在 21年连衣裙2021年季女装新款装新品气质典雅减龄大码显瘦裙子女 9306 七分袖 M</h5>
+
+                                            <p class="m-media-text elp-2">裙子款式好看，摸着舒适，当晚洗后没有发现掉色的现象，面料也很好，做工很细，超过预期哦外包也严实，上身就觉得质感很好，显腿长，关键很显瘦啊。瘦腿效果非常好。面料非常舒服，柔柔的软软的，腰部也没有紧绷感</p>
+
+                                            <div class="m-media-icon">
+                                                <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
+
+                                                <div class="m-media-icon-r"><span>看相似的</span></div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </a>
+                                </li>
+
+
+                            </ul>
 
                         </div>
-                        <div class="m-overflow-tb-loading">
+                        <div class="m-overflow-tb-loading loading-top">
                             正在加载中...
                         </div>
 
@@ -86,7 +93,7 @@
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
-            routerTilte: "tab滑动组件-bottom菜单", // 路由页的标题
+            routerTilte: "tab底部滑动组件", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
             // routerClass:"router-class-1"   // 路由页的class
         },
@@ -110,17 +117,21 @@
              // 加载nav 和tab
             var nav = "";
             var tab = "";
+            var navs = ["京东超市", "数码电器", "京东美食", "京东服饰"];
             for (var i = 0; i < 4; i++) {
                 nav += `<div class="${i === 0 ? `active` : ``}  m-touch-tab-btn-item" data-tab="#tab${i + 1}">
-                              第 ${i + 1} 屏
+                              ${navs[i]} 
                             </div>  `;
 
-                tab += ` <div class="m-touch-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}">
+                tab += ` <div class="m-touch-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}" data-ttl="${navs[i]}">
                                 <div class="m-overflow-tb">
                                     <div class="m-overflow-tb-cnt">
+                                              <ul class="m-media-list list-2">
 
+
+                                               </ul>
                                     </div>
-                                    <div class="m-overflow-tb-loading">
+                                    <div class="m-overflow-tb-loading ">
                                           正在加载中...
                                     </div>
 
@@ -187,20 +198,43 @@
                     return;
                 }
                 $el.data("loadingEnd", true);
+                var ttl = $el.attr("data-ttl");
 
                 m.get("./json/tab.json", function (res) {
 
                     $el.data("loadingEnd", false);
                     var page = $el.data("pageindex") || 1;
-                    var docf = document.createDocumentFragment();
+                  //  var docf = document.createDocumentFragment();
+                    var lis = "";
                     for (var i = 0; i < res.length; i++) {
 
-                        var p = document.createElement("p");
-                        p.innerHTML = (index + 1) + "屏==" + page + "页==" + res[i].content;
-                        docf.appendChild(p);
+
+                        var li = `  <li class="m-media">
+                                    <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
+                                        <img class="m-media-img" src="./${res[i].img}">
+
+                                        <div class="m-media-body">
+                                            <h5 class="m-media-title  elp-1">${ttl}</h5>
+
+                                            <p class="m-media-text elp-2">裙子款式好看，摸着舒适，当晚洗后没有发现掉色的现象，面料也很好，做工很细，超过预期哦外包也严实，上身就觉得质感很好，显腿长，关键很显瘦啊。瘦腿效果非常好。面料非常舒服，柔柔的软软的，腰部也没有紧绷感</p>
+
+                                            <div class="m-media-icon">
+                                                <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
+
+                                                <div class="m-media-icon-r"><span>看相似的</span></div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </a>
+                                </li>`;
+
+                        lis += li;
                     }
+
                     $el.data("pageindex", ++page);
-                    $el.find(".m-overflow-tb-cnt").append(docf);
+                    $el.find(".m-overflow-tb-cnt .m-media-list").append(lis);
                 }, "json");
 
             }

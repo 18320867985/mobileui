@@ -192,9 +192,11 @@
 			var abort = function () {
 				if (opt.timeout > 0) {
 					abortTimeoutId = setTimeout(function () {
-						xhr.onreadystatechange = function () {};
-						xhr.abort();
-						opt.error("timeout");
+						xhr.onreadystatechange = function () { };
+						try {
+							xhr.abort();
+							opt.error("timeout");
+						} catch (exp) { console.log("timeout"); }
 
 					}, opt.timeout);
 				}

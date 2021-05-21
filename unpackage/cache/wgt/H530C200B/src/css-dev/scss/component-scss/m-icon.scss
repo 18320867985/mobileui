@@ -1,0 +1,51 @@
+
+@import "../var.scss";
+
+/*icon*/
+.icon-cnt {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    padding: .25rem;
+     margin-left:-1%;
+}
+
+.icon-item {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 24%;
+    margin-bottom: .25rem;
+    padding: .25rem;
+    text-align: center;
+    background: $bg-white;
+
+    + .icon-item {
+        border-bottom: none;
+    }
+
+
+    .icon {
+        font-size: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        color: $h-color;
+    }
+
+    .name {
+        margin: .25rem 0;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $h-color;
+    }
+}
+
+.icon-item{
+    margin-left: 1%;
+}

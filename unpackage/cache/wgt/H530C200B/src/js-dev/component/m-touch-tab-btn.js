@@ -8,10 +8,10 @@
     var MTouchTabBtn = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchTabBtn.prototype.running = function () {
+    MTouchTabBtn.prototype.run = function () {
         var self = this;
         var $m_touch_tab_btn = m(this.el);
 
@@ -101,9 +101,9 @@
     }
 
     var _mTouchTabBtn = $.fn.mTouchTabBtn;
-    $.fn.mTouchTabBtn = Plugin;
+    m.fn.mTouchTabBtn = Plugin;
 
-    $("[data-toggle=m-touch-tab-btn]").each(function (e) {
+    m("[data-toggle=m-touch-tab-btn]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

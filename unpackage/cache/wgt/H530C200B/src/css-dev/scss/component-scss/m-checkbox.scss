@@ -3,8 +3,8 @@
 
 .m-checkbox-group,
 .m-checkbox {
-    .iconfont {
-        font-size: 1.3rem;
+    .icon {
+        font-size: 1.6rem;
     }
 }
 
@@ -71,7 +71,7 @@
         }
 
         .m-checkbox-group-txt {
-            font-size: 14px;
+            font-size: .8rem;
         }
 
         &.active {
@@ -82,7 +82,7 @@
         }
 
         & + .m-checkbox-group-item {
-            margin-left: 10px;
+            margin-left: .5rem;
         }
 
         > * {
@@ -110,49 +110,68 @@
 }
     /*v-radiokbox*/
     .m-radiobox-item {
-        .iconfont {
-            font-size: 1.3rem;
+        .icon {
+            font-size: 1.6rem;
             line-height: 1;
         }
     }
 
-    .m-radiobox-group {
+.m-radiobox-group {
+    display: inline-block;
+    vertical-align: middle;
+
+    .m-radiobox-item {
         display: inline-block;
         vertical-align: middle;
+        font-size: .7rem;
+        color: #777;
+        cursor: pointer;
 
-        .m-radiobox-item {
-            display: inline-block;
+        > * {
             vertical-align: middle;
+        }
+
+        .m-radiobox-icon:before {
+            margin-right: .25rem;
+            content: '\e6c1';
+            color: #999;
+        }
+
+        .m-radiobox-txt {
+            display: inline-block;
+            margin-left: -.25rem;
             font-size: 14px;
-            color: #777;
-            cursor: pointer;
+        }
 
-            > * {
-                vertical-align: middle;
-            }
-
+        &.active {
             .m-radiobox-icon:before {
-                margin-right: 5px;
-                content: '\e6c1';
-                color: #999;
-            }
-
-            .m-radiobox-txt {
-                display: inline-block;
-                margin-left: -5px;
-                font-size: 14px;
-            }
-
-            &.active {
-                .m-radiobox-icon:before {
-                    margin-right: 5px;
-                    content: '\e678';
-                    color: $text-primary;
-                }
-            }
-
-            & + .m-radiobox-item {
-                margin-left: 10px;
+                margin-right: .25rem;
+                content: '\e678';
+                color: $text-primary;
             }
         }
+
+
+        &.active.text-success {
+            .m-radiobox-icon:before {
+                color: $text-success
+            }
+        }
+
+        &.active.text-warning {
+            .m-radiobox-icon:before {
+                color: $text-warning
+            }
+        }
+
+        &.active.text-danger {
+            .m-radiobox-icon:before {
+                color: $text-danger
+            }
+        }
+
+        & + .m-radiobox-item {
+            margin-left: .5rem;
+        }
     }
+}

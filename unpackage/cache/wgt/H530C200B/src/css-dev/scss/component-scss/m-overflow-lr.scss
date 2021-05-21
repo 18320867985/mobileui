@@ -20,7 +20,7 @@
     }
 }
 
-.m-overflow-lr-pwr {
+.m-overflow-lr-nav {
     height: 100%;
     width: 100%;
     touch-action: pan-x;
@@ -29,6 +29,7 @@
     &::-webkit-scrollbar {
         display: none;
     }
+   
 }
 
 .m-overflow-lr-cnt {
@@ -56,7 +57,7 @@
 
 
 // 左右滑动的滑动条
-.m-overflow-lr-bar-pwr {
+.m-overflow-lr-bar-nav {
     position: absolute;
     z-index: 2;
     left: 0;
@@ -92,31 +93,34 @@
     border-radius: 5px;
 }
 
+/* 导航 */
 
-.m-overflow-lr-nav {
+.m-overflow-lr-nav.m-overflow-lr-menu {
+    padding: .3rem 0;
+    background: white;
+    // box-shadow: 0rem .1rem .2rem rgba(0,0,0,.1) inset, -0rem -.1rem .2rem rgba(0,0,0,.1) inset;
 
-    >li {
-        display: inline-block;
-        font-size: .7rem;
+    .m-overflow-lr-item {
 
-        a {
+        > a {
             display: block;
-            padding: 0 20rem/$rem;
-            line-height: 40rem/$rem;
-            color: #020202;
+            padding: .3rem .7rem;
+            font-size: .7rem;
+            color: $text-df;
         }
 
         &.active {
-            background: $text-success;
-            color: $text-white;
+            background: $active;
 
             a {
-                color: $text-white;
+                color: $bg-white;
             }
         }
-    }
 
-    
+        + .m-overflow-lr-item {
+            //border-left: 1px solid red;
+        }
+    }
 }
 
 

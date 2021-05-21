@@ -8,10 +8,10 @@
     var MTouchTab = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchTab.prototype.running = function () {
+    MTouchTab.prototype.run = function () {
         var self = this;
         var $m_touch_lr = m(this.el);
         var $moveElement = $m_touch_lr.find(".m-touch-tab-cnt");
@@ -39,7 +39,7 @@
 
                 if (obj.isX) {
                     event.preventDefault();
-
+                  
                     // 阻外层冒泡
                     if (obj.oneTouch === 1) { return; }
                     if (($moveElement.translateX() === 0) && (obj.x>0) && (obj.oneTouch === undefined)) {  obj.oneTouch = 1; } else { obj.oneTouch = 2; }
@@ -85,7 +85,7 @@
             function (event, obj) {
 
                 if (obj.isX) {
-
+                   
                     var moveElmentWidth = obj.$moveElment.outerWidth();
                     var wraperWidth = $m_touch_lr.outerWidth();
                     var moveYSpace = wraperWidth - moveElmentWidth;
@@ -144,6 +144,8 @@
 
         );
 
+     
+
     };
 
     MTouchTab.prototype.set = function (translateIndex) {
@@ -185,9 +187,9 @@
     }
 
     var _mTouchTab = $.fn.mTouchTab;
-    $.fn.mTouchTab = Plugin;
+    m.fn.mTouchTab = Plugin;
 
-    $("[data-toggle=m-touch-tab]").each(function (e) {
+    m("[data-toggle=m-touch-tab]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

@@ -9,10 +9,8 @@
     margin: 10rem/$rem;
     border: 1px solid $text-border;
     background: #fff;
-
     /*圆角table*/
     &.m-table-view-rd {
-
         border-radius: 5px;
     }
 
@@ -32,7 +30,7 @@
         > .m-table-view-ttl {
             width: 100%;
             display: flex;
-            color: #777;
+            color: $table-view-color;
             padding: 5rem/$rem 0;
 
             > h5 {
@@ -46,20 +44,19 @@
                 white-space: nowrap;
                 word-wrap: break-word;
                 overflow-x: hidden;
-                
             }
         }
 
-        .iconfont {
+        .icon {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 10%;
-            font-size:.8rem;
-            color: #999;
+            font-size: 1rem;
+            color: $table-view-icon;
         }
 
-        .m-table-view-ttl > .iconfont {
+        .m-table-view-ttl > .icon {
             transform: rotate(90deg);
             transition: all .5s;
         }
@@ -68,10 +65,9 @@
 
 .m-table-view > .m-table-view-cell.in {
     .m-table-view-ttl {
-       // color: $text-primary;
     }
 
-    .m-table-view-ttl > .iconfont {
+    .m-table-view-ttl > .icon {
         transform: rotate(-90deg);
     }
 
@@ -96,7 +92,7 @@
 
 .m-table-view-collapse {
     width: 100%;
-    background: #f8f8f8;
+    background: $body-bg;
     display: none;
     margin-left: 15rem/$rem;
 
@@ -107,7 +103,7 @@
         font-size: 14rem/$rem;
 
         & + .m-table-view-collapse-cell {
-            border-top: 1px solid #ddd;
+            border-top: 1px solid $text-border;
         }
 
         a {
@@ -120,15 +116,17 @@
             white-space: nowrap;
             word-wrap: break-word;
             overflow-x: hidden;
+            color: $active;
+            font-size: .7rem;
         }
 
-        .iconfont {
+        .icon {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 10%;
-            font-size: .8rem;
-            color: #999;
+            font-size: 1rem;
+            color: $table-view-icon;
         }
     }
 }

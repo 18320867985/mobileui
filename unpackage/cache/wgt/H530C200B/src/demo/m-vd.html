@@ -53,7 +53,7 @@
                 <div class="m-input vd-box">
                     <label class="m-input-label">手机号码</label>
                     <input class="m-input-box vd-item" type="text" name="phone" vd-req vd-req-msg="手机号码不能为空" vd-pattern="^1\d{10}$"
-                           vd-pattern-msg="手机格式不对" maxlength="11" vd-remote-msg="手机号码已存在" placeholder="输入手机号码" />
+                           vd-pattern-msg="手机格式不对" maxlength="11" vd-remote="json/remote.json"  vd-remote-msg="手机号码已存在" placeholder="输入手机号码" />
                     <!-- vd-dep-btn -->
                     <button type="button" class="m-input-btn vd-dep-btn" href="">发送</button>
 
@@ -62,7 +62,7 @@
                 <div class="m-input vd-box">
                     <label class="m-input-label">验证码</label>
                     <input class="m-input-box vd-item" type="text" vd-req vd-req-msg="验证码不能为空" 
-                           vd-remote-length="6" vd-remote-msg="验证码不对" name="yzm" maxlength="6" value="" placeholder="输入验证码" />
+                           vd-remote-length="6" vd-remote-msg="验证码不对"  vd-remote="json/remote.json" name="yzm" maxlength="6" value="" placeholder="输入验证码" />
 
                 </div>
 
@@ -104,7 +104,7 @@
 
         /*加载js的列表 */
         loadJs: [
-           "./js/m-vd.js",
+           "./js/vd.js",
             "./js/cityData.js"
         ],
         // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
@@ -223,8 +223,9 @@
  b.正则验证 => 验证属性： vd-pattern="^1\d{10}$"
           验证错误提示信息：vd-pattern-msg="此字段格式不对"
 
- c.ajax远程验证 => 验证属性： vd-remote="json/remote.json"
-        长度达到才验证：vd-remote-length="6"
+ c.ajax远程验证 => 验证属性： vd-remote="json/remote.json"   返回值 0=false 或 1=true
+
+    长度达到才验证：vd-remote-length="6"
     验证错误提示信息： vd-remote-msg="验证码不对"
 
     // 远程验证base地址： vd1.baseRemoteUrl="http://sunjin.com";

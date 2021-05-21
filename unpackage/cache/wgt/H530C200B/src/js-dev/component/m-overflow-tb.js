@@ -9,10 +9,10 @@
     var MOverflowTb = function (el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MOverflowTb.prototype.running = function () {
+    MOverflowTb.prototype.run = function () {
         var $el =m( this.el);
         $el.css("overflow-y", "scroll");
  
@@ -73,9 +73,9 @@
     }
 
     var _mOverflowTb = $.fn.mOverflowTb;
-    $.fn.mOverflowTb = Plugin;
+    m.fn.mOverflowTb = Plugin;
 
-    $("[data-toggle=m-overflow-tb]").each(function (e) {
+    m("[data-toggle=m-overflow-tb]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

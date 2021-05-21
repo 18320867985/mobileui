@@ -131,7 +131,7 @@ var mobileDom = createCommonjsModule(function (module) {
 			time = typeof time === "number" ? time : 400;
 			x = typeof x === "number" ? x : parseFloat(x);
 			x = isNaN(x) ? 0 : x;
-			var fx = 10;
+			var fx = 20;
 			var speed = 100;
 
 			self.clearTimeId = self.clearTimeId || 0;
@@ -3022,8 +3022,12 @@ var mobileDom = createCommonjsModule(function (module) {
 				if (opt.timeout > 0) {
 					abortTimeoutId = setTimeout(function () {
 						xhr.onreadystatechange = function () {};
-						xhr.abort();
-						opt.error("timeout");
+						try {
+							xhr.abort();
+							opt.error("timeout");
+						} catch (exp) {
+							console.log("timeout");
+						}
 					}, opt.timeout);
 				}
 			};
@@ -4001,8 +4005,9 @@ css3 transition
             urls = urls instanceof Array ? urls : [];
         }
 
-        var $el = m("#m-router-" + Router.getId());
+        var $el = Router.getActiveEl(); //m( "#m-router-" + Router.getId());
         _setRouterObj($el, obj);
+        // console.log(obj);
 
         // 遍历器
         var activeUrls = _activeUrls(urls);
@@ -4037,7 +4042,7 @@ css3 transition
             urls = urls instanceof Array ? urls : [];
         }
 
-        var $el = m("#m-router-" + Router.getId());
+        var $el = Router.getActiveEl(); //m("#m-router-" + Router.getId());
         _setRouterObj(el, obj);
 
         // 遍历器
@@ -4436,7 +4441,7 @@ css3 transition
         }, function () {
             // 加载失败
             var $p = m("#m-router-" + Router.getId());
-            m(".m-hd-top-ttl", $p).html("<div class=\"_fail\"> ~<span class=\"iconfont iconshibaibiaoqing\"></span>~</div>");
+            m(".m-hd-top-ttl", $p).html("<div class=\"_fail\"> ~<span class=\"icon icon-nanguo\"></span>~</div>");
             //m-router-cnt
             $p.find("._loading-dh").hide();
             $p.append("<div class=\"_loading-fail\">~\u6570\u636E\u52A0\u8F7D\u5931\u8D25\u4E86~</div>");
@@ -4451,12 +4456,14 @@ css3 transition
             obj.$moveElment = m(this);
             obj.moveElmentX = obj.$moveElment.translateX();
             obj.$prevEl = Router.getPrevEl();
+            var _id = Router.getId();
+            obj.maskEl = m("[data-router-id=m-router-" + _id + "]");
 
             if (obj.x < obj.$moveElment.width() * 0.95) {
 
                 obj.isMove = true;
             }
-
+            // obj.window_w = m(window).width();
             self.obj = obj;
         }, function (event, obj) {
             if (obj.isX) {
@@ -4502,17 +4509,19 @@ css3 transition
                     }
 
                     obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0);
+
+                    // 移动mask页 透明度             
+                    //obj.maskEl.css("opacity", (0.1 - translateX / (obj.window_w*10)));
                 }
             }
         }, function (event, obj) {
 
             if (obj.isX) {
-                //  if (obj.xlt) { obj.xlt = null; return; }
 
                 var t = 0.5;
+                var transition = "transform  " + Router.transitionTime * t + "ms ease";
                 if (obj.$moveElment.translateX() < obj.$moveElment.width() / 2) {
 
-                    var transition = "transform  " + Router.transitionTime * t + "ms ease";
                     obj.$moveElment.transition(transition);
                     if (!Router.isOneMove) {
                         obj.$moveElment.translateX(0).translateZ(0);
@@ -4521,6 +4530,8 @@ css3 transition
                     obj.$prevEl.translateX(-obj.$prevEl.width() / 2).translateZ(0);
                 } else {
 
+                    obj.maskEl.css("opacity", 0);
+                    obj.maskEl.transition(transition);
                     Router.back(t);
                 }
 
@@ -4535,6 +4546,7 @@ css3 transition
     }
 
     function _setRouterObj(el, obj) {
+
         m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
         if (obj.routerTilteColor) {
             m(".m-hd-top-ttl", el).css("color", obj.routerTilteColor);
@@ -4576,7 +4588,30 @@ css3 transition
         } else {
             Router.reqSync(obj, urls, onload);
         }
+
+        // 执行页面的函数
+        Router.runBindFn();
     }
+
+    // bind 函数
+    Router.bindObj = {};
+    Router.bindFn = function (fn) {
+
+        if (typeof fn === "function") {
+            Array.prototype.push.call(Router.bindObj, fn);
+        }
+    };
+
+    // 执行 函数
+    Router.runBindFn = function (fn) {
+
+        for (var pros in Router.bindObj) {
+
+            if (typeof Router.bindObj[pros] === "function") {
+                Router.bindObj[pros]();
+            }
+        }
+    };
 
     Router.ajax = m.ajax;
 
@@ -4617,10 +4652,35 @@ css3 transition
         }
         return 0;
     };
-    // 获取id
+
+    // 获取当前激活路由页元素
     Router.getActiveEl = function () {
 
         return m("#m-router-" + m.router.getId());
+    };
+
+    // 设置路由页top区域
+    Router.setting = function (settingObj) {
+        _setRouterObj(Router.getActiveEl(), settingObj);
+    };
+
+    //  a标签 链接属性data-link 跳转
+    Router.alink = function () {
+
+        var isHref = m(this).hasAttr("href");
+        var hrefValue = m(this).attr("href");
+        if (isHref) {
+            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript:;") {
+                return;
+            } else {
+
+                //if (m(this).hasAttr("data-router")) {
+                m.router.link(hrefValue);
+                return;
+                //  }
+                // window.location.href = hrefValue;
+            }
+        }
     };
 
     // 删除id
@@ -4677,7 +4737,7 @@ css3 transition
             if (isShowBtn) {
                 var topEl = document.createElement("div");
                 topEl.classList.add("m-router-hd");
-                topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"iconfont icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n                <div class=\"m-ball-clip-rotate\"><div></div>     \n                </div> \n            </h4>\n            </div>";
+                topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"icon icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n                <div class=\"m-ball-clip-rotate\"><div></div>     \n                </div> \n            </h4>\n            </div>";
                 routerEl.appendChild(topEl);
             }
 
@@ -4739,12 +4799,10 @@ css3 transition
 
             // 监听页面隐藏 触发的事件
             $p.emit("m-router-hide", [$p, _id]);
-
+            m("[data-router-id=m-router-" + _id + "]").css("opacity", 0).remove();
             var $prevEl = Router.getPrevEl();
             $prevEl.transition(transition).translateX(0);
             setTimeout(function () {
-
-                m("[data-router-id=m-router-" + _id + "]").remove();
                 $p.remove();
                 Router.removeId(_id);
 
@@ -4795,7 +4853,6 @@ css3 transition
     Router.onHide = function (el, fn) {
 
         m(el).on("m-router-hide", function (event, $p, id) {
-
             if (Router.getId() === id) {
                 fn.call($p, $p);
             }
@@ -4815,15 +4872,13 @@ css3 transition
         m(".m-bd").attr("id", id).attr("data-router-id", Router.getId());
     }
 
-    // 返回上一页的函数
+    // 返回上一页
     function mBack() {
         m(document).on("tap", ".m-router-back", function (event) {
             event.preventDefault();
             Router.back();
         });
     }
-
-    mBack();
 
     function setRouterLayout() {
 
@@ -4845,7 +4900,9 @@ css3 transition
     m.extend({
         setRouterLayout: setRouterLayout
     });
-    m.setRouterLayout();
+
+    mBack(); //返回上一页 
+    m.setRouterLayout(); //整体框架设置内容
     m(window).on("resize", setRouterLayout);
 }();
 
@@ -4876,8 +4933,7 @@ $(function () {
     m.setLayout();
     m(window).on("resize", m.setLayout);
 
-    // a��ǩ����
-
+    // ��ֹĬ����Ϊ
     m("a").click(function (event) {
         event.preventDefault();
     });
@@ -4886,28 +4942,27 @@ $(function () {
         event.preventDefault();
     });
 
-    m("a").tap(function (event) {
-        event.preventDefault();
-    });
+    // �󶨺��� router.link ����ʱִ�� 
+    m.router.bindFn(function () {
 
-    m(document).on("tap", "a[data-link-btn]", function (event) {
+        //��ȡ��ǰ����·��ҳԪ��
+        var $activeEl = m.router.getActiveEl();
 
-        event.preventDefault();
+        // m-media��� a[data-link] ������ת
+        m(".m-media-list", $activeEl).on("tap", "a[data-link]", function (event) {
 
-        var isHref = m(this).hasAttr("href");
-        var hrefValue = m(this).attr("href");
-        if (isHref) {
-            if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
-                return;
-            } else {
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+        });
 
-                //if (m(this).hasAttr("data-router")) {
-                m.router.link(hrefValue);
-                return;
-                //  }
-                // window.location.href = hrefValue;
-            }
-        }
+        // m-slide��� a[data-link] ������ת
+        m(".m-touch-slide", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+        });
     });
 
     // �ƶ���
@@ -4933,6 +4988,7 @@ $(function () {
 
     // �Ƿ���ָ����ҳ��
     m.router.istouch = false;
+
     m(document).touch(function () {}, function (event, obj) {
         if (obj.isX) {
             m.router.istouch = true;
@@ -4954,15 +5010,14 @@ $(function () {
             } // �Ƿ��Ѿ���ʾmask
             m.router.back();
 
-            // �˳�appӦ��
-
+            // �˳�appӦ�� 
             if (m.router.getId() === 0) {
                 // �˳�Ӧ��
                 if (!m.router._quitOne) {
 
                     m.router._quitTime1 = new Date().getTime();
                     m.router._quitOne = true;
-                    console.log(m.router._quitTime1);
+                    //console.log(m.router._quitTime1);
                 } else {
                     m.router._quitTime2 = new Date().getTime();
 
@@ -4983,10 +5038,10 @@ $(function () {
     var MTouchSlide = function MTouchSlide(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchSlide.prototype.running = function () {
+    MTouchSlide.prototype.run = function () {
 
         var self = this;
         var $m_touch_slide = m(this.el);
@@ -5109,25 +5164,6 @@ $(function () {
                 self.autoSlide();
             }
         });
-
-        m(this.el).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            var isHref = m(this).hasAttr("href");
-            var hrefValue = m(this).attr("href");
-            if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
-                    return;
-                } else {
-
-                    //if (m(this).hasAttr("data-router")) {
-                    m.router.link(hrefValue);
-                    return;
-                    //  }
-                    // window.location.href = hrefValue;
-                }
-            }
-        });
     };
 
     MTouchSlide.prototype.setRadius = function (index) {
@@ -5203,9 +5239,9 @@ $(function () {
     }
 
     var _mTouchSlide = $.fn.mTouchSlide;
-    $.fn.mTouchSlide = Plugin;
+    m.fn.mTouchSlide = Plugin;
 
-    $("[data-toggle=m-touch-slide]").each(function (e) {
+    m("[data-toggle=m-touch-slide]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5218,10 +5254,10 @@ $(function () {
     var MTouchNavLr = function MTouchNavLr(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchNavLr.prototype.running = function () {
+    MTouchNavLr.prototype.run = function () {
         var self = this;
         var $m_touch_lr = m(this.el);
         var $moveElement = $m_touch_lr.find(".m-touch-nav-cnt");
@@ -5231,16 +5267,20 @@ $(function () {
             event.stopPropagation();
 
             // 选中的样式移动
-            if (self.options.left) {
+            //if (self.options.left) {
 
-                self.left.call(self, this); // 移动到left
-            } else {
+            //    self.left.call(self, this); // 移动到left
+            //}
+            //else {
 
-                self.center.call(self, this); // 移动到center
-            }
+            //    self.center.call(self, this);   // 移动到center
+            //}
+
+            self.center.call(self, this); // 移动到center
         });
 
         self.speedSetIntervalId = 0; // 计算速度定时器id
+
         $m_touch_lr.touch(function (event, obj) {
             event.preventDefault();
             obj.moveElmentX = $moveElement.translateX();
@@ -5266,7 +5306,7 @@ $(function () {
                     self.speedlateX3 = parseFloat(self.speedlateX2) - parseFloat(self.speedlateX);
                     self.speedlateX = self.speedlateX2;
                     self.speedScroll = self.speedlateX3;
-                }, 20);
+                }, 50);
             }
             //  }
 
@@ -5326,7 +5366,7 @@ $(function () {
                     self.speedScroll = -200;
                 }
 
-                target = target + self.speedScroll * (wraperWidth / 20);
+                target = target + self.speedScroll * (wraperWidth / 100);
 
                 //  }
 
@@ -5432,13 +5472,16 @@ $(function () {
     MTouchNavLr.prototype.set = function (el, bl) {
         var self = this;
         // 选中的样式移动
-        if (self.options.left) {
+        //if (self.options.left) {
 
-            self.left.call(self, el, bl); // 移动到left
-        } else {
+        //    self.left.call(self, el,bl); // 移动到left
+        //}
+        //else {
 
-            self.center.call(self, el, bl); // 移动到center
-        }
+        //    self.center.call(self, el,bl);   // 移动到center
+        //}
+
+        self.center.call(self, el, bl); // 移动到center
     };
 
     function Plugin(option, el, bl) {
@@ -5453,8 +5496,8 @@ $(function () {
                 var o = {};
                 o.limitLeft = $this.hasAttr("data-limit-left");
                 o.limitRight = $this.hasAttr("data-limit-right");
-                o.left = $this.hasAttr("data-left");
-                o.center = $this.hasAttr("data-center");
+                //  o.left = $this.hasAttr("data-left");
+                //  o.center = $this.hasAttr("data-center");
                 var p = $.extend({}, o, options);
                 $this.data('m-touch-nav', data = new MTouchNavLr(this, p));
             }
@@ -5466,9 +5509,9 @@ $(function () {
     }
 
     var _mTouchNavLr = $.fn.mTouchNavLr;
-    $.fn.mTouchNavLr = Plugin;
+    m.fn.mTouchNavLr = Plugin;
 
-    $("[data-toggle=m-touch-nav]").each(function (e) {
+    m("[data-toggle=m-touch-nav]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5481,10 +5524,10 @@ $(function () {
     var MTouchNavTb = function MTouchNavTb(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchNavTb.prototype.running = function () {
+    MTouchNavTb.prototype.run = function () {
         var self = this;
         var $m_touch_tb = m(this.el);
         var $moveElement = $m_touch_tb.find(".m-touch-nav-tb-cnt");
@@ -5494,13 +5537,15 @@ $(function () {
             event.stopPropagation();
 
             // 选中的样式移动
-            if (self.options.top) {
+            //if (self.options.top) {
 
-                self.top.call(self, this); // 移动到top
-            } else {
+            //    self.top.call(self, this); // 移动到top
+            //}
+            //else {
 
-                self.center.call(self, this); // 移动到center
-            }
+            //    self.center.call(self, this);   // 移动到center
+            //}
+            self.center.call(self, this); // 移动到center
         });
 
         self.speedSetIntervalId = 0; // 计算速度定时器id
@@ -5529,7 +5574,7 @@ $(function () {
                     self.speedlateY3 = parseFloat(self.speedlateY2) - parseFloat(self.speedlateY);
                     self.speedlateY = self.speedlateY2;
                     self.speedScroll = self.speedlateY3;
-                }, 20);
+                }, 50);
             }
             //   }
 
@@ -5583,7 +5628,7 @@ $(function () {
                     self.speedScroll = -200;
                 }
 
-                target = target + self.speedScroll * (wraperHeight / 20);
+                target = target + self.speedScroll * (wraperHeight / 120);
                 //   }
 
                 if (target > 0) {
@@ -5682,13 +5727,16 @@ $(function () {
     MTouchNavTb.prototype.set = function (el, bl) {
         var self = this;
         // 选中的样式移动
-        if (self.options.top) {
+        //if (self.options.top) {
 
-            self.top.call(self, el, bl); // 移动到left
-        } else {
+        //    self.top.call(self, el, bl); // 移动到left
+        //}
+        //else {
 
-            self.center.call(self, el, bl); // 移动到center
-        }
+        //    self.center.call(self, el, bl);   // 移动到center
+        //}
+
+        self.center.call(self, el, bl); // 移动到center
     };
 
     function Plugin(option, el, bl) {
@@ -5704,7 +5752,7 @@ $(function () {
                 o.limitTop = $this.hasAttr("data-limit-top");
                 o.limitBottom = $this.hasAttr("data-limit-bottom");
                 o.top = $this.hasAttr("data-top");
-                o.center = $this.hasAttr("data-center");
+                // o.center = $this.hasAttr("data-center");
 
                 var p = $.extend({}, o, options);
                 $this.data('m-touch-nav-tb', data = new MTouchNavTb(this, p));
@@ -5717,9 +5765,9 @@ $(function () {
     }
 
     var _mTouchNavTb = $.fn.mTouchNavTb;
-    $.fn.mTouchNavTb = Plugin;
+    m.fn.mTouchNavTb = Plugin;
 
-    $("[data-toggle=m-touch-nav-tb]").each(function (e) {
+    m("[data-toggle=m-touch-nav-tb]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5730,10 +5778,10 @@ $(function () {
     var MTableView = function MTableView(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTableView.prototype.running = function () {
+    MTableView.prototype.run = function () {
         var self = this;
         m(this.el).find(".m-table-view-ttl").on("tap", function (event) {
             event.stopPropagation();
@@ -5798,9 +5846,9 @@ $(function () {
     }
 
     var _mTableView = $.fn.mTableView;
-    $.fn.mTableView = Plugin;
+    m.fn.mTableView = Plugin;
 
-    $("[data-toggle=m-table-view]").each(function (e) {
+    m("[data-toggle=m-table-view]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5813,10 +5861,10 @@ $(function () {
     var MTouchTab = function MTouchTab(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchTab.prototype.running = function () {
+    MTouchTab.prototype.run = function () {
         var self = this;
         var $m_touch_lr = m(this.el);
         var $moveElement = $m_touch_lr.find(".m-touch-tab-cnt");
@@ -5968,9 +6016,9 @@ $(function () {
     }
 
     var _mTouchTab = $.fn.mTouchTab;
-    $.fn.mTouchTab = Plugin;
+    m.fn.mTouchTab = Plugin;
 
-    $("[data-toggle=m-touch-tab]").each(function (e) {
+    m("[data-toggle=m-touch-tab]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5983,10 +6031,10 @@ $(function () {
     var MTouchTabBtn = function MTouchTabBtn(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MTouchTabBtn.prototype.running = function () {
+    MTouchTabBtn.prototype.run = function () {
         var self = this;
         var $m_touch_tab_btn = m(this.el);
 
@@ -6066,9 +6114,9 @@ $(function () {
     }
 
     var _mTouchTabBtn = $.fn.mTouchTabBtn;
-    $.fn.mTouchTabBtn = Plugin;
+    m.fn.mTouchTabBtn = Plugin;
 
-    $("[data-toggle=m-touch-tab-btn]").each(function (e) {
+    m("[data-toggle=m-touch-tab-btn]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -6083,10 +6131,10 @@ $(function () {
         this.items = [];
         this.scrollItems = [];
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MIndexlist.prototype.running = function () {
+    MIndexlist.prototype.run = function () {
 
         var $indexlist_nav = m(this.el).find(".m-indexlist-gp");
         var $indexlist_a = m(this.el).find(".m-indexlist-gp-ttl");
@@ -6207,9 +6255,9 @@ $(function () {
     }
 
     var _mIndexlist = $.fn.mIndexlist;
-    $.fn.mIndexlist = Plugin;
+    m.fn.mIndexlist = Plugin;
 
-    $("[data-toggle=m-indexlist]").each(function (e) {
+    m("[data-toggle=m-indexlist]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -6222,10 +6270,10 @@ $(function () {
     var MListoption = function MListoption(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MListoption.prototype.running = function () {
+    MListoption.prototype.run = function () {
 
         var $m_listoption = m(this.el);
         var transition = "transform .6s ease";
@@ -6324,9 +6372,9 @@ $(function () {
     }
 
     var _mListoption = $.fn.mListoption;
-    $.fn.mListoption = Plugin;
+    m.fn.mListoption = Plugin;
 
-    $("[data-toggle=m-listoption]").each(function (e) {
+    m("[data-toggle=m-listoption]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -6339,10 +6387,10 @@ $(function () {
     var MSwitch = function MSwitch(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MSwitch.prototype.running = function () {
+    MSwitch.prototype.run = function () {
         var self = this;
         var $witch = m(this.el);
         var transition = "transform .4s ease";
@@ -6478,7 +6526,7 @@ $(function () {
         $(this).emit("check.m.checkbtn", [this, bl]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
 
         mCheckbtn: function mCheckbtn(v) {
             if (typeof v !== "undefined") {
@@ -6498,7 +6546,7 @@ $(function () {
         }
     });
 
-    $(document).on("tap", ".m-checkbtn-group-item", function (e) {
+    m(document).on("tap", ".m-checkbtn-group-item", function (e) {
 
         e.preventDefault();
         $(this).toggleClass("active");
@@ -6515,10 +6563,10 @@ $(function () {
         });
 
         // 触发自定义的事件
-        $(this).trigger("check.m.checkbtn.group", [arrs]);
+        m(this).trigger("check.m.checkbtn.group", [arrs]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
 
         mCheckbtnGroup: function mCheckbtnGroup(args) {
             var items = $(this).find(".m-checkbtn-group-item");
@@ -6612,44 +6660,44 @@ $(function () {
         }
     });
 
-    $(document).on("tap", ".m-radiobtn-item", function (e) {
+    m(document).on("tap", ".m-radiobtn-item", function (e) {
         e.preventDefault();
         var p = $(this).parents(".m-radiobtn-group");
         p.find(".m-radiobtn-item").removeClass("active");
-        $(this).addClass("active");
+        m(this).addClass("active");
 
         // 触发自定义的事件
-        $(this).trigger("check.m.radiobtn.group", [this, $(this).attr("data-val")]);
+        m(this).trigger("check.m.radiobtn.group", [this, $(this).attr("data-val")]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
 
         mRadiobtnGroup: function mRadiobtnGroup(index) {
 
             if (arguments.length >= 1) {
                 if (!isNaN(index)) {
                     index = Number(index);
-                    $(this).find(".m-radiobtn-item").removeClass("active");
-                    $(this).find(".m-radiobtn-item").eq(index).addClass("active");
+                    m(this).find(".m-radiobtn-item").removeClass("active");
+                    m(this).find(".m-radiobtn-item").eq(index).addClass("active");
 
                     // 触发自定义的事件
                     var $active = $(this).find(".m-radiobtn-item.active");
 
-                    $(this).trigger("check.m.radiobtn.group", [$active.get(0), $active.attr("data-val")]);
+                    m(this).trigger("check.m.radiobtn.group", [$active.get(0), $active.attr("data-val")]);
                 } else if (typeof index === "string") {
-                    var $list = $(this).find(".m-radiobtn-item");
+                    var $list = m(this).find(".m-radiobtn-item");
                     $list.removeClass("active");
                     $list.each(function () {
 
                         var v = $.trim($(this).attr("data-val") || "");
                         if (index === v) {
-                            $(this).addClass("active");
+                            m(this).addClass("active");
                         }
                     });
 
                     // 触发自定义的事件
                     var $active2 = $(this).find(".m-radiobtn-item.active");
-                    $(this).trigger("check.m.radiobtn.group", [$active2.get(0), $active2.attr("data-val")]);
+                    m(this).trigger("check.m.radiobtn.group", [$active2.get(0), $active2.attr("data-val")]);
                 }
             } else {
 
@@ -6700,7 +6748,7 @@ $(function () {
 
 (function () {
     // 单选组 m-checkbox-group
-    $(document).on("tap", ".m-checkbox-group-item", function (e) {
+    m(document).on("tap", ".m-checkbox-group-item", function (e) {
         e.preventDefault();
         $(this).toggleClass("active");
         var p = $(this).parents(".m-checkbox-group");
@@ -6711,10 +6759,10 @@ $(function () {
         });
 
         // 触发自定义的事件
-        $(this).trigger("check.m.checkbox.group", [p, vals]);
+        m(this).trigger("check.m.checkbox.group", [p, vals]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
         mCheckboxGroup: function mCheckboxGroup(args) {
             var items = $(this).find(".m-checkbox-group-item");
 
@@ -6789,7 +6837,7 @@ $(function () {
 (function () {
 
     // 单选 m-radiobox
-    $(document).on("tap", ".m-radiobox-item", function (e) {
+    m(document).on("tap", ".m-radiobox-item", function (e) {
         e.preventDefault();
         var p = $(this).parents(".m-radiobox-group");
         $(".m-radiobox-item", p).removeClass("active");
@@ -6800,7 +6848,7 @@ $(function () {
         $(this).trigger("check.m.radiobox.group", [this, v]);
     });
 
-    $.fn.extend({
+    m.fn.extend({
 
         mRadioboxGroup: function mRadioboxGroup(args) {
             var items = $(this).find(".m-radiobox-item");
@@ -6817,7 +6865,7 @@ $(function () {
                 });
 
                 // 触发自定义的事件
-                $(this).trigger("check.m.radiobox.group", [$(this).find(".m-radiobox-item.active").get(0), v]);
+                m(this).trigger("check.m.radiobox.group", [$(this).find(".m-radiobox-item.active").get(0), v]);
             } else if (typeof args === "number") {
 
                 items.removeClass("active");
@@ -6844,7 +6892,7 @@ $(function () {
 
                 return;
             } else {
-                return $(this).find(".m-radiobox-item.active").attr("data-val") || "";
+                return m(this).find(".m-radiobox-item.active").attr("data-val") || "";
             }
         }
     });
@@ -7235,10 +7283,10 @@ $(function () {
         this.options = options;
         this.createHtml();
         this.el = m(".m-picker");
-        this.running();
+        this.run();
     };
 
-    MPicker.prototype.running = function () {
+    MPicker.prototype.run = function () {
         m.router.ismask = true;
         var self = this;
         var $m_touch_tb = m(this.el).addClass("m-picker").find(".m-picker-inner");
@@ -7327,7 +7375,7 @@ $(function () {
                         self.speedlateY3 = parseFloat(self.speedlateY2) - parseFloat(self.speedlateY);
                         self.speedlateY = self.speedlateY2;
                         self.speedScroll = self.speedlateY3;
-                    }, 20);
+                    }, 50);
                 }
             }, function (event, obj) {
 
@@ -7366,7 +7414,7 @@ $(function () {
                         self.speedScroll = -200;
                     }
 
-                    target = target + self.speedScroll * (wraperHeight / 50);
+                    target = target + self.speedScroll * (wraperHeight / 200);
 
                     // picker-item  first element
                     var middelHeight = wraperHeight / 2 - liHeight / 2;
@@ -7922,18 +7970,18 @@ $(function () {
         this.el = el;
         this.oldsrc = "";
         this.options = options;
-        this.running();
+        this.run();
     };
 
     MLazy.DEFAULTS = {
         timing: 400
     };
 
-    MLazy.prototype.running = function () {
+    MLazy.prototype.run = function () {
 
         if (this.el === window || this.el === document) {
 
-            $(window).on("scroll", $.proxy(this._scrollImg, this));
+            m(window).on("scroll", $.proxy(this._scrollImg, this));
         } else if (this.el.nodeType === 1) {
             $(this.el).css("position", "relative");
             $(this.el).on("scroll", $.proxy(this._scrollImgByElement, this));
@@ -8006,9 +8054,9 @@ $(function () {
     }
 
     var _mLazy = $.fn.mLazy;
-    $.fn.mLazy = Plugin;
+    m.fn.mLazy = Plugin;
 
-    $(window).on("load.m-lazy", function () {
+    m(window).on("load.m-lazy", function () {
         $("[data-toggle=m-lazy]").each(function () {
             var $this = $(this);
             var src = $this.attr("data-lazy") || "";
@@ -8071,14 +8119,21 @@ $(function () {
     var MOverflowLr = function MOverflowLr(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MOverflowLr.prototype.running = function () {
+    MOverflowLr.DEFAULT = {
+        tapTime: 250,
+        center: true
+
+    };
+
+    MOverflowLr.prototype.run = function () {
         var self = this;
-        var $el = m(self.el).find(".m-overflow-lr-pwr");
+        var $el = m(self.el).find(".m-overflow-lr-nav");
         $el.css("overflow-x", "scroll");
         var winW = $el.outerWidth();
+
         // 设置滑动条
         if (self.options.bar) {
             self.setBar();
@@ -8127,6 +8182,7 @@ $(function () {
             }
         });
 
+        // 移动阻止冒泡行为
         $el.touch(function (event) {
             event.stopPropagation();
         }, function (event, obj) {
@@ -8134,32 +8190,45 @@ $(function () {
             if (obj.isX) {
                 event.stopPropagation();
             }
+            if (obj.isY) {
+                event.stopPropagation();
+            }
+        }, function (event) {
+            event.stopPropagation();
         });
 
-        $el.find("a").on("tap", function (event) {
+        // 点击router 跳转
+        $el.find("a[data-link]").on("tap", function (event) {
             event.preventDefault();
+            m.router.alink.call(this);
+        });
 
-            var isHref = m(this).hasAttr("href");
-            var hrefValue = m(this).attr("href");
-            if (isHref) {
-                if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
-                    return;
-                } else {
+        // 导航 m-overflow-lr-menu 
+        var $el_parent = m(self.el).find(".m-overflow-lr-nav.m-overflow-lr-menu");
+        var $el_menu = $el_parent.find(".m-overflow-lr-item");
+        var $el_menu_w2 = $el_menu.outerWidth() / 2;
 
-                    //if (m(this).hasAttr("data-router")) {
-                    m.router.link(hrefValue);
-                    return;
-                    //  }
-                    // window.location.href = hrefValue;
-                }
-            }
+        $el_menu.on("tap", function (event) {
+
+            m(this).addClass("active").siblings().removeClass("active");
+
+            // 定位到左边
+
+            //  $el_parent.scrollLeft(m(this).offsetLeft(), MOverflowLr.DEFAULT.tapTime);
+
+            // 定位到中间
+            var $el_parent_w = $el_parent.outerWidth() / 2;
+            $el_parent.scrollLeft(m(this).offsetLeft() - ($el_parent_w - $el_menu_w2), MOverflowLr.DEFAULT.tapTime);
+
+            // tap选中触发的事件
+            m(this).emit("tap.m.overflow.lr", [this]);
         });
     };
 
     MOverflowLr.prototype.setBar = function (x) {
         var $m_touch_lr = m(this.el);
         var pwr = document.createElement("div");
-        pwr.classList.add("m-overflow-lr-bar-pwr");
+        pwr.classList.add("m-overflow-lr-bar-nav");
         var bar = document.createElement("div");
         bar.classList.add("m-overflow-lr-bar");
         var item = document.createElement("div");
@@ -8207,6 +8276,8 @@ $(function () {
             if (!data) {
                 var o = {};
                 o.bar = $this.hasAttr("data-bar");
+                //o.center = MOverflowLr.DEFAULT.center;
+                //o.center = $this.hasAttr("data-center");
                 var p = $.extend({}, o, options);
                 $this.data('m-overflow-lr', data = new MOverflowLr(this, p));
             }
@@ -8218,9 +8289,9 @@ $(function () {
     }
 
     var _mOverflowLr = $.fn.mOverflowLr;
-    $.fn.mOverflowLr = Plugin;
+    m.fn.mOverflowLr = Plugin;
 
-    $("[data-toggle=m-overflow-lr]").each(function (e) {
+    m("[data-toggle=m-overflow-lr]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -8233,10 +8304,10 @@ $(function () {
     var MOverflowTb = function MOverflowTb(el, options) {
         this.el = el;
         this.options = options;
-        this.running();
+        this.run();
     };
 
-    MOverflowTb.prototype.running = function () {
+    MOverflowTb.prototype.run = function () {
         var $el = m(this.el);
         $el.css("overflow-y", "scroll");
 
@@ -8293,9 +8364,9 @@ $(function () {
     }
 
     var _mOverflowTb = $.fn.mOverflowTb;
-    $.fn.mOverflowTb = Plugin;
+    m.fn.mOverflowTb = Plugin;
 
-    $("[data-toggle=m-overflow-tb]").each(function (e) {
+    m("[data-toggle=m-overflow-tb]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });

@@ -26,10 +26,19 @@
 
     &.m-touch-tab-btn-bottom {
         border-top: 1px solid $text-line;
-
+     
 
         .m-touch-tab-btn-item {
-            padding: .6rem .2rem;
+
+            padding: 0 .2rem .1rem .2rem;
+            display:flex;
+            flex-flow:column nowrap;
+            justify-content:space-between;
+            align-items:center;
+            width:100%;
+
+            .icon{ font-size:1.2rem; margin-bottom:-.2rem;}
+            .text{ font-size:.6rem; padding:.1rem;}
         }
     }
 

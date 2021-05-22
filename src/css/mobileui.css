@@ -1842,7 +1842,27 @@ textarea::-moz-placeholder {
   .m-touch-tab-btn.m-touch-tab-btn-bottom {
     border-top: 1px solid #f2f2f2; }
     .m-touch-tab-btn.m-touch-tab-btn-bottom .m-touch-tab-btn-item {
-      padding: .6rem .2rem; }
+      padding: 0 .2rem .1rem .2rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: column nowrap;
+              flex-flow: column nowrap;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 100%; }
+      .m-touch-tab-btn.m-touch-tab-btn-bottom .m-touch-tab-btn-item .icon {
+        font-size: 1.2rem;
+        margin-bottom: -.2rem; }
+      .m-touch-tab-btn.m-touch-tab-btn-bottom .m-touch-tab-btn-item .text {
+        font-size: .6rem;
+        padding: .1rem; }
   .m-touch-tab-btn .m-touch-tab-btn-line {
     position: absolute;
     left: 0;
@@ -2790,8 +2810,8 @@ textarea::-moz-placeholder {
     -webkit-tap-highlight-color: transparent !important; }
 
 .m-router-box-move {
-  -webkit-box-shadow: -10px 0 10px rgba(0, 0, 0, 0.3);
-          box-shadow: -10px 0 10px rgba(0, 0, 0, 0.3); }
+  -webkit-box-shadow: -10px 0 20px rgba(0, 0, 0, 0.3);
+          box-shadow: -10px 0 20px rgba(0, 0, 0, 0.3); }
 
 .m-router-cnt {
   position: fixed;
@@ -3291,8 +3311,9 @@ body {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+  margin-left: -1%;
   padding: .25rem;
-  margin-left: -1%; }
+  overflow-x: hidden; }
 
 .icon-item {
   display: -webkit-box;
@@ -3309,6 +3330,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   width: 24%;
+  margin-left: 1%;
   margin-bottom: .25rem;
   padding: .25rem;
   text-align: center;
@@ -3347,6 +3369,3 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center; }
-
-.icon-item {
-  margin-left: 1%; }

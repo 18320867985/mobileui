@@ -28,7 +28,7 @@
     };
 
     // base url;
-    Router.transitionTime = 400;
+    Router.transitionTime = 250;
     Router.fineObjs = {};
     Router.baseUrl = "";
     Router.urls = [];           // js 加载集合
@@ -900,7 +900,7 @@
             elm.appendChild(routerEl);
           
             var $prevEl = Router.getPrevEl();
-            var transition = "transform  " + (Router.transitionTime+150 )+ "ms linear  50ms";
+            var transition = "transform  " + (Router.transitionTime+150 )+ "ms linear ";
             $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
             Router.isOneMove = true;
          

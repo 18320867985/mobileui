@@ -2757,12 +2757,10 @@ textarea::-moz-placeholder {
   right: 0;
   bottom: 0;
   z-index: 100;
-  background: #fff;
-  -webkit-box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
-          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05); }
+  background: #fff; }
   .m-router.in {
-    -webkit-animation: m-router-dh .4s linear both;
-            animation: m-router-dh .4s linear both; }
+    -webkit-animation: m-router-dh .25s linear both;
+            animation: m-router-dh .25s linear both; }
   .m-router .m-hd-top-ttl {
     color: #444; }
     .m-router .m-hd-top-ttl ._fail {

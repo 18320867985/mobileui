@@ -31,11 +31,11 @@
     bottom: 0;
     z-index: 100;
     background: #fff;
-    box-shadow: -2px 0 10px rgba(0,0,0,.05);
+   
 
 
     &.in {
-        animation: m-router-dh .4s linear both;
+        animation: m-router-dh .25s linear both;
     }
 
     .m-hd-top-ttl {

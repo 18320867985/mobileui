@@ -3918,7 +3918,7 @@ css3 transition
     };
 
     // base url;
-    Router.transitionTime = 400;
+    Router.transitionTime = 300;
     Router.fineObjs = {};
     Router.baseUrl = "";
     Router.urls = []; // js 加载集合
@@ -6291,6 +6291,13 @@ $(function () {
 
         //});
 
+        $m_listoption.touch(function () {}, function (event, obj) {
+
+            if (obj.isX) {
+                event.preventDefault();
+            }
+        });
+
         $m_listoption.touchdeletage(".m-listoption-item", function (event, obj) {
 
             var $moveElement = m(this).find(".m-listoption-item-cnt");
@@ -6308,17 +6315,35 @@ $(function () {
 
             if (obj.isX) {
                 event.preventDefault();
+
+                // 阻外层冒泡
+                if (obj.oneTouch === 1) {
+                    return;
+                }
+                if (obj.$moveElement.translateX() === 0 && obj.x > 0 && obj.oneTouch === undefined) {
+                    obj.oneTouch = 1;
+                } else {
+                    obj.oneTouch = 2;
+                }
+
+                if (obj.oneTouch === 1) {
+
+                    return;
+                }
+                if (obj.oneTouch === 2) {
+                    event.stopPropagation();
+                }
+
                 obj.$moveElment.transition("none");
                 var translateX = obj.moveElmentX + obj.x;
 
-                if (translateX < obj.optionWidth) {
-                    translateX = obj.optionWidth;
-                }
+                //if (translateX < obj.optionWidth) {
+                //    translateX = obj.optionWidth;
+                //}
 
                 if (translateX > 0) {
                     translateX = 0;
                 }
-
                 obj.$moveElement.translateX(translateX);
 
                 // 触发自定义的事件

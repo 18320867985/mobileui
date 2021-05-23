@@ -59,7 +59,7 @@
 
 @media screen and (min-width: 414px) {
   html {
-    font-size: 22.08x; } }
+    font-size: 22.08px; } }
 
 @media screen and (min-width: 424px) {
   html {
@@ -2734,16 +2734,16 @@ textarea::-moz-placeholder {
 
 @-webkit-keyframes m-router-dh {
   0% {
-    -webkit-transform: translateZ(0) translateX(100%);
-            transform: translateZ(0) translateX(100%); }
+    -webkit-transform: translateX(100%) translateZ(1px);
+            transform: translateX(100%) translateZ(1px); }
   100% {
     -webkit-transform: translateZ(0) translateX(0);
             transform: translateZ(0) translateX(0); } }
 
 @keyframes m-router-dh {
   0% {
-    -webkit-transform: translateZ(0) translateX(100%);
-            transform: translateZ(0) translateX(100%); }
+    -webkit-transform: translateX(100%) translateZ(1px);
+            transform: translateX(100%) translateZ(1px); }
   100% {
     -webkit-transform: translateZ(0) translateX(0);
             transform: translateZ(0) translateX(0); } }
@@ -2755,10 +2755,12 @@ textarea::-moz-placeholder {
   right: 0;
   bottom: 0;
   z-index: 100;
-  background: #fff; }
+  background: #fff;
+  -webkit-box-shadow: -3px 0 6px rgba(0, 0, 0, 0.1);
+          box-shadow: -3px 0 6px rgba(0, 0, 0, 0.1); }
   .m-router.in {
-    -webkit-animation: m-router-dh .25s linear both;
-            animation: m-router-dh .25s linear both; }
+    -webkit-animation: m-router-dh .4s ease-in both;
+            animation: m-router-dh .4s ease-in both; }
   .m-router .m-hd-top-ttl {
     color: #444; }
     .m-router .m-hd-top-ttl ._fail {
@@ -2810,8 +2812,8 @@ textarea::-moz-placeholder {
     -webkit-tap-highlight-color: transparent !important; }
 
 .m-router-box-move {
-  -webkit-box-shadow: -10px 0 20px rgba(0, 0, 0, 0.3);
-          box-shadow: -10px 0 20px rgba(0, 0, 0, 0.3); }
+  -webkit-box-shadow: -10px 0 20px rgba(0, 0, 0, 0.2);
+          box-shadow: -10px 0 20px rgba(0, 0, 0, 0.2); }
 
 .m-router-cnt {
   position: fixed;

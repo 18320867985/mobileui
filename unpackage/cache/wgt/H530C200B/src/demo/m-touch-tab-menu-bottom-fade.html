@@ -72,8 +72,26 @@
 
         <div class="m-touch-tab-btn m-touch-tab-btn-bottom">
             <div class="m-touch-tab-btn-cnt">
-                <div class="m-touch-tab-btn-cnt">
-                    <div class="m-touch-tab-btn-item">1</div>
+
+                <div class="m-touch-tab-btn-item active" data-tab="#tab1">
+                    <span class="icon icon-home"></span>
+                    <div class="text">首页</div>
+
+                </div>
+
+                <div class="m-touch-tab-btn-item" data-tab="#tab2">
+                    <span class="icon icon-comment1"></span>
+                    <div class="text"> 消息</div>
+
+                </div>
+                <div class="m-touch-tab-btn-item" data-tab="#tab3">
+                    <span class="icon icon-setting"></span>
+                    <div class="text">设置</div>
+
+                </div>
+                <div class="m-touch-tab-btn-item" data-tab="#tab4">
+                    <span class="icon icon-user"></span>
+                    <div class="text">我的</div>
 
                 </div>
 
@@ -118,9 +136,9 @@
             var tab = "";
             var navs = ["京东超市", "数码电器", "京东美食", "京东服饰"];
             for (var i = 0; i < 4; i++) {
-                nav += `<div class="${i === 0 ? `active` : ``}  m-touch-tab-btn-item" data-tab="#tab${i + 1}">
-                               ${navs[i]} 
-                            </div>  `;
+                //nav += `<div class="${i === 0 ? `active` : ``}  m-touch-tab-btn-item" data-tab="#tab${i + 1}">
+                //               ${navs[i]} 
+                //            </div>  `;
 
                 tab += ` <div class="m-fade-tab-item ${i === 0 ? `active fade` : ``}"  id="tab${i + 1}" data-ttl="${navs[i]}">
                                 <div class="m-overflow-tb">
@@ -140,7 +158,7 @@
             }
 
             // 触发插件
-            m(".m-touch-tab-btn-cnt",context).html(nav).parent().mTouchTabBtn();
+            m(".m-touch-tab-btn-cnt",context).parent().mTouchTabBtn();
             m(".m-fade-tab-cnt",context).html(tab);
             m(".m-overflow-tb",context).mOverflowTb();
 

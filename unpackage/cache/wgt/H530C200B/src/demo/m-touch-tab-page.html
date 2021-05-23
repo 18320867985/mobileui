@@ -84,8 +84,7 @@
             m(".m-touch-tab-cnt",context).parent().mTouchTab();
             m(".m-overflow-tb",context).mOverflowTb();
 
-       
-            // a跳转无效 重新绑定委托事件 a[data-link] 
+            // 如a跳转无效 重新绑定委托事件 a[data-link] 
             m(".m-touch-tab-cnt", $activeEl).on("tap", "a[data-link]", function (event) {
                 event.preventDefault();
                 event.stopPropagation();

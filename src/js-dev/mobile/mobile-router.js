@@ -28,7 +28,7 @@
     };
 
     // base url;
-    Router.transitionTime = 250;
+    Router.transitionTime = 400;
     Router.fineObjs = {};
     Router.baseUrl = "";
     Router.urls = [];           // js 加载集合
@@ -872,8 +872,7 @@
             routerEl.id = "m-router-" + id;
             routerEl.classList.add("m-router");
             routerEl.classList.add("in");//
-          //  routerEl.classList.add("m-router-box-shadow");//
-
+      
             routerEl.style = "z-index:" + (100 + id);
             routerEl.setAttribute("data-router-id", id);
 
@@ -901,7 +900,7 @@
             elm.appendChild(routerEl);
           
             var $prevEl = Router.getPrevEl();
-            var transition = "transform  " + (Router.transitionTime+150 )+ "ms linear 100ms";
+            var transition = "transform  " + (Router.transitionTime+150 )+ "ms linear  100ms";
             $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
             Router.isOneMove = true;
          
@@ -949,15 +948,17 @@
             var id = "#m-router-" + Router.getId();
             var $p = m(id);
             var transition = "transform  " + Router.transitionTime*t + "ms linear";
-            $p.removeClass("in").transition(transition).translateX($p.width()).translateZ(0);
+             $p.removeClass("in").transition(transition).translateX($p.width()).translateZ(1);
             var _id = Router.getId();
 
             // 监听页面隐藏 触发的事件
             $p.emit("m-router-hide", [$p, _id]);  
-            m("[data-router-id=m-router-" + _id + "]").css("opacity",0).remove();
+          
             var $prevEl = Router.getPrevEl();
             $prevEl.transition(transition).translateX(0);
             setTimeout(function () {
+
+                m("[data-router-id=m-router-" + _id + "]").remove();
                 $p.remove();
                 Router.removeId(_id);
 

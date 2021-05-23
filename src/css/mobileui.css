@@ -887,7 +887,7 @@ textarea::-moz-placeholder {
 /*check 组件*/
 .m-checkbox-group .icon,
 .m-checkbox .icon {
-  font-size: 1.6rem; }
+  font-size: 1.8rem; }
 
 /*v-checkbox*/
 .m-checkbox {
@@ -916,13 +916,15 @@ textarea::-moz-placeholder {
   .m-checkbox-group .m-checkbox-group-item {
     display: inline-block;
     cursor: pointer; }
-    .m-checkbox-group .m-checkbox-group-item .m-checkbox-icon:before {
-      content: '\e6c1';
-      color: #999; }
+    .m-checkbox-group .m-checkbox-group-item .m-checkbox-icon {
+      margin-right: -.2rem; }
+      .m-checkbox-group .m-checkbox-group-item .m-checkbox-icon:before {
+        content: '\e64d';
+        color: #999; }
     .m-checkbox-group .m-checkbox-group-item .m-checkbox-group-txt {
       font-size: .8rem; }
     .m-checkbox-group .m-checkbox-group-item.active .m-checkbox-icon:before {
-      content: '\e678';
+      content: '\e677';
       color: #337ab7; }
     .m-checkbox-group .m-checkbox-group-item + .m-checkbox-group-item {
       margin-left: .5rem; }
@@ -957,8 +959,8 @@ textarea::-moz-placeholder {
       color: #999; }
     .m-radiobox-group .m-radiobox-item .m-radiobox-txt {
       display: inline-block;
-      margin-left: -.25rem;
-      font-size: 14px; }
+      margin-left: -.3rem;
+      font-size: .8rem; }
     .m-radiobox-group .m-radiobox-item.active .m-radiobox-icon:before {
       margin-right: .25rem;
       content: '\e678';
@@ -2754,10 +2756,7 @@ textarea::-moz-placeholder {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 100;
-  background: #fff;
-  -webkit-box-shadow: -3px 0 6px rgba(0, 0, 0, 0.1);
-          box-shadow: -3px 0 6px rgba(0, 0, 0, 0.1); }
+  z-index: 100; }
   .m-router.in {
     -webkit-animation: m-router-dh .4s ease-in both;
             animation: m-router-dh .4s ease-in both; }

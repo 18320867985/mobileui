@@ -4,7 +4,7 @@
 .m-checkbox-group,
 .m-checkbox {
     .icon {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 }
 
@@ -46,14 +46,12 @@
     }
 
     &.text-danger .m-checkbox-item.active {
-            &:before {
-                color: $text-danger;
-
-            }
+        &:before {
+            color: $text-danger;
         }
-
     }
-    /*v-checkbox-group*/
+}
+/*v-checkbox-group*/
 .m-checkbox-group {
     display: inline-block;
     vertical-align: middle;
@@ -64,8 +62,10 @@
         cursor: pointer;
 
         .m-checkbox-icon {
+            margin-right: -.2rem;
+
             &:before {
-                content: '\e6c1';
+                content: '\e64d';
                 color: #999;
             }
         }
@@ -76,7 +76,7 @@
 
         &.active {
             .m-checkbox-icon:before {
-                content: '\e678';
+                content: '\e677';
                 color: $text-primary;
             }
         }
@@ -108,13 +108,13 @@
         }
     }
 }
-    /*v-radiokbox*/
-    .m-radiobox-item {
-        .icon {
-            font-size: 1.6rem;
-            line-height: 1;
-        }
+/*v-radiokbox*/
+.m-radiobox-item {
+    .icon {
+        font-size: 1.6rem;
+        line-height: 1;
     }
+}
 
 .m-radiobox-group {
     display: inline-block;
@@ -139,8 +139,8 @@
 
         .m-radiobox-txt {
             display: inline-block;
-            margin-left: -.25rem;
-            font-size: 14px;
+            margin-left: -.3rem;
+            font-size: .8rem;
         }
 
         &.active {

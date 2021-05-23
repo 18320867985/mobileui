@@ -15,11 +15,11 @@
 
 @keyframes m-router-dh {
     0% {
-        transform: translateX(100%) translateZ(1px);
+        transform: translateX(100%) translateZ(10px);
     }
 
     100% {
-        transform: translateZ(0) translateX(0);
+        transform:  translateX(0);
     }
 }
 
@@ -31,9 +31,10 @@
     bottom: 0;
     z-index: 100;
     background: #fff;
+    box-shadow: -2px 0 10px rgba(0,0,0,.01);
 
     &.in {
-        animation: m-router-dh .3s  linear both;
+        animation: m-router-dh .4s linear both;
     }
 
     .m-hd-top-ttl {

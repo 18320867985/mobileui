@@ -3918,7 +3918,7 @@ css3 transition
     };
 
     // base url;
-    Router.transitionTime = 300;
+    Router.transitionTime = 400;
     Router.fineObjs = {};
     Router.baseUrl = "";
     Router.urls = []; // js 加载集合

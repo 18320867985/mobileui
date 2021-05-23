@@ -2759,8 +2759,8 @@ textarea::-moz-placeholder {
   z-index: 100;
   background: #fff; }
   .m-router.in {
-    -webkit-animation: m-router-dh .3s ease-in both;
-            animation: m-router-dh .3s ease-in both; }
+    -webkit-animation: m-router-dh .3s  linear both;
+            animation: m-router-dh .3s  linear both; }
   .m-router .m-hd-top-ttl {
     color: #444; }
     .m-router .m-hd-top-ttl ._fail {

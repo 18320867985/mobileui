@@ -83,9 +83,9 @@
                     obj.$moveElment.transition("none");
                     var translateX = obj.moveElmentX + obj.x;
                   
-                    //if (translateX < obj.optionWidth) {
-                    //    translateX = obj.optionWidth;
-                    //}
+                    if (translateX < obj.optionWidth) {
+                        translateX = obj.optionWidth;
+                    }
 
                     if (translateX > 0) {
                         translateX = 0;

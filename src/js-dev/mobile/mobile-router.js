@@ -672,6 +672,7 @@
                     }
 
                     obj.isMove = false;
+                   
 
                 }
 

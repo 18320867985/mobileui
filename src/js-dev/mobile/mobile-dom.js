@@ -2252,17 +2252,14 @@
 		},
 
 		// window cancel event
-		windowcancel: function(fn) {
-			var $this = this[0] || {};
-			m(window).on("touchstart", function(event) {
+		//windowcancel: function(fn) {
+		//	var $this = this;
+		//	m(window).on("touchend", function(event) {
 
-				m(event.target).one("touchend", function(event) {
-					fn.call($this, event);
+		//		fn.call($this, event);
 
-				});
-
-			});
-		},
+		//	});
+		//},
 
 		// tap
 		tap: function() {

@@ -2792,11 +2792,9 @@ textarea::-moz-placeholder {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   background: #fff;
-  border-bottom: 1px solid #f2f2f2;
-  -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.075);
-          box-shadow: 1px 0 5px rgba(0, 0, 0, 0.075); }
+  border-bottom: 1px solid #f2f2f2; }
   .m-router-hd .m-hd-top-ttl-mask {
     padding: .2rem .7rem;
     color: #fbf8f8;
@@ -3091,8 +3089,10 @@ body {
   margin: .5rem;
   border-radius: 5px;
   background: #fff;
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); }
+  border: 1px solid #ddd; }
+  .m-card.m-card-shadow {
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); }
 
 .m-card-head {
   margin-bottom: .25rem;

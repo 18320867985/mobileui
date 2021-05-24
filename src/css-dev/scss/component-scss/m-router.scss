@@ -74,10 +74,10 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
     background: #fff;
     border-bottom: 1px solid $text-line;
-    box-shadow: 1px 0 5px rgba(0,0,0,.075);
+
 
     .m-hd-top-ttl-mask {
         padding: .2rem .7rem;
@@ -121,6 +121,7 @@
 
 .m-router-top {
     flex: 0 0 auto;
+   
 }
 
 .m-router-bd {

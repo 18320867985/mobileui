@@ -34,7 +34,7 @@
         m(".m-picker-item").on("tap", function (event) {
             event.preventDefault();
             event.stopPropagation();
-            self.center.call(self, this);   // 移动到center
+          //  self.center.call(self, this);   // 移动到center
 
         });
 
@@ -92,6 +92,7 @@
         self.speedSetIntervalId = 0;  // 计算速度定时器id
 
         $m_touch_tb.each(function (i, v) {
+
             m(v).touch(
 
                 function (event, obj) {
@@ -123,7 +124,7 @@
 
                         }, 50);
                     }
-
+                    console.log("tap0");
                 },
 
                 function (event, obj) {
@@ -143,6 +144,8 @@
                        
                         obj.$moveElment.translateY(translateY);
 
+                        console.log("tap2");
+
                     }
 
                 },
@@ -150,7 +153,7 @@
                 function (event, obj) {
 
                     if (obj.isY) {
-
+                      
                         var moveElmentHeigth = obj.$moveElment.outerHeight();
                         var wraperHeight = $m_touch_tb.outerHeight();
                         var moveYSpace = moveElmentHeigth - wraperHeight;
@@ -206,6 +209,8 @@
 
                         }
 
+
+                        console.log("tap3:", target);
                         $moveElement.transition("transform .6s cubic-bezier(.3,.53,.48,1.27)");
                         self.center.call(self, el, true);   // 移动到center
 

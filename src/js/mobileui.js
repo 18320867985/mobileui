@@ -2130,15 +2130,14 @@ var mobileDom = createCommonjsModule(function (module) {
 			},
 
 			// window cancel event
-			windowcancel: function windowcancel(fn) {
-				var $this = this[0] || {};
-				m(window).on("touchstart", function (event) {
+			//windowcancel: function(fn) {
+			//	var $this = this;
+			//	m(window).on("touchend", function(event) {
 
-					m(event.target).one("touchend", function (event) {
-						fn.call($this, event);
-					});
-				});
-			},
+			//		fn.call($this, event);
+
+			//	});
+			//},
 
 			// tap
 			tap: function tap() {
@@ -7325,7 +7324,7 @@ $(function () {
         m(".m-picker-item").on("tap", function (event) {
             event.preventDefault();
             event.stopPropagation();
-            self.center.call(self, this); // 移动到center
+            //  self.center.call(self, this);   // 移动到center
         });
 
         m(".m-picker").on("tap", function (event) {
@@ -7376,6 +7375,7 @@ $(function () {
         self.speedSetIntervalId = 0; // 计算速度定时器id
 
         $m_touch_tb.each(function (i, v) {
+
             m(v).touch(function (event, obj) {
                 obj.$moveElment = m(this).find(".m-picker-cnt"); // $moveElement;
                 obj.moveElmentY = obj.$moveElment.translateY();
@@ -7403,6 +7403,7 @@ $(function () {
                         self.speedScroll = self.speedlateY3;
                     }, 50);
                 }
+                console.log("tap0");
             }, function (event, obj) {
 
                 if (obj.isY) {
@@ -7419,6 +7420,8 @@ $(function () {
                     translateY = translateY < -limitBottom ? -limitBottom : translateY;
 
                     obj.$moveElment.translateY(translateY);
+
+                    console.log("tap2");
                 }
             }, function (event, obj) {
 
@@ -7474,6 +7477,7 @@ $(function () {
                         }
                     }
 
+                    console.log("tap3:", target);
                     $moveElement.transition("transform .6s cubic-bezier(.3,.53,.48,1.27)");
                     self.center.call(self, el, true); // 移动到center
 

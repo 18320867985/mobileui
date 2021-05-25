@@ -5622,30 +5622,41 @@ $(function () {
                 clearInterval(self.speedSetIntervalId);
 
                 // 计算移动速度
-                if (self.speedScroll > 200) {
-                    self.speedScroll = 200;
-                } else if (self.speedScroll < -200) {
-                    self.speedScroll = -200;
-                }
+                //if (self.speedScroll > 200) {
+                //    self.speedScroll = 200;
+                //} else if (self.speedScroll < -200) {
+                //    self.speedScroll = -200;
+                //}
 
-                target = target + self.speedScroll * (wraperHeight / 120);
+                target = target + self.speedScroll * (wraperHeight / 60);
                 //   }
+
+                var gudingVal = 200;
+                var translateY = obj.$moveElment.translateY();
+                var spaceMoveY = Math.abs(target - translateY);
+                var beishu = spaceMoveY / gudingVal;
+                var ansTime = 600 * beishu;
+                if (spaceMoveY < gudingVal) {
+                    ansTime = 600;
+                }
+                ansTime = ansTime > 2000 ? 2000 : ansTime;
 
                 if (target > 0) {
                     target = 0;
-                    $moveElement.transition("transform .8s cubic-bezier(.3,.53,.48,1.27)");
+                    ansTime = 600;
                 } else if (target < moveYSpace) {
                     target = moveYSpace;
                     if (moveElmentHeigth < wraperHeight) {
                         target = 0;
+                        ansTime = 600;
                     }
-                    $moveElement.transition("transform .8s cubic-bezier(.3,.53,.48,1.27)");
+                    //  $moveElement.transition("transform 600ms   cubic-bezier(.3,.53,.48,1.1)");
                     // 拉到底部 触发自定义的事件
                     // m(this).emit("m-touch-tb-reachbottom", [this, target, obj]);
-                } else {
-                    $moveElement.transition("transform .8s cubic-bezier(.31,.66,.64,.98)");
                 }
 
+                //cubic-bezier(.25,.96,.8,.98) cubic-bezier(.12,.87,.5,.97)
+                $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.13,.77,.53,.93)");
                 obj.$moveElment.translateY(target);
 
                 // 触发自定义的事件
@@ -7507,22 +7518,21 @@ $(function () {
         }
 
         var translateY = $ul.translateY();
-
+        var gudingVal = 200;
         var spaceMoveY = Math.abs(moveY - translateY);
-        var beishu = spaceMoveY / window_h;
-
+        var beishu = spaceMoveY / gudingVal;
         var ansTime = 600 * beishu;
-        if (spaceMoveY < window_h) {
+        if (spaceMoveY < gudingVal) {
             ansTime = 600;
         }
-        ansTime = ansTime > 1600 ? 1600 : ansTime;
+        ansTime = ansTime > 2000 ? 2000 : ansTime;
 
         $ul.translateY(moveY);
 
         if (!bl) {
             $ul.transition("all", 600, "ease");
         } else {
-            $ul.transition("transform  " + ansTime + "ms  cubic-bezier(.3,.53,.48,1.1)");
+            $ul.transition("transform  " + ansTime + "ms  cubic-bezier(.13,.77,.53,.93)");
         }
 
         if (!$el.get(0)) {

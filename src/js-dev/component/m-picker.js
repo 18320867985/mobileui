@@ -248,19 +248,18 @@
         }
 
         var translateY = $ul.translateY();
-
+        var gudingVal = 200;
         var spaceMoveY = Math.abs(moveY - translateY);
-        var beishu = spaceMoveY / window_h;
-
+        var beishu = spaceMoveY / gudingVal;
         var ansTime = 600 * beishu;
-        if (spaceMoveY < window_h) { ansTime = 600; }
-        ansTime = ansTime > 1600 ? 1600 : ansTime;
+        if (spaceMoveY < gudingVal) { ansTime = 600; }
+        ansTime = ansTime > 2000 ? 2000 : ansTime;
       
         $ul.translateY(moveY);
 
         if (!bl) {
             $ul.transition("all", 600, "ease");
-        } else { $ul.transition("transform  " + ansTime + "ms  cubic-bezier(.3,.53,.48,1.1)");}
+        } else { $ul.transition("transform  " + ansTime + "ms  cubic-bezier(.13,.77,.53,.93)");}
 
         if (!$el.get(0)) { return; }
         clearTimeout($el.get(0).settimeoutId);

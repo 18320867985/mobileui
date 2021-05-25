@@ -45,7 +45,7 @@
             
                 // 计算移动速度
                // if (self.options.speed) {
-                    self.speedlateY = obj.y;
+                    self.speedlateY = obj.y=0;
                     clearInterval(self.speedSetIntervalId);
                     self.speedSetIntervalFisrt = true;
                     self.speedlateY = 0;

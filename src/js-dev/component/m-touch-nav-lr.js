@@ -48,7 +48,7 @@
               
                 // 计算移动速度
                // if (self.options.speed) {
-                    self.speedlateY = obj.x;
+                    self.speedlateY = obj.x=0;
                     clearInterval(self.speedSetIntervalId);
                     self.speedSetIntervalFisrt = true;
                     self.speedlateX = 0;
@@ -130,7 +130,7 @@
                             self.speedScroll = -200;
                         }
 
-                        target = target + self.speedScroll * (wraperWidth / 100);
+                        target = target + self.speedScroll * (wraperWidth / 120);
 
                   //  }
 

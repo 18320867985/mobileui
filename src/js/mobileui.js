@@ -5290,7 +5290,7 @@ $(function () {
 
             // 计算移动速度
             // if (self.options.speed) {
-            self.speedlateY = obj.x;
+            self.speedlateY = obj.x = 0;
             clearInterval(self.speedSetIntervalId);
             self.speedSetIntervalFisrt = true;
             self.speedlateX = 0;
@@ -5366,7 +5366,7 @@ $(function () {
                     self.speedScroll = -200;
                 }
 
-                target = target + self.speedScroll * (wraperWidth / 100);
+                target = target + self.speedScroll * (wraperWidth / 120);
 
                 //  }
 
@@ -5558,7 +5558,7 @@ $(function () {
 
             // 计算移动速度
             // if (self.options.speed) {
-            self.speedlateY = obj.y;
+            self.speedlateY = obj.y = 0;
             clearInterval(self.speedSetIntervalId);
             self.speedSetIntervalFisrt = true;
             self.speedlateY = 0;
@@ -7324,7 +7324,7 @@ $(function () {
         m(".m-picker-item").on("tap", function (event) {
             event.preventDefault();
             event.stopPropagation();
-            //  self.center.call(self, this);   // 移动到center
+            self.center.call(self, this); // 移动到center
         });
 
         m(".m-picker").on("tap", function (event) {
@@ -7375,7 +7375,6 @@ $(function () {
         self.speedSetIntervalId = 0; // 计算速度定时器id
 
         $m_touch_tb.each(function (i, v) {
-
             m(v).touch(function (event, obj) {
                 obj.$moveElment = m(this).find(".m-picker-cnt"); // $moveElement;
                 obj.moveElmentY = obj.$moveElment.translateY();
@@ -7385,7 +7384,8 @@ $(function () {
 
                 // 计算移动速度
                 // if (self.options.speed) {
-                self.speedlateY = obj.y;
+
+                self.speedlateY = obj.y = 0;
                 clearInterval(self.speedSetIntervalId);
                 self.speedSetIntervalFisrt = true;
                 self.speedlateY = 0;
@@ -7403,7 +7403,6 @@ $(function () {
                         self.speedScroll = self.speedlateY3;
                     }, 50);
                 }
-                console.log("tap0");
             }, function (event, obj) {
 
                 if (obj.isY) {
@@ -7420,8 +7419,6 @@ $(function () {
                     translateY = translateY < -limitBottom ? -limitBottom : translateY;
 
                     obj.$moveElment.translateY(translateY);
-
-                    console.log("tap2");
                 }
             }, function (event, obj) {
 
@@ -7437,13 +7434,13 @@ $(function () {
                     clearInterval(self.speedSetIntervalId);
 
                     // 计算移动速度
-                    if (self.speedScroll > 200) {
-                        self.speedScroll = 200;
-                    } else if (self.speedScroll < -200) {
-                        self.speedScroll = -200;
-                    }
+                    //if (self.speedScroll > 200) {
+                    //    self.speedScroll = 200;
+                    //} else if (self.speedScroll < -120) {
+                    //    self.speedScroll = -200;
+                    //}
 
-                    target = target + self.speedScroll * (wraperHeight / 200);
+                    target = target + self.speedScroll * (wraperHeight / 40);
 
                     // picker-item  first element
                     var middelHeight = wraperHeight / 2 - liHeight / 2;
@@ -7477,8 +7474,13 @@ $(function () {
                         }
                     }
 
-                    console.log("tap3:", target);
-                    $moveElement.transition("transform .6s cubic-bezier(.3,.53,.48,1.27)");
+                    //var abs_target = Math.abs(target);
+                    //console.log(" wraperHeight", wraperHeight);
+                    //console.log(" target", abs_target);
+                    //console.log(" target/", abs_target / wraperHeight);
+
+                    //$moveElement.transition("transform .6s cubic-bezier(.3,.53,.48,1.27)");
+
                     self.center.call(self, el, true); // 移动到center
 
                 }
@@ -7504,10 +7506,23 @@ $(function () {
             moveY = +(current_center - current_top - current_h / 2);
         }
 
+        var translateY = $ul.translateY();
+
+        var spaceMoveY = Math.abs(moveY - translateY);
+        var beishu = spaceMoveY / window_h;
+
+        var ansTime = 600 * beishu;
+        if (spaceMoveY < window_h) {
+            ansTime = 600;
+        }
+        ansTime = ansTime > 1600 ? 1600 : ansTime;
+
         $ul.translateY(moveY);
 
         if (!bl) {
             $ul.transition("all", 600, "ease");
+        } else {
+            $ul.transition("transform  " + ansTime + "ms  cubic-bezier(.3,.53,.48,1.1)");
         }
 
         if (!$el.get(0)) {
@@ -7602,7 +7617,7 @@ $(function () {
 
             var year = [];
             var yearActive = new Date().getFullYear();
-            for (var _date = 1990; _date < yearActive + 20; _date++) {
+            for (var _date = yearActive - 100; _date < yearActive + 50; _date++) {
                 year.push({ text: _date, val: _date, select: yearActive === _date ? true : false });
             }
             content += MPicker.createInnerHtml(year, "m-picker-year", this.options.type);

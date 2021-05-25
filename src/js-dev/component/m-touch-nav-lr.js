@@ -103,6 +103,7 @@
                         self.moveBar(translateX).transition("none");
                     }
 
+
                     obj.$moveElment.translateX(translateX);
                     // 触发自定义的事件
                     m(this).emit("move.m.touch.nav", [this, translateX, obj]);
@@ -124,45 +125,50 @@
                         clearInterval(self.speedSetIntervalId);
 
                         // 计算移动速度
-                        if (self.speedScroll > 200) {
-                            self.speedScroll = 200;
-                        } else if (self.speedScroll < -200) {
-                            self.speedScroll = -200;
-                        }
+                        //if (self.speedScroll > 200) {
+                        //    self.speedScroll = 200;
+                        //} else if (self.speedScroll < -200) {
+                        //    self.speedScroll = -200;
+                        //}
 
-                        target = target + self.speedScroll * (wraperWidth / 120);
+                        target = target + self.speedScroll * (wraperWidth / 40);
 
                   //  }
 
-                    var transition = "transform .8s ease";
+
+                    // 滑动过度效果
+                    var gudingVal = 200;
+                    var translateX = $moveElement.translateX();
+                    var spaceMoveX = Math.abs(target - translateX);
+                    var beishu = spaceMoveX / gudingVal;
+                    var ansTime = 600 * beishu;
+                    if (spaceMoveX < gudingVal) { ansTime = 600; }
+                    ansTime = ansTime > 2000 ? 2000 : ansTime;
+
                     if (target > 0) {
                         target = 0;
-                     
-                        transition = "transform .8s cubic-bezier(.3,.53,.48,1.27)";
-                      
+                        ansTime = 600;
+                    
                    
                     } else if (target < moveYSpace) {
                         target = moveYSpace;
                         if (moveElmentWidth < wraperWidth) {
                             target = 0;
+                          
                         }
-                        transition = "transform .8s cubic-bezier(.3,.53,.48,1.27)";
-                      
-     
-                    } else {
-                        transition = "transform .8s cubic-bezier(.31,.66,.64,.98)";
-                    
-                    }
+                        ansTime = 600;
+                    } 
+
 
                     if (self.options.touchTap) {
                         var translateIndex = Math.round(target / wraperWidth);                
                         $moveElement.translateX(wraperWidth * translateIndex);
-                        $moveElement.transition("transform .4s cubic-bezier(.31,.66,.64,.98)");
+                       
                        
 
                     } else {
                         $moveElement.translateX(target);
-                        $moveElement.transition(transition);
+                        $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.13,.77,.53,.93)");
                     }
 
                     // 触发自定义的事件
@@ -241,6 +247,7 @@
 
             $ul.translateX(moveX);
             $ul.transition("all", 600, "ease");
+
         }
 
         // 触发自定义的事件

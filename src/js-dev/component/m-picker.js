@@ -168,7 +168,7 @@
                         //    self.speedScroll = -200;
                         //}
 
-                        target = target + self.speedScroll * (wraperHeight / 40);
+                        target = target + self.speedScroll * (wraperHeight / 40); // 修改速度值 20 ，40， 60
 
                         // picker-item  first element
                         var middelHeight = wraperHeight / 2 - liHeight / 2;
@@ -247,6 +247,7 @@
             moveY = +(current_center - current_top - current_h / 2);
         }
 
+        // 滑动过度效果
         var translateY = $ul.translateY();
         var gudingVal = 200;
         var spaceMoveY = Math.abs(moveY - translateY);
@@ -261,9 +262,10 @@
             $ul.transition("all", 600, "ease");
         } else { $ul.transition("transform  " + ansTime + "ms  cubic-bezier(.13,.77,.53,.93)");}
 
+
+
         if (!$el.get(0)) { return; }
         clearTimeout($el.get(0).settimeoutId);
-
         var self = this;
         $el.get(0).settimeoutId = setTimeout(function () {
             $li.addClass("active").siblings().removeClass("active");
@@ -277,7 +279,7 @@
                 self.okfn(o);
             }
 
-        }, 600);
+        }, ansTime);
 
     };
 

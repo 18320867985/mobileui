@@ -126,9 +126,11 @@
                         //    self.speedScroll = -200;
                         //}
 
-                        target = target + self.speedScroll * (wraperHeight/60);
+                    target = target + self.speedScroll * (wraperHeight / 60); //修改速度值 20 ，40， 60
                  //   }
 
+
+                     // 滑动过度效果
                     var gudingVal = 200;
                     var translateY = obj.$moveElment.translateY();
                     var spaceMoveY = Math.abs(target - translateY);

@@ -5360,38 +5360,45 @@ $(function () {
                 clearInterval(self.speedSetIntervalId);
 
                 // 计算移动速度
-                if (self.speedScroll > 200) {
-                    self.speedScroll = 200;
-                } else if (self.speedScroll < -200) {
-                    self.speedScroll = -200;
-                }
+                //if (self.speedScroll > 200) {
+                //    self.speedScroll = 200;
+                //} else if (self.speedScroll < -200) {
+                //    self.speedScroll = -200;
+                //}
 
-                target = target + self.speedScroll * (wraperWidth / 120);
+                target = target + self.speedScroll * (wraperWidth / 40);
 
                 //  }
 
-                var transition = "transform .8s ease";
+
+                // 滑动过度效果
+                var gudingVal = 200;
+                var translateX = $moveElement.translateX();
+                var spaceMoveX = Math.abs(target - translateX);
+                var beishu = spaceMoveX / gudingVal;
+                var ansTime = 600 * beishu;
+                if (spaceMoveX < gudingVal) {
+                    ansTime = 600;
+                }
+                ansTime = ansTime > 2000 ? 2000 : ansTime;
+
                 if (target > 0) {
                     target = 0;
-
-                    transition = "transform .8s cubic-bezier(.3,.53,.48,1.27)";
+                    ansTime = 600;
                 } else if (target < moveYSpace) {
                     target = moveYSpace;
                     if (moveElmentWidth < wraperWidth) {
                         target = 0;
                     }
-                    transition = "transform .8s cubic-bezier(.3,.53,.48,1.27)";
-                } else {
-                    transition = "transform .8s cubic-bezier(.31,.66,.64,.98)";
+                    ansTime = 600;
                 }
 
                 if (self.options.touchTap) {
                     var translateIndex = Math.round(target / wraperWidth);
                     $moveElement.translateX(wraperWidth * translateIndex);
-                    $moveElement.transition("transform .4s cubic-bezier(.31,.66,.64,.98)");
                 } else {
                     $moveElement.translateX(target);
-                    $moveElement.transition(transition);
+                    $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.13,.77,.53,.93)");
                 }
 
                 // 触发自定义的事件
@@ -5628,9 +5635,11 @@ $(function () {
                 //    self.speedScroll = -200;
                 //}
 
-                target = target + self.speedScroll * (wraperHeight / 60);
+                target = target + self.speedScroll * (wraperHeight / 60); //修改速度值 20 ，40， 60
                 //   }
 
+
+                // 滑动过度效果
                 var gudingVal = 200;
                 var translateY = obj.$moveElment.translateY();
                 var spaceMoveY = Math.abs(target - translateY);
@@ -7451,7 +7460,7 @@ $(function () {
                     //    self.speedScroll = -200;
                     //}
 
-                    target = target + self.speedScroll * (wraperHeight / 40);
+                    target = target + self.speedScroll * (wraperHeight / 40); // 修改速度值 20 ，40， 60
 
                     // picker-item  first element
                     var middelHeight = wraperHeight / 2 - liHeight / 2;
@@ -7517,6 +7526,7 @@ $(function () {
             moveY = +(current_center - current_top - current_h / 2);
         }
 
+        // 滑动过度效果
         var translateY = $ul.translateY();
         var gudingVal = 200;
         var spaceMoveY = Math.abs(moveY - translateY);
@@ -7539,7 +7549,6 @@ $(function () {
             return;
         }
         clearTimeout($el.get(0).settimeoutId);
-
         var self = this;
         $el.get(0).settimeoutId = setTimeout(function () {
             $li.addClass("active").siblings().removeClass("active");
@@ -7552,7 +7561,7 @@ $(function () {
                 o[self.options.type] = $li.attr("data-val");
                 self.okfn(o);
             }
-        }, 600);
+        }, ansTime);
     };
 
     // 获取值

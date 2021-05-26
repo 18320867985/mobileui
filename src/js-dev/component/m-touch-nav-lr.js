@@ -131,7 +131,7 @@
                         //    self.speedScroll = -200;
                         //}
 
-                        target = target + self.speedScroll * (wraperWidth / 40);
+                    target = target + self.speedScroll * 9; //修改速度值 
 
                   //  }
 
@@ -142,12 +142,11 @@
                     var spaceMoveX = Math.abs(target - translateX);
                     var beishu = spaceMoveX / gudingVal;
                     var ansTime = 600 * beishu;
-                    if (spaceMoveX < gudingVal) { ansTime = 600; }
-                    ansTime = ansTime > 2000 ? 2000 : ansTime;
+                
 
                     if (target > 0) {
                         target = 0;
-                        ansTime = 600;
+                       // ansTime = 600;
                     
                    
                     } else if (target < moveYSpace) {
@@ -156,9 +155,12 @@
                             target = 0;
                           
                         }
-                        ansTime = 600;
+                       // ansTime = 600;
                     } 
 
+
+                    if (spaceMoveX < gudingVal) { ansTime = 600; }
+                    ansTime = ansTime > 2000 ? 2000 : ansTime;
 
                     if (self.options.touchTap) {
                         var translateIndex = Math.round(target / wraperWidth);                
@@ -167,6 +169,8 @@
                        
 
                     } else {
+
+
                         $moveElement.translateX(target);
                         $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.13,.77,.53,.93)");
                     }

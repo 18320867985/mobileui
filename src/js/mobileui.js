@@ -5366,7 +5366,7 @@ $(function () {
                 //    self.speedScroll = -200;
                 //}
 
-                target = target + self.speedScroll * (wraperWidth / 40);
+                target = target + self.speedScroll * 9; //修改速度值 
 
                 //  }
 
@@ -5377,26 +5377,29 @@ $(function () {
                 var spaceMoveX = Math.abs(target - translateX);
                 var beishu = spaceMoveX / gudingVal;
                 var ansTime = 600 * beishu;
-                if (spaceMoveX < gudingVal) {
-                    ansTime = 600;
-                }
-                ansTime = ansTime > 2000 ? 2000 : ansTime;
 
                 if (target > 0) {
                     target = 0;
-                    ansTime = 600;
+                    // ansTime = 600;
+
                 } else if (target < moveYSpace) {
                     target = moveYSpace;
                     if (moveElmentWidth < wraperWidth) {
                         target = 0;
                     }
+                    // ansTime = 600;
+                }
+
+                if (spaceMoveX < gudingVal) {
                     ansTime = 600;
                 }
+                ansTime = ansTime > 2000 ? 2000 : ansTime;
 
                 if (self.options.touchTap) {
                     var translateIndex = Math.round(target / wraperWidth);
                     $moveElement.translateX(wraperWidth * translateIndex);
                 } else {
+
                     $moveElement.translateX(target);
                     $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.13,.77,.53,.93)");
                 }
@@ -5635,7 +5638,7 @@ $(function () {
                 //    self.speedScroll = -200;
                 //}
 
-                target = target + self.speedScroll * (wraperHeight / 60); //修改速度值 20 ，40， 60
+                target = target + self.speedScroll * 9; //修改速度值 
                 //   }
 
 
@@ -5645,24 +5648,26 @@ $(function () {
                 var spaceMoveY = Math.abs(target - translateY);
                 var beishu = spaceMoveY / gudingVal;
                 var ansTime = 600 * beishu;
-                if (spaceMoveY < gudingVal) {
-                    ansTime = 600;
-                }
-                ansTime = ansTime > 2000 ? 2000 : ansTime;
 
                 if (target > 0) {
                     target = 0;
-                    ansTime = 600;
                 } else if (target < moveYSpace) {
                     target = moveYSpace;
-                    if (moveElmentHeigth < wraperHeight) {
-                        target = 0;
-                        ansTime = 600;
-                    }
+
                     //  $moveElement.transition("transform 600ms   cubic-bezier(.3,.53,.48,1.1)");
                     // 拉到底部 触发自定义的事件
                     // m(this).emit("m-touch-tb-reachbottom", [this, target, obj]);
                 }
+
+                if (moveElmentHeigth < wraperHeight) {
+                    target = 0;
+                    ansTime = 600;
+                }
+
+                if (spaceMoveY < gudingVal) {
+                    ansTime = 600;
+                }
+                ansTime = ansTime > 2000 ? 2000 : ansTime;
 
                 //cubic-bezier(.25,.96,.8,.98) cubic-bezier(.12,.87,.5,.97)
                 $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.13,.77,.53,.93)");
@@ -7460,7 +7465,7 @@ $(function () {
                     //    self.speedScroll = -200;
                     //}
 
-                    target = target + self.speedScroll * (wraperHeight / 40); // 修改速度值 20 ，40， 60
+                    target = target + self.speedScroll * 12; // 修改速度值 
 
                     // picker-item  first element
                     var middelHeight = wraperHeight / 2 - liHeight / 2;

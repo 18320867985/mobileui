@@ -168,7 +168,7 @@
                         //    self.speedScroll = -200;
                         //}
 
-                        target = target + self.speedScroll * 12; // 修改速度值 
+                        target = target + self.speedScroll * 10; // 修改速度值 
 
                         // picker-item  first element
                         var middelHeight = wraperHeight / 2 - liHeight / 2;

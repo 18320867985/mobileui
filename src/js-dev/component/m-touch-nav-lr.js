@@ -135,33 +135,49 @@
 
                   //  }
 
-
                     // 滑动过度效果
                     var gudingVal = 400;
                     var translateX = $moveElement.translateX();
-                    var spaceMoveX = Math.abs(target - translateX);
-                    var beishu = spaceMoveX / gudingVal;
-                    var ansTime = 600 * beishu;
-                    if (spaceMoveX < gudingVal) { ansTime = 600; }
-                    ansTime = ansTime > 2000 ? 2000 : ansTime;
+                    var moveVal = 0;
 
                     if (target > 0) {
                         target = 0;
-                        // ansTime = 600;
-                        //$moveElement.transition("transform " + ansTime + "ms cubic-bezier(.04,.53,.59,1.09)");
+                        moveVal = (-moveYSpace) - translateX;
 
-                    } else if (target < moveYSpace) {
-                        target = moveYSpace;
-                        if (moveElmentWidth < wraperWidth) {
-                            target = 0;
+                    } else {
 
-                        }
+                        target = target > (-moveYSpace) ? (-moveYSpace) : target;
+                        moveVal = target - translateX;
 
-                        //$moveElement.transition("transform " + ansTime + "ms cubic-bezier(.04,.53,.59,1.09) ");
-                        // ansTime = 600;
-                    } 
+                    }
 
-                
+
+                  //  target = Math.abs(target) > wraperWidth ? wraperWidth : target;
+                    
+
+
+                    console.log("translateX", translateX);
+                    console.log("self.speedScroll", self.speedScroll);
+
+                    console.log("moveYSpace", moveYSpace);
+                    console.log("$moveElement.translateX()", $moveElement.translateX());
+
+                  
+                    console.log(target);
+
+
+                    var beishu = Math.abs( moveVal) / gudingVal;
+                    var ansTime = 600 * beishu;
+                    if (moveVal < gudingVal) { ansTime = 600; }
+                    ansTime = ansTime > 2000 ? 2000 : ansTime;
+
+                    if (moveElmentWidth < wraperWidth) {
+                        target = 0;
+                        ansTime = 600;
+                    }
+
+                    console.log("moveVal", moveVal);
+                    console.log("ansTime", ansTime);
 
                     if (self.options.touchTap) {
                         var translateIndex = Math.round(target / wraperWidth);                

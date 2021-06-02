@@ -228,6 +228,11 @@
 
     };
 
+
+    MPicker.DEFAULTS = {
+        cubicBezier: "cubic-bezier(.13,.77,.53,.93)"
+    };
+
     // position center
     MPicker.prototype.center = function (item, bl) {
         var $el = m(item).closest(".m-picker-inner");
@@ -260,7 +265,7 @@
 
         if (!bl) {
             $ul.transition("all", 600, "ease");
-        } else { $ul.transition("transform  " + ansTime + "ms  cubic-bezier(.13,.77,.53,.93)");}
+        } else { $ul.transition("transform  " + ansTime + "ms  " + MPicker.DEFAULTS.cubicBezier); }
 
 
 

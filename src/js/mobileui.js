@@ -5351,24 +5351,13 @@ $(function () {
 
                 var moveElmentWidth = obj.$moveElment.outerWidth();
                 var wraperWidth = $m_touch_lr.outerWidth();
-                var moveYSpace = wraperWidth - moveElmentWidth;
+                var moveXSpace = wraperWidth - moveElmentWidth;
                 var target = obj.$moveElment.translateX();
 
                 // 计算移动速度
-                //   if (self.options.speed) {
                 self.speedSetIntervalFisrt = true;
                 clearInterval(self.speedSetIntervalId);
-
-                // 计算移动速度
-                //if (self.speedScroll > 200) {
-                //    self.speedScroll = 200;
-                //} else if (self.speedScroll < -200) {
-                //    self.speedScroll = -200;
-                //}
-
                 target = target + self.speedScroll * 10; //修改速度值 
-
-                //  }
 
                 // 滑动过度效果
                 var gudingVal = 400;
@@ -5377,23 +5366,13 @@ $(function () {
 
                 if (target > 0) {
                     target = 0;
-                    moveVal = -moveYSpace - translateX;
+                    moveVal = target - translateX;
                 } else {
 
-                    target = target > -moveYSpace ? -moveYSpace : target;
+                    target = target < moveXSpace ? moveXSpace : target;
                     moveVal = target - translateX;
+                    moveVal = Math.abs(moveVal);
                 }
-
-                //  target = Math.abs(target) > wraperWidth ? wraperWidth : target;
-
-
-                console.log("translateX", translateX);
-                console.log("self.speedScroll", self.speedScroll);
-
-                console.log("moveYSpace", moveYSpace);
-                console.log("$moveElement.translateX()", $moveElement.translateX());
-
-                console.log(target);
 
                 var beishu = Math.abs(moveVal) / gudingVal;
                 var ansTime = 600 * beishu;
@@ -5407,22 +5386,23 @@ $(function () {
                     ansTime = 600;
                 }
 
-                console.log("moveVal", moveVal);
-                console.log("ansTime", ansTime);
-
                 if (self.options.touchTap) {
                     var translateIndex = Math.round(target / wraperWidth);
                     $moveElement.translateX(wraperWidth * translateIndex);
                 } else {
 
                     $moveElement.translateX(target);
-                    $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.13,.77,.53,.93)");
+                    $moveElement.transition("transform " + ansTime + "ms " + MTouchNavLr.DEFAULTS.cubicBezier);
                 }
 
                 // 触发自定义的事件
                 m(this).emit("end.m.touch.nav", [this, target, obj]);
             }
         });
+    };
+
+    MTouchNavLr.DEFAULTS = {
+        cubicBezier: "cubic-bezier(.13,.77,.53,.93)"
     };
 
     // position left
@@ -5641,57 +5621,48 @@ $(function () {
                 var target = obj.$moveElment.translateY();
 
                 // 计算移动速度
-                // if (self.options.speed) {
-
                 self.speedSetIntervalFisrt = true;
                 clearInterval(self.speedSetIntervalId);
-
-                // 计算移动速度
-                //if (self.speedScroll > 200) {
-                //    self.speedScroll = 200;
-                //} else if (self.speedScroll < -200) {
-                //    self.speedScroll = -200;
-                //}
-
                 target = target + self.speedScroll * 10; //修改速度值 
-                //   }
-
 
                 // 滑动过度效果
                 var gudingVal = 400;
                 var translateY = obj.$moveElment.translateY();
-                var spaceMoveY = Math.abs(target - translateY);
-                var beishu = spaceMoveY / gudingVal;
-                var ansTime = 600 * beishu;
-                if (spaceMoveY < gudingVal) {
-                    ansTime = 600;
-                }
-                ansTime = ansTime > 2000 ? 2000 : ansTime;
+                var moveVal = 0;
 
                 if (target > 0) {
                     target = 0;
+                    moveVal = target - translateY;
                     //$moveElement.transition("transform " + ansTime + "ms cubic-bezier(.04,.53,.59,1.09) ");
-                } else if (target < moveYSpace) {
-                    target = moveYSpace;
+                } else {
 
-                    if (moveElmentHeigth < wraperHeight) {
-                        target = 0;
-                        ansTime = 600;
-                    }
-
+                    target = target < moveYSpace ? moveYSpace : target;
+                    moveVal = target - translateY;
+                    moveVal = Math.abs(moveVal);
                     // $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.04,.53,.59,1.09) ");
                     // 拉到底部 触发自定义的事件
                     // m(this).emit("m-touch-tb-reachbottom", [this, target, obj]);
                 }
 
+                var beishu = Math.abs(moveVal) / gudingVal;
+                var ansTime = 600 * beishu;
+                if (moveVal < gudingVal) {
+                    ansTime = 600;
+                }
+                ansTime = ansTime > 2000 ? 2000 : ansTime;
+
                 //cubic-bezier(.25,.96,.8,.98) cubic-bezier(.12,.87,.5,.97)
-                $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.13,.77,.53,.93)");
+                $moveElement.transition("transform " + ansTime + "ms " + MTouchNavTb.DEFAULTS.cubicBezier);
                 obj.$moveElment.translateY(target);
 
                 // 触发自定义的事件
                 m(this).emit("end.m.touch.nav.tb", [this, target, obj]);
             }
         });
+    };
+
+    MTouchNavTb.DEFAULTS = {
+        cubicBezier: "cubic-bezier(.13,.77,.53,.93)"
     };
 
     // position left
@@ -7528,6 +7499,10 @@ $(function () {
         });
     };
 
+    MPicker.DEFAULTS = {
+        cubicBezier: "cubic-bezier(.13,.77,.53,.93)"
+    };
+
     // position center
     MPicker.prototype.center = function (item, bl) {
         var $el = m(item).closest(".m-picker-inner");
@@ -7562,7 +7537,7 @@ $(function () {
         if (!bl) {
             $ul.transition("all", 600, "ease");
         } else {
-            $ul.transition("transform  " + ansTime + "ms  cubic-bezier(.13,.77,.53,.93)");
+            $ul.transition("transform  " + ansTime + "ms  " + MPicker.DEFAULTS.cubicBezier);
         }
 
         if (!$el.get(0)) {

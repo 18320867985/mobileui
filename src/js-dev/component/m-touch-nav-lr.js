@@ -103,7 +103,6 @@
                         self.moveBar(translateX).transition("none");
                     }
 
-
                     obj.$moveElment.translateX(translateX);
                     // 触发自定义的事件
                     m(this).emit("move.m.touch.nav", [this, translateX, obj]);
@@ -116,24 +115,13 @@
 
                     var moveElmentWidth = obj.$moveElment.outerWidth();
                     var wraperWidth = $m_touch_lr.outerWidth();
-                    var moveYSpace = wraperWidth - moveElmentWidth;
+                    var moveXSpace = wraperWidth - moveElmentWidth;
                     var target = obj.$moveElment.translateX();
                    
                     // 计算移动速度
-                 //   if (self.options.speed) {
-                        self.speedSetIntervalFisrt = true;
-                        clearInterval(self.speedSetIntervalId);
-
-                        // 计算移动速度
-                        //if (self.speedScroll > 200) {
-                        //    self.speedScroll = 200;
-                        //} else if (self.speedScroll < -200) {
-                        //    self.speedScroll = -200;
-                        //}
-
+                    self.speedSetIntervalFisrt = true;
+                    clearInterval(self.speedSetIntervalId);
                     target = target + self.speedScroll * 10; //修改速度值 
-
-                  //  }
 
                     // 滑动过度效果
                     var gudingVal = 400;
@@ -142,29 +130,16 @@
 
                     if (target > 0) {
                         target = 0;
-                        moveVal = (-moveYSpace) - translateX;
-
-                    } else {
-
-                        target = target > (-moveYSpace) ? (-moveYSpace) : target;
                         moveVal = target - translateX;
 
+                      
+                    } else {
+
+                        target = target < moveXSpace ? moveXSpace : target;
+                        moveVal = target - translateX;
+                        moveVal = Math.abs(moveVal);
+                      
                     }
-
-
-                  //  target = Math.abs(target) > wraperWidth ? wraperWidth : target;
-                    
-
-
-                    console.log("translateX", translateX);
-                    console.log("self.speedScroll", self.speedScroll);
-
-                    console.log("moveYSpace", moveYSpace);
-                    console.log("$moveElement.translateX()", $moveElement.translateX());
-
-                  
-                    console.log(target);
-
 
                     var beishu = Math.abs( moveVal) / gudingVal;
                     var ansTime = 600 * beishu;
@@ -176,20 +151,18 @@
                         ansTime = 600;
                     }
 
-                    console.log("moveVal", moveVal);
-                    console.log("ansTime", ansTime);
+                
 
                     if (self.options.touchTap) {
                         var translateIndex = Math.round(target / wraperWidth);                
                         $moveElement.translateX(wraperWidth * translateIndex);
                        
-                       
-
+            
                     } else {
 
 
                         $moveElement.translateX(target);
-                        $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.13,.77,.53,.93)");
+                        $moveElement.transition("transform " + ansTime + "ms " + MTouchNavLr.DEFAULTS.cubicBezier);
                     }
 
                     // 触发自定义的事件
@@ -204,6 +177,10 @@
         );
 
 
+    };
+
+    MTouchNavLr.DEFAULTS = {
+        cubicBezier: "cubic-bezier(.13,.77,.53,.93)"
     };
 
     // position left

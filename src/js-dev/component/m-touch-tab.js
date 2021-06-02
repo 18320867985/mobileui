@@ -92,30 +92,22 @@
                     var target = obj.$moveElment.translateX();
 
 
-                    var transition = "transform .8s ease";
+                    var transition = "transform .4s ease";
                     if (target > 0) {
                         target = 0;
-
-                        transition = "transform .8s cubic-bezier(.3,.53,.48,1.27)";
-
 
                     } else if (target < moveYSpace) {
                         target = moveYSpace;
                         if (moveElmentWidth < wraperWidth) {
                             target = 0;
                         }
-                        transition = "transform .8s cubic-bezier(.3,.53,.48,1.27)";
-
-
-                    } else {
-                        transition = "transform .8s cubic-bezier(.31,.66,.64,.98)";
-
+                    
                     }
 
                     //if (self.options.touchTab) {
                     var translateIndex = Math.round(target / wraperWidth);
                     $moveElement.translateX(wraperWidth * translateIndex);
-                    $moveElement.transition("transform .4s cubic-bezier(.31,.66,.64,.98)");
+                    $moveElement.transition("transform .4s " + MTouchTab.DEFAULTS.cubicBezier);
 
                     // 触发自定义的事件
                     var $activeEl = $moveElement.find(".m-touch-tab-item").eq(Math.abs(translateIndex));
@@ -129,8 +121,6 @@
                     if (self.options.bar) {
                         self.moveBar(target).transition(transition);
                     }
-
-
 
                     // 触发自定义的事件
                     m(this).emit("end.m.touch.tab", [this, target, obj]);
@@ -148,13 +138,17 @@
 
     };
 
+    MTouchTab.DEFAULTS = {
+        cubicBezier: " cubic-bezier(.31,.66,.64,.98)"
+    };
+
     MTouchTab.prototype.set = function (translateIndex) {
 
         var $m_touch_lr = m(this.el);
         var wraperWidth = m(this.el).outerWidth();
         var $moveElement = $m_touch_lr.find(".m-touch-tab-cnt");
         $moveElement.translateX(-wraperWidth * translateIndex);
-        $moveElement.transition("transform .4s cubic-bezier(.31,.66,.64,.98)");
+        $moveElement.transition("transform  .4s " + MTouchTab.DEFAULTS.cubicBezier);
 
         // 触发自定义的事件
         var $activeEl = $moveElement.find(".m-touch-tab-item").eq(Math.abs(translateIndex));

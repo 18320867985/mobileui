@@ -98,7 +98,7 @@
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
-            routerTilte: "tab导航组滑动组件", // 路由页的标题
+            routerTilte: "nav组件和tab组件组合", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
             // routerClass:"router-class-1"   // 路由页的class
         },
@@ -147,7 +147,9 @@
 
             // 触发插件
             m(".m-touch-nav-cnt",context).html(nav).parent().mTouchNavLr();
-            m(".m-touch-tab-cnt",context).html(tab).parent().mTouchTab();
+            m(".m-touch-tab-cnt", context).html(tab).parent().mTouchTab();
+
+             //下拉加载
             m(".m-overflow-tb",context).mOverflowTb();
 
             // tap.m.touch.nav触发的事件

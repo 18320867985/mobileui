@@ -1663,11 +1663,18 @@ textarea::-moz-placeholder {
 /*check 组件*/
 .m-touch-nav-lr {
   position: relative;
+  padding: .2rem 0;
   white-space: nowrap;
   width: 100%;
   overflow: hidden;
-  background: #fff;
-  /*box-shadow: 0 2px 2px rgba(0,0,0,.075), 0 -2px 2px rgba(0,0,0,.075);*/ }
+  background: #fff; }
+  .m-touch-nav-lr.box-shadow {
+    -webkit-box-shadow: 0 0.1rem 0.25rem rgba(0, 0, 0, 0.075) inset, 0 -0.1rem 0.25rem rgba(0, 0, 0, 0.075) inset;
+            box-shadow: 0 0.1rem 0.25rem rgba(0, 0, 0, 0.075) inset, 0 -0.1rem 0.25rem rgba(0, 0, 0, 0.075) inset; }
+  .m-touch-nav-lr.border-bottom {
+    border-bottom: 1px solid #f2f2f2; }
+  .m-touch-nav-lr.border-top {
+    border-top: 1px solid #f2f2f2; }
   .m-touch-nav-lr .m-touch-nav-cnt {
     display: inline-block;
     font-size: 0;
@@ -1678,12 +1685,10 @@ textarea::-moz-placeholder {
     .m-touch-nav-lr .m-touch-nav-item a {
       display: block;
       padding: 0 0.75rem;
-      line-height: 1.8rem; }
-    .m-touch-nav-lr .m-touch-nav-item.active {
+      line-height: 1.5rem; }
+    .m-touch-nav-lr .m-touch-nav-item.active a {
       background: #337ab7;
       color: #fff; }
-      .m-touch-nav-lr .m-touch-nav-item.active a {
-        color: #fff; }
 
 /*设计图width*/
 /*rem 份数*/

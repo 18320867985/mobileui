@@ -2634,21 +2634,56 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
-.m-lazy-animation {
-  -webkit-animation: m-lazy-hd .6s linear both;
-          animation: m-lazy-hd .6s linear both; }
+.m-lazy {
+  position: relative;
+  display: inline-block; }
+
+/*.m-lazy::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba($text-line,.2);
+    border: 1px solid rgba($text-line,.6);
+    box-shadow: inset -1px -1px 2px rgba(0,0,0,.005), inset 1px 2px rgba(0,0,0,.005);
+}
+
+.m-lazy.m-lazy-end::before {
+    visibility:hidden;
+    opacity:0;
+    transition:all .4s ;
+}
+*/
+.m-lazy img {
+  visibility: hidden;
+  -webkit-filter: blur(10px) opacity(0);
+          filter: blur(10px) opacity(0); }
+  .m-lazy img.m-lazy-animation {
+    visibility: visible;
+    -webkit-filter: blur(0px) opacity(1);
+            filter: blur(0px) opacity(1);
+    -webkit-transition: all .6s linear;
+    transition: all .6s linear; }
 
 @-webkit-keyframes m-lazy-hd {
   0% {
-    opacity: 0; }
+    opacity: 0;
+    visibility: visible; }
   100% {
-    opacity: 1; } }
+    opacity: 1;
+    -webkit-filter: blur(0px);
+            filter: blur(0px); } }
 
 @keyframes m-lazy-hd {
   0% {
-    opacity: 0; }
+    opacity: 0;
+    visibility: visible; }
   100% {
-    opacity: 1; } }
+    opacity: 1;
+    -webkit-filter: blur(0px);
+            filter: blur(0px); } }
 
 /*设计图width*/
 /*rem 份数*/
@@ -3168,6 +3203,8 @@ body {
           box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); }
   .m-media:last-child {
     margin-bottom: .5rem; }
+  .m-media > a {
+    display: block; }
 
 .m-media-list {
   display: -webkit-box;

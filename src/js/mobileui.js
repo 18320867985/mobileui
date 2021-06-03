@@ -8074,6 +8074,7 @@ $(function () {
                     $this.on("load", function () {
 
                         $this.addClass("m-lazy-animation");
+                        $this.parent().addClass("m-lazy-end");
                     });
                 }
             }

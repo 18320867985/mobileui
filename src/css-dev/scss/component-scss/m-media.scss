@@ -14,6 +14,11 @@
     &:last-child {
         margin-bottom: .5rem;
     }
+
+    >a{
+
+        display:block;
+    }
 }
 
 
@@ -44,6 +49,7 @@
         }
 
         .m-media-img {
+          
             height: 166rem/$rem;
         }
     }

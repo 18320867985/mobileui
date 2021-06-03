@@ -90,6 +90,7 @@
 
              // overflow-tb上下滑动的插件模式
             m(".m-overflow-tb", context).mOverflowTb();
+
              // mListoption 触发的插件
             m(".m-listoption", context).mListoption();
 
@@ -147,7 +148,10 @@
                                         <!--列表内容-->
                                         <div class="m-listoption-item-left">
                                             <a href="http://baidu.com">
-                                                <img class="m-lazy-img"  src="./images/lazy.jpg" alt=""  data-lazy="./images/head.png"  />
+                                              <div class="m-lazy">
+                                                <img class="m-lazy-img" src="./images/lazy.jpg"  alt=""  data-lazy="./images/head.png"  />
+
+                                            </div>
                                                 <div class="_contnet">
                                                     <h4 class="_ttl elp-1">微信群</h4>
                                                     <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
@@ -180,6 +184,7 @@
                 var $this = m(this);
                 m.mConfirm("是否确认删除数据？", function () {
                     $this.parents(".m-listoption-item").remove();
+                    m(".m-overflow-tb", context).mLazy("init"); //初始化 执行延迟加载
                 }, null, { ok: "删除" });
 
             });

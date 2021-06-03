@@ -56,10 +56,11 @@
                     $this.data("bl", true);
                     var _src = $this.attr("data-lazy") || "";
                     $this.attr("src", _src);
-                    $this.removeClass("m-lazy-img");
+                   $this.removeClass("m-lazy-img");
                     $this.on("load", function () {
                        
-                        $this.addClass("m-lazy-animation");
+                       $this.addClass("m-lazy-animation");
+                       $this.parent().addClass("m-lazy-end");
                     });
                 }
             }

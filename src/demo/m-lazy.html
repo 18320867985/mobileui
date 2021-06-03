@@ -15,40 +15,43 @@
 <section class="m-router-cnt" id="m-lazy">
     <div class="m-overflow-tb">
         <div class="m-overflow-tb-cnt">
-            <ul class="m-listoption" >
+            <ul class="m-listoption">
 
                 <!--<li class="m-listoption-item">
-                <div class="m-listoption-item-cnt">
+        <div class="m-listoption-item-cnt">
 
 
-                    <div class="m-listoption-item-left">
-                        <a href="#">
-                            <img src="../images/头像.png" alt="Alternate Text" />
-                            <div class="">
-                                <h4 class="_ttl elp-1">微信群</h4>
-                                <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
-                            </div>
-
-                        </a>
-
+            <div class="m-listoption-item-left">
+                <a href="#">
+                    
+                    <div class="m-lazy">
+                        <img class="m-lazy-img" src="占位图片地址" data-lazy="目标图片地址" alt="Alternate Text" />
+                      </div>
+                    <div class="">
+                        <h4 class="_ttl elp-1">微信群</h4>
+                        <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
                     </div>
 
-                    <div class="m-listoption-item-option">
-                        <div class="_item muted">
-                            默认
-                        </div>
-                        <div class="_item success">
-                            成功
-                        </div>
-                        <div class="_item warning">
-                            警告
-                        </div>
-                        <div class="_item danger">
-                            删除
-                        </div>
-                    </div>
+                </a>
+
+            </div>
+
+            <div class="m-listoption-item-option">
+                <div class="_item muted">
+                    默认
                 </div>
-            </li>-->
+                <div class="_item success">
+                    成功
+                </div>
+                <div class="_item warning">
+                    警告
+                </div>
+                <div class="_item danger">
+                    删除
+                </div>
+            </div>
+        </div>
+    </li>-->
 
             </ul>
         </div>
@@ -107,7 +110,8 @@
             }).mLazy();
 
             // 第一次加载数据
-            ajaxData(m(".m-overflow-tb",context), function () {
+            ajaxData(m(".m-overflow-tb", context), function () {
+
                 m(".m-overflow-tb",context).mLazy("init"); //初始化 执行延迟加载
             });
 

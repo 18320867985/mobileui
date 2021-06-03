@@ -17,10 +17,8 @@
         var $moveElement = $m_touch_lr.find(".m-touch-tab-cnt");
 
         $m_touch_lr.find(".m-touch-tab-item").width($m_touch_lr.outerWidth());
-        m(window).resize(function () {
-        $m_touch_lr.find(".m-touch-tab-item").width($m_touch_lr.outerWidth());
- 
-        });
+
+        m(window).resize(function () {$m_touch_lr.find(".m-touch-tab-item").width($m_touch_lr.outerWidth());});
 
         $m_touch_lr.touch(
 
@@ -62,13 +60,13 @@
                     // }
 
                     // 右限住拉动
-                    var moveElmentWidth = obj.$moveElment.outerWidth();
-                    var wraperWidth = $m_touch_lr.outerWidth();
-                    var moveYSpace = wraperWidth - moveElmentWidth;
+                     obj.contentWidth = obj.$moveElment.outerWidth();
+                     obj.wraperWidth = $m_touch_lr.outerWidth();
+                     obj.moveYSpace = obj.wraperWidth - obj.contentWidth;
                     //  if (self.options.limitRight) {
 
-                    if (moveElmentWidth > wraperWidth && translateX < moveYSpace) {
-                        translateX = moveYSpace;
+                    if (obj.contentWidth > obj.wraperWidth && translateX < obj.moveYSpace) {
+                        translateX = obj.moveYSpace;
 
                     }
                     //  }
@@ -134,14 +132,14 @@
 
         );
 
-       
-
+        
     };
 
     MTouchTab.DEFAULTS = {
         cubicBezier: " cubic-bezier(.31,.66,.64,.98)"
     };
 
+   
     MTouchTab.prototype.set = function (translateIndex) {
 
         var $m_touch_lr = m(this.el);

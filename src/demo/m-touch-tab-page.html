@@ -26,6 +26,7 @@
         <div class="m-touch-tab">
             <!--滑动的包裹内容 -->
             <div class="m-touch-tab-cnt">
+
                 <!--滑动的每项 m-touch-tab-item -->
                 <div class="m-touch-tab-item active">
                     <div class="m-overflow-tb">
@@ -106,11 +107,11 @@
             });
 
             // 第一次加载数据
-            var $activeEl = $(".m-touch-tab-item.active",context);
+            var $activeEl = $(".m-touch-tab-item.active", context);
             ajaxData($activeEl, 0);
             $activeEl.attr("data-one", true); // 动态加载tab 《项不能用data,而用attr实现 》
 
-
+    
             // ajax 加载数据
 
             var indexPage = 1;
@@ -146,8 +147,10 @@
 
                         var li = `  <li class="m-media">
                                     <a data-link href="./demo/m-card.html?ttl=第${page}页的详情 &&img=${res[i].img}">
-                                        <img class="m-media-img" src="./${res[i].img}">
 
+                                         <div class="m-lazy m-lazy-mask" title="JD京东">
+                                            <img class="m-media-img m-lazy-img"  data-lazy="./${res[i].img}">
+                                        </div>
                                         <div class="m-media-body">
                                             <h5 class="m-media-title  elp-1 text-center">===第${page}页===</h5>
 
@@ -173,9 +176,11 @@
                     $el.find(".m-overflow-tb-loading").hide(); // 隐藏加载动画的元素
 
                     //  加载下一页元素
-                    m(".m-touch-tab-cnt",context).append(newTab(page));
+                    m(".m-touch-tab-cnt", context).append(newTab(page));
+                    m(".m-touch-tab-item.active", context).find(".m-overflow-tb").mLazy("init"); //初始化 执行延迟加载
 
-
+                 
+                   
                 }, "json");
 
             }

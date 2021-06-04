@@ -16,6 +16,7 @@
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*设计图width*/
 /*rem 份数*/
 /* 375/18.75 =20px=1rem */
@@ -33,6 +34,7 @@
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 @media screen and (max-width: 319px) {
   html {
     font-size: 17.06667px; } }
@@ -269,6 +271,7 @@ th {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 * {
   padding: 0;
   margin: 0;
@@ -447,6 +450,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*m-m-btn*/
 .m-btn {
   display: inline-block;
@@ -625,6 +629,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-switch {
   position: relative;
   width: 3rem;
@@ -681,6 +686,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*m-input*/
 .m-input-group {
   background: #fff;
@@ -787,6 +793,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-checkbtn {
   position: relative;
   display: inline-block;
@@ -885,6 +892,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-checkbox-group .icon,
 .m-checkbox .icon {
   font-size: 1.8rem; }
@@ -991,6 +999,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-info {
   position: fixed;
   left: 0;
@@ -1410,6 +1419,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*slide滑动*/
 .m-touch-slide {
   position: relative;
@@ -1491,6 +1501,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-table-view {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1661,6 +1672,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-touch-nav-lr {
   position: relative;
   padding: .2rem 0;
@@ -1707,6 +1719,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*上下滑动的菜单*/
 .m-touch-nav-tb {
   position: relative;
@@ -1776,6 +1789,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*左右滑动的菜单*/
 .m-touch-tab {
   position: relative;
@@ -1824,6 +1838,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*左右滑动的tab的按钮*/
 .m-touch-tab-btn {
   position: relative;
@@ -1908,6 +1923,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*左右滑动的菜单*/
 .m-fade-tab {
   position: relative;
@@ -1968,6 +1984,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-listoption {
   /*height: 100%;*/
   width: 100%; }
@@ -2091,6 +2108,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-overflow-tb {
   width: 100%;
   height: 100%;
@@ -2144,6 +2162,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*左右滑动的菜单*/
 .m-overflow-lr::-webkit-scrollbar {
   display: none; }
@@ -2249,6 +2268,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-indexlist {
   position: relative;
   height: 100%; }
@@ -2370,6 +2390,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*picker*/
 .m-picker {
   position: fixed;
@@ -2634,28 +2655,44 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-lazy {
   position: relative;
-  display: inline-block; }
+  display: inline-block;
+  width: 100%; }
 
-/*.m-lazy::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: rgba($text-line,.2);
-    border: 1px solid rgba($text-line,.6);
-    box-shadow: inset -1px -1px 2px rgba(0,0,0,.005), inset 1px 2px rgba(0,0,0,.005);
-}
+.m-lazy::before {
+  content: attr(title);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #ddd;
+  font-size: .9rem;
+  font-weight: 400;
+  text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.1); }
+
+.m-lazy.m-lazy-mask::before {
+  background: rgba(242, 242, 242, 0.2);
+  -webkit-box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.01), inset 1px 2px rgba(0, 0, 0, 0.01);
+          box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.01), inset 1px 2px rgba(0, 0, 0, 0.01); }
 
 .m-lazy.m-lazy-end::before {
-    visibility:hidden;
-    opacity:0;
-    transition:all .4s ;
-}
-*/
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all .4s;
+  transition: all .4s; }
+
 .m-lazy img {
   visibility: hidden;
   -webkit-filter: blur(10px) opacity(0);
@@ -2666,24 +2703,6 @@ textarea::-moz-placeholder {
             filter: blur(0px) opacity(1);
     -webkit-transition: all .6s linear;
     transition: all .6s linear; }
-
-@-webkit-keyframes m-lazy-hd {
-  0% {
-    opacity: 0;
-    visibility: visible; }
-  100% {
-    opacity: 1;
-    -webkit-filter: blur(0px);
-            filter: blur(0px); } }
-
-@keyframes m-lazy-hd {
-  0% {
-    opacity: 0;
-    visibility: visible; }
-  100% {
-    opacity: 1;
-    -webkit-filter: blur(0px);
-            filter: blur(0px); } }
 
 /*设计图width*/
 /*rem 份数*/
@@ -2702,6 +2721,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*错误显示*/
 .vd-box .vd-req,
 .vd-box .vd-pattern,
@@ -2765,6 +2785,7 @@ textarea::-moz-placeholder {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-router-mask {
   position: fixed;
   top: 0;
@@ -2987,6 +3008,7 @@ body {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*设计图width*/
 /*rem 份数*/
 /* 375/18.75 =20px=1rem */
@@ -3004,6 +3026,7 @@ body {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 .m-loading {
   position: fixed;
   top: 0;
@@ -3124,6 +3147,7 @@ body {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /* m-card*/
 .m-card {
   margin: .5rem;
@@ -3193,6 +3217,7 @@ body {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /* m-media*/
 .m-media {
   margin: .5rem .5rem 0 .5rem;
@@ -3343,6 +3368,7 @@ body {
 /*switch 组件*/
 /*table-view 组件 */
 /*check 组件*/
+/*lazy*/
 /*icon*/
 .icon-cnt {
   display: -webkit-box;

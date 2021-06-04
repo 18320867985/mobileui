@@ -154,6 +154,8 @@
             m(".m-touch-nav-cnt",context).html(nav).parent().mTouchNavLr();
             m(".m-touch-tab-cnt", context).html(tab).parent().mTouchTab();
 
+
+
              //下拉加载
             m(".m-overflow-tb",context).mOverflowTb();
 
@@ -213,10 +215,11 @@
                    
                         var li = `  <li class="m-media">
                                     <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
+
                                         <div class="m-lazy">
-                                        
-                                        <img class="m-media-img m-lazy-img" src="./images/lazy.jpg" data-lazy="./${res[i].img}" >
-                                           </div>
+                                        <img class="m-media-img m-lazy-img"  data-lazy="./${res[i].img}" >
+                                        </div>
+
                                         <div class="m-media-body">
                                             <h5 class="m-media-title  elp-1">${ttl}</h5>
 

@@ -52,8 +52,8 @@
            
             if (elTop >=img_h_min && elTop <img_h_max) {
                
-                if (!$this.data("bl")) {
-                    $this.data("bl", true);
+                if (!$this.data("blLazy")) {
+                    $this.data("blLazy", true);
                     var _src = $this.attr("data-lazy") || "";
                     $this.attr("src", _src);
                    $this.removeClass("m-lazy-img");
@@ -74,6 +74,7 @@
       
         this._scrollImgByElement();
     };
+
 
     MLazy.prototype.scrollemit = function () {
 

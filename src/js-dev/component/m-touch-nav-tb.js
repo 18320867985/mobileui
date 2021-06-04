@@ -133,9 +133,9 @@
                         target = target < moveYSpace ? moveYSpace : target;
                         moveVal = target - translateY;
                         moveVal = Math.abs(moveVal);
+
                         // $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.04,.53,.59,1.09) ");
-                        // 拉到底部 触发自定义的事件
-                        // m(this).emit("m-touch-tb-reachbottom", [this, target, obj]);
+
                     } 
 
 
@@ -150,8 +150,29 @@
                     obj.$moveElment.translateY(target);
 
                     // 触发自定义的事件
-                    m(this).emit("end.m.touch.nav.tb", [this, target, obj]);
+                    var $this = m(this);
+                    $this.emit("end.m.touch.nav.tb", [$this, target, obj]);
 
+
+                    // 拉到顶部 触发自定义的事件
+                    if (target >=0) {
+
+                        setTimeout(function () {
+                            $this.emit("reachtop.m.touch.nav.tb", [$this, target, obj]);
+
+                        }, ansTime);
+
+                    }
+
+                    // 拉到底部 触发自定义的事件
+                    if (target <= moveYSpace) {
+                     
+                        setTimeout(function () {
+                            $this.emit("reachbottom.m.touch.nav.tb", [$this, target, obj]);
+
+                        }, ansTime);
+
+                    }
                 }
 
             }

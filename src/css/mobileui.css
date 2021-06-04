@@ -1673,32 +1673,32 @@ textarea::-moz-placeholder {
 /*table-view 组件 */
 /*check 组件*/
 /*lazy*/
-.m-touch-nav-lr {
+.m-touch-lr {
   position: relative;
   padding: .2rem 0;
   white-space: nowrap;
   width: 100%;
   overflow: hidden;
   background: #fff; }
-  .m-touch-nav-lr.box-shadow {
+  .m-touch-lr.box-shadow {
     -webkit-box-shadow: 0 0.1rem 0.25rem rgba(0, 0, 0, 0.075) inset, 0 -0.1rem 0.25rem rgba(0, 0, 0, 0.075) inset;
             box-shadow: 0 0.1rem 0.25rem rgba(0, 0, 0, 0.075) inset, 0 -0.1rem 0.25rem rgba(0, 0, 0, 0.075) inset; }
-  .m-touch-nav-lr.border-bottom {
+  .m-touch-lr.border-bottom {
     border-bottom: 1px solid #f2f2f2; }
-  .m-touch-nav-lr.border-top {
+  .m-touch-lr.border-top {
     border-top: 1px solid #f2f2f2; }
-  .m-touch-nav-lr .m-touch-nav-cnt {
+  .m-touch-lr .m-touch-lr-cnt {
     display: inline-block;
     font-size: 0;
     white-space: nowrap; }
-  .m-touch-nav-lr .m-touch-nav-item {
+  .m-touch-lr .m-touch-lr-item {
     display: inline-block;
     font-size: .7rem; }
-    .m-touch-nav-lr .m-touch-nav-item a {
+    .m-touch-lr .m-touch-lr-item a {
       display: block;
       padding: 0 0.75rem;
       line-height: 1.5rem; }
-    .m-touch-nav-lr .m-touch-nav-item.active a {
+    .m-touch-lr .m-touch-lr-item.active a {
       background: #337ab7;
       color: #fff; }
 

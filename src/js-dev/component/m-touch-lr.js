@@ -5,18 +5,18 @@
     'use strict';
 
     // define class
-    var MTouchNavLr = function (el, options) {
+    var MTouchLr = function (el, options) {
         this.el = el;
         this.options = options;
         this.run();
     };
 
-    MTouchNavLr.prototype.run = function () {
+    MTouchLr.prototype.run = function () {
         var self = this;
         var $m_touch_lr = m(this.el);
-        var $moveElement = $m_touch_lr.find(".m-touch-nav-cnt");
+        var $moveElement = $m_touch_lr.find(".m-touch-lr-cnt");
 
-        m(this.el).find(".m-touch-nav-item").on("tap", function (event) {
+        m(this.el).find(".m-touch-lr-item").on("tap", function (event) {
 
             event.stopPropagation();
 
@@ -70,7 +70,7 @@
               //  }
 
                 // 触发自定义的事件
-                m(this).emit("start.m.touch.nav", [this, obj.moveElmentX, obj]);
+                m(this).emit("start.m.touch.lr", [this, obj.moveElmentX, obj]);
              
             },
             function (event, obj) {
@@ -105,7 +105,7 @@
 
                     obj.$moveElment.translateX(translateX);
                     // 触发自定义的事件
-                    m(this).emit("move.m.touch.nav", [this, translateX, obj]);
+                    m(this).emit("move.m.touch.lr", [this, translateX, obj]);
                 }
 
             },
@@ -161,7 +161,7 @@
 
 
                         $moveElement.translateX(target);
-                        $moveElement.transition("transform " + ansTime + "ms " + MTouchNavLr.DEFAULTS.cubicBezier);
+                        $moveElement.transition("transform " + ansTime + "ms " + MTouchLr.DEFAULTS.cubicBezier);
                     }
 
                     // 触发自定义的事件
@@ -178,13 +178,13 @@
 
     };
 
-    MTouchNavLr.DEFAULTS = {
+    MTouchLr.DEFAULTS = {
         cubicBezier: "cubic-bezier(.13,.77,.53,.93)"
     };
 
     // position left
-    MTouchNavLr.prototype.left = function (item,bl) {
-        var $ul = m(this.el).find(".m-touch-nav-cnt");
+    MTouchLr.prototype.left = function (item,bl) {
+        var $ul = m(this.el).find(".m-touch-lr-cnt");
         var $li = m(item);
         var window_w = m(this.el).outerWidth();
 
@@ -207,14 +207,14 @@
         }
 
         // 触发自定义的事件
-        if (!bl) { $li.emit("tap.m.touch.nav", [item, moveX]); }
+        if (!bl) { $li.emit("tap.m.touch.lr", [item, moveX]); }
        
     };
 
     // position center
-    MTouchNavLr.prototype.center = function (item,bl) {
+    MTouchLr.prototype.center = function (item,bl) {
 
-        var $ul = m(this.el).find(".m-touch-nav-cnt");
+        var $ul = m(this.el).find(".m-touch-lr-cnt");
         var $li = m(item);
         var window_w = m(this.el).outerWidth();
 
@@ -248,11 +248,11 @@
         }
 
         // 触发自定义的事件
-        if (!bl) { $li.emit("tap.m.touch.nav", [item, moveX]); }
+        if (!bl) { $li.emit("tap.m.touch.lr", [item, moveX]); }
 
     };
 
-    MTouchNavLr.prototype.set = function (el,bl) {
+    MTouchLr.prototype.set = function (el,bl) {
         var self = this;
         // 选中的样式移动
         //if (self.options.left) {
@@ -272,7 +272,7 @@
         return this.each(function () {
 
             var $this = $(this);
-            var data = $this.data('m-touch-nav');
+            var data = $this.data('m-touch-lr');
             var options = typeof option === 'object' && option;
 
             if (!data) {
@@ -282,7 +282,7 @@
               //  o.left = $this.hasAttr("data-left");
               //  o.center = $this.hasAttr("data-center");
                 var p = $.extend({}, o, options);
-                $this.data('m-touch-nav', data = new MTouchNavLr(this, p));
+                $this.data('m-touch-lr', data = new MTouchLr(this, p));
             }
 
             if (typeof option === 'string') {
@@ -293,10 +293,10 @@
 
     }
 
-    var _mTouchNavLr = $.fn.mTouchNavLr;
-    m.fn.mTouchNavLr = Plugin;
+    var _mTouchLr = $.fn.mTouchLr;
+    m.fn.mTouchLr = Plugin;
 
-    m("[data-toggle=m-touch-nav]").each(function (e) {
+    m("[data-toggle=m-touch-lr]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
 

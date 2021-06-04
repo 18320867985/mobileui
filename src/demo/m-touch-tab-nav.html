@@ -25,9 +25,9 @@
     <div class="m-router-top">
 
         <!--mTouchNavLr 组件-->
-        <nav class="m-touch-nav-lr border-bottom">
-            <ul class="m-touch-nav-cnt">
-                <li class="active  m-touch-nav-item">
+        <nav class="m-touch-lr border-bottom">
+            <ul class="m-touch-lr-cnt">
+                <li class="active  m-touch-lr-item">
                     <a href="javascript:;">nav导航</a>
                 </li>
 
@@ -130,7 +130,7 @@
 
             var navs = ["京东超市", "数码电器", "京东美食", "京东商城", "京东服饰", "京东生鲜", "京东到家", "充值缴费", "领券", "领金贴", "PLUS会员"];
             for (var i = 0; i < navs.length; i++) {
-                nav += `<li class="${i === 0 ? `active` : ``}  m-touch-nav-item" data-tab="#tab${i + 1}">
+                nav += `<li class="${i === 0 ? `active` : ``}  m-touch-lr-item" data-tab="#tab${i + 1}">
                                 <a href="javascript:;"> ${navs[i]} </a>
                             </li>  `;
 
@@ -151,7 +151,7 @@
             }
 
             // 触发插件
-            m(".m-touch-nav-cnt",context).html(nav).parent().mTouchNavLr();
+            m(".m-touch-lr-cnt",context).html(nav).parent().mTouchLr();
             m(".m-touch-tab-cnt", context).html(tab).parent().mTouchTab();
 
 
@@ -160,7 +160,7 @@
             m(".m-overflow-tb",context).mOverflowTb();
 
             // tap.m.touch.nav触发的事件
-            m(".m-touch-nav-cnt",context).on("tap.m.touch.nav", function (event, el, moveX) {
+            m(".m-touch-lr-cnt",context).on("tap.m.touch.lr", function (event, el, moveX) {
 
                 var id = m(el).attr("data-tab");
                 m(".m-touch-tab",context).mTouchTab("set", m(id).index());
@@ -174,7 +174,7 @@
             // tab 触发自定义的事件
             m(".m-touch-tab",context).on("tab.m.touch.tab", function (event, el, index, scrollObj) {
 
-                m(".m-touch-nav-lr",context).mTouchNavLr("set", m(".m-touch-nav-item").eq(index));
+                m(".m-touch-lr",context).mTouchLr("set", m(".m-touch-lr-item").eq(index));
                 if (!m(el).data("isOne")) {
                     m(el).data("isOne", true);
                     ajaxData(el, index);

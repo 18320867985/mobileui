@@ -3,7 +3,7 @@
 
 
 // 左右的导航项
-.m-touch-nav-lr {
+.m-touch-lr {
     position: relative;
     padding: .2rem 0;
     white-space: nowrap;
@@ -23,13 +23,13 @@
         border-top: 1px solid $text-line;
     }
 
-    .m-touch-nav-cnt {
+    .m-touch-lr-cnt {
         display: inline-block;
         font-size: 0;
         white-space: nowrap;
     }
 
-    .m-touch-nav-item {
+    .m-touch-lr-item {
         display: inline-block;
         font-size: .7rem;
 

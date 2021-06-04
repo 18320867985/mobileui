@@ -11,8 +11,8 @@ import "./component/m-df";                   // 默认设置
 
 // touch
 import "./component/m-touch-slide";        //slide
-import "./component/m-touch-nav-lr";       //左右滑动菜单
-import "./component/m-touch-nav-tb";       //上下滑动菜单
+import "./component/m-touch-lr";       //左右滑动菜单
+import "./component/m-touch-tb";       //上下滑动菜单
 import "./component/m-tableview";          //tableview 
 import "./component/m-touch-tab";          //左右tab
 import "./component/m-touch-tab-btn";      //左右tab-btn

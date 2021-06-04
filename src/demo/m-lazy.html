@@ -259,7 +259,14 @@
 
                     $el.data("pageindex", ++page);
                     $el.find(".m-overflow-tb-cnt .m-media-list").append(lis);
-                    m(".m-touch-tab-item.active", context).find(".m-overflow-tb").mLazy("init"); //初始化 执行延迟加载
+                   
+                    // 执行延迟加载
+                    var $aciveEl = m(".m-touch-tab-item.active", context);
+                    if (!$aciveEl.hasAttr("lazy-runing")) {
+                        $aciveEl.attr("lazy-runing", true);
+                        $aciveEl.find(".m-overflow-tb").mLazy("init"); //初始化 执行延迟加载
+                    }
+
 
                 }, "json");
 

@@ -191,7 +191,7 @@
             });
 
             // 触发上下滑动自定义end的事件
-            m(".m-touch-nav-tb").on("end.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
+            m(".m-touch-nav-tb",context).on("end.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
                 /*
                    event       事件
                    el          触发元素
@@ -207,7 +207,7 @@
 
 
             // 触发拉到底部  自定义reachbottom 的事件
-            m(".m-touch-nav-tb").on("reachbottom.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
+            m(".m-touch-nav-tb",context).on("reachbottom.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
                 /*
                    event       事件
                    el          触发元素
@@ -223,7 +223,7 @@
             });
 
             // 触发拉到顶部  自定义reachtop的事件
-            m(".m-touch-nav-tb").on("reachtop.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
+            m(".m-touch-nav-tb",context).on("reachtop.m.touch.nav.tb", function (event, el, moveY, scrollObj) {
                 /*
                    event       事件
                    el          触发元素

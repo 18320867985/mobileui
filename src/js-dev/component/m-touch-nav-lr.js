@@ -146,12 +146,11 @@
                     if (moveVal < gudingVal) { ansTime = 600; }
                     ansTime = ansTime > 2000 ? 2000 : ansTime;
 
+                    // 移动宽度小于大框
                     if (moveElmentWidth < wraperWidth) {
                         target = 0;
                         ansTime = 600;
                     }
-
-                
 
                     if (self.options.touchTap) {
                         var translateIndex = Math.round(target / wraperWidth);                

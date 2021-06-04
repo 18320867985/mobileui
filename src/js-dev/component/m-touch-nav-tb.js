@@ -139,11 +139,18 @@
                     } 
 
 
+                    
+
                     var beishu = Math.abs(moveVal) / gudingVal;
                     var ansTime = 600 * beishu;
                     if (moveVal < gudingVal) { ansTime = 600; }
                     ansTime = ansTime > 2000 ? 2000 : ansTime;
 
+                    // 移动高度小于大框
+                    if (moveElmentHeigth <= wraperHeight) {
+                        target = 0;
+                        ansTime = 600;
+                    }
 
                     //cubic-bezier(.25,.96,.8,.98) cubic-bezier(.12,.87,.5,.97)
                     $moveElement.transition("transform " + ansTime + "ms " + MTouchNavTb.DEFAULTS.cubicBezier);

@@ -29,7 +29,7 @@
         // 多指触摸
         touch: function (startfn, movefn, endfn, bl) {
 
-            var $self = this;
+            
             bl = !!bl;
             this.isAddMoveEventFirst = true; // 判断是否第一次拖动
             this.startX = 0;
@@ -49,6 +49,8 @@
                     timestamp
                 }
             */
+
+            var $self = this;
             $self.tempObj = [];
             m(this).touchstart(function (event) {
 
@@ -100,7 +102,7 @@
 
                     if (typeof startfn === "function") {
                         //event.obj=obj;
-                        startfn.call($this, event, $self.obj);
+                        startfn.call($this, event, $self.obj, $self);
                     }
 
 
@@ -112,7 +114,7 @@
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
 
@@ -169,7 +171,7 @@
 
                     if (typeof movefn === "function") {
                         //event.obj=obj;
-                        movefn.call($this, event, $self.obj);
+                        movefn.call($this, event, $self.obj, $self);
                     }
 
                     // 异常处理
@@ -179,13 +181,14 @@
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
 
             }, bl);
 
             m(this).touchendcancel(function (event) {
+               
                 var $this = this;
                 try {
 
@@ -223,7 +226,7 @@
                         if (typeof endfn === "function") {
 
                             //event.obj=obj;
-                            endfn.call($this, event, $self.obj);
+                            endfn.call($this, event, $self.obj, $self);
 
                         }
                     }
@@ -235,7 +238,7 @@
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
 
                     }
                 }
@@ -269,7 +272,7 @@
                 }
             */
             $self.tempObj = [];
-            m(document).on("touchstart", deletage, function (event) {
+            m(this).on("touchstart", deletage, function (event) {
 
                 var $this = this;
                 try {
@@ -319,7 +322,7 @@
 
                     if (typeof startfn === "function") {
                         //event.obj=obj;
-                        startfn.call($this, event, $self.obj);
+                        startfn.call($this, event, $self.obj, $self);
                     }
 
 
@@ -331,13 +334,13 @@
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
 
             }, bl);
 
-            m(document).on("touchmove", deletage, function (event) {
+            m(this).on("touchmove", deletage, function (event) {
                 var $this = this;
                 try {
 
@@ -388,7 +391,7 @@
 
                     if (typeof movefn === "function") {
                         //event.obj=obj;
-                        movefn.call($this, event, $self.obj);
+                        movefn.call($this, event, $self.obj, $self);
                     }
 
                     // 异常处理
@@ -398,13 +401,13 @@
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
 
             }, bl);
 
-            m(document).on("touchend", deletage, function (event) {
+            m(this).on("touchend", deletage, function (event) {
                 var $this = this;
                 try {
 
@@ -442,7 +445,7 @@
                         if (typeof endfn === "function") {
 
                             //event.obj=obj;
-                            endfn.call($this, event, $self.obj);
+                            endfn.call($this, event, $self.obj, $self);
 
                         }
                     }
@@ -454,14 +457,14 @@
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
 
                     }
                 }
 
             }, bl);
 
-            m(document).on("touchcancel", deletage, function (event) {
+            m(this).on("touchcancel", deletage, function (event) {
                 var $this = this;
                 try {
 
@@ -499,7 +502,7 @@
                         if (typeof endfn === "function") {
 
                             //event.obj=obj;
-                            endfn.call($this, event, $self.obj);
+                            endfn.call($this, event, $self.obj, $self);
 
                         }
                     }
@@ -511,7 +514,7 @@
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
 
                     }
                 }

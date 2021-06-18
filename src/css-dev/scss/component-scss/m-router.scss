@@ -31,10 +31,9 @@
     bottom: 0;
     z-index: 100;
     background: #fff;
-   
-
 
     &.in {
+        box-shadow: -2px 0 4px rgba(0,0,0,.075);
         animation: m-router-dh .25s linear both;
     }
 
@@ -54,7 +53,7 @@
     }
 
 
-    ._loading-fail, ._loading-dh {
+    .m-router-loading-fail, .m-router-loading {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -69,7 +68,7 @@
     }
 }
 
-.m-router-hd {
+.m-router-back {
     position: fixed;
     top: 0;
     left: 0;
@@ -102,7 +101,7 @@
 }
 
 .m-router-box-move {
-    box-shadow: -10px 0 20px rgba(0,0,0,.2);
+    box-shadow: -5px 0 10px rgba(0,0,0,.2);
 }
 
 .m-router-cnt {

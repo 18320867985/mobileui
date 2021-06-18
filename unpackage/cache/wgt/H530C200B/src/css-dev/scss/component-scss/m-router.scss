@@ -9,20 +9,17 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background:#000;
-    opacity:0;
-
+    background: #000;
+    opacity: 0;
 }
 
-@keyframes m-router-dh{
+@keyframes m-router-dh {
     0% {
-	
-        transform: translateZ(0) translateX(100%);
-       
+        transform: translateX(100%) translateZ(10px);
     }
+
     100% {
-		
-        transform: translateZ(0) translateX(0);
+        transform:  translateX(0);
     }
 }
 
@@ -34,6 +31,8 @@
     bottom: 0;
     z-index: 100;
     background: #fff;
+   
+
 
     &.in {
         animation: m-router-dh .25s linear both;
@@ -75,10 +74,10 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
     background: #fff;
     border-bottom: 1px solid $text-line;
-   box-shadow: 1px 0 5px rgba(0,0,0,.075);
+
 
     .m-hd-top-ttl-mask {
         padding: .2rem .7rem;
@@ -103,7 +102,7 @@
 }
 
 .m-router-box-move {
-     box-shadow:-10px 0 20px rgba(0,0,0,.3);
+    box-shadow: -5px 0 10px rgba(0,0,0,.2);
 }
 
 .m-router-cnt {
@@ -113,18 +112,15 @@
     z-index: 1;
     overflow: visible;
     background: $body-bg;
-
     display: flex;
-    flex-flow:column nowrap;
-    justify-content:flex-start;
-    align-items:stretch;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
     width: 100%;
-   
 }
 
-.m-router-top{
-
-    flex:0 0 auto;
+.m-router-top {
+    flex: 0 0 auto;
    
 }
 
@@ -132,9 +128,9 @@
     flex: 1 1 0;
     overflow: auto;
 }
+
 .m-router-ft {
     flex: 0 0 auto;
-  
 }
 
 /*router m-hd*/

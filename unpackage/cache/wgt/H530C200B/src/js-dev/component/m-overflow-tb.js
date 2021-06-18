@@ -28,7 +28,6 @@
             if (srlTop <= 0) {
                 $el.emit("reachtop.m.overflow.tb", [this, { elementHeight: elH, scrollHeight: srlH, scrollTop: srlTop }]);}
           
-         
             // 滚动时触发的事件
             $el.emit("scroll.m.overflow.tb", [this, { elementHeight: elH, scrollHeight: srlH, scrollTop: srlTop}]);
 
@@ -43,8 +42,7 @@
             if (srlTop >= (_top-1)) {
      
                 // 滚动到底部 触发的事件
-                $el.emit("reachbottom.m.overflow.tb", [this, { elementHeight: elH, scrollHeight: srlH, scrollTop: srlTop }]);
-                
+                $el.emit("reachbottom.m.overflow.tb", [this, { elementHeight: elH, scrollHeight: srlH, scrollTop: srlTop }]);  
             }
         });
 

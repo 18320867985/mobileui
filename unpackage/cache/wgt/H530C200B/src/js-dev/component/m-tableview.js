@@ -27,7 +27,7 @@
         });
 
        
-        m(this.el).on("tap", "a", function (event) {
+        m(this.el).on("tap", "a[data-link]", function (event) {
 
             event.preventDefault();
 
@@ -37,12 +37,8 @@
                 if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
                     return;
                 } else {
-
-                    //if (m(this).hasAttr("data-router")) {
                     m.router.link(hrefValue);
                     return;
-                    //  }
-                    // window.location.href = hrefValue;
                 }
 
             }
@@ -54,7 +50,6 @@
     MTableView.prototype.show = function ($el) {
 
         $el.addClass("in").siblings().removeClass("in");
-        
     };
 
     MTableView.prototype.hide = function ($el) {
@@ -89,7 +84,6 @@
     m("[data-toggle=m-table-view]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
-
     });
 
 }();

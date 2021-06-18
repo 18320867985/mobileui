@@ -3,19 +3,8 @@
 <!-- 1. css  style  区域 -->
 <style>
 
-        /* 注意！这里样式是加载渲染后是全局的
-       局部区分为内容区域标签加上id或class
-       路由模块隐藏后style块里样式被删除
-    */
-       #m-touch-tab  .m-touch-tab-btn {
-           background:#fff;
-        }
-  
-       #m-touch-tab  .m-touch-tab-item {
-          
-            background:#f2f2f2;
-        }
-    
+      
+      
 </style>
 
 <!--2.内容区域 -->
@@ -24,11 +13,11 @@
     <!--m-router-top 上部 -->
     <div class="m-router-top">
 
-        <!--mTouchNavLr 组件-->
+        <!--mTouchLr 组件-->
         <nav class="m-touch-lr border-bottom">
             <ul class="m-touch-lr-cnt">
                 <li class="active  m-touch-lr-item">
-                    <a href="javascript:;">nav导航</a>
+                    <a class=" m-touch-lr-item-btn" href="javascript:;">nav导航</a>
                 </li>
 
             </ul>
@@ -103,15 +92,15 @@
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
-            routerTilte: "nav组件和tab组件组合", // 路由页的标题
+            routerTilte: "touch-nav组件和tab组件组合", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
             // routerClass:"router-class-1"   // 路由页的class
         },
 
         /*加载js的列表 */
         loadJs: [
-            //"../js/m-vd.js",
-            //"../js/cityData.js"
+            //"./js/m-vd.js",
+            //"./js/cityData.js"
         ],
         // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
 
@@ -131,7 +120,7 @@
             var navs = ["京东超市", "数码电器", "京东美食", "京东商城", "京东服饰", "京东生鲜", "京东到家", "充值缴费", "领券", "领金贴", "PLUS会员"];
             for (var i = 0; i < navs.length; i++) {
                 nav += `<li class="${i === 0 ? `active` : ``}  m-touch-lr-item" data-tab="#tab${i + 1}">
-                                <a href="javascript:;"> ${navs[i]} </a>
+                                <a  class=" m-touch-lr-item-btn" href="javascript:;"> ${navs[i]} </a>
                             </li>  `;
 
                 tab += ` <div class="m-touch-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}" data-ttl="${navs[i]}">
@@ -151,9 +140,8 @@
             }
 
             // 触发插件
-            m(".m-touch-lr-cnt",context).html(nav).parent().mTouchLr();
+            m(".m-touch-lr-cnt", context).html(nav).parent().mTouchLr();
             m(".m-touch-tab-cnt", context).html(tab).parent().mTouchTab();
-
 
 
              //下拉加载
@@ -174,7 +162,7 @@
             // tab 触发自定义的事件
             m(".m-touch-tab",context).on("tab.m.touch.tab", function (event, el, index, scrollObj) {
 
-                m(".m-touch-lr",context).mTouchLr("set", m(".m-touch-lr-item").eq(index));
+                m(".m-touch-lr",context).mTouchLr("set", index);
                 if (!m(el).data("isOne")) {
                     m(el).data("isOne", true);
                     ajaxData(el, index);
@@ -215,9 +203,9 @@
                         var li = `  <li class="m-media">
                                     <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
 
-                                        <div class="m-lazy">
+                                       <div class="m-lazy m-lazy-mask " title="JD京东">
                                         <img class="m-media-img m-lazy-img"  data-lazy="./${res[i].img}" >
-                                        </div>
+                                       </div>
 
                                         <div class="m-media-body">
                                             <h5 class="m-media-title  elp-1">${ttl}</h5>

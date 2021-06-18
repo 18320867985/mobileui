@@ -41,21 +41,20 @@
 .m-lazy.m-lazy-end::before {
     visibility: hidden;
     opacity: 0;
-    transition: all .4s;
+    transition: all .6s;
 }
 
 
 .m-lazy img {
-
-    
     visibility: hidden;
-    filter: blur(10px) opacity(0);
+    opacity:0;
+    //filter: blur(10px);
 
     &.m-lazy-animation {
         visibility: visible;
-        filter: blur(0px) opacity(1);
+      //  filter: blur(0px);
+        opacity:1;
         transition: all .6s linear;
-
     }
 }
 

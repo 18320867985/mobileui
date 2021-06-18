@@ -53,7 +53,7 @@
         });
 
         function setindexlistTop(i) {
-            //console.log(items[i].name);
+           
             var group = "[data-group=" + items[i].name + "]";
             var li = $indexlist_ul.find(group);
             var top = li.offset().top;

@@ -1,4 +1,3 @@
-
 // m-Mpicker
 
 
@@ -13,7 +12,7 @@
 
     // define class
     var MPicker = function (el, options, okfn) {
-       
+
         this.okfn = okfn;
         this.options = options;
         this.createHtml();
@@ -22,10 +21,10 @@
     };
 
     MPicker.prototype.run = function () {
-		m.router.ismask=true;
+        m.router.ismask = true;
         var self = this;
         var $m_touch_tb = m(this.el).addClass("m-picker").find(".m-picker-inner");
-        var $moveElement = $m_touch_tb.find(".m-picker-cnt");
+      //  var $moveElement = $m_touch_tb.find(".m-picker-cnt");
 
         $m_touch_tb.find(".m-picker-item.active").each(function (i, v) {
             self.center.call(self, v); // 初始化选择第一项
@@ -69,11 +68,10 @@
                 var val;
                 var select = "select";
                 if (self.options.type === select) {
-                    val=self.getVal(select);
+                    val = self.getVal(select);
                 }
 
-               
-                if (self.options.type === "date" || self.options.type === "datetime" || self.options.type === "date1" || self.options.type === "date2" || self.options.type === "date3" || self.options.type === "date4" || self.options.type === "date5" || self.options.type === "date6"){
+                if (self.options.type === "date" || self.options.type === "datetime" || self.options.type === "date1" || self.options.type === "date2" || self.options.type === "date3" || self.options.type === "date4" || self.options.type === "date5" || self.options.type === "date6") {
                     val = self.getVal(self.options.type);
                 }
 
@@ -81,7 +79,7 @@
                     val = self.getVal("time");
                 }
 
-                if (self.options.type === "city1" ||self.options.type === "city2" || self.options.type === "city3") {
+                if (self.options.type === "city1" || self.options.type === "city2" || self.options.type === "city3") {
                     val = self.getVal(self.options.type);
                 }
                 self.okfn(val);
@@ -100,10 +98,7 @@
 
                     // obj.$moveElment.transition("none");
                     self.obj = obj;
-
-                    // 计算移动速度
-                    // if (self.options.speed) {
-                    self.speedlateY = obj.y;
+                    self.speedlateY = obj.y=0;
                     clearInterval(self.speedSetIntervalId);
                     self.speedSetIntervalFisrt = true;
                     self.speedlateY = 0;
@@ -114,7 +109,7 @@
                     // 计算移动速度
                     if (self.speedSetIntervalFisrt) {
                         self.speedSetIntervalFisrt = false;
-                        self.speedSetIntervalId = setInterval(function () {
+                        self.speedSetIntervalId = obj.$moveElment.setInterval(function () {
                             self.speedlateY2 = obj.y || 0;
                             self.speedlateY3 = parseFloat(self.speedlateY2) - parseFloat(self.speedlateY);
                             self.speedlateY = self.speedlateY2;
@@ -137,12 +132,10 @@
                         var limitTop = $m_touch_tb.outerHeight() * 0.8;
                         translateY = translateY > limitTop ? limitTop : translateY;
 
-                       // 上限住拉动
+                        // 上限住拉动
                         var limitBottom = obj.$moveElment.outerHeight() - $m_touch_tb.outerHeight() * 0.2;
                         translateY = translateY < -limitBottom ? -limitBottom : translateY;
-                       
                         obj.$moveElment.translateY(translateY);
-
                     }
 
                 },
@@ -150,7 +143,7 @@
                 function (event, obj) {
 
                     if (obj.isY) {
-
+                    
                         var moveElmentHeigth = obj.$moveElment.outerHeight();
                         var wraperHeight = $m_touch_tb.outerHeight();
                         var moveYSpace = moveElmentHeigth - wraperHeight;
@@ -159,18 +152,10 @@
 
                         self.speedSetIntervalFisrt = true;
                         clearInterval(self.speedSetIntervalId);
-
-                        // 计算移动速度
-                        if (self.speedScroll > 200) {
-                            self.speedScroll = 200;
-                        } else if (self.speedScroll < -200) {
-                            self.speedScroll = -200;
-                        }
-
-                        target = target + self.speedScroll * (wraperHeight / 200);
+                        target = target + self.speedScroll * 11; // 修改速度值 
 
                         // picker-item  first element
-                        var middelHeight = wraperHeight / 2 - liHeight/2;
+                        var middelHeight = wraperHeight / 2 - liHeight / 2;
                         var el;
 
                         if (target < 0) {
@@ -185,12 +170,10 @@
                             }
 
                         } else {
-                           
-                            var _move2 = middelHeight - target;
 
+                            var _move2 = middelHeight - target;
                             var index2 = Math.round(_move2 / liHeight);
                             el = obj.$moveElment.find("li").eq(index2);
-
 
                             if ((moveElmentHeigth + target) < wraperHeight / 2) {
                                 el = obj.$moveElment.find("li").last();
@@ -201,22 +184,24 @@
                                 if (target > movetop) {
                                     el = obj.$moveElment.find(".m-picker-item").first();
 
-                                }}
-
+                                }
+                            }
 
                         }
 
-                        $moveElement.transition("transform .6s cubic-bezier(.3,.53,.48,1.27)");
                         self.center.call(self, el, true);   // 移动到center
-
-
                     }
 
                 }
 
-           );
+            );
         });
 
+    };
+
+
+    MPicker.DEFAULTS = {
+        cubicBezier: "cubic-bezier(.13,.77,.53,.93)"
     };
 
     // position center
@@ -229,38 +214,45 @@
         var current_h = $li.outerHeight();
         var current_center = Math.abs(window_h / 2);
         var moveY = 0;
-       
+
         if (Math.abs(current_top) > Math.abs(current_center)) {
 
-         moveY = -(current_top - current_center + current_h / 2);
+            moveY = -(current_top - current_center + current_h / 2);
 
         } else {
             moveY = +(current_center - current_top - current_h / 2);
         }
-  
+
+        // 滑动过度效果
+        var translateY = $ul.translateY();
+        var gudingVal = 200;
+        var spaceMoveY = Math.abs(moveY - translateY);
+        var beishu = spaceMoveY / gudingVal;
+        var ansTime = 600 * beishu;
+        if (spaceMoveY < gudingVal) { ansTime = 600; }
+        ansTime = ansTime > 2000 ? 2000 : ansTime;
         $ul.translateY(moveY);
 
         if (!bl) {
             $ul.transition("all", 600, "ease");
-        }
+        } else { $ul.transition("transform  " + ansTime + "ms  " + MPicker.DEFAULTS.cubicBezier); }
 
         if (!$el.get(0)) { return; }
-        clearTimeout($el.get(0).settimeoutId); 
-       
+        clearTimeout($el.get(0).settimeoutId);
         var self = this;
         $el.get(0).settimeoutId = setTimeout(function () {
-            $li.addClass("active").siblings().removeClass("active");
+        $li.addClass("active").siblings().removeClass("active");
 
-            // 触发自定义的事件
-            $li.emit("select.m.picker", [item, $li.attr("data-val"), self.options.type]);
-            m(".m-picker-btns-tip").html("选择的值：" + `<span>${$li.text()}</span`);
-            if (self.options.isShowTip && typeof self.okfn === "function") {
-                var o = {};
-                o[self.options.type] = $li.attr("data-val");
-                self.okfn(o);
-            }
+        // 触发自定义的事件
+        $li.emit("select.m.picker", [item, $li.attr("data-val"), self.options.type]);
+        m(".m-picker-btns-tip").html("选择的值：" + `<span>${$li.text()}</span`);
+        if (self.options.isShowTip && typeof self.okfn === "function") {
+            var o = {};
+            o[self.options.type] = $li.attr("data-val");
+            self.okfn(o);
+        }
 
-        }, 600);
+        }, ansTime);
 
     };
 
@@ -268,23 +260,22 @@
     MPicker.prototype.getVal = function (type) {
         var o = {};
         // date
-        if (type === "date" || type === "datetime" || type === "date1"||type === "date2" || type === "date3"||type === "date4" || type === "date5"||type === "date6") {
+        if (type === "date" || type === "datetime" || type === "date1" || type === "date2" || type === "date3" || type === "date4" || type === "date5" || type === "date6") {
 
-            var _dateObj = o["date"]= {};
+            var _dateObj = o["date"] = {};
             _dateObj.date1 = m(this.el).find(".m-picker-year").find(".m-picker-item.active").attr("data-val");
             _dateObj.date2 = m(this.el).find(".m-picker-month").find(".m-picker-item.active").attr("data-val");
             _dateObj.date3 = m(this.el).find(".m-picker-day").find(".m-picker-item.active").attr("data-val");
             _dateObj.date4 = m(this.el).find(".m-picker-hour").find(".m-picker-item.active").attr("data-val");
-            _dateObj.date5= m(this.el).find(".m-picker-mimu").find(".m-picker-item.active").attr("data-val");
+            _dateObj.date5 = m(this.el).find(".m-picker-mimu").find(".m-picker-item.active").attr("data-val");
             _dateObj.date6 = m(this.el).find(".m-picker-second").find(".m-picker-item.active").attr("data-val");
-          
+
         }
 
         // time
-        if (type === "time2" || type === "time")  {
+        if (type === "time2" || type === "time") {
 
             var _time = o["time"] = {};
-  
             _time.time1 = m(this.el).find(".m-picker-hour").find(".m-picker-item.active").attr("data-val");
             _time.time2 = m(this.el).find(".m-picker-mimu").find(".m-picker-item.active").attr("data-val");
             _time.time3 = m(this.el).find(".m-picker-second").find(".m-picker-item.active").attr("data-val");
@@ -293,7 +284,7 @@
 
         // select
         if (type === "select") {
-          
+
             o[type] = m(this.el).find(".m-picker-item.active").attr("data-val");
         }
 
@@ -320,7 +311,7 @@
 
     // creaet html 
     MPicker.prototype.createHtml = function () {
-      
+
         var ttl = ``;
         var content = ``;
 
@@ -328,7 +319,7 @@
         if (this.options.type === "select") {
             ttl = `${this.options.ttl ? `<div class="m-picker-box-ttl">
                 <div>${this.options.ttl}</div>
-            </div>`:``}`;
+            </div>`: ``}`;
             var list = this.options.list || [];
             list = list.constructor === Array ? list : [];
             content += MPicker.createInnerHtml(list);
@@ -343,7 +334,7 @@
 
             var year = [];
             var yearActive = new Date().getFullYear();
-            for (var _date = 1990; _date < yearActive + 20; _date++) {
+            for (var _date = (yearActive-100); _date < yearActive + 50; _date++) {
                 year.push({ text: _date, val: _date, select: yearActive === _date ? true : false });
             }
             content += MPicker.createInnerHtml(year, "m-picker-year", this.options.type);
@@ -362,7 +353,7 @@
             }
             content += MPicker.createInnerHtml(month, "m-picker-month");
         }
- 
+
         if (this.options.type === "date" || this.options.type === "date3" || this.options.type === "date4" || this.options.type === "date5" || this.options.type === "date6" || this.options.type === "datetime") {
             ttl = ` <div class="m-picker-box-ttl">
                     <div>年</div>
@@ -372,7 +363,7 @@
             var day = [];
             var dayActive = new Date().getDate();
             var _y = new Date().getFullYear();
-            var _m = new Date().getMonth()+1;
+            var _m = new Date().getMonth() + 1;
             var maxDays = MPicker.computerDay(Number(_y), Number(_m));
             for (var _day = 1; _day <= maxDays; _day++) {
                 day.push({ text: _day, val: _day, select: dayActive === _day ? true : false });
@@ -407,7 +398,7 @@
                     <div>分</div>
                  
             </div>`;
-          
+
             var mimu = [];
             var mimuhActive = new Date().getMinutes();
             for (var _mimu = 0; _mimu < 60; _mimu++) {
@@ -427,7 +418,7 @@
                     <div>分</div>
                     <div>秒</div>
             </div>`;
-           
+
             var second = [];
             var secondActive = new Date().getSeconds();
             for (var _second = 0; _second < 60; _second++) {
@@ -436,7 +427,7 @@
             content += MPicker.createInnerHtml(second, "m-picker-second", this.options.type);
         }
 
-        if (this.options.type === "time"||this.options.type === "time2") {
+        if (this.options.type === "time" || this.options.type === "time2") {
             ttl = ` <div class="m-picker-box-ttl">
                     <div>时</div>
                     <div>分</div>
@@ -475,37 +466,37 @@
 
         // city
         if (this.options.type === "city1" || this.options.type === "city2" || this.options.type === "city3") {
-           
-            var cityList =m.cityData || [];
-            cityList = cityList.constructor === Array ? cityList : [];
-            var cityList1 = cityList.map(function (item,index) {
 
-                return { text: item.text, val: item.value, select: index===0?`active`:`` };
+            var cityList = m.cityData || [];
+            cityList = cityList.constructor === Array ? cityList : [];
+            var cityList1 = cityList.map(function (item, index) {
+
+                return { text: item.text, val: item.value, select: index === 0 ? `active` : `` };
             });
             content += MPicker.createInnerHtml(cityList1, "m-picker-city1", this.options.type);
         }
 
         // city2
-        if ( this.options.type === "city2" || this.options.type === "city3") {
-          
+        if (this.options.type === "city2" || this.options.type === "city3") {
+
             content += MPicker.createInnerHtml([], "m-picker-city2", this.options.type);
         }
 
         // city3
-        if ( this.options.type === "city3") {
+        if (this.options.type === "city3") {
 
             content += MPicker.createInnerHtml([], "m-picker-city3", this.options.type);
         }
-   
+
         var tophtml = `
            
                 <div class="m-picker-box-cnt in">
-                  ${!(this.options.isShowTip && this.options.type===`select` )?` <div class="m-picker-box-btns">
+                  ${!(this.options.isShowTip && this.options.type === `select`) ? ` <div class="m-picker-box-btns">
                         <div class="m-picker-btn cancel">取消</div>
                         <div class="m-picker-btn ok">确定</div>
                     </div>`: `<div class="m-picker-btns-tip">选择的值:</div>
                     `} 
-                    ${ttl?ttl:``}
+                    ${ttl ? ttl : ``}
                     <div class="m-picker-inners">`;
         var bottomhtml = `  </div></div>`;
         var picker = document.createElement("div");
@@ -514,15 +505,15 @@
         picker.innerHTML = tophtml + content + bottomhtml;
         var elm = document.body || document.documentElement;
         m(elm).append(picker);
-      
+
     };
 
     MPicker.prototype.show = function () {
 
         m(".m-picker").addClass("in").removeClass("out").find(".m-picker-box-cnt").addClass("in").removeClass("out");
-		m.router.ismask=true;
-		
-		
+        m.router.ismask = true;
+
+
     };
 
     MPicker.prototype.hide = function () {
@@ -531,8 +522,8 @@
         m(".m-picker").find(".m-picker-box-cnt").removeClass("in").addClass("out");
         window.setTimeout(function () {
             m(".m-picker").remove();
-			m.router.ismask=false;
-        },400);
+            m.router.ismask = false;
+        }, 400);
 
     };
 
@@ -553,10 +544,10 @@
         var btnsHeight = $el.find("m-picker-box-btns").outerHeight();
         var ttlHeight = $el.find("m-picker-box-ttl").outerHeight();
         $el.find("m-picker-box-inners").height(MaxBoxHeight - btnsHeight - ttlHeight);
-  
+
     };
 
-    MPicker.createInnerHtml = function (list, className,type) {
+    MPicker.createInnerHtml = function (list, className, type) {
         list = list || [];
         var topthtml = `
                     <nav class="m-picker-inner ${className}" data-type="${type}">
@@ -570,7 +561,7 @@
             contenthtml += ` <li class="m-picker-item ${item.select ? `active` : ``}" data-val="${item.val}">${item.text} </li>`;
         });
 
-        return topthtml +  contenthtml +  bottomHtml;
+        return topthtml + contenthtml + bottomHtml;
     };
 
     //  根据年月计算天数
@@ -629,7 +620,7 @@
 
     MPicker.center = function (item, bl) {
         var $el = m(item).closest(".m-picker-inner");
-        
+
         var $ul = $el.find(".m-picker-cnt");
         var $li = m(item);
         var window_h = $el.outerHeight();
@@ -648,16 +639,16 @@
         $ul.transition("all", 600, "ease");
         $ul.translateY(moveY);
 
-        if(!$el.get(0)) { return;}
+        if (!$el.get(0)) { return; }
         clearTimeout($el.get(0).settimeoutId);
         $el.get(0).settimeoutId = setTimeout(function () {
             $li.addClass("active").siblings().removeClass("active");
 
             // 触发自定义的事件
             $li.emit("select.m.picker", [item, $li.attr("data-val"), $el.attr("data-type")]);
-        },600);
+        }, 600);
 
-      
+
     };
 
     function Plugin(toggle, option, okfn) {
@@ -672,9 +663,9 @@
         var options = typeof option === 'object' && option;
         var o = {};
         var p = $.extend({}, o, options);
-       
-        window.pickerObj= new MPicker(null, p, okfn);
-      
+
+        window.pickerObj = new MPicker(null, p, okfn);
+
     }
 
     // select 触发是事件
@@ -682,113 +673,112 @@
 
         var $p = m(el).closest(".m-picker-inner");
 
-          // date time
-            if (type === "date" || type === "datetime" || type === "date3" || type === "datet4" || type === "date5" || type === "date6") {
+        // date time
+        if (type === "date" || type === "datetime" || type === "date3" || type === "datet4" || type === "date5" || type === "date6") {
 
-                if ($p.hasClass("m-picker-year") || $p.hasClass("m-picker-month")) {
-                    var $ps = m(el).closest(".m-picker-inners");
-                    var year = $ps.find(".m-picker-year .m-picker-item.active").attr("data-val");
-                    var month = $ps.find(".m-picker-month .m-picker-item.active").attr("data-val");
-                    var maxDays = MPicker.computerDay(Number(year), Number(month));
-                    var index = $ps.find(".m-picker-day .m-picker-item.active").index() + 1;
+            if ($p.hasClass("m-picker-year") || $p.hasClass("m-picker-month")) {
+                var $ps = m(el).closest(".m-picker-inners");
+                var year = $ps.find(".m-picker-year .m-picker-item.active").attr("data-val");
+                var month = $ps.find(".m-picker-month .m-picker-item.active").attr("data-val");
+                var maxDays = MPicker.computerDay(Number(year), Number(month));
+                var index = $ps.find(".m-picker-day .m-picker-item.active").index() + 1;
 
-                    index = index < maxDays ? index : maxDays;
-                    var lis = ``;
-                    for (var _day = 1; _day <= maxDays; _day++) {
+                index = index < maxDays ? index : maxDays;
+                var lis = ``;
+                for (var _day = 1; _day <= maxDays; _day++) {
 
-                        lis += ` <li class="m-picker-item ${index === _day ? `active` : ``} " data-val="${_day}">${_day} </li>`;
-                    }
-                    var dayEl = $ps.find(".m-picker-day .m-picker-cnt");
-                    if (dayEl.length > 0) {
-
-                        dayEl.html(lis);
-                    }
-
-                    var activeEl = $ps.find(".m-picker-day .m-picker-item.active");
-                    MPicker.center(activeEl);
-
-                    m(".m-picker-day").on("tap", ".m-picker-item", function (event) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        MPicker.center(this); 
-
-                    });
-
-
+                    lis += ` <li class="m-picker-item ${index === _day ? `active` : ``} " data-val="${_day}">${_day} </li>`;
                 }
+                var dayEl = $ps.find(".m-picker-day .m-picker-cnt");
+                if (dayEl.length > 0) {
+
+                    dayEl.html(lis);
+                }
+
+                var activeEl = $ps.find(".m-picker-day .m-picker-item.active");
+                MPicker.center(activeEl);
+
+                m(".m-picker-day").on("tap", ".m-picker-item", function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    MPicker.center(this);
+
+                });
+
+
             }
+        }
 
         // city
-            if (type === "city1" || type === "city2" || type === "city3") {
-             
-                var $ps2 = m(el).closest(".m-picker-inners");
-                if ($p.hasClass("m-picker-city1")) {
+        if (type === "city1" || type === "city2" || type === "city3") {
 
-                    var cityActive = $ps2.find(".m-picker-city1 .m-picker-item.active").attr("data-val");
-                    var city2Index = $ps2.find(".m-picker-city2 .m-picker-item.active").index();
-                    city2Index = city2Index < 0 ? 0 : city2Index;
-                   var cityObj = m.cityData.find(function (item) { return item.value === cityActive; });
-                    city2Index = cityObj.children.length - 1 < city2Index ? cityObj.children.length - 1 : city2Index;
+            var $ps2 = m(el).closest(".m-picker-inners");
+            if ($p.hasClass("m-picker-city1")) {
 
-                    var cityLis = ``;
-                    cityObj.children.forEach(function (item, i) {
-                        cityLis += ` <li class="m-picker-item elp-1 ${i === city2Index ? `active` : ``} " data-val="${item.value}">${item.text} </li>`;
-                    });
+                var cityActive = $ps2.find(".m-picker-city1 .m-picker-item.active").attr("data-val");
+                var city2Index = $ps2.find(".m-picker-city2 .m-picker-item.active").index();
+                city2Index = city2Index < 0 ? 0 : city2Index;
+                var cityObj = m.cityData.find(function (item) { return item.value === cityActive; });
+                city2Index = cityObj.children.length - 1 < city2Index ? cityObj.children.length - 1 : city2Index;
 
-                    var city2El = $ps2.find(".m-picker-city2 .m-picker-cnt");
-                    city2El.data("children",cityObj);
-                    if (city2El.length > 0) {
+                var cityLis = ``;
+                cityObj.children.forEach(function (item, i) {
+                    cityLis += ` <li class="m-picker-item elp-1 ${i === city2Index ? `active` : ``} " data-val="${item.value}">${item.text} </li>`;
+                });
 
-                        city2El.html(cityLis);
-                    }
-                    var city2ActiveEl = $ps2.find(".m-picker-city2 .m-picker-item.active");
-                    MPicker.center(city2ActiveEl);
+                var city2El = $ps2.find(".m-picker-city2 .m-picker-cnt");
+                city2El.data("children", cityObj);
+                if (city2El.length > 0) {
 
-                    m(".m-picker-city2").on("tap", ".m-picker-item", function (event) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        MPicker.center(this);   
-
-                    });
-
+                    city2El.html(cityLis);
                 }
-                if ($p.hasClass("m-picker-city1") || $p.hasClass("m-picker-city2")) {
-                    var $activeEl = $ps2.find(".m-picker-city2 .m-picker-cnt");
-                    var city2Obj = $activeEl.data("children");
-                    if (!city2Obj) { return; }
-                    var city2Active = $ps2.find(".m-picker-city2 .m-picker-item.active").attr("data-val");
-                    var city3Index = $ps2.find(".m-picker-city3 .m-picker-item.active").index();
-                    city3Index = city3Index < 0 ? 0 : city3Index;
-                    var city3El = $ps2.find(".m-picker-city3 .m-picker-cnt");
-                  
-                    var city3Obj = city2Obj.children.find(function (item) { return item.value === city2Active; });
-                    if (!city3Obj.children) { city3El.html(""); return; }
+                var city2ActiveEl = $ps2.find(".m-picker-city2 .m-picker-item.active");
+                MPicker.center(city2ActiveEl);
 
-                    city3Index = city3Obj.children.length - 1 < city3Index ? city3Obj.children.length - 1 : city3Index;
-                    var cityLis2 = ``;
-                    city3Obj.children.forEach(function (item, i) {
-                        cityLis2 += ` <li class="m-picker-item  elp-1 ${i === city3Index ? `active` : ``} " data-val="${item.value}">${item.text} </li>`;
-                    });
-                 
-                    if (city3El.length > 0) {
+                m(".m-picker-city2").on("tap", ".m-picker-item", function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    MPicker.center(this);
 
-                        city3El.html(cityLis2);
-                    }
+                });
 
-                    var city3ActiveEl = $ps2.find(".m-picker-city3 .m-picker-item.active");
-                    MPicker.center(city3ActiveEl);
-
-                    m(".m-picker-city3").on("tap", ".m-picker-item", function (event) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        MPicker.center(this);   
-
-                    });
-
-                }
             }
-        
+            if ($p.hasClass("m-picker-city1") || $p.hasClass("m-picker-city2")) {
+                var $activeEl = $ps2.find(".m-picker-city2 .m-picker-cnt");
+                var city2Obj = $activeEl.data("children");
+                if (!city2Obj) { return; }
+                var city2Active = $ps2.find(".m-picker-city2 .m-picker-item.active").attr("data-val");
+                var city3Index = $ps2.find(".m-picker-city3 .m-picker-item.active").index();
+                city3Index = city3Index < 0 ? 0 : city3Index;
+                var city3El = $ps2.find(".m-picker-city3 .m-picker-cnt");
+
+                var city3Obj = city2Obj.children.find(function (item) { return item.value === city2Active; });
+                if (!city3Obj.children) { city3El.html(""); return; }
+
+                city3Index = city3Obj.children.length - 1 < city3Index ? city3Obj.children.length - 1 : city3Index;
+                var cityLis2 = ``;
+                city3Obj.children.forEach(function (item, i) {
+                    cityLis2 += ` <li class="m-picker-item  elp-1 ${i === city3Index ? `active` : ``} " data-val="${item.value}">${item.text} </li>`;
+                });
+
+                if (city3El.length > 0) {
+
+                    city3El.html(cityLis2);
+                }
+
+                var city3ActiveEl = $ps2.find(".m-picker-city3 .m-picker-item.active");
+                MPicker.center(city3ActiveEl);
+
+                m(".m-picker-city3").on("tap", ".m-picker-item", function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    MPicker.center(this);
+
+                });
+
+            }
+        }
+
     });
 
 }();
-

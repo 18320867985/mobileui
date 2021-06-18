@@ -1,0 +1,70 @@
+
+@import "../var.scss";
+
+/*list*/
+
+.m-list {
+    border-top: 1px solid $text-line;
+    border-bottom: 1px solid $text-line;
+    background: $bg-white;
+}
+
+.m-list-item {
+    display: flex;
+    justify-content:space-between;
+    margin-left: 1rem;
+    line-height: 2.2rem;
+    font-size: .7rem;
+    vertical-align: middle;
+
+   .m-list-r{
+        padding-right:.5rem;
+    }
+
+        & +.m-list-item {
+        border-top: 1px solid $text-line;
+    }
+}
+
+.m-list.m-list-arrow {
+
+
+    .m-list-item {
+        position: relative;
+    }
+
+    .m-list-item:after {
+        position: absolute;
+        right: .5rem;
+        content: "\e7b9";
+        color:$table-view-icon;
+        font-family: "icon" !important;
+        font-size: 1rem;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+       
+    }
+}
+
+.m-list.m-list-radius {
+    margin: 0 .5rem;
+    border: 1px solid $text-line;
+    border-radius: .25rem;
+
+    .m-list-item {
+        position: relative;
+    }
+
+    .m-list-item:after {
+        position: absolute;
+        right: .5rem;
+        content: "\e7b9";
+        color: $table-view-icon;
+        font-family: "icon" !important;
+        font-size: 1rem;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}

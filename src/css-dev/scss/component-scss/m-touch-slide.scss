@@ -1,28 +1,27 @@
 ﻿
 @import "../var.scss";
 
-
 /*slide滑动*/
 
-.m-touch-slide {
+.m-slide {
     position: relative;
     z-index: 1;
     width: 100%;
     overflow: hidden;
     background: #fff;
     margin-bottom: 15rem/$rem;
+    font-size: 0;
 
-    .m-touch-slide-cnt {
+    .m-slide-cnt {
         position: relative;
         display: inline-block;
         height: 100%;
-        vertical-align: top;
+        vertical-align: middle;
         white-space: nowrap;
         text-align: center;
-        font-size: 0;
     }
 
-    .m-touch-slide-item {
+    .m-slide-item {
         display: inline-block;
         height: 100%;
         overflow: hidden;
@@ -47,10 +46,10 @@
     }
 }
 
-.m-touch-slide-radius {
+.m-slide-radius {
     position: absolute;
     z-index: 2;
-    bottom: 1.25rem;
+    bottom: .8rem;
     left: 0;
     right: 0;
     text-align: center;

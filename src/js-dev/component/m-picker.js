@@ -24,7 +24,7 @@
         m.router.ismask = true;
         var self = this;
         var $m_touch_tb = m(this.el).addClass("m-picker").find(".m-picker-inner");
-        var $moveElement = $m_touch_tb.find(".m-picker-cnt");
+      //  var $moveElement = $m_touch_tb.find(".m-picker-cnt");
 
         $m_touch_tb.find(".m-picker-item.active").each(function (i, v) {
             self.center.call(self, v); // 初始化选择第一项
@@ -71,7 +71,6 @@
                     val = self.getVal(select);
                 }
 
-
                 if (self.options.type === "date" || self.options.type === "datetime" || self.options.type === "date1" || self.options.type === "date2" || self.options.type === "date3" || self.options.type === "date4" || self.options.type === "date5" || self.options.type === "date6") {
                     val = self.getVal(self.options.type);
                 }
@@ -99,10 +98,6 @@
 
                     // obj.$moveElment.transition("none");
                     self.obj = obj;
-
-                    // 计算移动速度
-                    // if (self.options.speed) {
-                
                     self.speedlateY = obj.y=0;
                     clearInterval(self.speedSetIntervalId);
                     self.speedSetIntervalFisrt = true;
@@ -114,7 +109,7 @@
                     // 计算移动速度
                     if (self.speedSetIntervalFisrt) {
                         self.speedSetIntervalFisrt = false;
-                        self.speedSetIntervalId = setInterval(function () {
+                        self.speedSetIntervalId = obj.$moveElment.setInterval(function () {
                             self.speedlateY2 = obj.y || 0;
                             self.speedlateY3 = parseFloat(self.speedlateY2) - parseFloat(self.speedlateY);
                             self.speedlateY = self.speedlateY2;
@@ -140,9 +135,7 @@
                         // 上限住拉动
                         var limitBottom = obj.$moveElment.outerHeight() - $m_touch_tb.outerHeight() * 0.2;
                         translateY = translateY < -limitBottom ? -limitBottom : translateY;
-
                         obj.$moveElment.translateY(translateY);
-
                     }
 
                 },
@@ -150,8 +143,7 @@
                 function (event, obj) {
 
                     if (obj.isY) {
-                        
-
+                    
                         var moveElmentHeigth = obj.$moveElment.outerHeight();
                         var wraperHeight = $m_touch_tb.outerHeight();
                         var moveYSpace = moveElmentHeigth - wraperHeight;
@@ -160,15 +152,7 @@
 
                         self.speedSetIntervalFisrt = true;
                         clearInterval(self.speedSetIntervalId);
-
-                        // 计算移动速度
-                        //if (self.speedScroll > 200) {
-                        //    self.speedScroll = 200;
-                        //} else if (self.speedScroll < -120) {
-                        //    self.speedScroll = -200;
-                        //}
-
-                        target = target + self.speedScroll * 10; // 修改速度值 
+                        target = target + self.speedScroll * 11; // 修改速度值 
 
                         // picker-item  first element
                         var middelHeight = wraperHeight / 2 - liHeight / 2;
@@ -188,10 +172,8 @@
                         } else {
 
                             var _move2 = middelHeight - target;
-
                             var index2 = Math.round(_move2 / liHeight);
                             el = obj.$moveElment.find("li").eq(index2);
-
 
                             if ((moveElmentHeigth + target) < wraperHeight / 2) {
                                 el = obj.$moveElment.find("li").last();
@@ -207,18 +189,7 @@
 
                         }
 
-               
-
-                        //var abs_target = Math.abs(target);
-                        //console.log(" wraperHeight", wraperHeight);
-                        //console.log(" target", abs_target);
-                        //console.log(" target/", abs_target / wraperHeight);
-
-                        //$moveElement.transition("transform .6s cubic-bezier(.3,.53,.48,1.27)");
-                       
                         self.center.call(self, el, true);   // 移动到center
-
-
                     }
 
                 }
@@ -260,29 +231,26 @@
         var ansTime = 600 * beishu;
         if (spaceMoveY < gudingVal) { ansTime = 600; }
         ansTime = ansTime > 2000 ? 2000 : ansTime;
-      
         $ul.translateY(moveY);
 
         if (!bl) {
             $ul.transition("all", 600, "ease");
         } else { $ul.transition("transform  " + ansTime + "ms  " + MPicker.DEFAULTS.cubicBezier); }
 
-
-
         if (!$el.get(0)) { return; }
         clearTimeout($el.get(0).settimeoutId);
         var self = this;
         $el.get(0).settimeoutId = setTimeout(function () {
-            $li.addClass("active").siblings().removeClass("active");
+        $li.addClass("active").siblings().removeClass("active");
 
-            // 触发自定义的事件
-            $li.emit("select.m.picker", [item, $li.attr("data-val"), self.options.type]);
-            m(".m-picker-btns-tip").html("选择的值：" + `<span>${$li.text()}</span`);
-            if (self.options.isShowTip && typeof self.okfn === "function") {
-                var o = {};
-                o[self.options.type] = $li.attr("data-val");
-                self.okfn(o);
-            }
+        // 触发自定义的事件
+        $li.emit("select.m.picker", [item, $li.attr("data-val"), self.options.type]);
+        m(".m-picker-btns-tip").html("选择的值：" + `<span>${$li.text()}</span`);
+        if (self.options.isShowTip && typeof self.okfn === "function") {
+            var o = {};
+            o[self.options.type] = $li.attr("data-val");
+            self.okfn(o);
+        }
 
         }, ansTime);
 
@@ -308,7 +276,6 @@
         if (type === "time2" || type === "time") {
 
             var _time = o["time"] = {};
-
             _time.time1 = m(this.el).find(".m-picker-hour").find(".m-picker-item.active").attr("data-val");
             _time.time2 = m(this.el).find(".m-picker-mimu").find(".m-picker-item.active").attr("data-val");
             _time.time3 = m(this.el).find(".m-picker-second").find(".m-picker-item.active").attr("data-val");

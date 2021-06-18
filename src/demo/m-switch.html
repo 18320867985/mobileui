@@ -2,14 +2,18 @@
 
 <!-- 1. css  style  区域 -->
 <style>
+    #m-switch .m-list-item {
+        font-size:.8rem;
 
-        /* 注意！这里样式是加载渲染后是全局的
-       局部区分为内容区域标签加上id或class
-       路由模块隐藏后style块里样式被删除
-    */
-        #m-switch .m-overflow-tb-cnt {
-            padding: 1rem .5rem;
-        }
+    }
+    #m-switch h4 {
+        margin: .5rem;
+        font-size: .7rem
+    }
+
+    #m-switch .m-btn {
+         margin:.25rem 0  0 .25rem;
+    }
 </style>
 
 <!--2.内容区域 -->
@@ -18,23 +22,56 @@
         <div class="m-overflow-tb-cnt">
 
             <!--内容start -->
+            <h4>switch选值</h4>
+            <ul class="m-list">
+                <li class="m-list-item">
+                    <div class="m-list-l">switch选值：<span>true</span></div>
+                    <div class="m-list-r">
+                        <div class="m-switch m-switch-inline active">
+                            <div class="m-switch-rd"></div>
+                        </div>
+                    </div>
 
-            <div class="m-switch m-switch-inline active" >
-                <div class="m-switch-rd"></div>
-            </div>
-            <div class="m-switch m-switch-inline m-text-primary active" >
-                <div class="m-switch-rd"></div>
-            </div>
-            <div class="m-switch m-switch-inline m-text-success active" >
-                <div class="m-switch-rd"></div>
-            </div>
+                </li>
+                <li class="m-list-item">
+                    <div class="m-list-l">switch选值：<span>true</span></div>
 
-            <div class="m-switch m-switch-inline m-text-warning active">
+                    <div class="m-list-r">
+
+                        <div class="m-switch m-switch-inline m-text-success active">
+                            <div class="m-switch-rd"></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="m-list-item">
+                    <div class="m-list-l">switch选值：<span>true</span></div>
+
+                    <div class="m-list-r">
+                        <div class="m-switch m-switch-inline m-text-warning active">
+                            <div class="m-switch-rd"></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="m-list-item">
+                    <div class="m-list-l">switch选值：<span>true</span></div>
+
+                    <div class="m-list-r">
+                        <div class="m-switch m-switch-inline m-text-danger active">
+                            <div class="m-switch-rd"></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <h4> 设置和获取switch的值</h4>
+
+            <div class="m-switch m-switch-inline m-text-success active" id="m-switch-setting" style="margin-left:.5rem;">
                 <div class="m-switch-rd"></div>
             </div>
-            <div class="m-switch m-switch-inline m-text-danger active" >
-                <div class="m-switch-rd"></div>
-            </div>
+            <br />
+            <button type="button" class="m-btn  ">设为:false</button>
+            <button type="button" class="m-btn m-btn-success ">设为:true</button>
+            <button type="button" class="m-btn  m-btn-warning">获取值</button>
 
             <!--内容end -->
 
@@ -70,12 +107,23 @@
              // 选择触发事件
             m(".m-switch",context).on("switch.m.switch", function (event, el, bl) {
                 //console.log("event:", event);
-                console.log("el:", el);   // 当前元素对象
-                console.log("bl:", bl);   // 当前元素对象的激活状态
+                //console.log("el:", el);   // 当前元素对象
+                //console.log("bl:", bl);   // 当前元素对象的激活状态
+
+                var $p = m(el).parents(".m-list-item").find("span").html(bl);
 
             });
 
+            m(".m-btn").eq(0).tap(function () {
+                m("#m-switch-setting").mSwitch("set", false);
+            });
+            m(".m-btn").eq(1).tap(function () {
+                m("#m-switch-setting").mSwitch("set", true);
+            });
 
+            m(".m-btn").eq(2).tap(function () {
+               m.mAlert("获取值："+  m("#m-switch-setting").mSwitch("get"));
+            });
         },
 
         // 生命周期函数--监听页面显示

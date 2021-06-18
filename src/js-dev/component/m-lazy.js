@@ -36,7 +36,8 @@
     };
 
     MLazy.prototype._scrollImgByElement = function (event) {
-       
+
+        var self = this;
         var $el = $(this.el);
         var $list = $el.find(".m-lazy-img");
         var el_h = parseFloat( $el.outerHeight());
@@ -50,24 +51,44 @@
             var img_h_min = -$this.outerHeight()/2;
             var img_h_max = el_h - $this.outerHeight()/10;
            
-            if (elTop >=img_h_min && elTop <img_h_max) {
-               
-                if (!$this.data("blLazy")) {
-                    $this.data("blLazy", true);
-                    var _src = $this.attr("data-lazy") || "";
-                    $this.attr("src", _src);
-                   $this.removeClass("m-lazy-img");
-                    $this.on("load", function () {
-                       
-                       $this.addClass("m-lazy-animation");
-                       $this.parent().addClass("m-lazy-end");
-                       
-                    });
-                }
+            if (elTop >= img_h_min && elTop < img_h_max) {
+
+                self._loadFade($this); 
             }
 
         });
 
+    };
+
+
+    MLazy.prototype.fade = function (event) {
+
+        var self = this;
+        var $el = $(this.el);
+        var $list = $el.find(".m-lazy-img");
+      
+        $list.each(function () {
+            var $this = $(this);
+            self._loadFade($this); 
+
+        });
+
+    };
+
+    MLazy.prototype._loadFade = function ($this) {
+
+        if (!$this.data("blLazy")) {
+            $this.data("blLazy", true);
+            var _src = $this.attr("data-lazy") || "";
+            $this.attr("src", _src);
+            $this.removeClass("m-lazy-img");
+            $this.on("load", function () {
+
+                $this.addClass("m-lazy-animation");
+                $this.parent().addClass("m-lazy-end");
+
+            });
+        }
     };
 
     MLazy.prototype.init = function () {

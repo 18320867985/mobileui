@@ -1,7 +1,7 @@
 {
     "@platforms" : [ "android", "iPhone", "iPad" ],
     "id" : "H530C200B", /*应用的标识*/
-    "name" : "app", /*应用名称，程序桌面图标名称*/
+    "name" : "mobileui", /*应用名称，程序桌面图标名称*/
     "version" : {
         "name" : "1.0", /*应用版本名称*/
         "code" : "100"

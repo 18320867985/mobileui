@@ -1,0 +1,268 @@
+﻿
+
+<!-- 1. css  style  区域 -->
+<style>
+
+     
+      
+</style>
+
+<!--2.内容区域 -->
+<section class="m-router-cnt" id="m-touch-tab">
+
+    <!--m-router-top 上部 -->
+    <div class="m-router-top">
+
+        <nav class="m-overflow-lr" id="m-overflow-lr">
+            <!--overflow  导航添加 m-overflow-lr-menu class-->
+            <div class="m-overflow-lr-nav m-overflow-lr-menu">
+                <ul class="m-overflow-lr-cnt">
+
+                    <li class="m-overflow-lr-item active">
+                        <a href="javascript:;">首页</a>
+                    </li>
+                   
+                </ul>
+            </div>
+        </nav>
+
+    </div>
+
+    <!--m-router-bd 中间 -->
+    <div class="m-router-bd">
+
+        <!--mTouchTab 组件 -->
+        <div class="m-touch-tab">
+            <!--滑动的包裹内容 -->
+            <div class="m-touch-tab-cnt">
+
+                <!--滑动的每项 m-touch-tab-item -->
+                <div class="m-touch-tab-item active">
+                    <div class="m-overflow-tb" data-toggle="m-overflow-tb">
+                        <div class="m-overflow-tb-cnt">
+                            <ul class="m-media-list list-2">
+
+                                <!-- 动态加载元素-->
+                                <li class="m-media">
+                                    <a href="">
+                                        <div class="m-lazy m-lazy-mask" title="JD京东">
+                                            <img class="m-media-img m-lazy-img"  data-lazy="./images/shop-7.webp">
+                                        </div>
+                                            <div class="m-media-body">
+                                                <h5 class="m-media-title  elp-1">雅鹿自由自在 21年连衣裙2021年季女装新款装新品气质典雅减龄大码显瘦裙子女 9306 七分袖 M</h5>
+
+                                                <p class="m-media-text elp-2">裙子款式好看，摸着舒适，当晚洗后没有发现掉色的现象，面料也很好，做工很细，超过预期哦外包也严实，上身就觉得质感很好，显腿长，关键很显瘦啊。瘦腿效果非常好。面料非常舒服，柔柔的软软的，腰部也没有紧绷感</p>
+
+                                                <div class="m-media-icon">
+                                                    <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
+
+                                                    <div class="m-media-icon-r"><span>看相似的</span></div>
+                                                </div>
+
+                                            </div>
+
+
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="m-overflow-tb-loading loading-top">
+                            正在加载中...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!--m-router-ft 底部 -->
+    <!--<div class="m-router-ft">
+
+    </div>-->
+
+</section>
+
+<!-- js 区域 -->
+<script type="text/javascript">
+
+    /* 路由页面监听事件对象 */
+    m.router.page({
+
+        /* 设置当前路由页面的对象的参数 */
+        setting: {
+            routerTilte: "overflow-nav组件和tab组件组合", // 路由页的标题
+            // routerTilteColor: "red",  // 路由页的标题字体颜色
+            // routerClass:"router-class-1"   // 路由页的class
+        },
+
+        /*加载js的列表 */
+        loadJs: [
+          
+        ],
+        // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
+
+        // 生命周期函数--监听页面加载完成
+        onLoad: function (context, parameter) {
+
+            // context 当前路由模块上下文对象
+            //console.log("onLoad:", context);
+
+            // context 当前路由模块接受的参数
+            //console.log("parameter:", parameter);
+
+              // 加载nav 和tab
+            var nav = "";
+            var tab = "";
+
+            var navs = ["京东超市", "数码电器", "京东美食", "京东商城", "京东服饰", "京东生鲜", "京东到家", "充值缴费", "领券", "领金贴", "PLUS会员"];
+            for (var i = 0; i < navs.length; i++) {
+                nav += `<li class="${i === 0 ? `active` : ``}  m-overflow-lr-item " data-tab="#tab${i + 1}">
+                                <a href="javascript:;"> ${navs[i]} </a>
+                            </li>  `;
+
+                tab += ` <div class="m-touch-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}" data-ttl="${navs[i]}">
+                                <div class="m-overflow-tb">
+                                    <div class="m-overflow-tb-cnt">
+                                          <ul class="m-media-list list-2">
+                                           </ul>
+                                    </div>
+                                    <div class="m-overflow-tb-loading ">
+                                          正在加载中...
+                                    </div>
+
+                                </div>
+
+                            </div>  `;
+
+            }
+
+    
+            // 导航定位到中间
+            m(".m-overflow-lr-cnt", context).html(nav).parents(".m-overflow-lr").mOverflowLr();
+            m(".m-touch-tab-cnt", context).html(tab).parent().mTouchTab();
+
+
+             //下拉加载
+            m(".m-overflow-tb",context).mOverflowTb();
+
+            // tap.m.touch.nav触发的事件
+            m(".m-overflow-lr",context).on("tap.m.overflow.lr", function (event, el, moveX) {
+
+                var id = m(el).attr("data-tab");
+                m(".m-touch-tab",context).mTouchTab("set", m(id).index());
+                if (!m(id).data("isOne")) {
+                    m(id).data("isOne", true);
+                    ajaxData(m(id), m(id).index());
+                }
+
+            });
+
+            // tab 触发自定义的事件
+            m(".m-touch-tab", context).on("tab.m.touch.tab", function (event, el, index, scrollObj) {
+                console.log(index);
+                m(".m-overflow-lr", context).mOverflowLr("set", index);
+                if (!m(el).data("isOne")) {
+                    m(el).data("isOne", true);
+                    ajaxData(el, index);
+                }
+
+            });
+
+            // reachbottom.m.overflow.tb触发自定义的事件 拉到底部触发
+            m(".m-overflow-tb",context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
+
+                var $el = m(el).parents(".m-touch-tab-item");
+                ajaxData($el, $el.index());
+
+            });
+
+            // 第一次加载数据
+            var $activeEl = $(".m-touch-tab-item.active",context);
+            ajaxData($activeEl, 0);
+            $activeEl.data("isOne", true);
+
+            // ajax 加载数据
+            function ajaxData($el, index) {
+
+                if ($el.data("loadingEnd")) {
+                    return;
+                }
+                $el.data("loadingEnd", true);
+                var ttl = $el.attr("data-ttl");
+                m.get("./json/tab.json", function (res) {
+
+                    $el.data("loadingEnd", false);
+                    var page = $el.data("pageindex") || 1;
+                   // var docf = document.createDocumentFragment();
+                    var lis = "";
+                    for (var i = 0; i < res.length; i++) {
+
+                   
+                        var li = `  <li class="m-media">
+                                    <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
+
+                                       <div class="m-lazy m-lazy-mask " title="JD京东">
+                                        <img class="m-media-img m-lazy-img"  data-lazy="./${res[i].img}" >
+                                       </div>
+
+                                        <div class="m-media-body">
+                                            <h5 class="m-media-title  elp-1">${ttl}</h5>
+
+                                            <p class="m-media-text elp-2">裙子款式好看，摸着舒适，当晚洗后没有发现掉色的现象，面料也很好，做工很细，超过预期哦外包也严实，上身就觉得质感很好，显腿长，关键很显瘦啊。瘦腿效果非常好。面料非常舒服，柔柔的软软的，腰部也没有紧绷感</p>
+
+                                            <div class="m-media-icon">
+                                                <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
+
+                                                <div class="m-media-icon-r"><span>看相似的</span></div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </a>
+                                </li>`;
+
+                        lis += li;
+                    }
+
+                    $el.data("pageindex", ++page);
+                    $el.find(".m-overflow-tb-cnt .m-media-list").append(lis);
+
+                    // 执行延迟加载
+                    var $aciveEl = m(".m-touch-tab-item.active", context);
+                    if (!$aciveEl.hasAttr("lazy-runing")) {
+                        $aciveEl.attr("lazy-runing", true);
+                        $aciveEl.find(".m-overflow-tb").mLazy("init"); //初始化 执行延迟加载
+                    }
+                   
+
+                }, "json");
+
+            }
+
+
+        },
+
+        // 生命周期函数--监听页面显示
+        onShow: function (context) {
+            // context 当前路由模块上下文对
+            //console.log("onShow", context);
+        },
+
+        // 生命周期函数--监听页面隐藏
+        onHide: function (context) {
+            // context 当前路由模块上下文对
+            // console.log("onHide", context);
+
+        },
+
+    });
+
+</script>
+
+

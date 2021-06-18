@@ -15,7 +15,7 @@
     MSwitch.prototype.run = function () {
         var self = this;
         var $witch = m(this.el);
-        var transition = "transform .4s ease";
+        var transition = MSwitch.DEFAULTS.transition;
         $witch.touch(
 
             function (event, obj) {
@@ -73,15 +73,11 @@
                     // 触发自定义的事件
                     obj.isX = false;
                     m(this).emit("switch.m.switch", [this, bl]);
-                 
-
-
                 }
-
-
             }
 
         );
+
 
         this.setStyle($witch, transition);
         m(window).resize(m.proxy(function () {
@@ -112,16 +108,51 @@
         var moveElmentWidth = $moveElement.outerWidth();
         var maxWidth = switchWidth - moveElmentWidth;
         if ($witch.hasClass("active")) {
-           // console.log(switchWidth);
+          
             $moveElement.translateX(maxWidth);
         } else { $moveElement.translateX(0); }
         $moveElement.transition(transition);
     };
 
- 
-    function Plugin(option) {
+    MSwitch.prototype.set = function (val) {
+        val = !!val;
+        var $witch = m(this.el);
+        var wraperWidth = $witch.outerWidth();
+        var $moveElement = $witch.find(".m-switch-rd");
+        var moveElmentWidth = $moveElement.outerWidth();
+        var maxWidth = wraperWidth - moveElmentWidth;
+        var translateX = 0;
+        if (val) {
+            translateX = maxWidth;
+            $witch.addClass("active");
+            } else {
+            translateX = 0;
+            $witch.removeClass("active");
+            }
 
-        return this.each(function () {
+        $moveElement.translateX(translateX);
+        $moveElement.transition(MSwitch.DEFAULTS.transition);
+            // 触发自定义的事件
+        $witch.emit("switch.m.switch", [$witch.get(0), val]);
+
+        
+
+    };
+
+    MSwitch.prototype.get = function () {
+
+    return m(this.el).hasClass("active");
+      
+    };
+
+
+    MSwitch.DEFAULTS = {
+        transition: "transform .4s ease"
+    };
+ 
+    function Plugin(option,val) {
+        var result;
+         this.each(function () {
 
             var $this = $(this);
             var data = $this.data('m-switch');
@@ -134,10 +165,12 @@
             }
 
             if (typeof option === 'string') {
-                data[option]();
+                result = data[option](val);
             }
 
-        });
+         });
+
+        return result;
 
     }
 

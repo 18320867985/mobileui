@@ -2,21 +2,12 @@
 <!-- 1. css  style  区域 -->
 <style>
 
-        /* 注意！这里样式是加载渲染后是全局的
-       局部区分为内容区域标签加上id或class
-       路由模块隐藏后style块里样式被删除
-    */
-        #m-touch-lr  .m-cnt {
-            padding: .5rem;
-        }
-
     #m-touch-lr h3 {
 
         font-size: .7rem;
         padding:.5rem;
     }
 
-    
 </style>
 
 <!--2.内容区域 -->
@@ -26,301 +17,268 @@
 
 
             <h3>定位到中间</h3>
-            <!--左右滑动组建  data-left=定位到left data-center=定位到center -->
-
-            <!--mTouchNavLr 组件-->
+            <!--mTouchLr 组件-->
             <nav class="m-touch-lr">
                 <ul class="m-touch-lr-cnt ">
                     <li class="active  m-touch-lr-item">
-                        <a>首页</a>
+                        <a class="m-touch-lr-item-btn">京东超市</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">MV</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">数码电器</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">悦单</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东美食</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">V榜</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东商城</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">音悦</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东服饰</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">商城</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东生鲜</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">节目</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东到家</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">饭团</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">充值缴费</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">资讯</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">领券</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">我的家</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">家居厨具</a>
 
                     </li>
 
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">MV2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">医药保健</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">悦单2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">玩具乐器</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">V榜2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">汽摩生活</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">音悦2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">二手商品</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">商城2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">生活旅游</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">节目2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">图书文娱</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">饭团2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东服务</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">资讯2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">拍卖</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">我的家2</a>
-                    </li>
-
-                    <li class="m-touch-lr-item">
-                        <a href="javascript:;">MV</a>
-                    </li>
-                    <li class="m-touch-lr-item">
-                        <a href="javascript:;">悦单</a>
-                    </li>
-                    <li class="m-touch-lr-item">
-                        <a href="javascript:;">V榜</a>
-                    </li>
-                    <li class="m-touch-lr-item">
-                        <a href="javascript:;">音悦</a>
-                    </li>
-                    <li class="m-touch-lr-item">
-                        <a href="javascript:;">商城</a>
-                    </li>
-                    <li class="m-touch-lr-item">
-                        <a href="javascript:;">节目</a>
-                    </li>
-                    <li class="m-touch-lr-item">
-                        <a href="javascript:;">饭团</a>
-                    </li>
-                    <li class="m-touch-lr-item">
-                        <a href="javascript:;">资讯</a>
-                    </li>
-                    <li class="m-touch-lr-item">
-                        <a href="javascript:;">我的家</a>
-
+                        <a class="m-touch-lr-item-btn" href="javascript:;">宠物鲜花</a>
                     </li>
 
                 </ul>
             </nav>
 
             <h3>左右边不能拖动</h3>
-            <!--左右滑动组建  data-left=定位到left data-center=定位到center -->
-            <!--mTouchNavLr 组件-->
-            <nav class="m-touch-lr" id="m-touch-nav-left">
+            <!--mTouchLr 组件-->
+            <nav class="m-touch-lr">
                 <ul class="m-touch-lr-cnt ">
                     <li class="active  m-touch-lr-item">
-                        <a href="javascript:;">首页</a>
+                        <a class="m-touch-lr-item-btn">京东超市</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">MV</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">数码电器</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">悦单</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东美食</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">V榜</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东商城</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">音悦</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东服饰</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">商城</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东生鲜</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">节目</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东到家</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">饭团</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">充值缴费</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">资讯</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">领券</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">我的家</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">家居厨具</a>
 
                     </li>
 
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">MV2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">医药保健</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">悦单2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">玩具乐器</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">V榜2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">汽摩生活</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">音悦2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">二手商品</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">商城2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">生活旅游</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">节目2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">图书文娱</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">饭团2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东服务</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">资讯2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">拍卖</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">我的家2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">宠物鲜花</a>
                     </li>
 
                 </ul>
             </nav>
-            <h3>上下线条</h3>
 
-            <!--mTouchNavLr 组件-->
+            <h3>上下线条</h3>
+            <!--mTouchLr 组件-->
             <nav class="m-touch-lr border-top border-bottom">
                 <ul class="m-touch-lr-cnt ">
                     <li class="active  m-touch-lr-item">
-                        <a href="javascript:;">首页</a>
+                        <a class="m-touch-lr-item-btn">京东超市</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">MV</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">数码电器</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">悦单</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东美食</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">V榜</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东商城</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">音悦</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东服饰</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">商城</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东生鲜</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">节目</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东到家</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">饭团</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">充值缴费</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">资讯</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">领券</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">我的家</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">家居厨具</a>
 
                     </li>
 
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">MV2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">医药保健</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">悦单2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">玩具乐器</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">V榜2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">汽摩生活</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">音悦2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">二手商品</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">商城2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">生活旅游</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">节目2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">图书文娱</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">饭团2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东服务</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">资讯2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">拍卖</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">我的家2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">宠物鲜花</a>
                     </li>
 
                 </ul>
             </nav>
 
             <h3>box-shadow</h3>
-
-            <!--mTouchNavLr 组件-->
+            <!--mTouchLr 组件-->
             <nav class="m-touch-lr box-shadow">
                 <ul class="m-touch-lr-cnt ">
                     <li class="active  m-touch-lr-item">
-                        <a href="javascript:;">首页</a>
+                        <a class="m-touch-lr-item-btn">京东超市</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">MV</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">数码电器</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">悦单</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东美食</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">V榜</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东商城</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">音悦</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东服饰</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">商城</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东生鲜</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">节目</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东到家</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">饭团</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">充值缴费</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">资讯</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">领券</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">我的家</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">家居厨具</a>
 
                     </li>
 
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">MV2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">医药保健</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">悦单2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">玩具乐器</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">V榜2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">汽摩生活</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">音悦2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">二手商品</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">商城2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">生活旅游</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">节目2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">图书文娱</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">饭团2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">京东服务</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">资讯2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">拍卖</a>
                     </li>
                     <li class="m-touch-lr-item">
-                        <a href="javascript:;">我的家2</a>
+                        <a class="m-touch-lr-item-btn" href="javascript:;">宠物鲜花</a>
                     </li>
 
                 </ul>
@@ -346,8 +304,8 @@
 
         /*加载js的列表 */
         loadJs: [
-            //"../js/m-vd.js",
-            //"../js/cityData.js"
+            //"./js/m-vd.js",
+            //"./js/cityData.js"
         ],
         // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
 
@@ -360,8 +318,16 @@
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
-             // 1.插件模式 m.mTouchNavLr()  2.组件模式< data-toggle="m-touch-lr">
-            m(".m-touch-lr",context).eq(0).mTouchLr();
+             // 1.插件模式 m.mTouchLr()  2.组件模式< data-toggle="m-touch-lr">
+
+
+            m(".m-touch-lr", context).eq(0).mTouchLr({
+                //left: true,          // 菜单 m-touch-lr-item 定位左边 ,默认center定位中间
+                //limitLeft: true,      // 禁止左边拉 默认为false
+                //limitRight: true ,  // 禁止右边拉  默认为false
+                //limit: 0.2,         //弹性拉动空间   默认为相对方向宽或高的值 默认为0.4
+            });
+
             m(".m-touch-lr", context).eq(1).mTouchLr({ limitLeft: true, limitRight: true });
             m(".m-touch-lr", context).eq(2).mTouchLr();
             m(".m-touch-lr", context).eq(3).mTouchLr();
@@ -375,9 +341,9 @@
                  * moveX 左右元移动的translateX值
                  *
                  */
-                console.log("event", event);
-                console.log("el", el);
-                console.log("moveX", moveX);
+              // console.log("event", event);
+              //console.log("el", el);
+              // console.log("moveX", moveX);
             });
 
 
@@ -426,6 +392,38 @@
 
             });
 
+
+            // 触发拉到左边  自定义reachleft 的事件
+            m(".m-touch-lr", context).on("reachleft.m.touch.lr", function (event, el, moveY, scrollObj) {
+                /*
+                   event       事件
+                   el          触发元素
+                   moveY       translateY值
+                   scrollObj   滚动对象
+                 */
+                //console.log("event", event);
+                //console.log("el", el);
+                //console.log("moveY", moveY);
+                // console.log("scrollObj", scrollObj);
+                console.log("reachleft");
+
+            });
+
+            // 触发拉到右边  自定义reachright的事件
+            m(".m-touch-lr", context).on("reachright.m.touch.lr", function (event, el, moveY, scrollObj) {
+                /*
+                   event       事件
+                   el          触发元素
+                   moveY       translateY值
+                   scrollObj   滚动对象
+                 */
+                //console.log("event", event);
+                //console.log("el", el);
+                //console.log("moveY", moveY);
+                //console.log("scrollObj", scrollObj);
+                console.log("reachright");
+
+            });
 
 
         },

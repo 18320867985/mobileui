@@ -20,10 +20,16 @@ import "./component/m-indexlist";          //indexlist
 import "./component/m-listoption";         //listoptionÁÐ±í²Ù×÷
 import "./component/m-switch";             //switch
 import "./component/m-checkbtn";           //checkbtn
+import "./component/m-checkbtn-group";      //checkbtn-group
+import "./component/m-radiobtn-group";     //radiobtn-group
+
 import "./component/m-checkbox";           //checkbox
+import "./component/m-checkbox-group";    //checkbox-group
+import "./component/m-radiobox-group";  // m-radiobox-group
+
 import "./component/m-message";           //message
 import "./component/m-picker";           //picker
-import "./component/m-lazy";           //lazy
+import "./component/m-lazy";            //lazy
 import "./component/m-loading";         //loading
 
 // overflow

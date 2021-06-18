@@ -182,6 +182,7 @@
 			return _ajaxSetup;
 
 		},
+
 		ajax: function (options) {
 
 			options = typeof options === "object" ? options : {};

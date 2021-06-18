@@ -3,10 +3,6 @@
 <!-- 1. css  style  区域 -->
 <style>
 
-        /* 注意！这里样式是加载渲染后是全局的
-       局部区分为内容区域标签加上id或class
-       路由模块隐藏后style块里样式被删除
-    */
     #m-select  .m-cnt {
             padding: 1rem;
         }
@@ -19,9 +15,9 @@
 
             <!--内容start -->
 
-            <div class="m-btn m-btn-primary m-btn-block btn1">点击选择的值：2020</div>
+            <div class="m-btn m-btn-primary m-btn-block btn1">点击选择的值：</div>
             <br />
-            <div class="m-btn m-btn-success m-btn-block btn2">自动选择的值：商城</div>
+            <div class="m-btn m-btn-success m-btn-block btn2">自动选择的值：</div>
             <!--内容end -->
         </div>
     </div>
@@ -42,8 +38,8 @@
 
         /*加载js的列表 */
         loadJs: [
-            //"../js/m-vd.js",
-            //"../js/cityData.js"
+            //"./js/m-vd.js",
+            //"./js/cityData.js"
         ],
         // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
 
@@ -57,7 +53,7 @@
             //console.log("parameter:", parameter);
 
              var list = [];
-            for (var i = 2000; i < 2030; i++) {
+            for (var i = 1985; i < 2071; i++) {
                 list.push({ text: i, val: i, select: i === 2020 ? true : false });
             }
 
@@ -88,16 +84,25 @@
             });
 
             var list2 = [
-                { text: "美食", val: "美食" },
-                { text: "悦单", val: "悦单" },
-                { text: "V榜", val: "V榜" },
-                { text: "音悦", val: "音悦" },
-                { text: "商城", val: "商城", select: true },
-                { text: "节目", val: "节目" },
-                { text: "饭团", val: "饭团" },
-                { text: "资讯", val: "资讯" },
-                { text: "我的家", val: "我的家" },
-                { text: "美团", val: "美团" },
+                { text: "京东超市", val: "京东超市" },
+                { text: "数码电器", val: "数码电器" },
+                { text: "京东美食", val: "京东美食" },
+                { text: "京东商城", val: "京东商城" },
+                { text: "京东服饰", val: "京东服饰", select: true },
+                { text: "京东生鲜", val: "京东生鲜" },
+                { text: "京东到家", val: "京东到家" },
+                { text: "充值缴费", val: "充值缴费" },
+                { text: "领券", val: "领券" },
+                { text: "手机", val: "手机" },
+                { text: "家居厨具", val: "数码电器" },
+                { text: "图书文娱", val: "家居厨具" },
+                { text: "京东商城", val: "图书文娱" },
+                { text: "京东服务", val: "京东服务", select: true },
+                { text: "拍卖", val: "拍卖" },
+                { text: "玩具乐器", val: "玩具乐器" },
+                { text: "二手商品", val: "二手商品" },
+                { text: "美妆护肤", val: "美妆护肤" }
+
 
             ];
 

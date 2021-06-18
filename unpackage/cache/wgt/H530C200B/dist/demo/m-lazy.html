@@ -1,61 +1,105 @@
-
 <!-- 1. css  style  区域 -->
 <style>
 
-        /* 注意！这里样式是加载渲染后是全局的
-       局部区分为内容区域标签加上id或class
-       路由模块隐藏后style块里样式被删除
-    */
-     .m-confirm .m-confirm-cnt-btn.ok {
-            color: red;
-        }
+   
+
 </style>
 
 <!--2.内容区域 -->
-<section class="m-router-cnt" id="m-lazy">
-    <div class="m-overflow-tb">
-        <div class="m-overflow-tb-cnt">
-            <ul class="m-listoption" >
+<section class="m-router-cnt" id="m-touch-tab">
 
-                <!--<li class="m-listoption-item">
-                <div class="m-listoption-item-cnt">
+    <!--m-router-top 上部 -->
+    <!--<div class="m-router-top">
+
+    </div>-->
+    <!--m-router-bd 中间 -->
+    <div class="m-router-bd">
 
 
-                    <div class="m-listoption-item-left">
-                        <a href="#">
-                            <img src="../images/头像.png" alt="Alternate Text" />
-                            <div class="">
-                                <h4 class="_ttl elp-1">微信群</h4>
-                                <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
-                            </div>
+        <!--mTouchTab 组件 -->
+        <div class="m-touch-tab">
+            <!--滑动的包裹内容 -->
+            <div class="m-touch-tab-cnt">
 
-                        </a>
+                <!--滑动的每项 m-touch-tab-item -->
+                <div class="m-touch-tab-item active">
+                    <div class="m-overflow-tb" >
+                        <div class="m-overflow-tb-cnt">
+                            <ul class="m-media-list list-2">
+
+                                <!-- 动态加载元素-->
+                                <li class="m-media">
+                                    <a href="">
+
+                                        <!-- 延迟加载 1 添加包裹器 .m-lazy  提示文字 title="JD京东"  添加mask灰背景 .m-lazy-mask  -->
+                                        <div class="m-lazy " title="JD京东">
+                                            <!-- 2. img 添加 .m-lazy-img  3. 图片地址data-lazy="img地址"  -->
+                                            <img class="m-lazy-img  m-media-img" data-lazy="./images/shop-1.webp">
+                                        </div>
+
+                                        <div class="m-media-body">
+                                            <h5 class="m-media-title  elp-1">雅鹿自由自在 21年连衣裙2021年季女装新款装新品气质典雅减龄大码显瘦裙子女 9306 七分袖 M</h5>
+
+                                            <p class="m-media-text elp-2">裙子款式好看，摸着舒适，当晚洗后没有发现掉色的现象，面料也很好，做工很细，超过预期哦外包也严实，上身就觉得质感很好，显腿长，关键很显瘦啊。瘦腿效果非常好。面料非常舒服，柔柔的软软的，腰部也没有紧绷感</p>
+
+                                            <div class="m-media-icon">
+                                                <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
+
+                                                <div class="m-media-icon-r"><span>看相似的</span></div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="m-overflow-tb-loading loading-top">
+                            正在加载中...
+                        </div>
 
                     </div>
 
-                    <div class="m-listoption-item-option">
-                        <div class="_item muted">
-                            默认
-                        </div>
-                        <div class="_item success">
-                            成功
-                        </div>
-                        <div class="_item warning">
-                            警告
-                        </div>
-                        <div class="_item danger">
-                            删除
-                        </div>
-                    </div>
                 </div>
-            </li>-->
 
-            </ul>
+            </div>
         </div>
-        <div class="m-overflow-tb-loading">
-            正在加载中...
+
+    </div>
+
+    <!--m-router-ft 底部 -->
+    <div class="m-router-ft">
+        <div class="m-touch-tab-btn m-touch-tab-btn-bottom">
+            <div class="m-touch-tab-btn-cnt">
+
+                <div class="m-touch-tab-btn-item active" data-tab="#tab1">
+                    <span class="icon icon-home"></span>
+                    <div class="text">首页</div>
+
+                </div>
+
+                <div class="m-touch-tab-btn-item" data-tab="#tab2">
+                    <span class="icon icon-comment1"></span>
+                    <div class="text"> 消息</div>
+
+                </div>
+                <div class="m-touch-tab-btn-item" data-tab="#tab3">
+                    <span class="icon icon-setting"></span>
+                    <div class="text">设置</div>
+
+                </div>
+                <div class="m-touch-tab-btn-item" data-tab="#tab4">
+                    <span class="icon icon-user"></span>
+                    <div class="text">我的</div>
+
+                </div>
+            </div>
+
         </div>
     </div>
+
 </section>
 
 <!-- js 区域 -->
@@ -73,8 +117,8 @@
 
         /*加载js的列表 */
         loadJs: [
-            //"../js/m-vd.js",
-            //"../js/cityData.js"
+            //"./js/m-vd.js",
+            //"./js/cityData.js"
         ],
         // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
 
@@ -87,102 +131,144 @@
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
+            // 加载nav 和tab
+            var nav = "";
+            var tab = "";
+            var navs = ["京东超市", "数码电器", "京东美食", "京东服饰"];
+            for (var i = 0; i < 4; i++) {
+                //nav += `<div class="${i === 0 ? `active` : ``}  m-touch-tab-btn-item" data-tab="#tab${i + 1}">
 
-             // overflow-tb上下滑动的插件模式
+
+                //              ${navs[i]}
+                //    </div>  `;
+
+                tab += ` <div class="m-touch-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}" data-ttl="${navs[i]}">
+                                <div class="m-overflow-tb">
+                                    <div class="m-overflow-tb-cnt">
+                                              <ul class="m-media-list list-2">
+
+
+                                               </ul>
+                                    </div>
+                                    <div class="m-overflow-tb-loading ">
+                                          正在加载中...
+                                    </div>
+
+                                </div>
+
+                            </div>  `;
+
+            }
+
+            // 触发插件
+            m(".m-touch-tab-btn-cnt", context).parent().mTouchTabBtn();
+            m(".m-touch-tab-cnt", context).html(tab).parent().mTouchTab();
             m(".m-overflow-tb", context).mOverflowTb();
-             // mListoption 触发的插件
-            m(".m-listoption", context).mListoption();
 
-             /* html属性：data-toggle="m-lazy" 页面加载完成触发  替换src的地址的属性： data-lazy="./img/0.jpg"
-               <img class="m-lazy-img"  src="./img/lazy.jpg" alt=""   data-toggle="m-lazy" data-lazy="./img/0.jpg" />
-                 */
-            // 拉到底部触发
-            m(".m-overflow-tb",context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
+            // tap.m.touch.tab.btn触发的事件
+            m(".m-touch-tab-btn", context).on("tap.m.touch.tab.btn", function (event, el, index) {
 
-                console.log("reachbottom.m.overflow.tb", scrollObj);
+                var $activeEl = m(".m-touch-tab-item", context).eq(index);
+                m(".m-touch-tab", context).mTouchTab("set", index);
 
-                ajaxData($(".m-overflow-tb"), context);
+                if (!$activeEl.data("isOne")) {
+                    $activeEl.data("isOne", true);
+                    ajaxData($activeEl, index);
+                }
 
-            }).mLazy();
-
-            // 第一次加载数据
-            ajaxData(m(".m-overflow-tb",context), function () {
-                m(".m-overflow-tb",context).mLazy("init"); //初始化 执行延迟加载
             });
 
+            // tab 触发自定义的事件
+            m(".m-touch-tab", context).on("tab.m.touch.tab", function (event, el, index) {
 
+                m(".m-touch-tab-btn", context).mTouchTabBtn("set", index);
+                if (!m(el).data("isOne")) {
+                    m(el).data("isOne", true);
+                    ajaxData(el, index);
+                }
+
+            });
+
+            //  move 滑动触发自定义的事件
+            m(".m-touch-tab", context).on("move.m.touch.tab", function (event, el, moveY, scrollObj) {
+                var w = m(el).find(".m-touch-tab-cnt").width();
+                var ratio = moveY / w;
+                m(".m-touch-tab-btn", context).mTouchTabBtn("move", ratio, moveY / m(el).width());
+
+            });
+
+            // 拉到底部触发
+            m(".m-overflow-tb", context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
+
+                var $el = m(el).parents(".m-touch-tab-item");
+                ajaxData($el, $el.index());
+
+            });
+
+            // 第一次加载数据
+            var $activeEl = $(".m-touch-tab-item.active", context);
+            ajaxData($activeEl, 0);
+            $activeEl.data("isOne", true);
 
             // ajax 加载数据
-            function ajaxData($el, fn) {
-                if ($el.data("loadingEnd")) {
+            function ajaxData($el, index) {
 
+                if ($el.data("loadingEnd")) {
                     return;
                 }
                 $el.data("loadingEnd", true);
+                var ttl = $el.attr("data-ttl");
 
                 m.get("./json/tab.json", function (res) {
 
                     $el.data("loadingEnd", false);
                     var page = $el.data("pageindex") || 1;
-                    var html = "";
-                    var docf = document.createDocumentFragment();
+                    //  var docf = document.createDocumentFragment();
+                    var lis = "";
                     for (var i = 0; i < res.length; i++) {
-                        var li = document.createElement("li");
-                        li.classList.add("m-listoption-item");
-                        li.innerHTML = listoptionHtml;
-                        docf.appendChild(li);
 
+
+                        var li = `  <li class="m-media">
+                                    <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
+
+                                        <div class="m-lazy m-lazy-mask" title="JD京东">
+                                                <img class="m-media-img m-lazy-img" data-lazy="./${res[i].img}">
+                                          </div>
+                                        <div class="m-media-body">
+                                            <h5 class="m-media-title  elp-1">${ttl}</h5>
+
+                                            <p class="m-media-text elp-2">裙子款式好看，摸着舒适，当晚洗后没有发现掉色的现象，面料也很好，做工很细，超过预期哦外包也严实，上身就觉得质感很好，显腿长，关键很显瘦啊。瘦腿效果非常好。面料非常舒服，柔柔的软软的，腰部也没有紧绷感</p>
+
+                                            <div class="m-media-icon">
+                                                <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
+
+                                                <div class="m-media-icon-r"><span>看相似的</span></div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </a>
+                                </li>`;
+
+                        lis += li;
                     }
-                    $el.find(".m-listoption").append(docf);
-                    if (typeof fn === "function") { fn(); }
-                    $el.data("pageindex", ++page);
 
-                }, function () { console.log("加载失败"); }, "json");
+                    $el.data("pageindex", ++page);
+                    $el.find(".m-overflow-tb-cnt .m-media-list").append(lis);
+                   
+                    // 执行延迟加载
+                    var $aciveEl = m(".m-touch-tab-item.active", context);
+                    if (!$aciveEl.hasAttr("lazy-runing")) {
+                        $aciveEl.attr("lazy-runing", true);
+                        $aciveEl.find(".m-overflow-tb").mLazy("init"); //初始化 执行延迟加载
+                    }
+
+
+                }, "json");
 
             }
 
-            var listoptionHtml = `
-                                    <div class="m-listoption-item-cnt">
-
-                                        <!--列表内容-->
-                                        <div class="m-listoption-item-left">
-                                            <a href="http://baidu.com">
-                                                <img class="m-lazy-img"  src="./images/lazy.jpg" alt=""  data-lazy="./images/head.png"  />
-                                                <div class="_contnet">
-                                                    <h4 class="_ttl elp-1">微信群</h4>
-                                                    <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
-                                                </div>
-
-                                            </a>
-
-                                        </div>
-                                        <!--列表操作项-->
-                                        <div class="m-listoption-item-option">
-                                            <div class="_item muted">
-                                                默认
-                                            </div>
-                                            <div class="_item success">
-                                                成功
-                                            </div>
-                                            <div class="_item warning">
-                                                警告
-                                            </div>
-                                            <div class="_item danger">
-                                                删除
-                                            </div>
-                                        </div>
-                                    </div>
-                                `;
-
-            // 删除
-            m(context).on("tap", "._item.danger", function (event) {
-
-                var $this = m(this);
-                m.mConfirm("是否确认删除数据？", function () {
-                    $this.parents(".m-listoption-item").remove();
-                }, null, { ok: "删除" });
-
-            });
 
 
         },

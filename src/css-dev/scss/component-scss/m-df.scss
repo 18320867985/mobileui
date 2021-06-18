@@ -5,7 +5,7 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+    box-sizing: border-box;   
 }
 
 body {
@@ -14,8 +14,8 @@ body {
     line-height: $line-height;
     background: $body-bg;
     color: $text-df;
+  
 }
-
 
 a,
 a:not(.m-btn),
@@ -35,7 +35,6 @@ img {
 ul {
     list-style: none;
 }
-
 
 
 /*input*/

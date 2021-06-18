@@ -3,7 +3,7 @@
 
 +function () {
 
-//  m-info
+    //  m-info
     m.extend({
         mInfo: _info
     });
@@ -312,7 +312,6 @@
         });
 
     }
-
 
     // m-actionsheet 下弹出的信息框
     m.extend({

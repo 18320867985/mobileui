@@ -26,14 +26,12 @@ var rename = require("gulp-rename"); // npm install gulp-rename --save-dev  重�
 var concat = require('gulp-concat'); //npm install gulp-concat --save-dev  整合文件
 var minHtml = require('gulp-htmlmin'); //npm install gulp-htmlmin --save-dev 压缩html，可以压缩页面javascript、css，去除页面空格、注释，删除多余属性等操作
 
-
 var rollup = require('rollup');
 var babel = require('rollup-plugin-babel');
 var uglify = require('rollup-plugin-uglify');
 var resolve = require('rollup-plugin-node-resolve');
 var commonjs = require('rollup-plugin-commonjs');
 var json = require("rollup-plugin-json");
-
 
 var vue = require('rollup-plugin-vue');
 var vembedCss = require('rollup-plugin-embed-css');
@@ -66,15 +64,11 @@ var paths = {
 
     // sass文件
     scssPath: ['./src/css-dev/**/*.scss'],
-
     allscss: ['./src/css-dev/scss/all.scss'],
-
     htmlPath: ['./src/**/*.html'],
-
     jsPath: ['./src/js-dev/**/*.js']
 
 };
-
 
 var jsName = "mobileui";
 var cssName = "mobileui";
@@ -90,8 +84,17 @@ gulp.task('release', ['concat'], function() {
 	//gulp.dest() 是复制文件
 
 	gulp.src(['./src/**/*.html']).pipe(gulp.dest('./dist')); //复制html
-	gulp.src('./src/css/**/*.css').pipe(minCss()).pipe(gulp.dest('./dist/css')); //复制css
-	gulp.src('./src/js/**/*.js').pipe(minJs()).pipe(gulp.dest('./dist/js/')); //复制js
+
+	// 模式1
+	//gulp.src('./src/css/**/*.css').pipe(minCss()).pipe(gulp.dest('./dist/css')); //复制css
+	//gulp.src('./src/js/**/*.js').pipe(minCss()).).pipe(gulp.dest('./dist/js/')); //复制js
+
+	// 模式2
+	gulp.src('./src/css/**/*.css').pipe(gulp.dest('./dist/css')); //复制css
+	gulp.src('./src/js/**/*.js').pipe(gulp.dest('./dist/js/')); //复制js
+	gulp.src("./src/css/**/" + cssName + ".css").pipe(minCss()).pipe(rename(cssName + "-min.css")).pipe(gulp.dest('./dist/css')); //复制css
+	gulp.src("./src/js/**/" + jsName + ".js").pipe(minJs()).pipe(rename(jsName + "-min.js")).pipe(gulp.dest('./dist/js/')); //复制js
+
 	gulp.src('./src/images/**/*.*')
 		//.pipe(img())                     // 压缩图片
 		.pipe(gulp.dest('./dist/images/')); //复制img
@@ -210,14 +213,12 @@ gulp.task('build', async function() {
 
 	await bundle.write({
 
-
 		file: './src/js/' + jsName + '.js',
 		format: jsRootName,
 		name: jsFileFormat,
 		//sourcemap: true,
 		strict: true, //在生成的包中省略`"use strict";`
 	});
-	
 	
 	gulp.src(paths.jsPath).pipe(connect.reload());
 

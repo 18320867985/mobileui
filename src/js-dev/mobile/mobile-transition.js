@@ -5,7 +5,6 @@ css3 transition
 
 +function (Mobile) {
 
-
     Mobile.fn.extend({
 
         // transition
@@ -146,6 +145,5 @@ css3 transition
         }
 
     });
-
 
 }(Mobile);

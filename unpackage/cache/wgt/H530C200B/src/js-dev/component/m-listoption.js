@@ -8,59 +8,81 @@
     var MListoption = function (el, options) {
         this.el = el;
         this.options = options;
+
+        // 左拉自动触发
+        if (this.options.auto) { this.options.limit = 0.8; }
+      
         this.run();
     };
 
     MListoption.prototype.run = function () {
 
+        var self = this;
         var $m_listoption = m(this.el);
-        var transition = "transform .6s ease";
-
-
+      
         // 阻止冒泡
-        //$m_listoption.parent().touch(function (event, obj) {
+        $m_listoption.parent().touch(function (event, obj) {
          
-        //        var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
+                var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
 
-        //        if ($listoptionEl.translateX() < -1) {
-        //            event.preventDefault();
-        //            event.stopPropagation();
-        //        }
+                if ($listoptionEl.translateX() < -1) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
             
-        //});
+        });
+
+        $m_listoption.touch(function () {
+
+        }, function (event, obj) {
+              
+            if (obj.isX) {
+                event.preventDefault();
+            }
+        });
       
         $m_listoption.touchdeletage(".m-listoption-item",
            
-            function (event, obj) {
-        
+            function (event, obj, preoObj) {
+             
                 var $moveElement = m(this).find(".m-listoption-item-cnt");
                 obj.$moveElement = $moveElement;
+                obj.wraperWidth=obj.$moveElement.outerWidth()
                 obj.moveElmentX = $moveElement.translateX();
                 obj.$moveElment = $moveElement;
-                obj.$moveElment.transition("none");
                 obj.optionWidth = -$moveElement.find(".m-listoption-item-option").outerWidth();
+                m(this).siblings().find(".m-listoption-item-cnt").translateX(0).transition("all .4s  ease");
 
-                m(this).siblings().find(".m-listoption-item-cnt").translateX(0).transition(transition);
-               
+                // 弹性拉动right
+                if (preoObj.tempObj.length > 1 && (obj.moveElmentX < obj.optionWidth)) {
+                    obj.moveElmentX = obj.moveElmentX2;
+                    obj.moveElmentX2 = 0;
+                } 
+
                 // 触发自定义的事件
                 m(this).emit("start.m.listoption", [this]);
-           
+
             },
-            function (event, obj) {
+            function (event, obj,) {
 
                 if (obj.isX) {
                     event.preventDefault();
                     obj.$moveElment.transition("none");
                     var translateX = obj.moveElmentX + obj.x;
                   
-                    if (translateX < obj.optionWidth) {
-                        translateX = obj.optionWidth;
-                    }
-
                     if (translateX > 0) {
-                       translateX = 0;
+                        translateX = 0;
 
                     } 
+
+                    // 右限弹性拉动
+                    if (translateX < obj.optionWidth) {
+                        var moveRightVal = (translateX - obj.optionWidth)
+                        obj.moveElmentX2 = translateX;
+                        var biliRight = Math.abs(moveRightVal) / obj.wraperWidth;
+                        translateX = obj.wraperWidth * (1 - self.options.limit) * biliRight + translateX;
+
+                    }
 
                     obj.$moveElement.translateX(translateX);
 
@@ -73,17 +95,35 @@
             function (event, obj) {
 
                 if (obj.isX) {
-                  //  event.stopPropagation();
                     var target = obj.$moveElment.translateX();
+                    var ansTime = 400;
+                    if (!self.options.auto) {
+                        if (target < obj.optionWidth / 2) {
+                              target = obj.optionWidth;
 
-                    if (target < obj.optionWidth / 2) {
-                        target = obj.optionWidth;
-                    } else {
-                        target = 0;
-                    }
+                            } else {
+                                target = 0;
+
+                            }
+                         }
+
                    
+                    if (self.options.auto){
+                        if (target < (-obj.wraperWidth) * 0.6) {
+                            target = -obj.wraperWidth;
+                            ansTime = 200;
+                            var $this = this;
+                            // 触发自定义的auto事件
+                            obj.$moveElement.setTimeout(function () {
+                                m($this).emit("auto.m.listoption", [$this]);
+                            }, ansTime);
+                           
+                        } else { target = 0;}
+
+                    }
+
                     obj.$moveElement.translateX(target);
-                    obj.$moveElement.transition(transition);
+                    obj.$moveElement.transition("all " + ansTime+"ms  ease");
                    
                     // 触发自定义的事件
                     m(this).emit("end.m.listoption", [this]);
@@ -100,9 +140,15 @@
 
     };
 
-   
+    MListoption.prototype.back = function () {
+        console.log(this.el)
+        m(this.el).find(".m-listoption-item-cnt").translateX(0).transition("all .4s  ease");;
+
+    };
+
     MListoption.DEFAULTS = {
-      
+        limit: .2
+
 };
 
     function Plugin(option) {
@@ -115,6 +161,8 @@
 
             if (!data) {
                 var o = {};
+                o.auto = m(this).hasAttr("data-auto");
+                o.limit = MListoption.DEFAULTS.limit;
                 var p = $.extend({}, o, options);
                 $this.data('m-listoption', data = new MListoption(this, p));
             }

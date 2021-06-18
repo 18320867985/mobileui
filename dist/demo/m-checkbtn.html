@@ -2,10 +2,7 @@
 <!-- 1. css  style  区域 -->
 <style>
 
-        /* 注意！这里样式是加载渲染后是全局的
-       局部区分为内容区域标签加上id或class
-       路由模块隐藏后style块里样式被删除
-    */
+    
       #m-checkbtn .m-overflow-tb-cnt {
             padding:1rem .5rem;
           
@@ -112,8 +109,8 @@
 
         /*加载js的列表 */
         loadJs: [
-            //"../js/m-vd.js",
-            //"../js/cityData.js"
+            //"./js/m-vd.js",
+            //"./js/cityData.js"
         ],
         // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
 
@@ -135,19 +132,21 @@
             });
             // get
             $(".m-checkbtn-get",context).tap(function (e) {
-                var v = $("#aixin").mCheckbtn();
+                var v = $("#aixin").mCheckbtn("get");
+
+                console.log(v)
                 v = !!v;
                  $.mAlert("获取选择的值:" + v + "");
 
 
             });
             // set
-            $(".m-checkbtn-set",context).tap(function (e) {
-                $("#aixin").mCheckbtn(true);
+            $(".m-checkbtn-set", context).tap(function (e) {
+                $("#aixin").mCheckbtn("set", true);
 
             });
 
-            /*************m-checkbtn-group多选****************/
+            /*m-checkbtn-group多选*/
 
             $(".m-checkbtn-group",context).on("check.m.checkbtn.group", function (e, arrs) {
 
@@ -157,18 +156,18 @@
             });
 
             $(".m-checkbtn-group-get",context).tap(function (e) {
-                var v = $(".m-checkbtn-group",context).mCheckbtnGroup();
+                var v = $(".m-checkbtn-group",context).mCheckbtnGroup("get");
                  $.mAlert("获取选择的值" + "[" + v + "]");
             });
 
             $(".m-checkbtn-group-set",context).tap(function (e) {
-                $(".m-checkbtn-group",context).mCheckbtnGroup(["js", "c#"]);
+                $(".m-checkbtn-group",context).mCheckbtnGroup("set",["js", "c#"]);
 
             });
 
             $(".m-checkbtn-group-fn",context).tap(function (e) {
 
-                $(".m-checkbtn-group",context).mCheckbtnGroup(function (v) {
+                $(".m-checkbtn-group",context).mCheckbtnGroup("set",function (v) {
                     var arrs = ["js", "jquery"];
                     for (var i = 0; i < arrs.length; i++) {
 
@@ -184,20 +183,20 @@
 
             // 全选
             $(".m-checkbtn-group-all",context).tap(function () {
-                $(".m-checkbtn-group",context).mCheckbtnGroup(true);
+                $(".m-checkbtn-group",context).mCheckbtnGroup("all",true);
 
             });
 
             // 反选
             $(".m-checkbtn-group-no",context).tap(function () {
-                $(".m-checkbtn-group",context).mCheckbtnGroup(false);
+                $(".m-checkbtn-group",context).mCheckbtnGroup("all",false);
 
             });
 
             /***********m-radiobtn-group 组件-单选****************/
             // set
             $(".m-radiobtn-group-set",context).tap(function () {
-                $(".m-radiobtn-group",context).mRadiobtnGroup("tengxun");
+                $(".m-radiobtn-group",context).mRadiobtnGroup("set","tengxun");
                 // 或者指定下标index
                 //$(".v-radiobtn-group").vradiobtnGroup(1);
 
@@ -205,7 +204,7 @@
 
             // get
             $(".m-radiobtn-group-get",context).tap(function () {
-                var v = $(".m-radiobtn-group",context).mRadiobtnGroup();
+                var v = $(".m-radiobtn-group",context).mRadiobtnGroup("get");
                  $.mAlert("选择的值：" + v);
             });
 

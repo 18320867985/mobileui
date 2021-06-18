@@ -1,3 +1,5 @@
+
+
 // m-overflow-lr 左右原生overflow滑动
 
 +function () {
@@ -12,9 +14,8 @@
     };
 
     MOverflowLr.DEFAULT = {
-        tapTime: 250,
-        center:true
-        
+        tapTime: 200,
+        center:true  
     }
 
     MOverflowLr.prototype.run = function () {
@@ -22,13 +23,12 @@
         var $el = m(self.el).find(".m-overflow-lr-nav");
         $el.css("overflow-x", "scroll");
         var winW = $el.outerWidth();
-
+      
         // 设置滑动条
         if (self.options.bar) {
             self.setBar(); 
         }
 
-        // document
         $el.scroll(function (e) {
         
             var _el = e.target;
@@ -36,22 +36,21 @@
             var srlW = _el.scrollWidth;
             var srlLeft = self.scrollLef= _el.scrollLeft; // _el.scrollLeft; 
            
-
             // 移动滑动条
             if (self.options.bar) {
                
                 var moveElementW = $el.find(".m-overflow-lr-cnt").outerWidth();
+                console.log(moveElementW)
                 var ratio = winW / moveElementW;
                 ratio = ratio > 1 ? 1 : ratio;
                 $el.find(".m-overflow-lr-bar-item").width($el.find(".m-overflow-lr-bar").width() * ratio);
-
                 self.moveBar(srlLeft);
                
             }
 
             // 滚动顶部触发的事件
             if (srlLeft <= 0) {
-              //  e.stopPropagation();
+             
                 $el.emit("reachleft.m.overflow.lr", [this, { elementWidth: elW, scrollWidth: srlW, scrollLeft: srlLeft }]);
  
             }
@@ -70,8 +69,6 @@
      
                 // 滚动到底部 触发的事件
                 $el.emit("reachright.m.overflow.lr", [this, { elementWidth: elW, scrollWidth: srlW, scrollLeft: srlLeft }]);
-
-               
             }
         });
 
@@ -95,30 +92,39 @@
 
         // 导航 m-overflow-lr-menu 
         var $el_parent = m(self.el).find(".m-overflow-lr-nav.m-overflow-lr-menu");
-        var $el_menu = $el_parent.find(".m-overflow-lr-item");
-        var $el_menu_w2 = $el_menu.outerWidth() / 2;
+  
+        $el_parent.on("tap",".m-overflow-lr-item", function (event) {
 
-        $el_menu.on("tap", function (event) {
-
-            m(this).addClass("active").siblings().removeClass("active");
-         
-            // 定位到左边
-
-            //  $el_parent.scrollLeft(m(this).offsetLeft(), MOverflowLr.DEFAULT.tapTime);
-
-           // 定位到中间
-            var $el_parent_w = $el_parent.outerWidth()/2;
-            $el_parent.scrollLeft(m(this).offsetLeft() - ($el_parent_w - $el_menu_w2), MOverflowLr.DEFAULT.tapTime);
+            var index = m(this).index();
+            self.set(index);
 
             // tap选中触发的事件
-            m(this).emit("tap.m.overflow.lr", [this]);
+            m(this).emit("tap.m.overflow.lr", [this, index]);
 
         });
 
-
     };
 
-    MOverflowLr.prototype.setBar = function (x) {
+    MOverflowLr.prototype.set = function () {
+        var index = arguments.length > 0 ? arguments[0] : 0;
+        index = isNaN(Number(index)) ? 0 : index;
+        var $el_parent = m(this.el).find(".m-overflow-lr-nav.m-overflow-lr-menu");
+        var $el_menu = $el_parent.find(".m-overflow-lr-item").eq(index);
+        var $el_menu_w2 = $el_menu.outerWidth() / 2;
+        var $el_parent_w = $el_parent.outerWidth() / 2;
+        $el_menu.addClass("active").siblings().removeClass("active");
+
+        // 定位到左边
+        if (this.options.left) {
+            $el_parent.scrollLeft($el_menu.offsetLeft(), MOverflowLr.DEFAULT.tapTime);
+        } else {
+
+            // 定位到中间
+            $el_parent.scrollLeft($el_menu.offsetLeft() - ($el_parent_w - $el_menu_w2), MOverflowLr.DEFAULT.tapTime);
+        }
+    };
+
+    MOverflowLr.prototype.setBar = function () {
         var $m_touch_lr = m(this.el);
         var pwr = document.createElement("div");
         pwr.classList.add("m-overflow-lr-bar-nav");
@@ -127,24 +133,23 @@
         var item = document.createElement("div");
         item.classList.add("m-overflow-lr-bar-item");
         bar.appendChild(item);
-
         pwr.appendChild(bar);
         $m_touch_lr.append(pwr);
+
         var winW = $m_touch_lr.outerWidth();
         var moveElementW = $m_touch_lr.find(".m-overflow-lr-cnt").outerWidth();
         var ratio = winW / moveElementW;
         ratio = ratio > 1 ? 1 : ratio;
+        console.log($m_touch_lr.find(".m-overflow-lr-cnt"))
 
         $m_touch_lr.find(".m-overflow-lr-bar-item").width($m_touch_lr.find(".m-overflow-lr-bar").width() * ratio);
     };
-
 
     MOverflowLr.prototype.moveBar = function (x) {
  
         x = parseFloat(x) || 0;
 
         var $m_touch_lr = m(this.el);
-
         var winW = $m_touch_lr.outerWidth();
         var moveElementW = $m_touch_lr.find(".m-overflow-lr-cnt").outerWidth();
         if (moveElementW < winW) { return; }
@@ -157,7 +162,7 @@
         return $m_touch_lr.find(".m-overflow-lr-bar-item").translateX(ratio * (barW - itemW));
     };
 
-    function Plugin(option) {
+    function Plugin(option,index) {
 
         return this.each(function () {
 
@@ -168,14 +173,13 @@
             if (!data) {
                 var o = {};
                 o.bar = $this.hasAttr("data-bar");
-                //o.center = MOverflowLr.DEFAULT.center;
-                //o.center = $this.hasAttr("data-center");
+                o.left = $this.hasAttr("data-left");
                 var p = $.extend({}, o, options);
                 $this.data('m-overflow-lr', data = new MOverflowLr(this, p));
             }
 
             if (typeof option === 'string') {
-                data[option]();
+                data[option](index);
             }
 
         });
@@ -188,7 +192,6 @@
     m("[data-toggle=m-overflow-lr]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
-
     });
 
 }();

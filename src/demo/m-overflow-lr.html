@@ -3,56 +3,57 @@
 <!-- 1. css  style  区域 -->
 <style>
 
-    /* 注意！这里样式是加载渲染后是全局的
-       局部区分为内容区域标签加上id或class
-       路由模块隐藏后style块里样式被删除
-    */
-        #m-overflow-lr   .m-overflow-lr-item img {
-            width: 320px;
-            height: 200px;
+   
+        #m-overflow-lr-1 {
+  
+            height:8rem;
         }
 
-    h3 {
-        font-size:.8rem;
-        padding:1rem .25rem .25rem ;
-    }
+        #m-overflow-lr-1   img{
+          width:12rem;
+        }
+        h3 {
+            font-size:.8rem;
+            padding:1rem .25rem .25rem ;
+        }
+
+        h2 {
+             margin:.5rem .5rem .3rem;
+            font-size:.7rem;
+        }
 </style>
 
 <!--2.内容区域 -->
-<section class="m-router-cnt" id="m-overflow-lr">
- 
-    <!--内容start -->
-    <nav class="m-overflow-lr" id="m-overflow-lr-1">
+<section class="m-router-cnt" >
 
+    <nav class="m-overflow-lr" id="m-overflow-lr-1">
         <div class="m-overflow-lr-nav ">
             <ul class="m-overflow-lr-cnt">
 
                 <li class="m-overflow-lr-item">
-                    <a  data-link href="./demo/m-touch-slide.html?link=6888"><img src="./images/a.jpg" alt="Alternate Text" /></a>
+                    <a data-link href="./demo/m-touch-slide.html?link=6888"><img src="./images/a.jpg" alt="Alternate Text" /></a>
                 </li>
                 <li class="m-overflow-lr-item">
                     <a data-link href="./demo/m-touch-slide.html?link=8888"><img src="./images/d.jpg" alt="Alternate Text" /></a>
                 </li>
                 <li class="m-overflow-lr-item">
-                    <a  data-link href="./demo/router-link-parameter.html?age=29&qq=724485868@qq.com"><img src="./images/b.jpg" alt="Alternate Text" /></a>
+                    <a data-link href="./demo/router-link-parameter.html?age=29&qq=724485868@qq.com"><img src="./images/b.jpg" alt="Alternate Text" /></a>
                 </li>
                 <li class="m-overflow-lr-item">
-                    <a data-link  href="./demo/router-link-parameter.html?binf=18&qq=72667676@qq.com"><img src="./images/c.jpg" alt="Alternate Text" /></a>
+                    <a data-link href="./demo/router-link-parameter.html?binf=18&qq=72667676@qq.com"><img src="./images/c.jpg" alt="Alternate Text" /></a>
                 </li>
 
                 <li class="m-overflow-lr-item">
-                    <a  data-link href="./demo/m-touch-slide.html?link=8888"><img src="./images/d.jpg" alt="Alternate Text" /></a>
+                    <a data-link href="./demo/m-touch-slide.html?link=8888"><img src="./images/d.jpg" alt="Alternate Text" /></a>
                 </li>
             </ul>
         </div>
 
     </nav>
-    <!--内容end -->
 
-  
-    <!--内容start -->
+    <!--<h2>定位到中间</h2>-->
     <!--<nav class="m-overflow-lr" id="m-overflow-lr-2">-->
-        <!-- overflow  导航添加 m-overflow-lr-menu class -->
+        <!--overflow  导航添加 m-overflow-lr-menu class-->
         <!--<div class="m-overflow-lr-nav m-overflow-lr-menu">
             <ul class="m-overflow-lr-cnt">
 
@@ -119,9 +120,7 @@
                 </li>
             </ul>
         </div>
-
     </nav>-->
-    <!--内容end -->
 
 
 </section>
@@ -134,15 +133,15 @@
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
-            routerTilte: "overflow-lr左右滑动", // 路由页的标题
+            routerTilte: "overflow-lr 左右滑动", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
             // routerClass:"router-class-1"   // 路由页的class
         },
 
         /*加载js的列表 */
         loadJs: [
-            //"../js/m-vd.js",
-            //"../js/cityData.js"
+            //"./js/m-vd.js",
+            //"./js/cityData.js"
         ],
         // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
 
@@ -156,8 +155,11 @@
             //console.log("parameter:", parameter);
 
             m("#m-overflow-lr-1", context).mOverflowLr({ bar: true });
-        
 
+            // 导航定位到中间 添加 m-overflow-lr-nav   class 
+           // m("#m-overflow-lr-2", context).mOverflowLr();
+
+         
             m(".m-overflow-lr",context).on("reachleft.m.overflow.lr", function (event, el, scrollObj) {
 
                 console.log("reachleft.m.overflow.lr 事件：", "已到左开始端触发");
@@ -176,10 +178,10 @@
                 // m(".m-hd-top-ttl").html(scrollObj.scrollLeft) ;
             });
 
-            m(".m-overflow-lr", context).on("tap.m.overflow.lr", function (event, el) {
+            m(".m-overflow-lr", context).on("tap.m.overflow.lr", function (event, el,index) {
 
-                console.log("tap.m.overflow.lr 事件：", "选中触发");
-                //console.log(el);
+                console.log("tap.m.overflow.lr 事件：", "选中触发：",m(el).text());
+                console.log(el,index);
             });
 
 

@@ -22,11 +22,27 @@
 
         $m_touch_lr.touch(
 
-            function (event, obj) {
+            function (event, obj, preoObj) {
 
                 obj.moveElmentX = $moveElement.translateX();
                 obj.$moveElment = $moveElement;
-                // obj.$moveElment.transition("none");
+                obj.$moveElment.transition("none");
+                obj.moveElmentWidth = obj.$moveElment.outerWidth();
+                obj.wraperWidth = $m_touch_lr.outerWidth();
+                obj.moveXSpace = obj.wraperWidth - obj.moveElmentWidth;
+
+                // 弹性拉动top
+                if (preoObj.tempObj.length > 1 && obj.moveElmentX > 0) {
+                    obj.moveElmentX = obj.moveElmentX2;
+                    obj.moveElmentX2 = 0;
+                }
+
+                // 弹性拉动bottom
+                if (preoObj.tempObj.length > 1 && (obj.moveElmentWidth > obj.wraperWidth) && (obj.moveElmentX < obj.moveXSpace)) {
+                    obj.moveElmentX= obj.moveElmentX2;
+                    obj.moveElmentX2 = 0;
+                } 
+
                 self.obj = obj;
 
                 // 触发自定义的事件
@@ -48,35 +64,29 @@
                     }
                     if (obj.oneTouch === 2) {
                         event.stopPropagation();
-
                     }
 
                     obj.$moveElment.transition("none");
                     var translateX = obj.moveElmentX + obj.x;
 
-                    // 左限住拉动
-                    //if (self.options.limitLeft) {
-                    translateX = translateX > 0 ? 0 : translateX;
-                    // }
-
-                    // 右限住拉动
-                     obj.contentWidth = obj.$moveElment.outerWidth();
-                     obj.wraperWidth = $m_touch_lr.outerWidth();
-                     obj.moveYSpace = obj.wraperWidth - obj.contentWidth;
-                    //  if (self.options.limitRight) {
-
-                    if (obj.contentWidth > obj.wraperWidth && translateX < obj.moveYSpace) {
-                        translateX = obj.moveYSpace;
-
+                    // 左限弹性拉动
+                    if (translateX > 0) {
+                        obj.moveElmentX2 = translateX;
+                        var biliLeft = translateX / obj.wraperWidth;
+                        translateX = obj.wraperWidth * self.options.limit * biliLeft;
                     }
-                    //  }
 
+                    // 右限弹性拉动
+                    if ((obj.moveElmentWidth > obj.wraperWidth) && (translateX < obj.moveXSpace)) {
+                        var moveRightVal = (translateX - obj.moveXSpace)
+                        obj.moveElmentX2 = translateX;
+                        var biliRight = Math.abs(moveRightVal) / obj.wraperWidth;
+                        translateX = obj.wraperWidth * (1 - self.options.limit) * biliRight + translateX;
+                    }
 
                     obj.$moveElment.translateX(translateX);
                     // 触发自定义的事件
                     m(this).emit("move.m.touch.tab", [this, translateX, obj]);
-
-
                 }
 
             },
@@ -84,32 +94,29 @@
 
                 if (obj.isX) {
 
-                    var moveElmentWidth = obj.$moveElment.outerWidth();
-                    var wraperWidth = $m_touch_lr.outerWidth();
-                    var moveYSpace = wraperWidth - moveElmentWidth;
                     var target = obj.$moveElment.translateX();
-
-
-                    var transition = "transform .4s ease";
+                    var transition = "transform .4s " + MTouchTab.DEFAULTS.cubicBezier;
                     if (target > 0) {
                         target = 0;
 
-                    } else if (target < moveYSpace) {
+                    } else if (target < obj.moveYSpace) {
                         target = moveYSpace;
-                        if (moveElmentWidth < wraperWidth) {
+                        if (obj.moveElmentWidth < obj.wraperWidth) {
                             target = 0;
                         }
-                    
                     }
 
-                    //if (self.options.touchTab) {
-                    var translateIndex = Math.round(target / wraperWidth);
-                    $moveElement.translateX(wraperWidth * translateIndex);
-                    $moveElement.transition("transform .4s " + MTouchTab.DEFAULTS.cubicBezier);
+                    var translateIndex = Math.round(target / obj.wraperWidth);
+                    var moveVal = obj.wraperWidth * translateIndex;
+                    moveVal = obj.moveXSpace >= moveVal ? obj.moveXSpace : moveVal;
 
+                    var maxIndex = -(Math.round(obj.moveElmentWidth / obj.wraperWidth)-1);
+                    translateIndex = translateIndex <= maxIndex ? maxIndex : translateIndex;
+                    $moveElement.translateX(moveVal);
+                    $moveElement.transition(transition);
+        
                     // 触发自定义的事件
                     var $activeEl = $moveElement.find(".m-touch-tab-item").eq(Math.abs(translateIndex));
-
                     m(this).emit("tab.m.touch.tab", [$activeEl, Math.abs(translateIndex)]);
 
                     // 设置选择的样式
@@ -122,11 +129,9 @@
 
                     // 触发自定义的事件
                     m(this).emit("end.m.touch.tab", [this, target, obj]);
-
                     obj.oneTouch = undefined;
 
                 }
-
 
             }
 
@@ -136,7 +141,8 @@
     };
 
     MTouchTab.DEFAULTS = {
-        cubicBezier: " cubic-bezier(.31,.66,.64,.98)"
+        cubicBezier: " ease",
+        limit: 0.15
     };
 
    
@@ -144,12 +150,16 @@
 
         var $m_touch_lr = m(this.el);
         var wraperWidth = m(this.el).outerWidth();
-        var $moveElement = $m_touch_lr.find(".m-touch-tab-cnt");
-        $moveElement.translateX(-wraperWidth * translateIndex);
-        $moveElement.transition("transform  .4s " + MTouchTab.DEFAULTS.cubicBezier);
-
+        var $moveElment = $m_touch_lr.find(".m-touch-tab-cnt");
+        var moveXSpace = wraperWidth - $moveElment.outerWidth();
+        var moveVal = -wraperWidth * translateIndex;
+        moveVal=moveXSpace >= moveVal ? moveXSpace : moveVal;
+        $moveElment.translateX(moveVal);
+        $moveElment.transition("transform  .4s " + MTouchTab.DEFAULTS.cubicBezier);  
+        if (this.options.fade) { $moveElment.transition("opacity  .4s " + MTouchTab.DEFAULTS.cubicBezier); }
+     
         // 触发自定义的事件
-        var $activeEl = $moveElement.find(".m-touch-tab-item").eq(Math.abs(translateIndex));
+        var $activeEl = $moveElment.find(".m-touch-tab-item").eq(Math.abs(translateIndex));
      
         // 设置选择的样式
         $activeEl.addClass("active").siblings().removeClass("active");
@@ -163,9 +173,9 @@
             var $this = $(this);
             var data = $this.data('m-touch-tab');
             var options = typeof option === 'object' && option;
-
             if (!data) {
                 var o = {};
+                o.limit = $this.attr("data-limit") ? Number($this.attr("data-limit")) : MTouchTab.DEFAULTS.limit;
                 var p = $.extend({}, o, options);
                 $this.data('m-touch-tab', data = new MTouchTab(this, p));
             }

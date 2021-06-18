@@ -1,23 +1,19 @@
-
 <!-- 1. css  style  区域 -->
 <style>
 
-        /* 注意！这里样式是加载渲染后是全局的
-       局部区分为内容区域标签加上id或class
-       路由模块隐藏后style块里样式被删除
-    */
-        #template .pre-box {
-            padding: .5rem;
-        }
 
-        #template pre {
-            white-space: pre-wrap;
-            background: #333;
-            color: #fff;
-            padding: .2rem;
-            border-radius: .25rem;
-            box-shadow: inset 2px 2px 5px rgba(0,0,0,.2);
-        }
+    #template .pre-box {
+        padding: .5rem;
+    }
+
+    #template pre {
+        white-space: pre-wrap;
+        background: #333;
+        color: #fff;
+        padding: .2rem;
+        border-radius: .25rem;
+        box-shadow: inset 2px 2px 5px rgba(0,0,0,.2);
+    }
 </style>
 
 <!--2.内容区域 -->
@@ -26,8 +22,8 @@
         <div class="m-overflow-tb-cnt">
 
             <!--内容start -->
-           
-            <button class="m-btn m-btn-success m-btn-block" type="button">alert信息框 属性设置</button>
+
+            <button class="m-btn m-btn-success m-btn-block ddd" type="button">alert信息框 属性设置</button>
             <!--内容end -->
         </div>
     </div>
@@ -48,8 +44,8 @@
 
         /*加载js的列表 */
         loadJs: [
-            //"../js/m-vd.js",
-            //"../js/cityData.js"
+            //"./js/m-vd.js",
+            //"./js/cityData.js"
         ],
         // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
 
@@ -61,10 +57,10 @@
 
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
-            
+
 
             // alert信息框 属性设置
-            m(".m-btn-success",context).tap(function () {
+            m(".m-btn-success", context).tap(function () {
 
                 $.mAlert(
                     "这是提示的信息！",

@@ -1,10 +1,7 @@
 +function () {
 
     //  m-info
-    m.extend({
-        mLoading: _mLoading
-    });
-
+   
     function _mLoading() {
 
         $(".m-loading").remove();
@@ -32,16 +29,18 @@
 		m.router.ismask=true;
         
     }
-
-    m.extend({
-        mLoadingHide: _mLoadingHide
-    });
-
     function _mLoadingHide() {
 
         $(".m-loading").remove();
-		m.router.ismask=false;
-        
+        m.router.ismask = false;
+
 
     }
+  
+    m.extend({
+        mLoading: _mLoading,
+        mLoadingHide: _mLoadingHide
+    });
+
+    
 }();

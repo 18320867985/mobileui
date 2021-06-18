@@ -42,7 +42,6 @@
     MTouchTabBtn.prototype.set = function (index) {
 
         this.active(index);
-
     };
 
     MTouchTabBtn.prototype.active = function (index) {
@@ -54,7 +53,7 @@
         if (self.options.line) {
             var w = m(self.el).find(".m-touch-tab-btn-item").outerWidth();
             m(self.el).find(".m-touch-tab-btn-line").translateX(w * index);
-            m(self.el).find(".m-touch-tab-btn-line").transition("transform .8s ease");
+            m(self.el).find(".m-touch-tab-btn-line").transition("transform .4s ease");
         }
 
         // 触发自定义的事件
@@ -73,7 +72,6 @@
             m(this.el).find(".m-touch-tab-btn-item").eq(_index).addClass("active").siblings().removeClass("active");
         }
       
-
     };
 
 
@@ -84,7 +82,6 @@
             var $this = $(this);
             var data = $this.data('m-touch-tab-btn');
             var options = typeof option === 'object' && option;
-
             if (!data) {
                 var o = {};
                 o.line = $this.hasAttr("data-line");

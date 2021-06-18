@@ -1,22 +1,22 @@
-﻿<!-- 1. css  style  区域 -->
+<!-- 1. css  style  区域 -->
 <style>
 
-  /* 注意！这里样式是加载渲染后是全局的
-   局部区分为内容区域标签加上id或class
-   路由模块隐藏后style块里样式被删除
-*/
-  #template .pre-box {
+    #template .pre-box {
         padding: .5rem;
-   }
-  #template  pre {
-        white-space:pre-wrap;
+    }
+
+    #template pre {
+        white-space: pre-wrap;
         background: #333;
         color: #fff;
-        padding:.2rem;
-        border-radius:.25rem;
+        padding: .2rem;
+        border-radius: .25rem;
         box-shadow: inset 2px 2px 5px rgba(0,0,0,.2);
     }
 </style>
+
+<!--加载link的 css-->
+<!--<link rel="stylesheet" type="text/css" href="./css/page.css" />-->
 
 <!--2.内容区域 -->
 <section class="m-router-cnt" id="template">
@@ -28,18 +28,17 @@
 
     <!--m-router-bd 中间 -->
     <div class="m-router-bd">
-     
+
         <div class="pre-box">
             <pre>
 &lt;!--1.css style 区域标签-->
 &lt;style>
-/* 注意！这里样式是加载渲染后是全局的
-   局部区分为内容区域标签加上id或class
-  路由模块隐藏后style块里样式被删除
-*/
     #template .elm {
     }
 &lt;/style>
+
+ &lt;!--加载link的 css-->
+ &lt;link rel="stylesheet" type="text/css" href="./css/page.css" />
 
 &lt;!--2.内容区域标签  -->
 &lt;section class="m-router-cnt"id="template">
@@ -66,13 +65,20 @@ m.router.page({
       routerTilteColor: "red", 
       routerClass:"router-class-1" 
     }, 
-     /* 加载js的列表 */
+	
+    /*加载js的列表 */
     loadJs :[],
-     /* 生命周期函数--监听页面加载完成 */
+	 
+	/*默认为isAmd=true异步加载js,isAmd=false同步加载js */
+	isAmd:true,
+	
+    /*生命周期函数-监听页面加载完成 */
     onLoad:function(){},
-     /*生命周期函数--监听页面显示 */
+	
+    /*生命周期函数-监听页面显示 */
     onShow:function(){},
-    /* 生命周期函数--监听页面隐藏 */
+	
+    /* 生命周期函数-监听页面隐藏 */
     onHide:function(){}         
     
 });
@@ -86,28 +92,28 @@ m.router.link => 跳转到下一页
 &lt;/script>
 
 </pre>
-                </div>
-         
+        </div>
+
     </div>
 
     <!--m-router-ft 底部 -->
     <div class="m-router-ft">
-        
+
     </div>
-    
+
 </section>
 
 <!-- js 区域 -->
 <script type="text/javascript">
 
-   /* 路由页面监听事件对象 */
+    /* 路由页面监听事件对象 */
     m.router.page({
 
         /* 设置当前路由页面的对象的参数 */
         setting: {
             routerTilte: "路由模板", // 路由页的标题
             // routerTilteColor: "red",  // 路由页的标题字体颜色
-           // routerClass:"router-class-1"   // 路由页的class
+            // routerClass:"router-class-1"   // 路由页的class
         },
 
         /*加载js的列表 */
@@ -138,7 +144,7 @@ m.router.link => 跳转到下一页
         // 生命周期函数--监听页面隐藏
         onHide: function (context) {
             // context 当前路由模块上下文对
-           // console.log("onHide", context);
+            // console.log("onHide", context);
 
         },
 

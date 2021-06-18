@@ -353,267 +353,283 @@
     };
 
 	// 扩展静态方法
-    Mobile.extend({
+	Mobile.extend({
 
-        noCoflict: function (deep) {
-            window.$ = _$;
-            window.m = _m;
-            if (deep) {
-                window.mobile = _mobile;
-            }
+		noCoflict: function (deep) {
+			window.$ = _$;
+			window.m = _m;
+			if (deep) {
+				window.mobile = _mobile;
+			}
 
-            return Mobile;
-        },
+			return Mobile;
+		},
 
-        each: function (els, fn) {
-            if (!els) {
-                throw new Error("els property type must is Array or Object");
-            }
-            for (var i = 0; i < els.length; i++) {
+		each: function (els, fn) {
+			if (!els) {
+				throw new Error("els property type must is Array or Object");
+			}
+			for (var i = 0; i < els.length; i++) {
 
-                if (typeof fn === "function") {
-                    var bl = fn.call(els[i], i, els[i]);
-                    if (bl === false) {
-                        break;
-                    }
-                }
-            }
-        },
+				if (typeof fn === "function") {
+					var bl = fn.call(els[i], i, els[i]);
+					if (bl === false) {
+						break;
+					}
+				}
+			}
+		},
 
-        ready: function (fn) {
+		ready: function (fn) {
 
-            if (typeof fn === "function") {
-                window.addEventListener("load", fn);
+			if (typeof fn === "function") {
+				window.addEventListener("load", fn);
 
-            }
-            return;
-        },
+			}
+			return;
+		},
 
-        // 列表项和子项的匹配	
-        isEqual: function (list, item) {
-            list = list || [];
-            for (var i = 0; i < list.length; i++) {
+		// 列表项和子项的匹配	
+		isEqual: function (list, item) {
+			list = list || [];
+			for (var i = 0; i < list.length; i++) {
 
-                if (list[i] === item) {
-                    return true;
-                }
-            }
+				if (list[i] === item) {
+					return true;
+				}
+			}
 
-            return false;
+			return false;
 
-        },
+		},
 
-        // html字符串转dom对象
-        htmlStringToDOM: function (txt) {
+		// html字符串转dom对象
+		htmlStringToDOM: function (txt) {
 
-            var df2 = document.createDocumentFragment();
-            var df = document.createDocumentFragment();
-            var div = document.createElement("div");
-            div.innerHTML = txt;
-            df.appendChild(div);
-            var _nodes = df.querySelector("div").childNodes;
-            for (var i = _nodes.length; i > 0; i--) {
-                df2.insertBefore(_nodes[i - 1], df2.childNodes[0]);
-            }
-            df = null;
-            return df2;
+			var df2 = document.createDocumentFragment();
+			var df = document.createDocumentFragment();
+			var div = document.createElement("div");
+			div.innerHTML = txt;
+			df.appendChild(div);
+			var _nodes = df.querySelector("div").childNodes;
+			for (var i = _nodes.length; i > 0; i--) {
+				df2.insertBefore(_nodes[i - 1], df2.childNodes[0]);
+			}
+			df = null;
+			return df2;
 
-        },
+		},
 
-        checkSelector: function (el, txt) {
-            if (!el) { return false; }
-            txt = typeof txt === "string" ? txt : "";
-            if (txt.trim() === "") {
-                return false;
-            }
-            var regId = /\#[a-zA-Z_][\w|-]*[^\.|^#|\[]{0,}/g;
-            var regClass = /\.[a-zA-Z_][\w|-]*[^\.|^#|\[]{0,}/g;
-            var regTag = /^[a-zA-Z_][\w|-]*[^\.|^#|\[]{0,}|[\]][a-zA-Z_][\w|-]*[^\.|^#|\[]{0,}/g;
-            var regAttr = /\[[a-zA-Z][\w-=]*\]/g;
+		checkSelector: function (el, txt) {
+			if (!el) { return false; }
+			txt = typeof txt === "string" ? txt : "";
+			if (txt.trim() === "") {
+				return false;
+			}
+			var regId = /\#[a-zA-Z_][\w|-]*[^\.|^#|\[]{0,}/g;
+			var regClass = /\.[a-zA-Z_][\w|-]*[^\.|^#|\[]{0,}/g;
+			var regTag = /^[a-zA-Z_][\w|-]*[^\.|^#|\[]{0,}|[\]][a-zA-Z_][\w|-]*[^\.|^#|\[]{0,}/g;
+			var regAttr = /\[[a-zA-Z][\w-=]*\]/g;
 
-            var idList = txt.match(regId) || [];
-            idList = rep(idList, "#", "");
-            var isIdBl = isId(el, idList, txt);
-            //alert(isIdBl)
+			var idList = txt.match(regId) || [];
+			idList = rep(idList, "#", "");
+			var isIdBl = isId(el, idList, txt);
+			//alert(isIdBl)
 
-            var classList = txt.match(regClass) || [];
-            classList = rep(classList, ".", "");
-            var isClassBl = isclass(el, classList, txt);
-            //alert(isClassBl)
+			var classList = txt.match(regClass) || [];
+			classList = rep(classList, ".", "");
+			var isClassBl = isclass(el, classList, txt);
+			//alert(isClassBl)
 
-            var tagList = txt.match(regTag) || [];
-            tagList = rep(tagList, "]", "");
-            var isTagBl = istag(el, tagList, txt);
-            //alert(isTagBl)
+			var tagList = txt.match(regTag) || [];
+			tagList = rep(tagList, "]", "");
+			var isTagBl = istag(el, tagList, txt);
+			//alert(isTagBl)
 
-            var attrList = txt.match(regAttr) || [];
-            attrList = rep(attrList, "[", "");
-            attrList = rep(attrList, "]", "");
-            var isAttrBl = isAttr(el, attrList, txt);
-            //alert(attrList)
+			var attrList = txt.match(regAttr) || [];
+			attrList = rep(attrList, "[", "");
+			attrList = rep(attrList, "]", "");
+			var isAttrBl = isAttr(el, attrList, txt);
+			//alert(attrList)
 
-            function rep(list, old, now) {
-                var arr = [];
-                for (var i = 0; i < list.length; i++) {
-                    arr.push(list[i].replace(old, now));
-                }
+			function rep(list, old, now) {
+				var arr = [];
+				for (var i = 0; i < list.length; i++) {
+					arr.push(list[i].replace(old, now));
+				}
 
-                return arr;
-            }
+				return arr;
+			}
 
-            function isId(el, idList, searchTxt) {
+			function isId(el, idList, searchTxt) {
 
-                if (searchTxt.search(/#/) === -1) {
-                    return true;
-                } else if (searchTxt.search(/#/) !== -1 && idList.length === 0) {
-                    return false;
-                }
+				if (searchTxt.search(/#/) === -1) {
+					return true;
+				} else if (searchTxt.search(/#/) !== -1 && idList.length === 0) {
+					return false;
+				}
 
-                // 上条件不符合  向下执行
-                var id = el.id || "";
-                for (var i = 0; i < idList.length; i++) {
-                    if (idList[i] === id) {
-                        return true;
-                    }
-                }
-                return false;
+				// 上条件不符合  向下执行
+				var id = el.id || "";
+				for (var i = 0; i < idList.length; i++) {
+					if (idList[i] === id) {
+						return true;
+					}
+				}
+				return false;
 
-            }
+			}
 
-            function isclass(el, idList, searchTxt) {
-                if (searchTxt.search(/\./) === -1) {
-                    return true;
-                } else if (searchTxt.search(/\./) !== -1 && idList.length === 0) {
-                    return false;
-                }
+			function isclass(el, idList, searchTxt) {
+				if (searchTxt.search(/\./) === -1) {
+					return true;
+				} else if (searchTxt.search(/\./) !== -1 && idList.length === 0) {
+					return false;
+				}
 
-                // 上条件不符合  向下执行
-                var _class = el.classList || "";
+				// 上条件不符合  向下执行
+				var _class = el.classList || "";
 
-                for (var i = 0; i < idList.length; i++) {
-                    if (!_class.contains(idList[i])) {
-                        return false;
-                    }
-                }
-                return true;
+				for (var i = 0; i < idList.length; i++) {
+					if (!_class.contains(idList[i])) {
+						return false;
+					}
+				}
+				return true;
 
-            }
+			}
 
-            function istag(el, idList, searchTxt) {
-                if (searchTxt.search(/^[a-zA-Z_]*|[\]][a-zA-Z_]/) === -1) {
-                    return true;
-                } else if (searchTxt.search(/^[a-zA-Z_]|[\]][a-zA-Z_]/) !== -1 && idList.length === 0) {
-                    return false;
-                }
+			function istag(el, idList, searchTxt) {
+				if (searchTxt.search(/^[a-zA-Z_]*|[\]][a-zA-Z_]/) === -1) {
+					return true;
+				} else if (searchTxt.search(/^[a-zA-Z_]|[\]][a-zA-Z_]/) !== -1 && idList.length === 0) {
+					return false;
+				}
 
-                // 上条件不符合  向下执行
-                var _tag = (el.nodeName || "").toLowerCase();
+				// 上条件不符合  向下执行
+				var _tag = (el.nodeName || "").toLowerCase();
 
-                for (var i = 0; i < idList.length; i++) {
-                    if (idList[i].trim() !== _tag) {
-                        return false;
-                    }
-                }
-                return true;
+				for (var i = 0; i < idList.length; i++) {
+					if (idList[i].trim() !== _tag) {
+						return false;
+					}
+				}
+				return true;
 
-            }
+			}
 
-            function isAttr(el, idList, searchTxt) {
+			function isAttr(el, idList, searchTxt) {
 
-                if (searchTxt.search(/\[.*\]/) === -1) {
-                    return true;
-                } else if (searchTxt.search(/\[.*\]/) !== -1 && idList.length === 0) {
-                    return false;
-                }
+				if (searchTxt.search(/\[.*\]/) === -1) {
+					return true;
+				} else if (searchTxt.search(/\[.*\]/) !== -1 && idList.length === 0) {
+					return false;
+				}
 
-                // 上条件不符合  向下执行
-                //var _tag = el.getat
-                var _reg2 = /=/g;
-                for (var i = 0; i < idList.length; i++) {
+				// 上条件不符合  向下执行
+				//var _tag = el.getat
+				var _reg2 = /=/g;
+				for (var i = 0; i < idList.length; i++) {
 
-                    if (_reg2.test(idList[i])) {
-                        //alert(idList[i]);
-                        var arr2 = idList[i].split("=");
-                        if ((el.getAttribute(arr2[0]) || "").trim() !== (arr2[1] || "").trim()) {
-                            return false;
-                        }
-                    } else {
+					if (_reg2.test(idList[i])) {
+						//alert(idList[i]);
+						var arr2 = idList[i].split("=");
+						if ((el.getAttribute(arr2[0]) || "").trim() !== (arr2[1] || "").trim()) {
+							return false;
+						}
+					} else {
 
-                        if (!el.hasAttribute(idList[i])) {
-                            return false;
-                        }
-                    }
+						if (!el.hasAttribute(idList[i])) {
+							return false;
+						}
+					}
 
-                }
-                return true;
+				}
+				return true;
 
-            }
+			}
 
-            return isIdBl && isClassBl && isTagBl && isAttrBl;
-        },
+			return isIdBl && isClassBl && isTagBl && isAttrBl;
+		},
 
-        trim: function (txt) {
-            var str = "";
-            txt = typeof txt === "string" ? txt : "";
-            str = txt.replace(/^\s*|\s*$/img, "");
-            return str;
-        },
+		trim: function (txt) {
+			var str = "";
+			txt = typeof txt === "string" ? txt : "";
+			str = txt.replace(/^\s*|\s*$/img, "");
+			return str;
+		},
 
-        round: function (value, ratio) {
+		round: function (value, ratio) {
 
-            if (arguments.length === 1) {
+			if (arguments.length === 1) {
 
-                if (typeof value === "number") {
-                    return Math.round(value);
-                }
+				if (typeof value === "number") {
+					return Math.round(value);
+				}
 
-            } else if (arguments.length === 2) {
-                if (typeof value === "number" && typeof ratio === "number") {
+			} else if (arguments.length === 2) {
+				if (typeof value === "number" && typeof ratio === "number") {
 
-                    var _v = Math.floor(value);
-                    _v = _v + ratio;
+					var _v = Math.floor(value);
+					_v = _v + ratio;
 
-                    if (value > _v) {
-                        return Math.ceil(value);
-                    } else {
-                        return Math.floor(value);
-                    }
+					if (value > _v) {
+						return Math.ceil(value);
+					} else {
+						return Math.floor(value);
+					}
 
-                }
+				}
 
-            }
+			}
 
-            return null;
-        },
+			return null;
+		},
 
-        // 检查是否为移动端
-        isMobile: function () {
+		// 检查是否为移动端
+		isMobile: function () {
 
-            var userAgentInfo = navigator.userAgent.toString().toLowerCase();
-            var Agents = ["Android", "iPhone",
-                "SymbianOS", "Windows Phone",
-                "iPad", "iPod"
-            ];
-            //console.log(userAgentInfo)
-            var flag = false;
-            for (var v = 0; v < Agents.length; v++) {
-                if (userAgentInfo.indexOf(Agents[v].toLowerCase()) > 0) {
-                    flag = true;
-                    break;
-                }
-            }
-            return flag;
+			var userAgentInfo = navigator.userAgent.toString().toLowerCase();
+			var Agents = ["Android", "iPhone",
+				"SymbianOS", "Windows Phone",
+				"iPad", "iPod"
+			];
+			//console.log(userAgentInfo)
+			var flag = false;
+			for (var v = 0; v < Agents.length; v++) {
+				if (userAgentInfo.indexOf(Agents[v].toLowerCase()) > 0) {
+					flag = true;
+					break;
+				}
+			}
+			return flag;
 		},
 
 		//判断微信
-		isweixn() {
-				var ua = navigator.userAgent.toLowerCase();
-				if (ua.match(/MicroMessenger/i) === "micromessenger") {
-					return true;
-				} else {
-					return false;
-				}
-			},
+		isWeixn:function() {
+			var ua = navigator.userAgent.toLowerCase();
+			if (ua.match(/MicroMessenger/i) === "micromessenger") {
+				return true;
+			} else {
+				return false;
+			}
+		},
+
+		//ios终端
+		isIos: function () {
+			
+			var u = navigator.userAgent;
+			return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+		},
+		//android终端
+		isAdr: function () {
+
+			var u = navigator.userAgent;
+			return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+			
+
+		},
 
 		/* jsonToDate 
 		  /Date(1492048799952)/ 或 1492048799952
@@ -2252,17 +2268,14 @@
 		},
 
 		// window cancel event
-		windowcancel: function(fn) {
-			var $this = this[0] || {};
-			m(window).on("touchstart", function(event) {
+		//windowcancel: function(fn) {
+		//	var $this = this;
+		//	m(window).on("touchend", function(event) {
 
-				m(event.target).one("touchend", function(event) {
-					fn.call($this, event);
+		//		fn.call($this, event);
 
-				});
-
-			});
-		},
+		//	});
+		//},
 
 		// tap
 		tap: function() {

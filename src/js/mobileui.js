@@ -586,7 +586,7 @@ var mobileDom = createCommonjsModule(function (module) {
 			},
 
 			//判断微信
-			isweixn: function isweixn() {
+			isWeixn: function isWeixn() {
 				var ua = navigator.userAgent.toLowerCase();
 				if (ua.match(/MicroMessenger/i) === "micromessenger") {
 					return true;
@@ -595,6 +595,19 @@ var mobileDom = createCommonjsModule(function (module) {
 				}
 			},
 
+			//ios终端
+			isIos: function isIos() {
+
+				var u = navigator.userAgent;
+				return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+			},
+			//android终端
+			isAdr: function isAdr() {
+
+				var u = navigator.userAgent;
+				return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+
+			},
 
 			/* jsonToDate 
      /Date(1492048799952)/ 或 1492048799952
@@ -2362,7 +2375,6 @@ var mobileDom = createCommonjsModule(function (module) {
         // 多指触摸
         touch: function touch(startfn, movefn, endfn, bl) {
 
-            var $self = this;
             bl = !!bl;
             this.isAddMoveEventFirst = true; // 判断是否第一次拖动
             this.startX = 0;
@@ -2382,6 +2394,8 @@ var mobileDom = createCommonjsModule(function (module) {
                     timestamp
                 }
             */
+
+            var $self = this;
             $self.tempObj = [];
             m(this).touchstart(function (event) {
 
@@ -2432,7 +2446,7 @@ var mobileDom = createCommonjsModule(function (module) {
 
                     if (typeof startfn === "function") {
                         //event.obj=obj;
-                        startfn.call($this, event, $self.obj);
+                        startfn.call($this, event, $self.obj, $self);
                     }
 
                     // 异常处理
@@ -2443,7 +2457,7 @@ var mobileDom = createCommonjsModule(function (module) {
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
             }, bl);
@@ -2498,7 +2512,7 @@ var mobileDom = createCommonjsModule(function (module) {
 
                     if (typeof movefn === "function") {
                         //event.obj=obj;
-                        movefn.call($this, event, $self.obj);
+                        movefn.call($this, event, $self.obj, $self);
                     }
 
                     // 异常处理
@@ -2508,12 +2522,13 @@ var mobileDom = createCommonjsModule(function (module) {
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
             }, bl);
 
             m(this).touchendcancel(function (event) {
+
                 var $this = this;
                 try {
 
@@ -2552,7 +2567,7 @@ var mobileDom = createCommonjsModule(function (module) {
                         if (typeof endfn === "function") {
 
                             //event.obj=obj;
-                            endfn.call($this, event, $self.obj);
+                            endfn.call($this, event, $self.obj, $self);
                         }
                     }
 
@@ -2563,7 +2578,7 @@ var mobileDom = createCommonjsModule(function (module) {
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
             }, bl);
@@ -2593,7 +2608,7 @@ var mobileDom = createCommonjsModule(function (module) {
                 }
             */
             $self.tempObj = [];
-            m(document).on("touchstart", deletage, function (event) {
+            m(this).on("touchstart", deletage, function (event) {
 
                 var $this = this;
                 try {
@@ -2642,7 +2657,7 @@ var mobileDom = createCommonjsModule(function (module) {
 
                     if (typeof startfn === "function") {
                         //event.obj=obj;
-                        startfn.call($this, event, $self.obj);
+                        startfn.call($this, event, $self.obj, $self);
                     }
 
                     // 异常处理
@@ -2653,12 +2668,12 @@ var mobileDom = createCommonjsModule(function (module) {
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
             }, bl);
 
-            m(document).on("touchmove", deletage, function (event) {
+            m(this).on("touchmove", deletage, function (event) {
                 var $this = this;
                 try {
 
@@ -2708,7 +2723,7 @@ var mobileDom = createCommonjsModule(function (module) {
 
                     if (typeof movefn === "function") {
                         //event.obj=obj;
-                        movefn.call($this, event, $self.obj);
+                        movefn.call($this, event, $self.obj, $self);
                     }
 
                     // 异常处理
@@ -2718,12 +2733,12 @@ var mobileDom = createCommonjsModule(function (module) {
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
             }, bl);
 
-            m(document).on("touchend", deletage, function (event) {
+            m(this).on("touchend", deletage, function (event) {
                 var $this = this;
                 try {
 
@@ -2762,7 +2777,7 @@ var mobileDom = createCommonjsModule(function (module) {
                         if (typeof endfn === "function") {
 
                             //event.obj=obj;
-                            endfn.call($this, event, $self.obj);
+                            endfn.call($this, event, $self.obj, $self);
                         }
                     }
 
@@ -2773,12 +2788,12 @@ var mobileDom = createCommonjsModule(function (module) {
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
             }, bl);
 
-            m(document).on("touchcancel", deletage, function (event) {
+            m(this).on("touchcancel", deletage, function (event) {
                 var $this = this;
                 try {
 
@@ -2817,7 +2832,7 @@ var mobileDom = createCommonjsModule(function (module) {
                         if (typeof endfn === "function") {
 
                             //event.obj=obj;
-                            endfn.call($this, event, $self.obj);
+                            endfn.call($this, event, $self.obj, $self);
                         }
                     }
 
@@ -2828,7 +2843,7 @@ var mobileDom = createCommonjsModule(function (module) {
                     $self.isAddMoveEventFirst = true; // 判断是否第一次拖动
                     if (typeof endfn === "function") {
                         //event.obj=obj;
-                        endfn.call($this, event, $self.obj);
+                        endfn.call($this, event, $self.obj, $self);
                     }
                 }
             }, bl);
@@ -3010,6 +3025,7 @@ var mobileDom = createCommonjsModule(function (module) {
 			$.extend(_ajaxSetup, options);
 			return _ajaxSetup;
 		},
+
 		ajax: function ajax(options) {
 
 			options = (typeof options === "undefined" ? "undefined" : _typeof(options)) === "object" ? options : {};
@@ -3375,7 +3391,6 @@ css3 transition
         return deg >= 360 ? 0 : deg;
     }
 
-    // setTransform 
     function setTransform(transforName, value, value2) {
 
         // 参数为3个
@@ -3461,7 +3476,6 @@ css3 transition
         return this;
     }
 
-    // getTransform  by css
     function getTransformByCss(transforName) {
 
         var result;
@@ -3633,10 +3647,8 @@ css3 transition
         return result;
     }
 
-    // transform 
     m.fn.extend({
 
-        // translate
         translate: function translate() {
 
             if (arguments.length === 0) {
@@ -3907,28 +3919,18 @@ css3 transition
         }
     };
 
-    Router.extend = function (obj) {
-        if ((typeof obj === "undefined" ? "undefined" : _typeof(obj)) === "object") {
-            for (var i in obj) {
-                this[i] = obj[i];
-            }
-        }
-        return this;
-    };
-
-    // base url;
     Router.transitionTime = 250;
     Router.fineObjs = {};
     Router.baseUrl = "";
-    Router.urls = []; // js 加载集合
+    Router.jsLists = []; // js 加载集合
     Router.htmlUrls = []; // html 文件的 css js 集合
     Router.caches = [];
     Router.ids = [];
     Router.tapTime = new Date().getTime(); // 点击相隔的时间
     Router.ckUrl = function (url) {
 
-        for (var i = 0; i < Router.urls.length; i++) {
-            var _url = Router.urls[i];
+        for (var i = 0; i < Router.jsLists.length; i++) {
+            var _url = Router.jsLists[i];
             if (url === _url) {
                 return false;
             }
@@ -3936,21 +3938,444 @@ css3 transition
 
         return true;
     };
+    Router.emitOnly = true;
+    Router.isOneMove = true;
 
-    Router.ckHtmlUrl = function (url) {
+    function _addAllIterator(itr, fn2, url, arrs) {
 
-        for (var i = 0; i < Router.htmlUrls.length; i++) {
-            var _url = Router.htmlUrls[i];
-            if (url === _url) {
-                return true;
+        var doc = document.body || document.getElementsByTagName('body')[0];
+        var _url = Router.baseUrl + url;
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = _url;
+        script.setAttribute("data-src", _url);
+
+        // js加载完成执行方法 ie9+
+        if (window.addEventListener) {
+            script.onload = function () {
+                Router.jsLists.push(url);
+                var itrObj = itr.next();
+                if (itrObj.done) {
+                    Router.runIncludeAndCache();
+                    var $el = m("#m-router-" + Router.getId());
+                    var parameter = _getUrlParameter($el);
+                    fn2.apply($el, $el, parameter);
+
+                    // 监听页面显示 触发的事件
+                    $el.emit("m-router-show", [$el, Router.getId()]);
+                }
+            };
+            doc.appendChild(script);
+        }
+    }
+
+    function _addAllIteratorSync(itr, fn2, url, arrs) {
+
+        var doc = document.body || document.getElementsByTagName('body')[0];
+        var _url = Router.baseUrl + url;
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = _url;
+        script.setAttribute("data-src", _url);
+
+        //js加载完成执行方法 ie9+
+        if (window.addEventListener) {
+            var $el = m("#m-router-" + Router.getId());
+            script.onload = function () {
+                Router.jsLists.push(url);
+                var itrObj = itr.next();
+                if (itrObj.done) {
+                    Router.runIncludeAndCache();
+                    var parameter = _getUrlParameter($el);
+                    fn2.apply($el, $el, parameter);
+
+                    // 监听页面显示 触发的事件
+                    $el.emit("m-router-show", [$el, Router.getId()]);
+                } else {
+                    _addAllIteratorSync(itr, fn2, itrObj.value, arrs);
+                }
+            };
+            doc.appendChild(script);
+        }
+    }
+
+    function _activeUrls(list) {
+        var arrs = [];
+        for (var i = 0; i < list.length; i++) {
+            var _url = list[i];
+
+            var bl = true;
+            for (var y = 0; y < Router.jsLists.length; y++) {
+                var _url2 = Router.jsLists[y];
+                if (_url === _url2) {
+                    bl = false;
+                }
+            }
+
+            if (bl) {
+                arrs.push(_url);
             }
         }
 
-        return false;
-    };
+        return arrs;
+    }
 
-    Router.emitOnly = true;
-    Router.isOneMove = true;
+    function _getCurrentScript() {
+
+        if (document.currentScript) {
+
+            return document.currentScript.getAttribute("data-src") || "";
+        } else {
+            var stack,
+                e,
+                nodes = document.getElementsByTagName("script");
+            for (var i = 0, node; i < nodes.length; i++) {
+                node = nodes[i];
+
+                if (node.readyState === "interactive") {
+                    // ie8 ,ie9 ie10
+                    return node.getAttribute("data-src") || "";
+                } else if (!node.readyState) {
+
+                    // ie11
+                    try {
+                        throw Error("强制报错,以便捕获e.stack,获取JS路径有误");
+                    } catch (e) {
+                        stack = e.stack;
+
+                        if (e.sourceURL) {
+                            //safari
+                            saf = e.sourceURL;
+                        }
+                    }
+                    if (stack) {
+
+                        e = stack.indexOf(' at ') !== -1 ? ' at ' : '@';
+                        while (stack.indexOf(e) !== -1) {
+                            stack = stack.substring(stack.indexOf(e) + e.length);
+                        }
+
+                        var mchs = stack.match(/(http|https):\/\/.*\.js/)[0];
+                        mchs = mchs.split("/");
+                        mchs = mchs[mchs.length - 1];
+                        var mch = mchs.match(/.*\.js$/)[0];
+                        var srp = _getScriptByFileName(mch);
+                        var src = srp.getAttribute("data-src");
+                        return src;
+                    }
+                }
+            }
+        }
+    }
+
+    function _getScriptByFileName(fileName) {
+        var srps = document.getElementsByTagName("script");
+        var list = [];
+        for (var i = 0; i < srps.length; i++) {
+            var o = srps[i];
+            var reg = new RegExp(fileName, "img");
+            var src = o.getAttribute("src");
+            if (reg.test(src)) {
+                list.push(o);
+            }
+        }
+
+        return list.length > 0 ? list[list.length - 1] : {};
+    }
+
+    function _compilerHtml(obj, src, prop, isReplace, fn, id) {
+        prop = prop || {};
+        Router.get(src, prop, function (data) {
+
+            m(obj).find("._loading-dh").hide();
+            var newElement = Router.htmlStringToDOM(data);
+
+            /*----------------------添加 style 标签 兼容 ie9+--------------------------------*/
+            var els_style = newElement.childNodes;
+            var doc_style = document.createDocumentFragment();
+            for (var i0 = els_style.length - 1; i0 >= 0; i0--) {
+                var el = els_style[i0];
+                if (el.nodeType === 1 && el.nodeName === "STYLE") {
+                    el.setAttribute("data-Router-id", id);
+                    if (window.addEventListener) {
+                        doc_style.insertBefore(el, doc_style.childNodes[0]);
+                    } else {
+                        doc_style.insertBefore(el, doc_style.firstChild);
+                    }
+                }
+            }
+            document.getElementsByTagName("head")[0].appendChild(doc_style);
+
+            /* ----------------------添加 link 标签 兼容 ie9 + --------------------------------*/
+            var els_link = newElement.childNodes;
+            var doc_link = document.createDocumentFragment();
+
+            for (var i1 = els_link.length - 1; i1 >= 0; i1--) {
+                var el1 = els_link[i1];
+
+                if (el1.nodeType === 1 && el1.tagName === "LINK") {
+
+                    // Router.htmlUrls 集合检测
+                    el1.setAttribute("type", "text/html");
+                    el1.setAttribute("data-Router-id", id);
+                    el1.setAttribute("type", "text/css");
+
+                    if (window.addEventListener) {
+                        doc_link.insertBefore(el1, doc_link.childNodes[0]);
+                    } else {
+                        doc_link.insertBefore(el1, doc_link.firstChild);
+                    }
+                }
+            }
+            document.getElementsByTagName("head")[0].appendChild(doc_link);
+
+            /*----------------------添加 script 标签 兼容 ie8+--------------------------------*/
+            var els_scriprt = newElement.childNodes;
+            var doc_script = document.createDocumentFragment();
+
+            // 添加 新建 script
+            var docDfgTypeInSrc = document.createDocumentFragment();
+            var docDfgTypeInSrcIe8 = [];
+
+            for (var i2 = 0; i2 < els_scriprt.length; i2++) {
+                var el2 = els_scriprt[i2];
+
+                if (el2.nodeType === 1 && el2.tagName === "SCRIPT") {
+
+                    var script = document.createElement("script");
+                    script.type = "text/javascript";
+
+                    // 有 src属性值 链接
+                    if (el2.src) {
+
+                        script.src = el2.getAttribute("src") || "";
+                        // Router.htmlUrls 集合检测
+                        var include_HtmlUrl2 = script.src;
+                        if (Router.ckHtmlUrl(include_HtmlUrl2)) {
+                            continue;
+                        }
+                        Router.htmlUrls.push(include_HtmlUrl2);
+
+                        if (window.addEventListener) {
+                            docDfgTypeInSrc.insertBefore(script, doc_script.childNodes[0]);
+                        } else {
+                            // doc.appendChild(script);
+                            docDfgTypeInSrc.insertBefore(script, doc_script.firstChild);
+                        }
+
+                        //js加载完成执行方法 ie9+
+                        if (window.addEventListener) {
+                            script.onload = function () {
+                                // 执行define 定义的函数
+                                Router.runInclude();
+                            };
+                        }
+                    } else {
+
+                        // 没有src属性值 应用script 为本内容
+                        var jscontent = el2.innerHTML || "";
+                        script.setAttribute("data-Router-id", id);
+                        if (jscontent) {
+
+                            // ie9+
+                            if (window.addEventListener) {
+
+                                docDfgTypeInSrc.insertBefore(script, doc_script.childNodes[0]);
+                                script.innerHTML = jscontent;
+                            } else {
+                                // ie8
+                                docDfgTypeInSrc.insertBefore(script, doc_script.firstChild);
+                                script.jscode = jscontent;
+                                docDfgTypeInSrcIe8.push(jscontent);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // 删除原有 script
+            for (var i3 = els_scriprt.length - 1; i3 >= 0; i3--) {
+                var el3 = els_scriprt[i3];
+                if (el3.nodeType === 1 && el3.tagName === "SCRIPT") {
+
+                    // 删除节点
+                    if (el3.parentNode) {
+                        var els = el3.parentNode;
+                        els.removeChild(el3);
+                    }
+                }
+            }
+
+            // <inlude>标签 添加到document
+            if (isReplace) {
+
+                var parent = obj.parentNode;
+                if (window.addEventListener) {
+                    parent.replaceChild(newElement, obj);
+                } else {
+
+                    // supper ie8
+                    if ($) {
+                        $(newElement).replaceAll($(obj));
+                    }
+                }
+            } else {
+                //  require 添加到document
+                obj.appendChild(newElement);
+
+                // callback function
+                if (typeof fn === "function") {
+                    fn();
+                }
+            }
+
+            // 没有src属性值 不是script元素加载后完成 再添加到页面
+            // ie9+
+            if (window.addEventListener) {
+
+                document.getElementsByTagName("body")[0].appendChild(docDfgTypeInSrc);
+            }
+        }, function () {
+            // 加载失败
+            var $p = m("#m-router-" + Router.getId());
+            //  m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="icon icon-nanguo"></span>~</div>`);
+            //m-router-cnt
+            $p.find(".m-router-loading").hide();
+            $p.append("<div class=\"m-router-loading-fail\">~\u6570\u636E\u52A0\u8F7D\u5931\u8D25\u4E86~</div>");
+        });
+    }
+
+    function _moveEl(el, isOneMove) {
+
+        m(el).touch(function (event, obj) {
+
+            obj.$moveElment = m(this);
+            obj.moveElmentX = obj.$moveElment.translateX();
+            obj.moveElmentWidth = obj.$moveElment.width();
+            obj.$prevEl = Router.getPrevEl();
+            obj.$prevEl.transition("none");
+            obj.$moveElment.transition("none");
+            var _id = Router.getId();
+
+            obj.maskEl = m("[data-router-id=m-router-" + _id + "]");
+
+            if (obj.x < obj.$moveElment.width() * 0.95) {
+
+                obj.isMove = true;
+            }
+            obj.window_w = m(window).width();
+            self.obj = obj;
+        }, function (event, obj) {
+            if (obj.isX) {
+                if (obj.oneTouch === 1) {
+                    return;
+                }
+                if (!obj.xlt && obj.x < 0 && obj.oneTouch === undefined) {
+                    obj.xlt = true;obj.oneTouch = 1;
+                } else {
+                    obj.xlt = false;obj.oneTouch = 2;
+                }
+
+                if (obj.xlt && obj.oneTouch === 1) {
+                    return;
+                }
+
+                var id = parseInt(obj.$moveElment.attr("data-router-id") || -1);
+                var _id = Router.getId();
+                if (obj.isX && obj.isMove && id === _id) {
+                    event.preventDefault();
+                    var translateX = obj.moveElmentX + obj.x;
+                    obj.$moveElment.removeClass("in");
+                    translateX = translateX <= 0 ? 0 : translateX;
+                    if (translateX > 0) {
+                        obj.$moveElment.addClass("m-router-box-move");
+                    }
+
+                    // 移动当前的路由页
+                    obj.$moveElment.translateX(translateX).translateZ(0);
+
+                    // 上一个元素的移动
+                    Router.isOneMove = false;
+                    var rt = translateX / obj.moveElmentWidth;
+                    var prevWidth = -obj.$prevEl.width() / 2;
+                    var movePrevWidth = prevWidth - prevWidth * rt;
+                    if (movePrevWidth > 0) {
+                        movePrevWidth = 0;
+                    }
+                    obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0);
+                }
+            }
+        }, function (event, obj) {
+
+            if (obj.isX) {
+                var t = 0.5;
+                var transition = "transform  " + Router.transitionTime * t + "ms ease";
+                if (obj.$moveElment.translateX() < obj.$moveElment.width() / 2) {
+                    obj.$moveElment.transition(transition);
+                    if (!Router.isOneMove) {
+                        obj.$moveElment.translateX(0).translateZ(0);
+                    }
+                    obj.$prevEl.transition(transition);
+                    obj.$prevEl.translateX(-obj.$prevEl.width() / 2).translateZ(0);
+                } else {
+                    Router.back(t, transition);
+                }
+                obj.isMove = false;
+            }
+
+            obj.xlt = null;
+            obj.oneTouch = undefined;
+            obj.$moveElment.removeClass("m-router-box-move");
+        });
+    }
+
+    function _setRouterObj(el, obj) {
+
+        m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
+        if (obj.routerTilteColor) {
+            m(".m-hd-top-ttl", el).css("color", obj.routerTilteColor);
+        }
+        if (obj.routerClass) {
+            m(el).addClass(obj.routerClass);
+        }
+    }
+
+    function _setUrlParameter(url) {
+
+        var obj = {};
+        url = typeof url === "string" ? url : "";
+        var urls = url.split("?");
+        if (urls.length === 2) {
+            var urlList = urls[1];
+
+            var reg = /&+/img;
+            var parameters = urlList.split(reg) || [];
+            parameters.forEach(function (item) {
+                var values = item.split("=");
+                obj[values[0]] = decodeURIComponent(values[1]);
+            });
+        }
+
+        return obj;
+    }
+
+    function _getUrlParameter(el) {
+        return m(el).data("parameter");
+    }
+
+    // 页面加载完成onload
+    function _load(obj, urls, onload, isAmd) {
+
+        isAmd = typeof isAmd === "boolean" ? isAmd : false;
+        if (isAmd) {
+            Router.req(obj, urls, onload);
+        } else {
+            Router.reqSync(obj, urls, onload);
+        }
+
+        // 执行页面的函数
+        Router.runBindFn();
+    }
 
     // 定义执行函数
     window.define = Router.define = function () {
@@ -4042,7 +4467,7 @@ css3 transition
         }
 
         var $el = Router.getActiveEl(); //m("#m-router-" + Router.getId());
-        _setRouterObj(el, obj);
+        _setRouterObj($el, obj);
 
         // 遍历器
         var activeUrls = _activeUrls(urls);
@@ -4064,7 +4489,7 @@ css3 transition
 
     // run Router.define and  caches
     Router.runIncludeAndCache = function () {
-        // console.log("fineObjs", Router.fineObjs);
+
         for (var name in Router.fineObjs) {
             var o = Router.fineObjs[name];
             if ((typeof o === "undefined" ? "undefined" : _typeof(o)) === "object") {
@@ -4131,466 +4556,27 @@ css3 transition
         };
     };
 
-    function _addAllIterator(itr, fn2, url, arrs) {
+    // 记录路的url的地址对象
+    Router.urlObj = {};
 
-        var doc = document.body || document.getElementsByTagName('body')[0];
-        var _url = Router.baseUrl + url;
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = _url;
-        script.setAttribute("data-src", _url);
+    // 添加url的地址
+    Router.addUrl = function (id, url) {
+        Router.urlObj[id] = url;
+    };
 
-        // js加载完成执行方法 ie9+
-        if (window.addEventListener) {
-            script.onload = function () {
-                Router.urls.push(url);
-                var itrObj = itr.next();
-                if (itrObj.done) {
-                    Router.runIncludeAndCache();
-                    var $el = m("#m-router-" + Router.getId());
-                    var parameter = _getUrlParameter($el);
-                    fn2.apply($el, $el, parameter);
+    // 清除url的地址
+    Router.clearUrl = function (id) {
+        delete Router.urlObj[id];
+    };
 
-                    // 监听页面显示 触发的事件
-                    $el.emit("m-router-show", [$el, Router.getId()]);
-                }
-            };
-            doc.appendChild(script);
+    // 获取当前页url的地址
+    Router.getUrl = function () {
+        var id = Router.getId();
+        if (id === 0) {
+            return "首页";
         }
-    }
-
-    function _addAllIteratorSync(itr, fn2, url, arrs) {
-
-        var doc = document.body || document.getElementsByTagName('body')[0];
-        var _url = Router.baseUrl + url;
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = _url;
-        script.setAttribute("data-src", _url);
-
-        //js加载完成执行方法 ie9+
-        if (window.addEventListener) {
-            var $el = m("#m-router-" + Router.getId());
-            script.onload = function () {
-                Router.urls.push(url);
-                var itrObj = itr.next();
-                if (itrObj.done) {
-                    Router.runIncludeAndCache();
-                    var parameter = _getUrlParameter($el);
-                    fn2.apply($el, $el, parameter);
-
-                    // 监听页面显示 触发的事件
-                    $el.emit("m-router-show", [$el, Router.getId()]);
-                } else {
-                    _addAllIteratorSync(itr, fn2, itrObj.value, arrs);
-                }
-            };
-            doc.appendChild(script);
-        }
-    }
-
-    // 激活activeUrls
-    function _activeUrls(list) {
-        var arrs = [];
-        for (var i = 0; i < list.length; i++) {
-            var _url = list[i];
-
-            var bl = true;
-            for (var y = 0; y < Router.urls.length; y++) {
-                var _url2 = Router.urls[y];
-                if (_url === _url2) {
-                    bl = false;
-                }
-            }
-
-            if (bl) {
-                arrs.push(_url);
-            }
-        }
-
-        return arrs;
-    }
-
-    // getCurrentScript
-    function _getCurrentScript() {
-
-        if (document.currentScript) {
-
-            return document.currentScript.getAttribute("data-src") || "";
-        } else {
-            var stack,
-                e,
-                nodes = document.getElementsByTagName("script");
-            for (var i = 0, node; i < nodes.length; i++) {
-                node = nodes[i];
-
-                if (node.readyState === "interactive") {
-                    // ie8 ,ie9 ie10
-                    return node.getAttribute("data-src") || "";
-                } else if (!node.readyState) {
-
-                    // ie11
-                    try {
-                        throw Error("强制报错,以便捕获e.stack,获取JS路径有误");
-                    } catch (e) {
-                        stack = e.stack;
-
-                        if (e.sourceURL) {
-                            //safari
-                            saf = e.sourceURL;
-                        }
-                    }
-                    if (stack) {
-
-                        e = stack.indexOf(' at ') !== -1 ? ' at ' : '@';
-                        while (stack.indexOf(e) !== -1) {
-                            stack = stack.substring(stack.indexOf(e) + e.length);
-                        }
-
-                        var mchs = stack.match(/(http|https):\/\/.*\.js/)[0];
-                        mchs = mchs.split("/");
-                        mchs = mchs[mchs.length - 1];
-                        var mch = mchs.match(/.*\.js$/)[0];
-                        var srp = _getScriptByFileName(mch);
-                        var src = srp.getAttribute("data-src");
-                        return src;
-                    }
-                }
-            }
-        }
-    }
-
-    // getScriptByFileName
-    function _getScriptByFileName(fileName) {
-        var srps = document.getElementsByTagName("script");
-        var list = [];
-        for (var i = 0; i < srps.length; i++) {
-            var o = srps[i];
-            var reg = new RegExp(fileName, "img");
-            var src = o.getAttribute("src");
-            if (reg.test(src)) {
-                list.push(o);
-            }
-        }
-
-        return list.length > 0 ? list[list.length - 1] : {};
-    }
-
-    function _compilerHtml(obj, src, prop, isReplace, fn, id) {
-        prop = prop || {};
-        Router.get(src, prop, function (data) {
-
-            m(obj).find("._loading-dh").hide();
-            var newElement = Router.htmlStringToDOM(data);
-
-            /*----------------------添加 style 标签 兼容 ie9+--------------------------------*/
-            var els_style = newElement.childNodes;
-            var doc_style = document.createDocumentFragment();
-            for (var i0 = els_style.length - 1; i0 >= 0; i0--) {
-                var el = els_style[i0];
-                if (el.nodeType === 1 && el.nodeName === "STYLE") {
-                    el.setAttribute("data-Router-id", id);
-                    if (window.addEventListener) {
-                        doc_style.insertBefore(el, doc_style.childNodes[0]);
-                    } else {
-                        doc_style.insertBefore(el, doc_style.firstChild);
-                    }
-                }
-            }
-            document.getElementsByTagName("head")[0].appendChild(doc_style);
-
-            /* ----------------------添加 link 标签 兼容 ie9 + --------------------------------*/
-            var els_link = newElement.childNodes;
-            var doc_link = document.createDocumentFragment();
-
-            for (var i1 = els_link.length - 1; i1 >= 0; i1--) {
-                var el1 = els_link[i1];
-
-                if (el1.nodeType === 1 && el1.tagName === "LINK") {
-                    _index_link++;
-                    // Router.htmlUrls 集合检测
-                    var include_HtmlUrl1 = el1.getAttribute("href");
-                    if (Router.ckHtmlUrl(include_HtmlUrl1)) {
-
-                        // 删除节点
-                        if (el1.parentNode) {
-                            var _link_p = el1.parentNode;
-                            _link_p.removeChild(el1);
-                        }
-                        continue;
-                    }
-                    Router.htmlUrls.push(include_HtmlUrl1);
-
-                    if (window.addEventListener) {
-                        doc_link.insertBefore(el1, doc_link.childNodes[0]);
-                    } else {
-                        doc_link.insertBefore(el1, doc_link.firstChild);
-                    }
-                }
-            }
-            document.getElementsByTagName("head")[0].appendChild(doc_link);
-
-            /*----------------------添加 script 标签 兼容 ie8+--------------------------------*/
-            var els_scriprt = newElement.childNodes;
-            var doc_script = document.createDocumentFragment();
-
-            // 添加 新建 script
-            var docDfgTypeInSrc = document.createDocumentFragment();
-            var docDfgTypeInSrcIe8 = [];
-
-            for (var i2 = 0; i2 < els_scriprt.length; i2++) {
-                var el2 = els_scriprt[i2];
-
-                if (el2.nodeType === 1 && el2.tagName === "SCRIPT") {
-
-                    var script = document.createElement("script");
-                    script.type = "text/javascript";
-
-                    // 有 src属性值 链接
-                    if (el2.src) {
-
-                        script.src = el2.getAttribute("src") || "";
-
-                        // Router.htmlUrls 集合检测
-                        var include_HtmlUrl2 = script.src;
-                        if (Router.ckHtmlUrl(include_HtmlUrl2)) {
-                            continue;
-                        }
-                        Router.htmlUrls.push(include_HtmlUrl2);
-
-                        if (window.addEventListener) {
-                            docDfgTypeInSrc.insertBefore(script, doc_script.childNodes[0]);
-                        } else {
-                            // doc.appendChild(script);
-                            docDfgTypeInSrc.insertBefore(script, doc_script.firstChild);
-                        }
-
-                        // js加载完成执行方法 ie9+
-                        if (window.addEventListener) {
-                            script.onload = function () {
-                                // 执行define 定义的函数
-                                Router.runInclude();
-                            };
-                        }
-                    } else {
-
-                        // 没有src属性值 应用script 为本内容
-                        var jscontent = el2.innerHTML || "";
-                        script.setAttribute("data-Router-id", id);
-                        if (jscontent) {
-
-                            // ie9+
-                            if (window.addEventListener) {
-
-                                docDfgTypeInSrc.insertBefore(script, doc_script.childNodes[0]);
-                                script.innerHTML = jscontent;
-                            } else {
-                                // ie8
-                                docDfgTypeInSrc.insertBefore(script, doc_script.firstChild);
-                                script.jscode = jscontent;
-                                docDfgTypeInSrcIe8.push(jscontent);
-                            }
-                        }
-                    }
-                }
-            }
-
-            // 删除原有 script
-            for (var i3 = els_scriprt.length - 1; i3 >= 0; i3--) {
-                var el3 = els_scriprt[i3];
-                if (el3.nodeType === 1 && el3.tagName === "SCRIPT") {
-
-                    // 删除节点
-                    if (el3.parentNode) {
-                        var els = el3.parentNode;
-                        els.removeChild(el3);
-                    }
-                }
-            }
-
-            // <inlude>标签 添加到document
-            if (isReplace) {
-
-                var parent = obj.parentNode;
-                if (window.addEventListener) {
-                    parent.replaceChild(newElement, obj);
-                } else {
-
-                    // supper ie8
-                    if ($) {
-                        $(newElement).replaceAll($(obj));
-                    }
-                }
-            } else {
-                //  require 添加到document
-                obj.appendChild(newElement);
-
-                // callback function
-                if (typeof fn === "function") {
-                    fn();
-                }
-            }
-
-            // 没有src属性值 不是script元素加载后完成 再添加到页面
-            // ie9+
-            if (window.addEventListener) {
-
-                document.getElementsByTagName("body")[0].appendChild(docDfgTypeInSrc);
-            }
-        }, function () {
-            // 加载失败
-            var $p = m("#m-router-" + Router.getId());
-            m(".m-hd-top-ttl", $p).html("<div class=\"_fail\"> ~<span class=\"icon icon-nanguo\"></span>~</div>");
-            //m-router-cnt
-            $p.find("._loading-dh").hide();
-            $p.append("<div class=\"_loading-fail\">~\u6570\u636E\u52A0\u8F7D\u5931\u8D25\u4E86~</div>");
-        });
-    }
-
-    // router  move 
-    function _moveEl(el, isOneMove) {
-
-        m(el).touch(function (event, obj) {
-
-            obj.$moveElment = m(this);
-            obj.moveElmentX = obj.$moveElment.translateX();
-            obj.$prevEl = Router.getPrevEl();
-            var _id = Router.getId();
-            obj.maskEl = m("[data-router-id=m-router-" + _id + "]");
-
-            if (obj.x < obj.$moveElment.width() * 0.95) {
-
-                obj.isMove = true;
-            }
-            // obj.window_w = m(window).width();
-            self.obj = obj;
-        }, function (event, obj) {
-            if (obj.isX) {
-                if (obj.oneTouch === 1) {
-                    return;
-                }
-                if (!obj.xlt && obj.x < 0 && obj.oneTouch === undefined) {
-                    obj.xlt = true;obj.oneTouch = 1;
-                } else {
-                    obj.xlt = false;obj.oneTouch = 2;
-                }
-
-                if (obj.xlt && obj.oneTouch === 1) {
-                    return;
-                }
-
-                var id = parseInt(obj.$moveElment.attr("data-router-id") || -1);
-                var _id = Router.getId();
-                if (obj.isX && obj.isMove && id === _id) {
-                    obj.$prevEl = Router.getPrevEl();
-
-                    event.preventDefault();
-                    obj.$moveElment.transition("none");
-                    var translateX = obj.moveElmentX + obj.x;
-                    obj.$moveElment.removeClass("in");
-                    translateX = translateX <= 0 ? 0 : translateX;
-                    if (translateX > 0) {
-                        obj.$moveElment.addClass("m-router-box-move");
-                    }
-
-                    // 移动当前的路由页
-                    obj.$moveElment.translateX(translateX).translateZ(0);
-
-                    // 上一个元素的移动
-                    Router.isOneMove = false;
-                    obj.$prevEl.transition("none");
-                    var rt = translateX / obj.$moveElment.width();
-                    var prevWidth = -obj.$prevEl.width() / 2;
-                    var movePrevWidth = prevWidth - prevWidth * rt;
-
-                    if (movePrevWidth > 0) {
-                        movePrevWidth = 0;
-                    }
-
-                    obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0);
-
-                    // 移动mask页 透明度             
-                    //obj.maskEl.css("opacity", (0.1 - translateX / (obj.window_w*10)));
-                }
-            }
-        }, function (event, obj) {
-
-            if (obj.isX) {
-
-                var t = 0.5;
-                var transition = "transform  " + Router.transitionTime * t + "ms ease";
-                if (obj.$moveElment.translateX() < obj.$moveElment.width() / 2) {
-
-                    obj.$moveElment.transition(transition);
-                    if (!Router.isOneMove) {
-                        obj.$moveElment.translateX(0).translateZ(0);
-                    }
-                    obj.$prevEl.transition(transition);
-                    obj.$prevEl.translateX(-obj.$prevEl.width() / 2).translateZ(0);
-                } else {
-
-                    obj.maskEl.css("opacity", 0);
-                    obj.maskEl.transition(transition);
-                    Router.back(t);
-                }
-
-                obj.isMove = false;
-            }
-
-            obj.xlt = null;
-            obj.oneTouch = undefined;
-
-            obj.$moveElment.removeClass("m-router-box-move");
-        });
-    }
-
-    function _setRouterObj(el, obj) {
-
-        m(".m-hd-top-ttl", el).html(obj.routerTilte || "");
-        if (obj.routerTilteColor) {
-            m(".m-hd-top-ttl", el).css("color", obj.routerTilteColor);
-        }
-        if (obj.routerClass) {
-            m(el).addClass(obj.routerClass);
-        }
-    }
-
-    function _setUrlParameter(url) {
-
-        var obj = {};
-        url = typeof url === "string" ? url : "";
-        var urls = url.split("?");
-        if (urls.length === 2) {
-            var urlList = urls[1];
-
-            var reg = /&+/img;
-            var parameters = urlList.split(reg) || [];
-            parameters.forEach(function (item) {
-                var values = item.split("=");
-                obj[values[0]] = decodeURIComponent(values[1]);
-            });
-        }
-
-        return obj;
-    }
-
-    function _getUrlParameter(el) {
-        return m(el).data("parameter");
-    }
-
-    // 页面加载完成onload
-    function _load(obj, urls, onload, isAmd) {
-
-        isAmd = typeof isAmd === "boolean" ? isAmd : false;
-        if (isAmd) {
-            Router.req(obj, urls, onload);
-        } else {
-            Router.reqSync(obj, urls, onload);
-        }
-
-        // 执行页面的函数
-        Router.runBindFn();
-    }
+        return Router.urlObj[id];
+    };
 
     // bind 函数
     Router.bindObj = {};
@@ -4614,8 +4600,61 @@ css3 transition
 
     Router.ajax = m.ajax;
 
-    // get
+    // get ajax
     Router.get = m.get;
+
+    // 清理定时器对象
+    Router.intervalObj = {};
+
+    // 记录setInterval定时器 
+    Router.setInterval = function (fn, time) {
+
+        var setIntervalId = 0;
+        if (typeof fn === "function") {
+
+            time = isNaN(Number(time)) ? 0 : time;
+            setIntervalId = setInterval(function () {
+                fn();
+            }, time);
+
+            var elId = "router_" + m(this).parents(".m-router").attr("data-router-id");
+            var intervalIds = Router.intervalObj[elId] ? Router.intervalObj[elId] : [];
+            intervalIds.push(setIntervalId);
+            Router.intervalObj[elId] = intervalIds;
+        }
+        return setIntervalId;
+    };
+
+    // 记录setTimeout定时器
+    Router.setTimeout = function (fn, time) {
+
+        var setTimeoutId = 0;
+        if (typeof fn === "function") {
+
+            time = isNaN(Number(time)) ? 0 : time;
+            setTimeoutId = setTimeout(function () {
+                fn();
+            }, time);
+
+            var elId = "router_" + m(this).parents(".m-router").attr("data-router-id");
+            var intervalIds = Router.intervalObj[elId] ? Router.intervalObj[elId] : [];
+            intervalIds.push(setTimeoutId);
+            Router.intervalObj[elId] = intervalIds;
+        }
+        return setTimeoutId;
+    };
+
+    //清除当前页的定时器
+    Router.clearInterval = function () {
+
+        var elId = "router_" + Router.getId();
+        var intervalIds = Router.intervalObj[elId] ? Router.intervalObj[elId] : [];
+        for (var i = 0; i < intervalIds.length; i++) {
+            clearInterval(intervalIds[i]);
+            clearTimeout(intervalIds[i]);
+        }
+        Router.intervalObj[elId] = [];
+    };
 
     // html字符串转dom对象
     Router.htmlStringToDOM = function (txt) {
@@ -4709,8 +4748,10 @@ css3 transition
 
     // 添加路由
     Router.link = function (src, parameter, isShowBtn) {
+
         isShowBtn = typeof isShowBtn === "boolean" ? isShowBtn : true;
         var nowTime = new Date().getTime();
+
         // 相隔延迟时间的点击
         if (nowTime - Router.tapTime > Router.transitionTime) {
             Router.tapTime = nowTime;
@@ -4727,30 +4768,30 @@ css3 transition
             Router.ids.push(id);
             routerEl.id = "m-router-" + id;
             routerEl.classList.add("m-router");
-            routerEl.classList.add("in"); //
+            routerEl.classList.add("in");
 
             routerEl.style = "z-index:" + (100 + id);
             routerEl.setAttribute("data-router-id", id);
 
             if (isShowBtn) {
                 var topEl = document.createElement("div");
-                topEl.classList.add("m-router-hd");
-                topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"icon icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n                <div class=\"m-ball-clip-rotate\"><div></div>     \n                </div> \n            </h4>\n            </div>";
+                topEl.classList.add("m-router-back");
+                topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back-btn\">\n                <span class=\"icon icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n               \n            </h4>\n            </div>";
                 routerEl.appendChild(topEl);
             }
 
             var contEl = document.createElement("div");
-            contEl.classList.add("m-router-hd");
+            contEl.classList.add("m-router-back");
 
             elm.appendChild(routerEl);
 
             var $prevEl = Router.getPrevEl();
-            var transition = "transform  " + (Router.transitionTime + 150) + "ms linear ";
+            var transition = "transform  " + Router.transitionTime + "ms ease  500ms";
             $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
             Router.isOneMove = true;
 
             var $el = m("#" + routerEl.id);
-            $el.append("<div class=\"_loading-dh\"><div class=\"m-ball-clip-rotate\"><div></div></div>");
+            $el.append("<div class=\"m-router-loading\"><div class=\"m-ball-clip-rotate\"><div></div></div>");
 
             // 设置url的参数
             var urlParameter = _setUrlParameter(src);
@@ -4758,12 +4799,15 @@ css3 transition
             var p = m.extend({}, urlParameter, parameter);
             $el.data("parameter", p);
 
+            // 添加urls地址
+            Router.addUrl(id, src);
+
             // 输出当前的路由页
-            console.log("当前的路由页：", src);
+            console.log("当前的路由页：", Router.getUrl());
 
             _moveEl($el);
-            _compilerHtml(m("#" + routerEl.id).get(0), src, {}, false, function () {
-
+            var context = m("#" + routerEl.id).get(0);
+            _compilerHtml(context, src, {}, false, function () {
                 m.setRouterLayout();
             }, routerEl.id);
         }
@@ -4778,21 +4822,22 @@ css3 transition
         m("[data-router-id=m-router-" + id + "]").remove();
     };
 
-    // 返回键
-    Router.back = function (t) {
+    // 返回上一页
+    Router.back = function (t, transition) {
         t = typeof t === "number" ? t : 1;
         if (Router.ids.length <= 0) {
             return;
         }
 
         var nowTime = new Date().getTime();
+
         // 相隔延迟时间的点击
         if (nowTime - Router.tapTime > Router.transitionTime) {
             Router.tapTime = nowTime;
             var id = "#m-router-" + Router.getId();
             var $p = m(id);
-            var transition = "transform  " + Router.transitionTime * t + "ms linear";
-            $p.removeClass("in").transition(transition).translateX($p.width()).translateZ(1);
+            transition = transition ? transition : "transform  " + Router.transitionTime * t + "ms linear";
+            $p.removeClass("in").transition(transition).translateX($p.width()).translateZ(0);
             var _id = Router.getId();
 
             // 监听页面隐藏 触发的事件
@@ -4802,13 +4847,20 @@ css3 transition
             $prevEl.transition(transition).translateX(0);
             setTimeout(function () {
 
+                // 清理定时器
+                Router.clearInterval();
+
                 m("[data-router-id=m-router-" + _id + "]").remove();
                 $p.remove();
                 Router.removeId(_id);
+                Router.clearUrl(_id);
 
                 // 监听页面显示 触发的事件
                 var $preEl = m("#m-router-" + Router.getId());
                 $preEl.emit("m-router-show", [$preEl, Router.getId()]);
+
+                // 输出当前的路由页
+                console.log("当前的路由页：", Router.getUrl());
             }, Router.transitionTime * t);
         }
     };
@@ -4861,9 +4913,15 @@ css3 transition
 
     Router.app = {}; // 全局对象
 
-    // Router向外扩展
+    // Router静态扩展
     m.extend({
         router: Router
+    });
+
+    // Router实例扩展
+    m.fn.extend({
+        setInterval: Router.setInterval,
+        setTimeout: Router.setTimeout
     });
 
     // 初始化默认为m-bd 添加id值
@@ -4874,7 +4932,7 @@ css3 transition
 
     // 返回上一页
     function mBack() {
-        m(document).on("tap", ".m-router-back", function (event) {
+        m(document).on("tap", ".m-router-back-btn", function (event) {
             event.preventDefault();
             Router.back();
         });
@@ -4885,7 +4943,7 @@ css3 transition
         // 整体框架设置内容height
         var $el = m.router.getActiveEl();
         var $bd = $el;
-        var $header = $(".m-router-hd", $el);
+        var $header = $(".m-router-back", $el);
         var $cont = $(".m-router-cnt", $el);
 
         var $bd_height = parseFloat($bd.height()),
@@ -4910,7 +4968,7 @@ $(function () {
 
     function setLayout() {
 
-        // ��������������height
+        // 整体框架设置内容height
         var $bd = $(".m-bd");
         var $header = $(".m-hd");
         var $cont = $(".m-cnt");
@@ -4925,7 +4983,7 @@ $(function () {
         $cont.css("top", $header_height); // set cnt top
     }
 
-    // ����ҳ�沼��
+    // 设置页面布局
     m.extend({
         setLayout: setLayout
     });
@@ -4933,22 +4991,27 @@ $(function () {
     m.setLayout();
     m(window).on("resize", m.setLayout);
 
-    // ��ֹĬ����Ϊ
-    m("a").click(function (event) {
+    m(document).on("touchstart", function (event) {
+        event.preventDefault();
+    });
+
+    m(document).on("touchmove", function (event) {
         event.preventDefault();
     });
 
     m(document).on("click", "a", function (event) {
-        event.preventDefault();
+        if (!m(this).hasAttr("data-open")) {
+            event.preventDefault();
+        }
     });
 
-    // �󶨺��� router.link ����ʱִ�� 
+    // 绑定函数 router.link 运行时执行 
     m.router.bindFn(function () {
 
-        //��ȡ��ǰ����·��ҳԪ��
+        //获取当前激活路由页元素
         var $activeEl = m.router.getActiveEl();
 
-        // m-media��� a[data-link] ������ת
+        // m-media组件 a[data-link] 链接跳转
         m(".m-media-list", $activeEl).on("tap", "a[data-link]", function (event) {
 
             event.preventDefault();
@@ -4956,8 +5019,16 @@ $(function () {
             m.router.alink.call(this);
         });
 
-        // m-slide��� a[data-link] ������ת
-        m(".m-touch-slide", $activeEl).on("tap", "a[data-link]", function (event) {
+        // m-slide组件 a[data-link] 链接跳转
+        m(".m-slide", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+        });
+
+        // m-listoption组件 a[data-link] 链接跳转
+        m(".m-listoption", $activeEl).on("tap", "a[data-link]", function (event) {
 
             event.preventDefault();
             event.stopPropagation();
@@ -4965,28 +5036,28 @@ $(function () {
         });
     });
 
-    // �ƶ���
+    // 移动端
 
     //if (!m.isMobile()) {
     //    location.href = "./demo/not_mobile.html";
     //}
 
-    // ΢�Ŷ�
-    //if (!m.isweixn()) {
+    // 微信端
+    //if (!m.isWeixn()) {
     //    location.href = "./demo/not_weixin.html";
     //}
 
 
-    /*************** h5+ Ӧ������**************/
+    /*************** h5+ 应用以下**************/
 
-    // ��չAPI�Ƿ�׼���ã����û���������plusready"�¼�
+    // 扩展API是否准备好，如果没有则监听“plusready"事件
     if (window.plus) {
         plusReady();
     } else {
         document.addEventListener("plusready", plusReady, false);
     }
 
-    // �Ƿ���ָ����ҳ��
+    // 是否手指触摸页面
     m.router.istouch = false;
 
     m(document).touch(function () {}, function (event, obj) {
@@ -4999,20 +5070,20 @@ $(function () {
 
     function plusReady() {
 
-        // ���������ء���ť�¼�
+        // 监听“返回”按钮事件
         plus.key.addEventListener("backbutton", function () {
 
             if (m.router.istouch) {
                 return;
-            } // �Ƿ���ָ����ҳ��
+            } // 是否手指触摸页面
             if (m.router.ismask) {
                 return;
-            } // �Ƿ��Ѿ���ʾmask
+            } // 是否已经显示mask
             m.router.back();
 
-            // �˳�appӦ�� 
+            // 退出app应用 
             if (m.router.getId() === 0) {
-                // �˳�Ӧ��
+                // 退出应用
                 if (!m.router._quitOne) {
 
                     m.router._quitTime1 = new Date().getTime();
@@ -5031,22 +5102,23 @@ $(function () {
     }
 });
 
-// m-touch-slide 
+// m-slide 
 
 +function () {
 
-    var MTouchSlide = function MTouchSlide(el, options) {
+    var MSlide = function MSlide(el, options) {
         this.el = el;
         this.options = options;
         this.run();
     };
 
-    MTouchSlide.prototype.run = function () {
+    MSlide.prototype.run = function () {
 
         var self = this;
         var $m_touch_slide = m(this.el);
-        var $moveElement = $m_touch_slide.find(".m-touch-slide-cnt");
-        self.raduisLength = $moveElement.find(".m-touch-slide-item").length;
+        var $moveElement = $m_touch_slide.find(".m-slide-cnt");
+        self.raduisLength = $moveElement.find(".m-slide-item").length;
+
         // 一张轮播
         if (self.raduisLength <= 1) {
             $moveElement[0].innerHTML += $moveElement[0].innerHTML;
@@ -5055,13 +5127,13 @@ $(function () {
             $moveElement[0].innerHTML += $moveElement[0].innerHTML;
         }
 
-        this.liNodes = $m_touch_slide.find(".m-touch-slide-item");
+        this.liNodes = $m_touch_slide.find(".m-slide-item");
         this.index = this.liNodes.length / 2;
         $moveElement.translateX(-this.index * $m_touch_slide.outerWidth());
 
         // 添加小圆点
         var rd = document.createElement("div");
-        rd.classList.add("m-touch-slide-radius");
+        rd.classList.add("m-slide-radius");
         for (var i = 0; i < self.raduisLength; i++) {
             var span = document.createElement("span");
             if (i === 0) {
@@ -5079,11 +5151,10 @@ $(function () {
 
         // 自动轮播
         if (self.options.auto) {
-            this.autoSlide();
+            this.autoSlide(); // m.router.addInterval($m_touch_slide,setIntervalId); // 记录定时器
         }
 
         $m_touch_slide.touch(function (event, obj) {
-
             if (self.options.auto) {
                 // 停止轮播
                 clearInterval(self.setIntervalId);
@@ -5121,7 +5192,6 @@ $(function () {
                 var wraperWidth = $m_touch_slide.outerWidth();
                 var maxLeft = -(self.index - 1) * wraperWidth;
                 var maxRight = -(self.index + 1) * wraperWidth;
-
                 obj.$moveElment.transition("none");
                 var translateX = obj.moveElmentX + obj.x;
 
@@ -5132,6 +5202,7 @@ $(function () {
                 translateX = translateX <= maxRight ? maxRight : translateX;
 
                 obj.$moveElment.translateX(translateX);
+
                 // 触发自定义的事件
                 m(this).emit("move.m.touch.slide", [this, translateX, obj]);
             }
@@ -5141,7 +5212,6 @@ $(function () {
 
                 var wraperWidth = $m_touch_slide.outerWidth();
                 var target = obj.$moveElment.translateX();
-
                 var translateIndex = Math.round(target / wraperWidth);
                 var translateX = wraperWidth * translateIndex;
                 $moveElement.translateX(translateX);
@@ -5166,26 +5236,26 @@ $(function () {
         });
     };
 
-    MTouchSlide.prototype.setRadius = function (index) {
+    MSlide.prototype.setRadius = function (index) {
 
-        m(this.el).find(".m-touch-slide-radius span").removeClass("active").eq(index).addClass("active");
+        m(this.el).find(".m-slide-radius span").removeClass("active").eq(index).addClass("active");
     };
 
-    MTouchSlide.prototype.resize = function () {
+    MSlide.prototype.resize = function () {
 
         var $m_touch_slide = m(this.el);
-        var $touch_slide_item = $m_touch_slide.find(".m-touch-slide-item");
+        var $touch_slide_item = $m_touch_slide.find(".m-slide-item");
         $touch_slide_item.width($m_touch_slide.outerWidth());
         $touch_slide_item.height($m_touch_slide.outerHeight());
     };
 
-    MTouchSlide.prototype.autoSlide = function (index) {
+    MSlide.prototype.autoSlide = function (index) {
         var self = this;
         var $m_touch_slide = m(this.el);
-        var $moveElement = $m_touch_slide.find(".m-touch-slide-cnt");
+        var $moveElement = $m_touch_slide.find(".m-slide-cnt");
         var window_w = $m_touch_slide.outerWidth();
 
-        return self.setIntervalId = setInterval(function () {
+        return self.setIntervalId = $m_touch_slide.setInterval(function () {
 
             if (self.index === 0) {
                 self.index = self.raduisLength;
@@ -5194,24 +5264,24 @@ $(function () {
             } else if (self.index >= self.liNodes.length - 1) {
 
                 self.index = self.raduisLength - 1;
-
                 $moveElement.transition("none");
                 $moveElement.translateX(-self.index * window_w);
             }
 
             self.index++;
-            setTimeout(function () {
+            $m_touch_slide.setTimeout(function () {
                 $moveElement.transition("transform .8s cubic-bezier(.31,.66,.64,.98)");
                 $moveElement.translateX(-self.index * window_w);
+
                 // 触发自定义的事件
                 var _index = self.index % self.raduisLength;
-                $moveElement.emit("tab.m.touch.slide", [$moveElement, _index]);
+                $moveElement.emit("tab.m.slide", [$moveElement.get(0), _index]);
                 self.setRadius(_index);
             }, 20);
         }, self.options.time);
     };
 
-    MTouchSlide.DEFAULTS = {
+    MSlide.DEFAULTS = {
         time: 3000
     };
 
@@ -5220,16 +5290,15 @@ $(function () {
         return this.each(function () {
 
             var $this = $(this);
-            var data = $this.data('m-touch-slide');
+            var data = $this.data('m-slide');
             var options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
 
             if (!data) {
                 var o = {};
-
-                o.time = parseFloat($this.hasAttr("data-time") || 0) || MTouchSlide.DEFAULTS.time;
+                o.time = parseFloat($this.hasAttr("data-time") || 0) || MSlide.DEFAULTS.time;
                 o.auto = $this.hasAttr("data-auto");
                 var p = $.extend({}, o, options);
-                $this.data('m-touch-slide', data = new MTouchSlide(this, p));
+                $this.data('m-slide', data = new MSlide(this, p));
             }
 
             if (typeof option === 'string') {
@@ -5238,10 +5307,10 @@ $(function () {
         });
     }
 
-    var _mTouchSlide = $.fn.mTouchSlide;
-    m.fn.mTouchSlide = Plugin;
+    var _mSlide = $.fn.mSlide;
+    m.fn.mSlide = Plugin;
 
-    m("[data-toggle=m-touch-slide]").each(function (e) {
+    m("[data-toggle=m-slide]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5265,31 +5334,38 @@ $(function () {
         m(this.el).find(".m-touch-lr-item").on("tap", function (event) {
 
             event.stopPropagation();
-
             // 选中的样式移动
-            //if (self.options.left) {
-
-            //    self.left.call(self, this); // 移动到left
-            //}
-            //else {
-
-            //    self.center.call(self, this);   // 移动到center
-            //}
-
-            self.center.call(self, this); // 移动到center
+            if (self.options.left) {
+                self.left.call(self, m(this).index()); // 移动到left
+            } else {
+                self.center.call(self, m(this).index()); // 移动到center
+            }
         });
 
         self.speedSetIntervalId = 0; // 计算速度定时器id
-
-        $m_touch_lr.touch(function (event, obj) {
+        $m_touch_lr.touch(function (event, obj, preoObj) {
             event.preventDefault();
-            obj.moveElmentX = $moveElement.translateX();
             obj.$moveElment = $moveElement;
-            // obj.$moveElment.transition("none");
+            obj.moveElmentX = $moveElement.translateX();
+            obj.moveElmentWidth = obj.$moveElment.outerWidth();
+            obj.wraperWidth = $m_touch_lr.outerWidth();
+            obj.moveXSpace = obj.wraperWidth - obj.moveElmentWidth;
+
+            // 弹性拉动left
+            if (preoObj.tempObj.length > 1 && obj.moveElmentX > 0) {
+                obj.moveElmentX = obj.moveElmentX2;
+                obj.moveElmentX2 = 0;
+            }
+
+            // 弹性拉动right
+            if (preoObj.tempObj.length > 1 && obj.moveElmentWidth > obj.wraperWidth && obj.moveElmentX < obj.moveXSpace) {
+                obj.moveElmentX = obj.moveElmentX2;
+                obj.moveElmentX2 = 0;
+            }
+
             self.obj = obj;
 
             // 计算移动速度
-            // if (self.options.speed) {
             self.speedlateY = obj.x = 0;
             clearInterval(self.speedSetIntervalId);
             self.speedSetIntervalFisrt = true;
@@ -5301,14 +5377,13 @@ $(function () {
             // 计算移动速度
             if (self.speedSetIntervalFisrt) {
                 self.speedSetIntervalFisrt = false;
-                self.speedSetIntervalId = setInterval(function () {
+                self.speedSetIntervalId = obj.$moveElment.setInterval(function () {
                     self.speedlateX2 = obj.x || 0;
                     self.speedlateX3 = parseFloat(self.speedlateX2) - parseFloat(self.speedlateX);
                     self.speedlateX = self.speedlateX2;
                     self.speedScroll = self.speedlateX3;
                 }, 50);
             }
-            //  }
 
             // 触发自定义的事件
             m(this).emit("start.m.touch.lr", [this, obj.moveElmentX, obj]);
@@ -5326,19 +5401,32 @@ $(function () {
                 }
 
                 // 右限住拉动
-                var moveElmentWidth = obj.$moveElment.outerWidth();
-                var wraperWidth = $m_touch_lr.outerWidth();
-                var moveYSpace = wraperWidth - moveElmentWidth;
                 if (self.options.limitRight) {
 
-                    if (moveElmentWidth > wraperWidth && translateX < moveYSpace) {
-                        translateX = moveYSpace;
+                    if (obj.moveElmentWidth > obj.wraperWidth && translateX < obj.moveXSpace) {
+                        translateX = obj.moveXSpace;
                     }
                 }
 
                 // 移动滑动条
                 if (self.options.bar) {
                     self.moveBar(translateX).transition("none");
+                }
+
+                // 左限弹性拉动
+                if (translateX > 0) {
+                    obj.moveElmentX2 = translateX;
+                    var biliLeft = translateX / obj.wraperWidth;
+                    translateX = obj.wraperWidth * self.options.limit * biliLeft;
+                }
+
+                // 右限弹性拉动
+                if (obj.moveElmentWidth > obj.wraperWidth && translateX < obj.moveXSpace) {
+
+                    var moveRightVal = translateX - obj.moveXSpace;
+                    obj.moveElmentX2 = translateX;
+                    var biliRight = Math.abs(moveRightVal) / obj.wraperWidth;
+                    translateX = obj.wraperWidth * (1 - self.options.limit) * biliRight + translateX;
                 }
 
                 obj.$moveElment.translateX(translateX);
@@ -5348,19 +5436,15 @@ $(function () {
         }, function (event, obj) {
 
             if (obj.isX) {
-
-                var moveElmentWidth = obj.$moveElment.outerWidth();
-                var wraperWidth = $m_touch_lr.outerWidth();
-                var moveXSpace = wraperWidth - moveElmentWidth;
                 var target = obj.$moveElment.translateX();
 
                 // 计算移动速度
                 self.speedSetIntervalFisrt = true;
                 clearInterval(self.speedSetIntervalId);
-                target = target + self.speedScroll * 10; //修改速度值 
+                target = target + self.speedScroll * 11; //修改速度值 
 
                 // 滑动过度效果
-                var gudingVal = 400;
+                var gudingVal = obj.wraperWidth;
                 var translateX = $moveElement.translateX();
                 var moveVal = 0;
 
@@ -5369,7 +5453,7 @@ $(function () {
                     moveVal = target - translateX;
                 } else {
 
-                    target = target < moveXSpace ? moveXSpace : target;
+                    target = target < obj.moveXSpace ? obj.moveXSpace : target;
                     moveVal = target - translateX;
                     moveVal = Math.abs(moveVal);
                 }
@@ -5382,18 +5466,34 @@ $(function () {
                 ansTime = ansTime > 2000 ? 2000 : ansTime;
 
                 // 移动宽度小于大框
-                if (moveElmentWidth < wraperWidth) {
+                if (obj.moveElmentWidth < obj.wraperWidth) {
                     target = 0;
                     ansTime = 600;
                 }
 
-                if (self.options.touchTap) {
-                    var translateIndex = Math.round(target / wraperWidth);
-                    $moveElement.translateX(wraperWidth * translateIndex);
-                } else {
+                // 拉到左边 触发自定义的事件
+                if (target >= 0) {
+                    $moveElement.transition("transform " + ansTime + "ms " + MTouchLr.DEFAULTS.cubicBezierEnd);
+                    $moveElement.setTimeout(function () {
+                        $moveElement.emit("reachleft.m.touch.lr", [$moveElement, target, obj]);
+                    }, ansTime);
+                }
 
+                // 拉到底部 触发自定义的事件
+                else if (target <= obj.moveXSpace) {
+                        $moveElement.transition("transform " + ansTime + "ms " + MTouchLr.DEFAULTS.cubicBezierEnd);
+                        $moveElement.setTimeout(function () {
+                            $moveElement.emit("reachright.m.touch.lr", [$moveElement, target, obj]);
+                        }, ansTime);
+                    } else {
+                        $moveElement.transition("transform " + ansTime + "ms " + MTouchLr.DEFAULTS.cubicBezierMiddle);
+                    }
+
+                if (self.options.touchTap) {
+                    var translateIndex = Math.round(target / obj.wraperWidth);
+                    $moveElement.translateX(obj.wraperWidth * translateIndex);
+                } else {
                     $moveElement.translateX(target);
-                    $moveElement.transition("transform " + ansTime + "ms " + MTouchLr.DEFAULTS.cubicBezier);
                 }
 
                 // 触发自定义的事件
@@ -5403,13 +5503,15 @@ $(function () {
     };
 
     MTouchLr.DEFAULTS = {
-        cubicBezier: "cubic-bezier(.13,.77,.53,.93)"
+        cubicBezierMiddle: "  cubic-bezier(0,.05,.31,.93)",
+        cubicBezierEnd: "  cubic-bezier(0,.03,.27,1.22)",
+        limit: 0.4
     };
 
     // position left
-    MTouchLr.prototype.left = function (item, bl) {
+    MTouchLr.prototype.left = function (index, bl) {
         var $ul = m(this.el).find(".m-touch-lr-cnt");
-        var $li = m(item);
+        var $li = $ul.find(".m-touch-lr-item").eq(index);
         var window_w = m(this.el).outerWidth();
 
         var $ul_w = $ul.outerWidth();
@@ -5431,17 +5533,16 @@ $(function () {
 
         // 触发自定义的事件
         if (!bl) {
-            $li.emit("tap.m.touch.lr", [item, moveX]);
+            $li.emit("tap.m.touch.lr", [$li.get(0), moveX]);
         }
     };
 
     // position center
-    MTouchLr.prototype.center = function (item, bl) {
+    MTouchLr.prototype.center = function (index, bl) {
 
         var $ul = m(this.el).find(".m-touch-lr-cnt");
-        var $li = m(item);
+        var $li = $ul.find(".m-touch-lr-item").eq(index);
         var window_w = m(this.el).outerWidth();
-
         var $ul_w = $ul.outerWidth();
         var current_left = $li.offset().left;
         var current_w = $li.outerWidth();
@@ -5461,36 +5562,30 @@ $(function () {
                     moveX = -Math.abs(-offsetCenter);
                 }
             } else {
-
                 moveX = 0;
             }
-
             $ul.translateX(moveX);
             $ul.transition("all", 600, "ease");
         }
 
         // 触发自定义的事件
         if (!bl) {
-            $li.emit("tap.m.touch.lr", [item, moveX]);
+            $li.emit("tap.m.touch.lr", [$li.get(0), moveX]);
         }
     };
 
-    MTouchLr.prototype.set = function (el, bl) {
+    MTouchLr.prototype.set = function (index, bl) {
         var self = this;
+
         // 选中的样式移动
-        //if (self.options.left) {
-
-        //    self.left.call(self, el,bl); // 移动到left
-        //}
-        //else {
-
-        //    self.center.call(self, el,bl);   // 移动到center
-        //}
-
-        self.center.call(self, el, bl); // 移动到center
+        if (self.options.left) {
+            self.left.call(self, index, bl); // 移动到left
+        } else {
+            self.center.call(self, index, bl); // 移动到center
+        }
     };
 
-    function Plugin(option, el, bl) {
+    function Plugin(option, index, bl) {
 
         return this.each(function () {
 
@@ -5502,14 +5597,15 @@ $(function () {
                 var o = {};
                 o.limitLeft = $this.hasAttr("data-limit-left");
                 o.limitRight = $this.hasAttr("data-limit-right");
-                //  o.left = $this.hasAttr("data-left");
-                //  o.center = $this.hasAttr("data-center");
+                o.left = $this.hasAttr("data-left");
+                o.limit = $this.attr("data-limit") ? Number($this.attr("data-limit")) : MTouchLr.DEFAULTS.limit;
+
                 var p = $.extend({}, o, options);
                 $this.data('m-touch-lr', data = new MTouchLr(this, p));
             }
 
             if (typeof option === 'string') {
-                data[option](el, bl);
+                data[option](index, bl);
             }
         });
     }
@@ -5527,43 +5623,55 @@ $(function () {
 
 +function () {
 
-    var MTouchNavTb = function MTouchNavTb(el, options) {
+    var MToucTb = function MToucTb(el, options) {
         this.el = el;
         this.options = options;
         this.run();
     };
 
-    MTouchNavTb.prototype.run = function () {
+    MToucTb.prototype.run = function () {
         var self = this;
         var $m_touch_tb = m(this.el);
-        var $moveElement = $m_touch_tb.find(".m-touch-nav-tb-cnt");
+        var $moveElement = $m_touch_tb.find(".m-touch-tb-cnt");
 
-        m(this.el).find(".m-touch-nav-item").on("tap", function (event) {
+        m(this.el).find(".m-touch-tb-item").on("tap", function (event) {
 
             event.stopPropagation();
 
             // 选中的样式移动
-            //if (self.options.top) {
+            if (self.options.top) {
 
-            //    self.top.call(self, this); // 移动到top
-            //}
-            //else {
+                self.top.call(self, m(this).index()); // 移动到top
+            } else {
 
-            //    self.center.call(self, this);   // 移动到center
-            //}
-            self.center.call(self, this); // 移动到center
+                self.center.call(self, m(this).index()); // 移动到center
+            }
         });
 
         self.speedSetIntervalId = 0; // 计算速度定时器id
-        $m_touch_tb.touch(function (event, obj) {
+        $m_touch_tb.touch(function (event, obj, preoObj) {
 
-            obj.moveElmentY = $moveElement.translateY();
             obj.$moveElment = $moveElement;
-            // obj.$moveElment.transition("none");
+            obj.moveElmentY = $moveElement.translateY();
+            obj.moveElmentHeigth = obj.$moveElment.outerHeight();
+            obj.wraperHeight = $m_touch_tb.outerHeight();
+            obj.moveYSpace = obj.wraperHeight - obj.moveElmentHeigth;
+
+            // 弹性拉动top
+            if (preoObj.tempObj.length > 1 && obj.moveElmentY > 0) {
+                obj.moveElmentY = obj.moveElmentY2;
+                obj.moveElmentY2 = 0;
+            }
+
+            // 弹性拉动bottom
+            if (preoObj.tempObj.length > 1 && obj.moveElmentHeigth > obj.wraperHeight && obj.moveElmentY < obj.moveYSpace) {
+                obj.moveElmentY = obj.moveElmentY2;
+                obj.moveElmentY2 = 0;
+            }
+
             self.obj = obj;
 
             // 计算移动速度
-            // if (self.options.speed) {
             self.speedlateY = obj.y = 0;
             clearInterval(self.speedSetIntervalId);
             self.speedSetIntervalFisrt = true;
@@ -5575,17 +5683,16 @@ $(function () {
             // 计算移动速度
             if (self.speedSetIntervalFisrt) {
                 self.speedSetIntervalFisrt = false;
-                self.speedSetIntervalId = setInterval(function () {
+                self.speedSetIntervalId = obj.$moveElment.setInterval(function () {
                     self.speedlateY2 = obj.y || 0;
                     self.speedlateY3 = parseFloat(self.speedlateY2) - parseFloat(self.speedlateY);
                     self.speedlateY = self.speedlateY2;
                     self.speedScroll = self.speedlateY3;
                 }, 50);
             }
-            //   }
 
             // 触发自定义的事件
-            m(this).emit("start.m.touch.nav.tb", [this, obj.moveElmentY, obj]);
+            m(this).emit("start.m.touch.tb", [this, obj.moveElmentY, obj]);
         }, function (event, obj) {
 
             if (obj.isY) {
@@ -5600,48 +5707,58 @@ $(function () {
 
                 // 下限住拉动
                 if (self.options.limitBottom) {
-                    var moveElmentHeigth = obj.$moveElment.outerHeight();
-                    var wraperHeight = $m_touch_tb.outerHeight();
-                    var moveYSpace = wraperHeight - moveElmentHeigth;
-                    if (moveElmentHeigth > wraperHeight && translateY < moveYSpace) {
-                        translateY = moveYSpace;
+
+                    if (obj.moveElmentHeigth > obj.wraperHeight && translateY < obj.moveYSpace) {
+                        translateY = obj.moveYSpace;
                     }
+                }
+
+                // 上限弹性拉动
+                if (translateY > 0) {
+                    obj.moveElmentY2 = translateY;
+                    var biliTop = translateY / obj.wraperHeight;
+                    translateY = obj.wraperHeight * self.options.limit * biliTop;
+                    // 触发自定义的事件
+                    m(this).emit("limit.m.touch.tb", [this, translateY, obj]);
+                }
+
+                // 下限弹性拉动
+                if (obj.moveElmentHeigth > obj.wraperHeight && translateY < obj.moveYSpace) {
+                    var moveBottomVal = translateY - obj.moveYSpace;
+                    obj.moveElmentY2 = translateY;
+                    var biliBottom = Math.abs(moveBottomVal) / obj.wraperHeight;
+                    translateY = obj.wraperHeight * (1 - self.options.limit) * biliBottom + translateY;
+
+                    // 触发自定义的事件
+                    m(this).emit("limit.m.touch.tb", [this, translateY, obj]);
                 }
 
                 obj.$moveElment.translateY(translateY);
                 // 触发自定义的事件
-                m(this).emit("move.m.touch.nav.tb", [this, translateY, obj]);
+                m(this).emit("move.m.touch.tb", [this, translateY, obj]);
             }
         }, function (event, obj) {
 
             if (obj.isY) {
-
-                var moveElmentHeigth = obj.$moveElment.outerHeight();
-                var wraperHeight = $m_touch_tb.outerHeight();
-                var moveYSpace = wraperHeight - moveElmentHeigth;
                 var target = obj.$moveElment.translateY();
 
                 // 计算移动速度
                 self.speedSetIntervalFisrt = true;
                 clearInterval(self.speedSetIntervalId);
-                target = target + self.speedScroll * 10; //修改速度值 
+                target = target + self.speedScroll * 11; //修改速度值 
 
                 // 滑动过度效果
-                var gudingVal = 400;
+                var gudingVal = obj.wraperHeight;
                 var translateY = obj.$moveElment.translateY();
                 var moveVal = 0;
-
                 if (target > 0) {
                     target = 0;
                     moveVal = target - translateY;
-                    //$moveElement.transition("transform " + ansTime + "ms cubic-bezier(.04,.53,.59,1.09) ");
                 } else {
 
-                    target = target < moveYSpace ? moveYSpace : target;
+                    target = target < obj.moveYSpace ? obj.moveYSpace : target;
                     moveVal = target - translateY;
                     moveVal = Math.abs(moveVal);
-
-                    // $moveElement.transition("transform " + ansTime + "ms cubic-bezier(.04,.53,.59,1.09) ");
                 }
 
                 var beishu = Math.abs(moveVal) / gudingVal;
@@ -5652,57 +5769,65 @@ $(function () {
                 ansTime = ansTime > 2000 ? 2000 : ansTime;
 
                 // 移动高度小于大框
-                if (moveElmentHeigth <= wraperHeight) {
+                if (obj.moveElmentHeigth <= obj.wraperHeight) {
                     target = 0;
                     ansTime = 600;
                 }
 
-                //cubic-bezier(.25,.96,.8,.98) cubic-bezier(.12,.87,.5,.97)
-                $moveElement.transition("transform " + ansTime + "ms " + MTouchNavTb.DEFAULTS.cubicBezier);
+                if (target >= 0) {
+                    $moveElement.transition("transform " + ansTime + "ms " + MToucTb.DEFAULTS.cubicBezierEnd);
+                } else if (target <= obj.moveYSpace) {
+                    $moveElement.transition("transform " + ansTime + "ms " + MToucTb.DEFAULTS.cubicBezierEnd);
+                } else {
+                    $moveElement.transition("transform " + ansTime + "ms " + MToucTb.DEFAULTS.cubicBezierMiddle);
+                }
+
                 obj.$moveElment.translateY(target);
 
                 // 触发自定义的事件
                 var $this = m(this);
-                $this.emit("end.m.touch.nav.tb", [$this, target, obj]);
+                $this.emit("end.m.touch.tb", [$this, target, obj]);
 
                 // 拉到顶部 触发自定义的事件
                 if (target >= 0) {
-
-                    setTimeout(function () {
-                        $this.emit("reachtop.m.touch.nav.tb", [$this, target, obj]);
+                    $this.setTimeout(function () {
+                        $this.emit("reachtop.m.touch.tb", [$this, target, obj]);
                     }, ansTime);
                 }
 
                 // 拉到底部 触发自定义的事件
-                if (target <= moveYSpace) {
-
-                    setTimeout(function () {
-                        $this.emit("reachbottom.m.touch.nav.tb", [$this, target, obj]);
+                if (target <= obj.moveYSpace) {
+                    $this.setTimeout(function () {
+                        $this.emit("reachbottom.m.touch.tb", [$this, target, obj]);
                     }, ansTime);
                 }
             }
         });
     };
 
-    MTouchNavTb.DEFAULTS = {
-        cubicBezier: "cubic-bezier(.13,.77,.53,.93)"
+    MToucTb.DEFAULTS = {
+        cubicBezierMiddle: "  cubic-bezier(0,.05,.31,.93)",
+        cubicBezierEnd: "  cubic-bezier(0,.03,.27,1.22)",
+        limit: 0.3
     };
 
-    // position left
-    MTouchNavTb.prototype.top = function (item, bl) {
-        var $ul = m(this.el).find(".m-touch-nav-tb-cnt");
-        var $li = m(item);
-        var window_h = m(this.el).outerHeight();
+    // position 
+    MToucTb.prototype.top = function (index, bl) {
 
+        var $ul = m(this.el).find(".m-touch-tb-cnt");
+        var $li = $ul.find(".m-touch-tb-item").eq(index); //m(item);
+        var window_h = m(this.el).outerHeight();
         var $ul_h = $ul.outerHeight();
         var current_top = $li.offset().top;
         var scroll_top = $ul_h - window_h;
         var moveY = 0;
 
         $li.addClass("active").siblings().removeClass("active");
-        if ($ul_h > window_h) {
 
-            if (Math.abs(current_top) < Math.abs(scroll_top)) {
+        if ($ul_h < window_h) {
+            moveY = 0;
+        } else {
+            if (current_top < scroll_top) {
                 moveY = -current_top;
             } else {
                 moveY = -scroll_top;
@@ -5714,17 +5839,16 @@ $(function () {
 
         // 触发自定义的事件
         if (!bl) {
-            $li.emit("tap.m.touch.nav.tb", [item, moveY]);
+            $li.emit("tap.m.touch.tb", [$li.get(0), moveY]);
         }
     };
 
     // position center
-    MTouchNavTb.prototype.center = function (item, bl) {
+    MToucTb.prototype.center = function (index, bl) {
 
-        var $ul = m(this.el).find(".m-touch-nav-tb-cnt");
-        var $li = m(item);
+        var $ul = m(this.el).find(".m-touch-tb-cnt");
+        var $li = $ul.find(".m-touch-tb-item").eq(index); //m(item);
         var window_h = m(this.el).outerHeight();
-
         var $ul_h = $ul.outerHeight();
         var current_top = $li.offset().top;
         var current_h = $li.outerHeight();
@@ -5754,31 +5878,28 @@ $(function () {
 
         // 触发自定义的事件
         if (!bl) {
-            $li.emit("tap.m.touch.nav.tb", [item, moveY]);
+            $li.emit("tap.m.touch.tb", [$li.get(0), moveY]);
         }
     };
 
-    MTouchNavTb.prototype.set = function (el, bl) {
+    MToucTb.prototype.set = function (el, bl) {
         var self = this;
         // 选中的样式移动
-        //if (self.options.top) {
+        if (self.options.top) {
 
-        //    self.top.call(self, el, bl); // 移动到left
-        //}
-        //else {
+            self.top.call(self, el, bl); // 移动到left
+        } else {
 
-        //    self.center.call(self, el, bl);   // 移动到center
-        //}
-
-        self.center.call(self, el, bl); // 移动到center
+            self.center.call(self, el, bl); // 移动到center
+        }
     };
 
-    function Plugin(option, el, bl) {
+    function Plugin(option, index, bl) {
 
         return this.each(function () {
 
             var $this = $(this);
-            var data = $this.data('m-touch-nav-tb');
+            var data = $this.data('m-touch-tb');
             var options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
 
             if (!data) {
@@ -5786,22 +5907,21 @@ $(function () {
                 o.limitTop = $this.hasAttr("data-limit-top");
                 o.limitBottom = $this.hasAttr("data-limit-bottom");
                 o.top = $this.hasAttr("data-top");
-                // o.center = $this.hasAttr("data-center");
-
+                o.limit = $this.attr("data-limit") ? Number($this.attr("data-limit")) : MToucTb.DEFAULTS.limit;
                 var p = $.extend({}, o, options);
-                $this.data('m-touch-nav-tb', data = new MTouchNavTb(this, p));
+                $this.data('m-touch-tb', data = new MToucTb(this, p));
             }
 
             if (typeof option === 'string') {
-                data[option](el, bl);
+                data[option](index, bl);
             }
         });
     }
 
-    var _mTouchNavTb = $.fn.mTouchNavTb;
-    m.fn.mTouchNavTb = Plugin;
+    var _mTouchTb = $.fn.mTouchTb;
+    m.fn.mTouchTb = Plugin;
 
-    m("[data-toggle=m-touch-nav-tb]").each(function (e) {
+    m("[data-toggle=m-touch-tb]").each(function (e) {
         var $this = $(this);
         Plugin.call($this);
     });
@@ -5828,7 +5948,7 @@ $(function () {
             }
         });
 
-        m(this.el).on("tap", "a", function (event) {
+        m(this.el).on("tap", "a[data-link]", function (event) {
 
             event.preventDefault();
 
@@ -5838,12 +5958,8 @@ $(function () {
                 if (hrefValue.trim() === "" || hrefValue.trim() === "#" || hrefValue.trim() === "javascript;") {
                     return;
                 } else {
-
-                    //if (m(this).hasAttr("data-router")) {
                     m.router.link(hrefValue);
                     return;
-                    //  }
-                    // window.location.href = hrefValue;
                 }
             }
         });
@@ -5909,11 +6025,27 @@ $(function () {
             $m_touch_lr.find(".m-touch-tab-item").width($m_touch_lr.outerWidth());
         });
 
-        $m_touch_lr.touch(function (event, obj) {
+        $m_touch_lr.touch(function (event, obj, preoObj) {
 
             obj.moveElmentX = $moveElement.translateX();
             obj.$moveElment = $moveElement;
-            // obj.$moveElment.transition("none");
+            obj.$moveElment.transition("none");
+            obj.moveElmentWidth = obj.$moveElment.outerWidth();
+            obj.wraperWidth = $m_touch_lr.outerWidth();
+            obj.moveXSpace = obj.wraperWidth - obj.moveElmentWidth;
+
+            // 弹性拉动top
+            if (preoObj.tempObj.length > 1 && obj.moveElmentX > 0) {
+                obj.moveElmentX = obj.moveElmentX2;
+                obj.moveElmentX2 = 0;
+            }
+
+            // 弹性拉动bottom
+            if (preoObj.tempObj.length > 1 && obj.moveElmentWidth > obj.wraperWidth && obj.moveElmentX < obj.moveXSpace) {
+                obj.moveElmentX = obj.moveElmentX2;
+                obj.moveElmentX2 = 0;
+            }
+
             self.obj = obj;
 
             // 触发自定义的事件
@@ -5944,22 +6076,20 @@ $(function () {
                 obj.$moveElment.transition("none");
                 var translateX = obj.moveElmentX + obj.x;
 
-                // 左限住拉动
-                //if (self.options.limitLeft) {
-                translateX = translateX > 0 ? 0 : translateX;
-                // }
-
-                // 右限住拉动
-                obj.contentWidth = obj.$moveElment.outerWidth();
-                obj.wraperWidth = $m_touch_lr.outerWidth();
-                obj.moveYSpace = obj.wraperWidth - obj.contentWidth;
-                //  if (self.options.limitRight) {
-
-                if (obj.contentWidth > obj.wraperWidth && translateX < obj.moveYSpace) {
-                    translateX = obj.moveYSpace;
+                // 左限弹性拉动
+                if (translateX > 0) {
+                    obj.moveElmentX2 = translateX;
+                    var biliLeft = translateX / obj.wraperWidth;
+                    translateX = obj.wraperWidth * self.options.limit * biliLeft;
                 }
-                //  }
 
+                // 右限弹性拉动
+                if (obj.moveElmentWidth > obj.wraperWidth && translateX < obj.moveXSpace) {
+                    var moveRightVal = translateX - obj.moveXSpace;
+                    obj.moveElmentX2 = translateX;
+                    var biliRight = Math.abs(moveRightVal) / obj.wraperWidth;
+                    translateX = obj.wraperWidth * (1 - self.options.limit) * biliRight + translateX;
+                }
 
                 obj.$moveElment.translateX(translateX);
                 // 触发自定义的事件
@@ -5969,29 +6099,28 @@ $(function () {
 
             if (obj.isX) {
 
-                var moveElmentWidth = obj.$moveElment.outerWidth();
-                var wraperWidth = $m_touch_lr.outerWidth();
-                var moveYSpace = wraperWidth - moveElmentWidth;
                 var target = obj.$moveElment.translateX();
-
-                var transition = "transform .4s ease";
+                var transition = "transform .4s " + MTouchTab.DEFAULTS.cubicBezier;
                 if (target > 0) {
                     target = 0;
-                } else if (target < moveYSpace) {
+                } else if (target < obj.moveYSpace) {
                     target = moveYSpace;
-                    if (moveElmentWidth < wraperWidth) {
+                    if (obj.moveElmentWidth < obj.wraperWidth) {
                         target = 0;
                     }
                 }
 
-                //if (self.options.touchTab) {
-                var translateIndex = Math.round(target / wraperWidth);
-                $moveElement.translateX(wraperWidth * translateIndex);
-                $moveElement.transition("transform .4s " + MTouchTab.DEFAULTS.cubicBezier);
+                var translateIndex = Math.round(target / obj.wraperWidth);
+                var moveVal = obj.wraperWidth * translateIndex;
+                moveVal = obj.moveXSpace >= moveVal ? obj.moveXSpace : moveVal;
+
+                var maxIndex = -(Math.round(obj.moveElmentWidth / obj.wraperWidth) - 1);
+                translateIndex = translateIndex <= maxIndex ? maxIndex : translateIndex;
+                $moveElement.translateX(moveVal);
+                $moveElement.transition(transition);
 
                 // 触发自定义的事件
                 var $activeEl = $moveElement.find(".m-touch-tab-item").eq(Math.abs(translateIndex));
-
                 m(this).emit("tab.m.touch.tab", [$activeEl, Math.abs(translateIndex)]);
 
                 // 设置选择的样式
@@ -6004,26 +6133,32 @@ $(function () {
 
                 // 触发自定义的事件
                 m(this).emit("end.m.touch.tab", [this, target, obj]);
-
                 obj.oneTouch = undefined;
             }
         });
     };
 
     MTouchTab.DEFAULTS = {
-        cubicBezier: " cubic-bezier(.31,.66,.64,.98)"
+        cubicBezier: " ease",
+        limit: 0.15
     };
 
     MTouchTab.prototype.set = function (translateIndex) {
 
         var $m_touch_lr = m(this.el);
         var wraperWidth = m(this.el).outerWidth();
-        var $moveElement = $m_touch_lr.find(".m-touch-tab-cnt");
-        $moveElement.translateX(-wraperWidth * translateIndex);
-        $moveElement.transition("transform  .4s " + MTouchTab.DEFAULTS.cubicBezier);
+        var $moveElment = $m_touch_lr.find(".m-touch-tab-cnt");
+        var moveXSpace = wraperWidth - $moveElment.outerWidth();
+        var moveVal = -wraperWidth * translateIndex;
+        moveVal = moveXSpace >= moveVal ? moveXSpace : moveVal;
+        $moveElment.translateX(moveVal);
+        $moveElment.transition("transform  .4s " + MTouchTab.DEFAULTS.cubicBezier);
+        if (this.options.fade) {
+            $moveElment.transition("opacity  .4s " + MTouchTab.DEFAULTS.cubicBezier);
+        }
 
         // 触发自定义的事件
-        var $activeEl = $moveElement.find(".m-touch-tab-item").eq(Math.abs(translateIndex));
+        var $activeEl = $moveElment.find(".m-touch-tab-item").eq(Math.abs(translateIndex));
 
         // 设置选择的样式
         $activeEl.addClass("active").siblings().removeClass("active");
@@ -6036,9 +6171,9 @@ $(function () {
             var $this = $(this);
             var data = $this.data('m-touch-tab');
             var options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
-
             if (!data) {
                 var o = {};
+                o.limit = $this.attr("data-limit") ? Number($this.attr("data-limit")) : MTouchTab.DEFAULTS.limit;
                 var p = $.extend({}, o, options);
                 $this.data('m-touch-tab', data = new MTouchTab(this, p));
             }
@@ -6107,7 +6242,7 @@ $(function () {
         if (self.options.line) {
             var w = m(self.el).find(".m-touch-tab-btn-item").outerWidth();
             m(self.el).find(".m-touch-tab-btn-line").translateX(w * index);
-            m(self.el).find(".m-touch-tab-btn-line").transition("transform .8s ease");
+            m(self.el).find(".m-touch-tab-btn-line").transition("transform .4s ease");
         }
 
         // 触发自定义的事件
@@ -6133,7 +6268,6 @@ $(function () {
             var $this = $(this);
             var data = $this.data('m-touch-tab-btn');
             var options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
-
             if (!data) {
                 var o = {};
                 o.line = $this.hasAttr("data-line");
@@ -6206,7 +6340,7 @@ $(function () {
         });
 
         function setindexlistTop(i) {
-            //console.log(items[i].name);
+
             var group = "[data-group=" + items[i].name + "]";
             var li = $indexlist_ul.find(group);
             var top = li.offset().top;
@@ -6304,25 +6438,30 @@ $(function () {
     var MListoption = function MListoption(el, options) {
         this.el = el;
         this.options = options;
+
+        // 左拉自动触发
+        if (this.options.auto) {
+            this.options.limit = 0.8;
+        }
+
         this.run();
     };
 
     MListoption.prototype.run = function () {
 
+        var self = this;
         var $m_listoption = m(this.el);
-        var transition = "transform .6s ease";
 
         // 阻止冒泡
-        //$m_listoption.parent().touch(function (event, obj) {
+        $m_listoption.parent().touch(function (event, obj) {
 
-        //        var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
+            var $listoptionEl = m(event.target).parents(".m-listoption-item-cnt");
 
-        //        if ($listoptionEl.translateX() < -1) {
-        //            event.preventDefault();
-        //            event.stopPropagation();
-        //        }
-
-        //});
+            if ($listoptionEl.translateX() < -1) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
 
         $m_listoption.touch(function () {}, function (event, obj) {
 
@@ -6331,16 +6470,21 @@ $(function () {
             }
         });
 
-        $m_listoption.touchdeletage(".m-listoption-item", function (event, obj) {
+        $m_listoption.touchdeletage(".m-listoption-item", function (event, obj, preoObj) {
 
             var $moveElement = m(this).find(".m-listoption-item-cnt");
             obj.$moveElement = $moveElement;
+            obj.wraperWidth = obj.$moveElement.outerWidth();
             obj.moveElmentX = $moveElement.translateX();
             obj.$moveElment = $moveElement;
-            obj.$moveElment.transition("none");
             obj.optionWidth = -$moveElement.find(".m-listoption-item-option").outerWidth();
+            m(this).siblings().find(".m-listoption-item-cnt").translateX(0).transition("all .4s  ease");
 
-            m(this).siblings().find(".m-listoption-item-cnt").translateX(0).transition(transition);
+            // 弹性拉动right
+            if (preoObj.tempObj.length > 1 && obj.moveElmentX < obj.optionWidth) {
+                obj.moveElmentX = obj.moveElmentX2;
+                obj.moveElmentX2 = 0;
+            }
 
             // 触发自定义的事件
             m(this).emit("start.m.listoption", [this]);
@@ -6348,35 +6492,21 @@ $(function () {
 
             if (obj.isX) {
                 event.preventDefault();
-
-                // 阻外层冒泡
-                if (obj.oneTouch === 1) {
-                    return;
-                }
-                if (obj.$moveElement.translateX() === 0 && obj.x > 0 && obj.oneTouch === undefined) {
-                    obj.oneTouch = 1;
-                } else {
-                    obj.oneTouch = 2;
-                }
-
-                if (obj.oneTouch === 1) {
-
-                    return;
-                }
-                if (obj.oneTouch === 2) {
-                    event.stopPropagation();
-                }
-
                 obj.$moveElment.transition("none");
                 var translateX = obj.moveElmentX + obj.x;
-
-                if (translateX < obj.optionWidth) {
-                    translateX = obj.optionWidth;
-                }
 
                 if (translateX > 0) {
                     translateX = 0;
                 }
+
+                // 右限弹性拉动
+                if (translateX < obj.optionWidth) {
+                    var moveRightVal = translateX - obj.optionWidth;
+                    obj.moveElmentX2 = translateX;
+                    var biliRight = Math.abs(moveRightVal) / obj.wraperWidth;
+                    translateX = obj.wraperWidth * (1 - self.options.limit) * biliRight + translateX;
+                }
+
                 obj.$moveElement.translateX(translateX);
 
                 // 触发自定义的事件
@@ -6385,17 +6515,32 @@ $(function () {
         }, function (event, obj) {
 
             if (obj.isX) {
-                //  event.stopPropagation();
                 var target = obj.$moveElment.translateX();
+                var ansTime = 400;
+                if (!self.options.auto) {
+                    if (target < obj.optionWidth / 2) {
+                        target = obj.optionWidth;
+                    } else {
+                        target = 0;
+                    }
+                }
 
-                if (target < obj.optionWidth / 2) {
-                    target = obj.optionWidth;
-                } else {
-                    target = 0;
+                if (self.options.auto) {
+                    if (target < -obj.wraperWidth * 0.6) {
+                        target = -obj.wraperWidth;
+                        ansTime = 200;
+                        var $this = this;
+                        // 触发自定义的auto事件
+                        obj.$moveElement.setTimeout(function () {
+                            m($this).emit("auto.m.listoption", [$this]);
+                        }, ansTime);
+                    } else {
+                        target = 0;
+                    }
                 }
 
                 obj.$moveElement.translateX(target);
-                obj.$moveElement.transition(transition);
+                obj.$moveElement.transition("all " + ansTime + "ms  ease");
 
                 // 触发自定义的事件
                 m(this).emit("end.m.listoption", [this]);
@@ -6408,7 +6553,15 @@ $(function () {
         //});
     };
 
-    MListoption.DEFAULTS = {};
+    MListoption.prototype.back = function () {
+        console.log(this.el);
+        m(this.el).find(".m-listoption-item-cnt").translateX(0).transition("all .4s  ease");
+    };
+
+    MListoption.DEFAULTS = {
+        limit: .2
+
+    };
 
     function Plugin(option) {
 
@@ -6420,6 +6573,8 @@ $(function () {
 
             if (!data) {
                 var o = {};
+                o.auto = m(this).hasAttr("data-auto");
+                o.limit = MListoption.DEFAULTS.limit;
                 var p = $.extend({}, o, options);
                 $this.data('m-listoption', data = new MListoption(this, p));
             }
@@ -6452,7 +6607,7 @@ $(function () {
     MSwitch.prototype.run = function () {
         var self = this;
         var $witch = m(this.el);
-        var transition = "transform .4s ease";
+        var transition = MSwitch.DEFAULTS.transition;
         $witch.touch(function (event, obj) {
             event.preventDefault();
             var $moveElement = $witch.find(".m-switch-rd");
@@ -6532,7 +6687,7 @@ $(function () {
         var moveElmentWidth = $moveElement.outerWidth();
         var maxWidth = switchWidth - moveElmentWidth;
         if ($witch.hasClass("active")) {
-            // console.log(switchWidth);
+
             $moveElement.translateX(maxWidth);
         } else {
             $moveElement.translateX(0);
@@ -6540,9 +6695,40 @@ $(function () {
         $moveElement.transition(transition);
     };
 
-    function Plugin(option) {
+    MSwitch.prototype.set = function (val) {
+        val = !!val;
+        var $witch = m(this.el);
+        var wraperWidth = $witch.outerWidth();
+        var $moveElement = $witch.find(".m-switch-rd");
+        var moveElmentWidth = $moveElement.outerWidth();
+        var maxWidth = wraperWidth - moveElmentWidth;
+        var translateX = 0;
+        if (val) {
+            translateX = maxWidth;
+            $witch.addClass("active");
+        } else {
+            translateX = 0;
+            $witch.removeClass("active");
+        }
 
-        return this.each(function () {
+        $moveElement.translateX(translateX);
+        $moveElement.transition(MSwitch.DEFAULTS.transition);
+        // 触发自定义的事件
+        $witch.emit("switch.m.switch", [$witch.get(0), val]);
+    };
+
+    MSwitch.prototype.get = function () {
+
+        return m(this.el).hasClass("active");
+    };
+
+    MSwitch.DEFAULTS = {
+        transition: "transform .4s ease"
+    };
+
+    function Plugin(option, val) {
+        var result;
+        this.each(function () {
 
             var $this = $(this);
             var data = $this.data('m-switch');
@@ -6555,9 +6741,11 @@ $(function () {
             }
 
             if (typeof option === 'string') {
-                data[option]();
+                result = data[option](val);
             }
         });
+
+        return result;
     }
 
     var _mSwitch = $.fn.mSwitch;
@@ -6571,9 +6759,54 @@ $(function () {
 
 /*
   m-checkbtn
- * */
+ */
 
 (function () {
+
+    // define class
+    var MCheckbtn = function MCheckbtn(el, options) {
+        this.el = el;
+        this.options = options;
+    };
+
+    MCheckbtn.prototype.set = function (val) {
+
+        if (val) {
+            m(this.el).find(".m-checkbtn-item").addClass("active");
+            m(this.el).trigger("check.m.checkbtn", [m(this.el).find(".m-checkbtn-item")[0], true]);
+        } else {
+            m(this.el).find(".m-checkbtn-item").removeClass("active");
+            m(this.el).trigger("check.m.checkbtn", [m(this.el).find(".m-checkbtn-item")[0], false]);
+        }
+    };
+
+    MCheckbtn.prototype.get = function () {
+        return m(this.el).find(".m-checkbtn-item").hasClass("active");
+    };
+
+    function Plugin(option, val) {
+        var result;
+        this.each(function () {
+
+            var $this = $(this);
+            var data = $this.data('m-checkbtn');
+            var options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
+            if (!data) {
+                var o = {};
+                var p = $.extend({}, o, options);
+                $this.data('m-checkbtn', data = new MCheckbtn(this, p));
+            }
+
+            if (typeof option === 'string') {
+                result = data[option](val);
+            }
+        });
+
+        return result;
+    }
+
+    var _mCheckbtn = $.fn.mCheckbtn;
+    m.fn.mCheckbtn = Plugin;
 
     // 单选
     $(document).on("tap", ".m-checkbtn-item", function (e) {
@@ -6584,26 +6817,140 @@ $(function () {
         // 触发自定义的事件
         $(this).emit("check.m.checkbtn", [this, bl]);
     });
+})();
 
-    m.fn.extend({
+/*
+  m-checkbtn-group
+ */
 
-        mCheckbtn: function mCheckbtn(v) {
-            if (typeof v !== "undefined") {
-                v = !!v;
+(function () {
 
-                if (v) {
-                    $(this).find(".m-checkbtn-item").addClass("active");
-                    $(this).trigger("check.m.checkbtn", [$(this).find(".m-checkbtn-item")[0], true]);
+    // define class
+    var MCheckbtnGroup = function MCheckbtnGroup(el, options) {
+        this.el = el;
+        this.options = options;
+    };
+
+    MCheckbtnGroup.prototype.set = function (args) {
+        var $this = m(this.el);
+        var items = $this.find(".m-checkbtn-group-item");
+        if (typeof args === "function") {
+
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                var val = $(item).attr("data-val") || "";
+                var bl = args(val);
+                if (bl) {
+                    $(item).addClass("active");
                 } else {
-                    $(this).find(".m-checkbtn-item").removeClass("active");
-                    $(this).trigger("check.m.checkbtn", [$(this).find(".m-checkbtn-item")[0], false]);
+                    $(item).removeClass("active");
                 }
-            } else {
-
-                return $(this).find(".m-checkbtn-item").hasClass("active");
             }
+            // 触发自定义的事件
+            var list = [];
+            $(".m-checkbtn-group-item", $this).each(function () {
+                if ($this.hasClass("active")) {
+                    var v = $(this).attr("data-val") || "";
+                    if ($.trim(v) !== "") {
+                        list.push(v);
+                    }
+                }
+            });
+
+            $(this).trigger("check.m.checkbtn.group", [list]);
+
+            return;
+        } else if (args instanceof Array) {
+            var list2 = [];
+
+            for (var i2 = 0; i2 < items.length; i2++) {
+                var item2 = items[i2];
+                var v = $(item2).attr("data-val") || "";
+                for (var y = 0; y < args.length; y++) {
+                    if (v === args[y]) {
+                        $(item2).addClass("active");
+
+                        break;
+                    } else {
+                        $(item2).removeClass("active");
+                    }
+                }
+
+                // 触发自定义的事件
+                list2 = [];
+                $(".m-checkbtn-group-item", $this).each(function () {
+                    if ($(this).hasClass("active")) {
+                        var v = $(this).attr("data-val") || "";
+                        if ($.trim(v) !== "") {
+                            list2.push(v);
+                        }
+                    }
+                });
+            }
+
+            $this.trigger("check.m.checkbtn.group", [list2]);
         }
-    });
+    };
+
+    MCheckbtnGroup.prototype.all = function (args) {
+
+        // 全选 与 反选
+        if (typeof args === "boolean") {
+            var $this = $(this.el);
+            var objs = $this.find(".m-checkbtn-group-item");
+            var objs_list = [];
+            objs.each(function () {
+                if (args) {
+                    var v = $(this).attr("data-val") || "";
+                    $(this).addClass("active");
+                    objs_list.push(v);
+                } else {
+
+                    $(this).removeClass("active");
+                }
+
+                $(this).trigger("check.m.checkbtn.group", [objs_list]);
+            });
+        }
+    };
+
+    MCheckbtnGroup.prototype.get = function () {
+
+        var arrs = [];
+        $(".m-checkbtn-group-item", this.el).each(function () {
+            if ($(this).hasClass("active")) {
+                var v = $(this).attr("data-val") || "";
+                if ($.trim(v) !== "") {
+                    arrs.push(v);
+                }
+            }
+        });
+        return arrs;
+    };
+
+    function Plugin(option, val) {
+        var result;
+        this.each(function () {
+
+            var $this = $(this);
+            var data = $this.data('m-checkbtn-group');
+            var options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
+            if (!data) {
+                var o = {};
+                var p = $.extend({}, o, options);
+                $this.data('m-checkbtn-group', data = new MCheckbtnGroup(this, p));
+            }
+
+            if (typeof option === 'string') {
+                result = data[option](val);
+            }
+        });
+
+        return result;
+    }
+
+    var _mCheckbtnGroup = $.fn.mCheckbtnGroup;
+    m.fn.mCheckbtnGroup = Plugin;
 
     m(document).on("tap", ".m-checkbtn-group-item", function (e) {
 
@@ -6624,100 +6971,78 @@ $(function () {
         // 触发自定义的事件
         m(this).trigger("check.m.checkbtn.group", [arrs]);
     });
+})();
 
-    m.fn.extend({
+/*
+  m-radiobtn-group
+ */
 
-        mCheckbtnGroup: function mCheckbtnGroup(args) {
-            var items = $(this).find(".m-checkbtn-group-item");
-            var arrs = [];
-            if (typeof args === "function") {
+(function () {
 
-                for (var i = 0; i < items.length; i++) {
-                    var item = items[i];
-                    var val = $(item).attr("data-val") || "";
-                    var bl = args(val);
-                    if (bl) {
-                        $(item).addClass("active");
-                    } else {
-                        $(item).removeClass("active");
-                    }
-                }
+    // define class
+    var MRadiobtnGroup = function MRadiobtnGroup(el, options) {
+        this.el = el;
+        this.options = options;
+    };
+
+    MRadiobtnGroup.prototype.set = function (index) {
+
+        var $this = m(this.el);
+        if (arguments.length >= 1) {
+            if (!isNaN(index)) {
+                index = Number(index);
+                $this.find(".m-radiobtn-item").removeClass("active");
+                $this.find(".m-radiobtn-item").eq(index).addClass("active");
+
                 // 触发自定义的事件
-                var list = [];
-                $(".m-checkbtn-group-item", this).each(function () {
-                    if ($(this).hasClass("active")) {
-                        var v = $(this).attr("data-val") || "";
-                        if ($.trim(v) !== "") {
-                            list.push(v);
-                        }
+                var $active = $this.find(".m-radiobtn-item.active");
+
+                $this.trigger("check.m.radiobtn.group", [$active.get(0), $active.attr("data-val")]);
+            } else if (typeof index === "string") {
+                var $list = $this.find(".m-radiobtn-item");
+                $list.removeClass("active");
+                $list.each(function () {
+
+                    var v = $.trim($(this).attr("data-val") || "");
+                    if (index === v) {
+                        m(this).addClass("active");
                     }
                 });
 
-                $(this).trigger("check.m.checkbtn.group", [list]);
-
-                return;
-            } else if (args instanceof Array) {
-                var list2 = [];
-
-                for (var i2 = 0; i2 < items.length; i2++) {
-                    var item2 = items[i2];
-                    var v = $(item2).attr("data-val") || "";
-                    for (var y = 0; y < args.length; y++) {
-                        if (v === args[y]) {
-                            $(item2).addClass("active");
-
-                            break;
-                        } else {
-                            $(item2).removeClass("active");
-                        }
-                    }
-
-                    // 触发自定义的事件
-                    list2 = [];
-                    $(".m-checkbtn-group-item", this).each(function () {
-                        if ($(this).hasClass("active")) {
-                            var v = $(this).attr("data-val") || "";
-                            if ($.trim(v) !== "") {
-                                list2.push(v);
-                            }
-                        }
-                    });
-                }
-
-                $(this).trigger("check.m.checkbtn.group", [list2]);
+                // 触发自定义的事件
+                var $active2 = $this.find(".m-radiobtn-item.active");
+                $this.trigger("check.m.radiobtn.group", [$active2.get(0), $active2.attr("data-val")]);
             }
-            // 全选 与 反选
-            else if (typeof args === "boolean") {
-
-                    var objs = $(this).find(".m-checkbtn-group-item");
-                    var objs_list = [];
-                    objs.each(function () {
-                        if (args) {
-                            var v = $(this).attr("data-val") || "";
-                            $(this).addClass("active");
-                            objs_list.push(v);
-                        } else {
-
-                            $(this).removeClass("active");
-                        }
-
-                        $(this).trigger("check.m.checkbtn.group", [objs_list]);
-                    });
-                } else {
-
-                    $(".m-checkbtn-group-item", this).each(function () {
-                        if ($(this).hasClass("active")) {
-                            var v = $(this).attr("data-val") || "";
-                            if ($.trim(v) !== "") {
-                                arrs.push(v);
-                            }
-                        }
-                    });
-
-                    return arrs;
-                }
         }
-    });
+    };
+
+    MRadiobtnGroup.prototype.get = function () {
+        return $(this.el).find(".m-radiobtn-item.active").attr("data-val");
+    };
+
+    function Plugin(option, val) {
+        var result;
+        this.each(function () {
+
+            var $this = $(this);
+            var data = $this.data('m-radiobtn-group');
+            var options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
+            if (!data) {
+                var o = {};
+                var p = $.extend({}, o, options);
+                $this.data('m-radiobtn-group', data = new MRadiobtnGroup(this, p));
+            }
+
+            if (typeof option === 'string') {
+                result = data[option](val);
+            }
+        });
+
+        return result;
+    }
+
+    var _mRadiobtnGroup = $.fn.mRadiobtnGroup;
+    m.fn.mRadiobtnGroup = Plugin;
 
     m(document).on("tap", ".m-radiobtn-item", function (e) {
         e.preventDefault();
@@ -6728,42 +7053,6 @@ $(function () {
         // 触发自定义的事件
         m(this).trigger("check.m.radiobtn.group", [this, $(this).attr("data-val")]);
     });
-
-    m.fn.extend({
-
-        mRadiobtnGroup: function mRadiobtnGroup(index) {
-
-            if (arguments.length >= 1) {
-                if (!isNaN(index)) {
-                    index = Number(index);
-                    m(this).find(".m-radiobtn-item").removeClass("active");
-                    m(this).find(".m-radiobtn-item").eq(index).addClass("active");
-
-                    // 触发自定义的事件
-                    var $active = $(this).find(".m-radiobtn-item.active");
-
-                    m(this).trigger("check.m.radiobtn.group", [$active.get(0), $active.attr("data-val")]);
-                } else if (typeof index === "string") {
-                    var $list = m(this).find(".m-radiobtn-item");
-                    $list.removeClass("active");
-                    $list.each(function () {
-
-                        var v = $.trim($(this).attr("data-val") || "");
-                        if (index === v) {
-                            m(this).addClass("active");
-                        }
-                    });
-
-                    // 触发自定义的事件
-                    var $active2 = $(this).find(".m-radiobtn-item.active");
-                    m(this).trigger("check.m.radiobtn.group", [$active2.get(0), $active2.attr("data-val")]);
-                }
-            } else {
-
-                return $(this).find(".m-radiobtn-item.active").attr("data-val");
-            }
-        }
-    });
 })();
 
 /*
@@ -6771,6 +7060,55 @@ $(function () {
  * */
 
 (function () {
+
+    // define class
+    var MCheckbox = function MCheckbox(el, options) {
+        this.el = el;
+        this.options = options;
+    };
+
+    MCheckbox.prototype.set = function (v) {
+
+        var $this = $(this.el);
+        v = !!v;
+        if (v) {
+            $this.find(".m-checkbox-item").addClass("active");
+            // 触发自定义的事件
+            $this.trigger("check.m.checkbox", [$this.get(0), true]);
+        } else {
+            $this.find(".m-checkbox-item").removeClass("active");
+            // 触发自定义的事件
+            $this.trigger("check.m.checkbox", [$this.get(0), false]);
+        }
+    };
+
+    MCheckbox.prototype.get = function () {
+        return $(this.el).find(".m-checkbox-item").hasClass("active");
+    };
+
+    function Plugin(option, val) {
+        var result;
+        this.each(function () {
+
+            var $this = $(this);
+            var data = $this.data('m-checkbox');
+            var options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
+            if (!data) {
+                var o = {};
+                var p = $.extend({}, o, options);
+                $this.data('m-checkbox', data = new MCheckbox(this, p));
+            }
+
+            if (typeof option === 'string') {
+                result = data[option](val);
+            }
+        });
+
+        return result;
+    }
+
+    var _mCheckbox = $.fn.mCheckbox;
+    m.fn.mCheckbox = Plugin;
 
     // 单选 m-checkbox
     $(document).on("tap", ".m-checkbox", function (e) {
@@ -6781,31 +7119,122 @@ $(function () {
         // 触发自定义的事件
         $(this).trigger("check.m.checkbox", [$p, bl]);
     });
-
-    $.fn.extend({
-
-        mCheckbox: function mCheckbox(v) {
-
-            if (arguments.length > 0) {
-                v = !!v;
-                if (v) {
-                    $(this).find(".m-checkbox-item").addClass("active");
-                    // 触发自定义的事件
-                    $(this).trigger("check.m.checkbox", [$(this).get(0), true]);
-                } else {
-                    $(this).find(".m-checkbox-item").removeClass("active");
-                    // 触发自定义的事件
-                    $(this).trigger("check.m.checkbox", [$(this).get(0), false]);
-                }
-            } else {
-
-                return $(this).find(".m-checkbox-item").hasClass("active");
-            }
-        }
-    });
 })();
 
+/*
+  m-checkbox-group
+ */
+
 (function () {
+
+    // define class
+    var MCheckboxGroup = function MCheckboxGroup(el, options) {
+        this.el = el;
+        this.options = options;
+    };
+
+    MCheckboxGroup.prototype.set = function (args) {
+
+        var $this = m(this.el);
+        var $items = $this.find(".m-checkbox-group-item");
+
+        if (typeof args === "function") {
+            var list = [];
+            for (var i = 0; i < $items.length; i++) {
+                var item = $items[i];
+                $(item).removeClass("active");
+                var val = $(item).attr("data-val") || "";
+                var bl = args(val);
+                if (bl) {
+                    $(item).addClass("active");
+                    list.push(val);
+                }
+            }
+            // 触发自定义的事件
+            $this.trigger("check.m.checkbox.group", [$this.get(0), list]);
+
+            return;
+        } else if (args instanceof Array) {
+            var list2 = [];
+            for (var i2 = 0; i2 < $items.length; i2++) {
+                var item2 = $items[i2];
+                $(item2).removeClass("active");
+                for (var y = 0; y < args.length; y++) {
+                    var v = $(item2).attr("data-val") || "";
+                    if (v === args[y]) {
+                        $(item2).addClass("active");
+                        list2.push(v);
+                        break;
+                    }
+                }
+            }
+            // 触发自定义的事件
+            $this.trigger("check.m.checkbox.group", [$this.get(0), list2]);
+        }
+    };
+
+    MCheckboxGroup.prototype.all = function (args) {
+        var $this = m(this.el);
+        var items = $this.find(".m-checkbox-group-item");
+        if (typeof args === "boolean") {
+
+            var list1 = [];
+            items.each(function () {
+                if (args) {
+                    $(this).addClass("active");
+                    list1.push($(this).attr("data-val") || "");
+                } else {
+                    $(this).removeClass("active");
+                }
+            });
+
+            // 触发自定义的事件
+            $this.trigger("check.m.checkbox.group", [$this.get(0), list1]);
+        }
+    };
+
+    MCheckboxGroup.prototype.get = function () {
+        var $this = m(this.el);
+        var items = $this.find(".m-checkbox-group-item");
+        var arrs = [];
+        items.each(function () {
+
+            if ($(this).hasClass("active")) {
+                var v = $(this).attr("data-val") || "";
+
+                if ($.trim(v) !== "") {
+                    arrs.push(v);
+                }
+            }
+        });
+
+        return arrs;
+    };
+
+    function Plugin(option, val) {
+        var result;
+        this.each(function () {
+
+            var $this = $(this);
+            var data = $this.data('m-checkbox-group');
+            var options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
+            if (!data) {
+                var o = {};
+                var p = $.extend({}, o, options);
+                $this.data('m-checkbox-group', data = new MCheckboxGroup(this, p));
+            }
+
+            if (typeof option === 'string') {
+                result = data[option](val);
+            }
+        });
+
+        return result;
+    }
+
+    var _mCheckbtnGroup = $.fn.mCheckboxGroup;
+    m.fn.mCheckboxGroup = Plugin;
+
     // 单选组 m-checkbox-group
     m(document).on("tap", ".m-checkbox-group-item", function (e) {
         e.preventDefault();
@@ -6820,82 +7249,94 @@ $(function () {
         // 触发自定义的事件
         m(this).trigger("check.m.checkbox.group", [p, vals]);
     });
-
-    m.fn.extend({
-        mCheckboxGroup: function mCheckboxGroup(args) {
-            var items = $(this).find(".m-checkbox-group-item");
-
-            if (typeof args === "function") {
-                var list = [];
-                for (var i = 0; i < items.length; i++) {
-                    var item = items[i];
-                    $(item).removeClass("active");
-                    var val = $(item).attr("data-val") || "";
-                    var bl = args(val);
-                    if (bl) {
-                        $(item).addClass("active");
-                        list.push(val);
-                    }
-                }
-                // 触发自定义的事件
-                $(this).trigger("check.m.checkbox.group", [this, list]);
-
-                return;
-            }
-
-            // 全选 与 反选
-            else if (typeof args === "boolean") {
-
-                    var list1 = [];
-                    items.each(function () {
-                        if (args) {
-                            $(this).addClass("active");
-                            list1.push($(this).attr("data-val") || "");
-                        } else {
-                            $(this).removeClass("active");
-                        }
-                    });
-
-                    // 触发自定义的事件
-                    $(this).trigger("check.m.checkbox.group", [this, list1]);
-                } else if (args instanceof Array) {
-                    var list2 = [];
-                    for (var i2 = 0; i2 < items.length; i2++) {
-                        var item2 = items[i2];
-                        $(item2).removeClass("active");
-                        for (var y = 0; y < args.length; y++) {
-                            var v = $(item2).attr("data-val") || "";
-                            if (v === args[y]) {
-                                $(item2).addClass("active");
-                                list2.push(v);
-                                break;
-                            }
-                        }
-                    }
-                    // 触发自定义的事件
-                    $(this).trigger("check.m.checkbox.group", [this, list2]);
-                } else {
-                    var arrs = [];
-                    items.each(function () {
-
-                        if ($(this).hasClass("active")) {
-                            var v = $(this).attr("data-val") || "";
-
-                            if ($.trim(v) !== "") {
-                                arrs.push(v);
-                            }
-                        }
-                    });
-
-                    return arrs;
-                }
-        }
-    });
 })();
+
+/*
+  m-radiobox-group
+ */
 
 (function () {
 
-    // 单选 m-radiobox
+    // define class
+    var MRadiokboxGroup = function MRadiokboxGroup(el, options) {
+        this.el = el;
+        this.options = options;
+    };
+
+    MRadiokboxGroup.prototype.set = function (args) {
+
+        var $items = $(this.el).find(".m-radiobox-item");
+        if (typeof args === "string") {
+            $items.removeClass("active");
+            var v = "";
+            $items.each(function () {
+                var v2 = $(this).attr("data-val") || "";
+                if ($.trim(v2) === args) {
+                    $(this).addClass("active");
+                    v = v2;
+                    return false;
+                }
+            });
+
+            // 触发自定义的事件
+            m(this).trigger("check.m.radiobox.group", [$(this.el).find(".m-radiobox-item.active").get(0), v]);
+        } else if (typeof args === "number") {
+
+            $items.removeClass("active");
+            if (args > 0) {
+                args = args >= 1 ? args - 1 : 0;
+                $items.eq(args).addClass("active");
+            }
+
+            return;
+        } else if (typeof args === "function") {
+
+            $items.removeClass("active");
+            for (var i = 0; i < $items.length; i++) {
+                var item = $items[i];
+                var val = $(item).attr("data-val") || "";
+                var bl = args(val);
+                if (bl) {
+                    $(item).addClass("active");
+                    break;
+                } else {
+                    $(item).removeClass("active");
+                }
+            }
+
+            return;
+        }
+    };
+
+    MRadiokboxGroup.prototype.get = function () {
+        return m(this.el).find(".m-radiobox-item.active").attr("data-val") || "";
+    };
+
+    function Plugin(option, val) {
+        var result;
+        this.each(function () {
+
+            var $this = $(this);
+            var data = $this.data('m-radiobox-group');
+            var options = (typeof option === "undefined" ? "undefined" : _typeof(option)) === 'object' && option;
+            if (!data) {
+                var o = {};
+                var p = $.extend({}, o, options);
+                $this.data('m-radiobox-group', data = new MRadiokboxGroup(this, p));
+            }
+
+            if (typeof option === 'string') {
+                result = data[option](val);
+            }
+        });
+
+        return result;
+    }
+
+    var _mRadioboxGroup = $.fn.mRadioboxGroup;
+    m.fn.mRadioboxGroup = Plugin;
+
+    // 单选 m-radiobox-group
     m(document).on("tap", ".m-radiobox-item", function (e) {
         e.preventDefault();
         var p = $(this).parents(".m-radiobox-group");
@@ -6905,55 +7346,6 @@ $(function () {
 
         // 触发自定义的事件
         $(this).trigger("check.m.radiobox.group", [this, v]);
-    });
-
-    m.fn.extend({
-
-        mRadioboxGroup: function mRadioboxGroup(args) {
-            var items = $(this).find(".m-radiobox-item");
-            if (typeof args === "string") {
-                items.removeClass("active");
-                var v = "";
-                items.each(function () {
-                    var v2 = $(this).attr("data-val") || "";
-                    if ($.trim(v2) === args) {
-                        $(this).addClass("active");
-                        v = v2;
-                        return false;
-                    }
-                });
-
-                // 触发自定义的事件
-                m(this).trigger("check.m.radiobox.group", [$(this).find(".m-radiobox-item.active").get(0), v]);
-            } else if (typeof args === "number") {
-
-                items.removeClass("active");
-                if (args > 0) {
-                    args = args >= 1 ? args - 1 : 0;
-                    items.eq(args).addClass("active");
-                }
-
-                return;
-            } else if (typeof args === "function") {
-
-                items.removeClass("active");
-                for (var i = 0; i < items.length; i++) {
-                    var item = items[i];
-                    var val = $(item).attr("data-val") || "";
-                    var bl = args(val);
-                    if (bl) {
-                        $(item).addClass("active");
-                        break;
-                    } else {
-                        $(item).removeClass("active");
-                    }
-                }
-
-                return;
-            } else {
-                return m(this).find(".m-radiobox-item.active").attr("data-val") || "";
-            }
-        }
     });
 })();
 
@@ -7349,7 +7741,7 @@ $(function () {
         m.router.ismask = true;
         var self = this;
         var $m_touch_tb = m(this.el).addClass("m-picker").find(".m-picker-inner");
-        var $moveElement = $m_touch_tb.find(".m-picker-cnt");
+        //  var $moveElement = $m_touch_tb.find(".m-picker-cnt");
 
         $m_touch_tb.find(".m-picker-item.active").each(function (i, v) {
             self.center.call(self, v); // 初始化选择第一项
@@ -7415,10 +7807,6 @@ $(function () {
 
                 // obj.$moveElment.transition("none");
                 self.obj = obj;
-
-                // 计算移动速度
-                // if (self.options.speed) {
-
                 self.speedlateY = obj.y = 0;
                 clearInterval(self.speedSetIntervalId);
                 self.speedSetIntervalFisrt = true;
@@ -7430,7 +7818,7 @@ $(function () {
                 // 计算移动速度
                 if (self.speedSetIntervalFisrt) {
                     self.speedSetIntervalFisrt = false;
-                    self.speedSetIntervalId = setInterval(function () {
+                    self.speedSetIntervalId = obj.$moveElment.setInterval(function () {
                         self.speedlateY2 = obj.y || 0;
                         self.speedlateY3 = parseFloat(self.speedlateY2) - parseFloat(self.speedlateY);
                         self.speedlateY = self.speedlateY2;
@@ -7451,7 +7839,6 @@ $(function () {
                     // 上限住拉动
                     var limitBottom = obj.$moveElment.outerHeight() - $m_touch_tb.outerHeight() * 0.2;
                     translateY = translateY < -limitBottom ? -limitBottom : translateY;
-
                     obj.$moveElment.translateY(translateY);
                 }
             }, function (event, obj) {
@@ -7466,15 +7853,7 @@ $(function () {
 
                     self.speedSetIntervalFisrt = true;
                     clearInterval(self.speedSetIntervalId);
-
-                    // 计算移动速度
-                    //if (self.speedScroll > 200) {
-                    //    self.speedScroll = 200;
-                    //} else if (self.speedScroll < -120) {
-                    //    self.speedScroll = -200;
-                    //}
-
-                    target = target + self.speedScroll * 10; // 修改速度值 
+                    target = target + self.speedScroll * 11; // 修改速度值 
 
                     // picker-item  first element
                     var middelHeight = wraperHeight / 2 - liHeight / 2;
@@ -7492,7 +7871,6 @@ $(function () {
                     } else {
 
                         var _move2 = middelHeight - target;
-
                         var index2 = Math.round(_move2 / liHeight);
                         el = obj.$moveElment.find("li").eq(index2);
 
@@ -7508,15 +7886,7 @@ $(function () {
                         }
                     }
 
-                    //var abs_target = Math.abs(target);
-                    //console.log(" wraperHeight", wraperHeight);
-                    //console.log(" target", abs_target);
-                    //console.log(" target/", abs_target / wraperHeight);
-
-                    //$moveElement.transition("transform .6s cubic-bezier(.3,.53,.48,1.27)");
-
                     self.center.call(self, el, true); // 移动到center
-
                 }
             });
         });
@@ -7554,7 +7924,6 @@ $(function () {
             ansTime = 600;
         }
         ansTime = ansTime > 2000 ? 2000 : ansTime;
-
         $ul.translateY(moveY);
 
         if (!bl) {
@@ -7601,7 +7970,6 @@ $(function () {
         if (type === "time2" || type === "time") {
 
             var _time = o["time"] = {};
-
             _time.time1 = m(this.el).find(".m-picker-hour").find(".m-picker-item.active").attr("data-val");
             _time.time2 = m(this.el).find(".m-picker-mimu").find(".m-picker-item.active").attr("data-val");
             _time.time3 = m(this.el).find(".m-picker-second").find(".m-picker-item.active").attr("data-val");
@@ -8072,6 +8440,7 @@ $(function () {
 
     MLazy.prototype._scrollImgByElement = function (event) {
 
+        var self = this;
         var $el = $(this.el);
         var $list = $el.find(".m-lazy-img");
         var el_h = parseFloat($el.outerHeight());
@@ -8089,19 +8458,36 @@ $(function () {
 
             if (elTop >= img_h_min && elTop < img_h_max) {
 
-                if (!$this.data("blLazy")) {
-                    $this.data("blLazy", true);
-                    var _src = $this.attr("data-lazy") || "";
-                    $this.attr("src", _src);
-                    $this.removeClass("m-lazy-img");
-                    $this.on("load", function () {
-
-                        $this.addClass("m-lazy-animation");
-                        $this.parent().addClass("m-lazy-end");
-                    });
-                }
+                self._loadFade($this);
             }
         });
+    };
+
+    MLazy.prototype.fade = function (event) {
+
+        var self = this;
+        var $el = $(this.el);
+        var $list = $el.find(".m-lazy-img");
+
+        $list.each(function () {
+            var $this = $(this);
+            self._loadFade($this);
+        });
+    };
+
+    MLazy.prototype._loadFade = function ($this) {
+
+        if (!$this.data("blLazy")) {
+            $this.data("blLazy", true);
+            var _src = $this.attr("data-lazy") || "";
+            $this.attr("src", _src);
+            $this.removeClass("m-lazy-img");
+            $this.on("load", function () {
+
+                $this.addClass("m-lazy-animation");
+                $this.parent().addClass("m-lazy-end");
+            });
+        }
     };
 
     MLazy.prototype.init = function () {
@@ -8152,47 +8538,44 @@ $(function () {
 
 +function () {
 
-    //  m-info
-    m.extend({
-        mLoading: _mLoading
-    });
+        //  m-info
 
-    function _mLoading() {
+        function _mLoading() {
 
-        $(".m-loading").remove();
+                $(".m-loading").remove();
 
-        var $loading = document.createElement("div");
-        $loading.setAttribute("class", "m-loading");
+                var $loading = document.createElement("div");
+                $loading.setAttribute("class", "m-loading");
 
-        var $loading_cnt = document.createElement("div");
-        $loading_cnt.setAttribute("class", "m-loading-cnt");
+                var $loading_cnt = document.createElement("div");
+                $loading_cnt.setAttribute("class", "m-loading-cnt");
 
-        var $loading_cnt_icon = document.createElement("div");
-        $loading_cnt_icon.setAttribute("class", "m-loading-cnt-icon");
-        $loading_cnt_icon.innerHTML = "<span class=\"iconfont iconloading\"></span>";
+                var $loading_cnt_icon = document.createElement("div");
+                $loading_cnt_icon.setAttribute("class", "m-loading-cnt-icon");
+                $loading_cnt_icon.innerHTML = "<span class=\"iconfont iconloading\"></span>";
 
-        var $loading_cnt_txt = document.createElement("div");
-        $loading_cnt_txt.setAttribute("class", "m-loading-cnt-txt");
-        $loading_cnt_txt.innerHTML = "正在加载";
+                var $loading_cnt_txt = document.createElement("div");
+                $loading_cnt_txt.setAttribute("class", "m-loading-cnt-txt");
+                $loading_cnt_txt.innerHTML = "正在加载";
 
-        $loading_cnt.appendChild($loading_cnt_icon);
-        $loading_cnt.appendChild($loading_cnt_txt);
-        $loading.appendChild($loading_cnt);
+                $loading_cnt.appendChild($loading_cnt_icon);
+                $loading_cnt.appendChild($loading_cnt_txt);
+                $loading.appendChild($loading_cnt);
 
-        var $elm = document.body || document.documentElement; //m.router.getActiveEl();
-        $elm.appendChild($loading);
-        m.router.ismask = true;
-    }
+                var $elm = document.body || document.documentElement; //m.router.getActiveEl();
+                $elm.appendChild($loading);
+                m.router.ismask = true;
+        }
+        function _mLoadingHide() {
 
-    m.extend({
-        mLoadingHide: _mLoadingHide
-    });
+                $(".m-loading").remove();
+                m.router.ismask = false;
+        }
 
-    function _mLoadingHide() {
-
-        $(".m-loading").remove();
-        m.router.ismask = false;
-    }
+        m.extend({
+                mLoading: _mLoading,
+                mLoadingHide: _mLoadingHide
+        });
 }();
 
 // m-overflow-lr 左右原生overflow滑动
@@ -8206,9 +8589,8 @@ $(function () {
     };
 
     MOverflowLr.DEFAULT = {
-        tapTime: 250,
+        tapTime: 200,
         center: true
-
     };
 
     MOverflowLr.prototype.run = function () {
@@ -8222,7 +8604,6 @@ $(function () {
             self.setBar();
         }
 
-        // document
         $el.scroll(function (e) {
 
             var _el = e.target;
@@ -8230,21 +8611,20 @@ $(function () {
             var srlW = _el.scrollWidth;
             var srlLeft = self.scrollLef = _el.scrollLeft; // _el.scrollLeft; 
 
-
             // 移动滑动条
             if (self.options.bar) {
 
                 var moveElementW = $el.find(".m-overflow-lr-cnt").outerWidth();
+                console.log(moveElementW);
                 var ratio = winW / moveElementW;
                 ratio = ratio > 1 ? 1 : ratio;
                 $el.find(".m-overflow-lr-bar-item").width($el.find(".m-overflow-lr-bar").width() * ratio);
-
                 self.moveBar(srlLeft);
             }
 
             // 滚动顶部触发的事件
             if (srlLeft <= 0) {
-                //  e.stopPropagation();
+
                 $el.emit("reachleft.m.overflow.lr", [this, { elementWidth: elW, scrollWidth: srlW, scrollLeft: srlLeft }]);
             }
 
@@ -8288,27 +8668,37 @@ $(function () {
 
         // 导航 m-overflow-lr-menu 
         var $el_parent = m(self.el).find(".m-overflow-lr-nav.m-overflow-lr-menu");
-        var $el_menu = $el_parent.find(".m-overflow-lr-item");
-        var $el_menu_w2 = $el_menu.outerWidth() / 2;
 
-        $el_menu.on("tap", function (event) {
+        $el_parent.on("tap", ".m-overflow-lr-item", function (event) {
 
-            m(this).addClass("active").siblings().removeClass("active");
-
-            // 定位到左边
-
-            //  $el_parent.scrollLeft(m(this).offsetLeft(), MOverflowLr.DEFAULT.tapTime);
-
-            // 定位到中间
-            var $el_parent_w = $el_parent.outerWidth() / 2;
-            $el_parent.scrollLeft(m(this).offsetLeft() - ($el_parent_w - $el_menu_w2), MOverflowLr.DEFAULT.tapTime);
+            var index = m(this).index();
+            self.set(index);
 
             // tap选中触发的事件
-            m(this).emit("tap.m.overflow.lr", [this]);
+            m(this).emit("tap.m.overflow.lr", [this, index]);
         });
     };
 
-    MOverflowLr.prototype.setBar = function (x) {
+    MOverflowLr.prototype.set = function () {
+        var index = arguments.length > 0 ? arguments[0] : 0;
+        index = isNaN(Number(index)) ? 0 : index;
+        var $el_parent = m(this.el).find(".m-overflow-lr-nav.m-overflow-lr-menu");
+        var $el_menu = $el_parent.find(".m-overflow-lr-item").eq(index);
+        var $el_menu_w2 = $el_menu.outerWidth() / 2;
+        var $el_parent_w = $el_parent.outerWidth() / 2;
+        $el_menu.addClass("active").siblings().removeClass("active");
+
+        // 定位到左边
+        if (this.options.left) {
+            $el_parent.scrollLeft($el_menu.offsetLeft(), MOverflowLr.DEFAULT.tapTime);
+        } else {
+
+            // 定位到中间
+            $el_parent.scrollLeft($el_menu.offsetLeft() - ($el_parent_w - $el_menu_w2), MOverflowLr.DEFAULT.tapTime);
+        }
+    };
+
+    MOverflowLr.prototype.setBar = function () {
         var $m_touch_lr = m(this.el);
         var pwr = document.createElement("div");
         pwr.classList.add("m-overflow-lr-bar-nav");
@@ -8317,13 +8707,14 @@ $(function () {
         var item = document.createElement("div");
         item.classList.add("m-overflow-lr-bar-item");
         bar.appendChild(item);
-
         pwr.appendChild(bar);
         $m_touch_lr.append(pwr);
+
         var winW = $m_touch_lr.outerWidth();
         var moveElementW = $m_touch_lr.find(".m-overflow-lr-cnt").outerWidth();
         var ratio = winW / moveElementW;
         ratio = ratio > 1 ? 1 : ratio;
+        console.log($m_touch_lr.find(".m-overflow-lr-cnt"));
 
         $m_touch_lr.find(".m-overflow-lr-bar-item").width($m_touch_lr.find(".m-overflow-lr-bar").width() * ratio);
     };
@@ -8333,7 +8724,6 @@ $(function () {
         x = parseFloat(x) || 0;
 
         var $m_touch_lr = m(this.el);
-
         var winW = $m_touch_lr.outerWidth();
         var moveElementW = $m_touch_lr.find(".m-overflow-lr-cnt").outerWidth();
         if (moveElementW < winW) {
@@ -8348,7 +8738,7 @@ $(function () {
         return $m_touch_lr.find(".m-overflow-lr-bar-item").translateX(ratio * (barW - itemW));
     };
 
-    function Plugin(option) {
+    function Plugin(option, index) {
 
         return this.each(function () {
 
@@ -8359,14 +8749,13 @@ $(function () {
             if (!data) {
                 var o = {};
                 o.bar = $this.hasAttr("data-bar");
-                //o.center = MOverflowLr.DEFAULT.center;
-                //o.center = $this.hasAttr("data-center");
+                o.left = $this.hasAttr("data-left");
                 var p = $.extend({}, o, options);
                 $this.data('m-overflow-lr', data = new MOverflowLr(this, p));
             }
 
             if (typeof option === 'string') {
-                data[option]();
+                data[option](index);
             }
         });
     }

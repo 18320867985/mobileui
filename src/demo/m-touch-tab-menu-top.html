@@ -3,11 +3,6 @@
 <!-- 1. css  style  区域 -->
 <style>
 
-        /* 注意！这里样式是加载渲染后是全局的
-       局部区分为内容区域标签加上id或class
-       路由模块隐藏后style块里样式被删除
-    */
-      
 </style>
 
 <!--2.内容区域 -->
@@ -93,8 +88,8 @@
 
         /*加载js的列表 */
         loadJs: [
-            //"../js/m-vd.js",
-            //"../js/cityData.js"
+            //"./js/m-vd.js",
+            //"./js/cityData.js"
         ],
         // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
 
@@ -139,7 +134,7 @@
 
             // 触发插件
             m(".m-touch-tab-btn-cnt",context).html(nav).parent().mTouchTabBtn({ line: true });
-            m(".m-touch-tab-cnt",context).html(tab).parent().mTouchTab();
+            m(".m-touch-tab-cnt", context).html(tab).parent().mTouchTab({fade:false});
             m(".m-overflow-tb",context).mOverflowTb();
 
 
@@ -159,7 +154,7 @@
             // tab 触发自定义的事件
             m(".m-touch-tab",context).on("tab.m.touch.tab", function (event, el, index) {
 
-                m(".m-touch-tab-btn",context).mTouchTabBtn("set", index);
+               m(".m-touch-tab-btn",context).mTouchTabBtn("set", index);
                 if (!m(el).data("isOne")) {
                     m(el).data("isOne", true);
                     ajaxData(el, index);
@@ -207,7 +202,9 @@
 
                         var li = `  <li class="m-media">
                                     <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
-                                        <img class="m-media-img" src="./${res[i].img}">
+                                       <div class="m-lazy m-lazy-mask"  title="JD京东">
+                                        <img class="m-media-img m-lazy-img"  data-lazy="./${res[i].img}">
+                                      </div>
 
                                         <div class="m-media-body">
                                             <h5 class="m-media-title  elp-1">${ttl}</h5>
@@ -231,6 +228,14 @@
 
                     $el.data("pageindex", ++page);
                     $el.find(".m-overflow-tb-cnt .m-media-list").append(lis);
+
+                    // 执行延迟加载
+                    var $aciveEl = m(".m-touch-tab-item.active", context);
+                    if (!$aciveEl.hasAttr("lazy-runing")) {
+                        $aciveEl.attr("lazy-runing", true);
+                        $aciveEl.find(".m-overflow-tb").mLazy("init"); //初始化 执行延迟加载
+                    }
+
                 }, "json");
 
             }

@@ -114,9 +114,9 @@
         > ._txt {
             display: inline-block;
             text-align: left;
-            color: #444;
-            word-break:break-all;
-            word-wrap:break-word;
+            color: $h-color;
+            word-break: break-all;
+            word-wrap: break-word;
         }
     }
 

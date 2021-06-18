@@ -56,7 +56,6 @@
 
     }
 
-    // setTransform 
     function setTransform(transforName, value, value2) {
 
         // 参数为3个
@@ -144,7 +143,6 @@
         return this;
     }
 
-    // getTransform  by css
     function getTransformByCss(transforName) {
 
         var result;
@@ -328,10 +326,8 @@
         return result;
     };
 
-    // transform 
     m.fn.extend({
 
-        // translate
         translate: function () {
 
             if (arguments.length === 0) {

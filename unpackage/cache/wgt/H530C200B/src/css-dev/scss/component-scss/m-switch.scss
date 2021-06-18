@@ -5,8 +5,8 @@
 
 .m-switch {
     position: relative;
-    width: 3rem;
-    height: 1.7rem;
+    width: 2.7rem;
+    height: 1.5rem;
     box-sizing: content-box;
     background: $switch;
     border-radius: 2rem;
@@ -14,6 +14,7 @@
     // box-shadow: inset 2px 2px 5px rgba(0,0,0,.075),inset -2px -2px 5px rgba(0,0,0,.075);
     &.m-switch-inline {
         display: inline-block;
+        vertical-align:middle;
 
         & + & {
             margin-left: .25rem;
@@ -24,8 +25,8 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: 1.7rem;
-        height: 1.7rem;
+        width: 1.5rem;
+        height: 1.5rem;
         background: $bg-white;
         border-radius: 50%;
         border: 2px solid $switch;

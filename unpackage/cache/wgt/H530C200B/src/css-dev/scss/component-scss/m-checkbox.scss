@@ -4,7 +4,7 @@
 .m-checkbox-group,
 .m-checkbox {
     .icon {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 }
 
@@ -19,95 +19,99 @@
     }
 
     .m-checkbox-item {
+       
+            margin-right: -.2rem;
+            
 
-        &:before {
-            content: '\e6c1';
-            color: #999;
-        }
-
-        &.active {
             &:before {
-                content: '\e678';
-                color: $text-primary;
+                content: '\e63e';
+                color: $check-icon;
+            }
+
+            &.active {
+                &:before {
+                    content: '\e63d';
+                    color: $text-primary;
+                }
             }
         }
-    }
 
-    &.text-success .m-checkbox-item.active {
-        &:before {
-            color: $text-success;
+
+        &.text-success .m-checkbox-item.active {
+            &:before {
+                color: $text-success;
+            }
         }
-    }
 
-    &.text-warning .m-checkbox-item.active {
-        &:before {
-            color: $text-warning;
+        &.text-warning .m-checkbox-item.active {
+            &:before {
+                color: $text-warning;
+            }
         }
-    }
 
-    &.text-danger .m-checkbox-item.active {
+        &.text-danger .m-checkbox-item.active {
             &:before {
                 color: $text-danger;
-
             }
         }
-
     }
     /*v-checkbox-group*/
-.m-checkbox-group {
-    display: inline-block;
-    vertical-align: middle;
-
-
-    .m-checkbox-group-item {
+    .m-checkbox-group {
         display: inline-block;
-        cursor: pointer;
+        vertical-align: middle;
 
-        .m-checkbox-icon {
-            &:before {
-                content: '\e6c1';
-                color: #999;
+
+        .m-checkbox-group-item {
+            display: inline-block;
+            cursor: pointer;
+
+            .m-checkbox-icon {
+                margin-right: -.2rem;
+
+                &:before {
+                    content: '\e63e';
+                    color: $check-icon;
+                }
+            }
+
+            .m-checkbox-group-txt {
+                font-size: .8rem;
+            }
+
+            &.active {
+                .m-checkbox-icon:before {
+                    content: '\e63d';
+                    color: $text-primary;
+                }
+            }
+
+            & + .m-checkbox-group-item {
+                margin-left: .5rem;
+            }
+
+            > * {
+                vertical-align: middle;
             }
         }
 
-        .m-checkbox-group-txt {
-            font-size: .8rem;
-        }
-
-        &.active {
+        &.text-success .m-checkbox-group-item.active {
             .m-checkbox-icon:before {
-                content: '\e678';
-                color: $text-primary;
+                color: $text-success;
             }
         }
 
-        & + .m-checkbox-group-item {
-            margin-left: .5rem;
+        &.text-warning .m-checkbox-group-item.active {
+            .m-checkbox-icon:before {
+                color: $text-warning;
+            }
         }
 
-        > * {
-            vertical-align: middle;
+        &.text-danger .m-checkbox-group-item.active {
+            .m-checkbox-icon:before {
+                color: $text-danger;
+            }
         }
     }
-
-    &.text-success .m-checkbox-group-item.active {
-        .m-checkbox-icon:before {
-            color: $text-success;
-        }
-    }
-
-    &.text-warning .m-checkbox-group-item.active {
-        .m-checkbox-icon:before {
-            color: $text-warning;
-        }
-    }
-
-    &.text-danger .m-checkbox-group-item.active {
-        .m-checkbox-icon:before {
-            color: $text-danger;
-        }
-    }
-}
     /*v-radiokbox*/
     .m-radiobox-item {
         .icon {
@@ -116,62 +120,62 @@
         }
     }
 
-.m-radiobox-group {
-    display: inline-block;
-    vertical-align: middle;
-
-    .m-radiobox-item {
+    .m-radiobox-group {
         display: inline-block;
         vertical-align: middle;
-        font-size: .7rem;
-        color: #777;
-        cursor: pointer;
 
-        > * {
-            vertical-align: middle;
-        }
-
-        .m-radiobox-icon:before {
-            margin-right: .25rem;
-            content: '\e6c1';
-            color: #999;
-        }
-
-        .m-radiobox-txt {
+        .m-radiobox-item {
             display: inline-block;
-            margin-left: -.25rem;
-            font-size: 14px;
-        }
+            vertical-align: middle;
+            font-size: .7rem;
+            color: #777;
+            cursor: pointer;
 
-        &.active {
+            > * {
+                vertical-align: middle;
+            }
+
             .m-radiobox-icon:before {
                 margin-right: .25rem;
-                content: '\e678';
-                color: $text-primary;
+                content: '\e6c1';
+                color: $check-icon;
             }
-        }
 
-
-        &.active.text-success {
-            .m-radiobox-icon:before {
-                color: $text-success
+            .m-radiobox-txt {
+                display: inline-block;
+                margin-left: -.3rem;
+                font-size: .8rem;
             }
-        }
 
-        &.active.text-warning {
-            .m-radiobox-icon:before {
-                color: $text-warning
+            &.active {
+                .m-radiobox-icon:before {
+                    margin-right: .25rem;
+                    content: '\e678';
+                    color: $text-primary;
+                }
             }
-        }
 
-        &.active.text-danger {
-            .m-radiobox-icon:before {
-                color: $text-danger
+
+            &.active.text-success {
+                .m-radiobox-icon:before {
+                    color: $text-success
+                }
             }
-        }
 
-        & + .m-radiobox-item {
-            margin-left: .5rem;
+            &.active.text-warning {
+                .m-radiobox-icon:before {
+                    color: $text-warning
+                }
+            }
+
+            &.active.text-danger {
+                .m-radiobox-icon:before {
+                    color: $text-danger
+                }
+            }
+
+            & + .m-radiobox-item {
+                margin-left: .5rem;
+            }
         }
     }
-}

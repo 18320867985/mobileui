@@ -2877,8 +2877,8 @@ textarea::-moz-placeholder {
   z-index: 100;
   background: #fff; }
   .m-router.in {
-    -webkit-box-shadow: -2px 0 4px rgba(0, 0, 0, 0.075);
-            box-shadow: -2px 0 4px rgba(0, 0, 0, 0.075);
+    -webkit-box-shadow: -2px 0 5px rgba(0, 0, 0, 0.04);
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.04);
     -webkit-animation: m-router-dh .25s linear both;
             animation: m-router-dh .25s linear both; }
   .m-router .m-hd-top-ttl {

@@ -39,20 +39,6 @@
     Router.emitOnly = true;
     Router.isOneMove = true;
 
-    // 是否开启左右滑动关闭当前页面，默认为true， IOS的app应用和IOS浏览器端已默认已开启
-    Router.isMOveClosePage = true;
-    //ios终端
-    Router.isIos = function () {
-        var u = navigator.userAgent;
-        return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-    };
-
-    //android终端
-    Router.isAdr = function () {
-        var u = navigator.userAgent;
-        return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-    };
-
     function _addAllIterator(itr, fn2, url, arrs) {
 
         var doc = document.body || document.getElementsByTagName('body')[0];
@@ -354,8 +340,6 @@
 
     function _moveEl(el, isOneMove) {
 
-        if (Router.isMOveClosePage === false && Router.isAdr()) { return; }
-
         m(el).touch(
 
             function (event, obj) {
@@ -433,7 +417,6 @@
                 obj.oneTouch = undefined;
                 obj.$moveElment.removeClass("m-router-box-move");
             });
-
     }
 
     function _setRouterObj(el, obj) {

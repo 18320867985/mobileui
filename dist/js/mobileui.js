@@ -4145,32 +4145,7 @@ css3 transition
                     var script = document.createElement("script");
                     script.type = "text/javascript";
 
-                    // 有 src属性值 链接
-                    if (el2.src) {
-
-                        script.src = el2.getAttribute("src") || "";
-                        // Router.htmlUrls 集合检测
-                        var include_HtmlUrl2 = script.src;
-                        if (Router.ckHtmlUrl(include_HtmlUrl2)) {
-                            continue;
-                        }
-                        Router.htmlUrls.push(include_HtmlUrl2);
-
-                        if (window.addEventListener) {
-                            docDfgTypeInSrc.insertBefore(script, doc_script.childNodes[0]);
-                        } else {
-                            // doc.appendChild(script);
-                            docDfgTypeInSrc.insertBefore(script, doc_script.firstChild);
-                        }
-
-                        //js加载完成执行方法 ie9+
-                        if (window.addEventListener) {
-                            script.onload = function () {
-                                // 执行define 定义的函数
-                                Router.runInclude();
-                            };
-                        }
-                    } else {
+                    if (!el2.src) {
 
                         // 没有src属性值 应用script 为本内容
                         var jscontent = el2.innerHTML || "";

@@ -3940,7 +3940,7 @@ css3 transition
     Router.emitOnly = true;
     Router.isOneMove = true;
 
-    // 左右滑动关闭当前页面 app应用和IOS默认为true，设为false 让android的移动端和android的微信端 表现统一
+    // 是否开启左右滑动关闭当前页面，默认为true， IOS的app应用和IOS浏览器端已默认已开启
     Router.isMOveClosePage = true;
     //ios终端
     Router.isIos = function () {

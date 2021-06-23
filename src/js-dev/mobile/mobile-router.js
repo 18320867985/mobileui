@@ -21,7 +21,6 @@
     Router.fineObjs = {};
     Router.baseUrl = "";
     Router.jsLists = [];    // js 加载集合
-    Router.htmlUrls = [];   // html 文件的 css js 集合
     Router.caches = [];
     Router.ids = [];
     Router.tapTime = new Date().getTime(); // 点击相隔的时间
@@ -39,6 +38,20 @@
     };
     Router.emitOnly = true;
     Router.isOneMove = true;
+
+    // 左右滑动关闭当前页面 app应用和IOS默认为true，设为false 让android的移动端和android的微信端 表现统一
+    Router.isMOveClosePage = true;
+    //ios终端
+    Router.isIos = function () {
+        var u = navigator.userAgent;
+        return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    };
+
+    //android终端
+    Router.isAdr = function () {
+        var u = navigator.userAgent;
+        return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    };
 
     function _addAllIterator(itr, fn2, url, arrs) {
 
@@ -223,7 +236,6 @@
 
                 if (el1.nodeType === 1 && el1.tagName === "LINK") {
 
-                    // Router.htmlUrls 集合检测
                     el1.setAttribute("type", "text/html");
                     el1.setAttribute("data-Router-id", id);
                     el1.setAttribute("type", "text/css");
@@ -342,6 +354,8 @@
 
     function _moveEl(el, isOneMove) {
 
+        if (Router.isMOveClosePage === false && Router.isAdr()) { return; }
+
         m(el).touch(
 
             function (event, obj) {
@@ -402,7 +416,7 @@
 
                 if (obj.isX) {
                     var t = 0.5;
-                    var transition = "transform  " + Router.transitionTime * t + "ms ease";
+                    var transition = "transform  " + Router.transitionTime * t + "ms  linear";
                     if (obj.$moveElment.translateX() < obj.$moveElment.width() / 2) {
                         obj.$moveElment.transition(transition);
                         if (!Router.isOneMove) { obj.$moveElment.translateX(0).translateZ(0); }

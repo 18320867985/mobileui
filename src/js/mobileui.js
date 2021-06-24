@@ -4211,7 +4211,7 @@ css3 transition
         }, function () {
             // 加载失败
             var $p = m("#m-router-" + Router.getId());
-            //  m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="icon icon-nanguo"></span>~</div>`);
+            m(".m-hd-top-ttl", $p).html("");
             //m-router-cnt
             $p.find(".m-router-loading").hide();
             $p.append("<div class=\"m-router-loading-fail\">~\u6570\u636E\u52A0\u8F7D\u5931\u8D25\u4E86~</div>");
@@ -4749,7 +4749,7 @@ css3 transition
             if (isShowBtn) {
                 var topEl = document.createElement("div");
                 topEl.classList.add("m-router-back");
-                topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back-btn\">\n                <span class=\"icon icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n               \n            </h4>\n            </div>";
+                topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back-btn\">\n                <span class=\"icon icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n               <div class=\"m-router-loading\"><div class=\"m-ball-clip-rotate\"><div></div></div>\n            </h4>\n            </div>";
                 routerEl.appendChild(topEl);
             }
 
@@ -4759,7 +4759,7 @@ css3 transition
             elm.appendChild(routerEl);
 
             var $prevEl = Router.getPrevEl();
-            var transition = "transform  " + Router.transitionTime + "ms ease  500ms";
+            var transition = "transform  " + Router.transitionTime + "ms ease  800ms";
             $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
             Router.isOneMove = true;
 

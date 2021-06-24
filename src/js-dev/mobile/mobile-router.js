@@ -330,10 +330,10 @@
         }, function () {
             // 加载失败
             var $p = m("#m-router-" + Router.getId());
-          //  m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="icon icon-nanguo"></span>~</div>`);
+            m(".m-hd-top-ttl", $p).html("");
             //m-router-cnt
-                $p.find(".m-router-loading").hide();
-                $p.append(`<div class="m-router-loading-fail">~数据加载失败了~</div>`);
+            $p.find(".m-router-loading").hide();
+            $p.append(`<div class="m-router-loading-fail">~数据加载失败了~</div>`);
 
         });
     }
@@ -883,7 +883,7 @@
             </div>
 
             <h4 class="m-hd-top-ttl">  
-               
+               <div class="m-router-loading"><div class="m-ball-clip-rotate"><div></div></div>
             </h4>
             </div>`;  
                 routerEl.appendChild(topEl);
@@ -896,7 +896,7 @@
             elm.appendChild(routerEl);
           
             var $prevEl = Router.getPrevEl();
-            var transition = "transform  " + (Router.transitionTime) + "ms ease  500ms";
+            var transition = "transform  " + (Router.transitionTime) + "ms ease  800ms";
             $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
             Router.isOneMove = true;
          

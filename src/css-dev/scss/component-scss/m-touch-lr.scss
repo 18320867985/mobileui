@@ -8,7 +8,7 @@
     white-space: nowrap;
     width: 100%;
     overflow: hidden;
-    font-size:0;
+    font-size: 0;
     background: $bg-white;
 
     &.box-shadow {
@@ -48,9 +48,8 @@
         }
     }
 
-    .m-touch-lr-item-btn {
+    .m-touch-lr-item-btn, a.m-touch-lr-item-btn {
         display: block;
-        height: 100%;
         padding: 0 16rem/$rem;
         font-size: .7rem;
         vertical-align: middle;

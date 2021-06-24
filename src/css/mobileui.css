@@ -1707,9 +1707,8 @@ textarea::-moz-placeholder {
     .m-touch-lr .m-touch-lr-item img {
       max-height: 100%;
       vertical-align: middle; }
-  .m-touch-lr .m-touch-lr-item-btn {
+  .m-touch-lr .m-touch-lr-item-btn, .m-touch-lr a.m-touch-lr-item-btn {
     display: block;
-    height: 100%;
     padding: 0 0.8rem;
     font-size: .7rem;
     vertical-align: middle;

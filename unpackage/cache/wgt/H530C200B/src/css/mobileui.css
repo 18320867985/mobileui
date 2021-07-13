@@ -1707,9 +1707,8 @@ textarea::-moz-placeholder {
     .m-touch-lr .m-touch-lr-item img {
       max-height: 100%;
       vertical-align: middle; }
-  .m-touch-lr .m-touch-lr-item-btn {
+  .m-touch-lr .m-touch-lr-item-btn, .m-touch-lr a.m-touch-lr-item-btn {
     display: block;
-    height: 100%;
     padding: 0 0.8rem;
     font-size: .7rem;
     vertical-align: middle;
@@ -2168,6 +2167,7 @@ textarea::-moz-placeholder {
 /*check 组件*/
 /*lazy*/
 .m-overflow-tb {
+  position: relative;
   width: 100%;
   height: 100%;
   -ms-touch-action: pan-y;
@@ -2877,8 +2877,10 @@ textarea::-moz-placeholder {
   z-index: 100;
   background: #fff; }
   .m-router.in {
-    -webkit-animation: m-router-dh .25s linear both;
-            animation: m-router-dh .25s linear both; }
+    -webkit-box-shadow: -2px 0 5px rgba(0, 0, 0, 0.05);
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.05);
+    -webkit-animation: m-router-dh .3s linear both;
+            animation: m-router-dh .3s linear both; }
   .m-router .m-hd-top-ttl {
     color: #444; }
     .m-router .m-hd-top-ttl ._fail {
@@ -2888,7 +2890,7 @@ textarea::-moz-placeholder {
         vertical-align: middle;
         margin: 0 .25rem;
         font-weight: 100; }
-  .m-router ._loading-fail, .m-router ._loading-dh {
+  .m-router .m-router-loading-fail, .m-router .m-router-loading {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2900,12 +2902,12 @@ textarea::-moz-placeholder {
             align-items: center;
     height: 100%;
     color: #ddd; }
-    .m-router ._loading-fail .icon, .m-router ._loading-dh .icon {
+    .m-router .m-router-loading-fail .icon, .m-router .m-router-loading .icon {
       font-size: .9rem;
       vertical-align: middle;
       margin: 0 .5rem; }
 
-.m-router-hd {
+.m-router-back {
   position: fixed;
   top: 0;
   left: 0;
@@ -2913,13 +2915,13 @@ textarea::-moz-placeholder {
   z-index: 2;
   background: #fff;
   border-bottom: 1px solid #f2f2f2; }
-  .m-router-hd .m-hd-top-ttl-mask {
+  .m-router-back .m-hd-top-ttl-mask {
     padding: .2rem .7rem;
     color: #fbf8f8;
     opacity: .4 5;
     font-size: .8rem;
     letter-spacing: 2px; }
-    .m-router-hd .m-hd-top-ttl-mask + .m-hd-top-ttl-mask {
+    .m-router-back .m-hd-top-ttl-mask + .m-hd-top-ttl-mask {
       margin-left: .25rem; }
 
 .m-router-back {

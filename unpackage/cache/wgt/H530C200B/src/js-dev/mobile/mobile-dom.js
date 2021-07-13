@@ -2254,7 +2254,7 @@
 		touchcancel: function(fn, bl) {
 			bl = bl || false;
 			Mobile.each(this, function() {
-				m(this).on("touchcancel", fn, bl);
+				m(this).on("touchcancel", fn, bl);				
 			});
 		},
 

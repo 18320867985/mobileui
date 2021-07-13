@@ -188,6 +188,7 @@
             }, bl);
 
             m(this).touchendcancel(function (event) {
+               
                 var $this = this;
                 try {
 
@@ -523,7 +524,5 @@
         } 
 
     });
-
-
 
 }(Mobile);

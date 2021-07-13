@@ -79,8 +79,7 @@
             //"./js/m-vd.js",
             //"./js/cityData.js"
         ],
-        // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
-
+       
         // 生命周期函数--监听页面显示
         onLoad: function (context, parameter) {
 
@@ -89,6 +88,26 @@
 
             // context 当前路由模块接受的参数
            // console.log("parameter:", parameter);
+
+            // 拉到顶部触发
+            m(".m-overflow-tb", context).on("reachtop", function (event, el, scrollObj) {
+
+                //  console.log("reachtop.m.overflow.tb", scrollObj);
+
+            });
+
+            // scroll触发
+            m(".m-overflow-tb", context).on("scroll", function (event, el, scrollObj) {
+
+                //  console.log("scroll.m.overflow.tb", scrollObj);
+
+            });
+
+            // 拉到底部触发
+            m(".m-overflow-tb", context).on("reachbottom", function (event, el, scrollObj) {
+
+               
+            });
 
 
         },
@@ -102,9 +121,8 @@
         // 生命周期函数--监听页面隐藏
         onHide: function (context) {
             // context 当前路由模块上下文对
-          //  console.log("onHide", context);
-          //  m.router.app.page = (m.router.app.page - 1);
-
+       // console.log("onHide", context);
+           
         },
 
     });

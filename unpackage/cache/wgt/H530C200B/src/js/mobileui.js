@@ -2528,6 +2528,7 @@ var mobileDom = createCommonjsModule(function (module) {
             }, bl);
 
             m(this).touchendcancel(function (event) {
+
                 var $this = this;
                 try {
 
@@ -3918,7 +3919,7 @@ css3 transition
         }
     };
 
-    Router.transitionTime = 250;
+    Router.transitionTime = 300;
     Router.fineObjs = {};
     Router.baseUrl = "";
     Router.jsLists = []; // js 加载集合
@@ -4144,32 +4145,7 @@ css3 transition
                     var script = document.createElement("script");
                     script.type = "text/javascript";
 
-                    // 有 src属性值 链接
-                    if (el2.src) {
-
-                        script.src = el2.getAttribute("src") || "";
-                        // Router.htmlUrls 集合检测
-                        var include_HtmlUrl2 = script.src;
-                        if (Router.ckHtmlUrl(include_HtmlUrl2)) {
-                            continue;
-                        }
-                        Router.htmlUrls.push(include_HtmlUrl2);
-
-                        if (window.addEventListener) {
-                            docDfgTypeInSrc.insertBefore(script, doc_script.childNodes[0]);
-                        } else {
-                            // doc.appendChild(script);
-                            docDfgTypeInSrc.insertBefore(script, doc_script.firstChild);
-                        }
-
-                        //js加载完成执行方法 ie9+
-                        if (window.addEventListener) {
-                            script.onload = function () {
-                                // 执行define 定义的函数
-                                Router.runInclude();
-                            };
-                        }
-                    } else {
+                    if (!el2.src) {
 
                         // 没有src属性值 应用script 为本内容
                         var jscontent = el2.innerHTML || "";
@@ -4239,8 +4215,8 @@ css3 transition
             var $p = m("#m-router-" + Router.getId());
             //  m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="icon icon-nanguo"></span>~</div>`);
             //m-router-cnt
-            $p.find("._loading-dh").hide();
-            $p.append("<div class=\"_loading-fail\">~\u6570\u636E\u52A0\u8F7D\u5931\u8D25\u4E86~</div>");
+            $p.find(".m-router-loading").hide();
+            $p.append("<div class=\"m-router-loading-fail\">~\u6570\u636E\u52A0\u8F7D\u5931\u8D25\u4E86~</div>");
         });
     }
 
@@ -4371,9 +4347,6 @@ css3 transition
         } else {
             Router.reqSync(obj, urls, onload);
         }
-
-        // 执行页面的函数
-        Router.runBindFn();
     }
 
     // 定义执行函数
@@ -4451,6 +4424,9 @@ css3 transition
             $el.emit("m-router-show", [$el, Router.getId()]);
         }
 
+        // 执行页面的函数
+        Router.runBindFn();
+
         return this;
     };
 
@@ -4483,6 +4459,8 @@ css3 transition
             $el.emit("m-router-show", [$el, Router.getId()]);
         }
 
+        // 执行页面的函数
+        Router.runBindFn();
         return this;
     };
 
@@ -4749,66 +4727,61 @@ css3 transition
     Router.link = function (src, parameter, isShowBtn) {
 
         isShowBtn = typeof isShowBtn === "boolean" ? isShowBtn : true;
-        var nowTime = new Date().getTime();
 
-        // 相隔延迟时间的点击
-        if (nowTime - Router.tapTime > Router.transitionTime) {
-            Router.tapTime = nowTime;
+        var elm = document.body || document.documentElement;
+        var id = Router.getId() + 1;
+        var routerMask = document.createElement("div");
+        routerMask.classList.add("m-router-mask");
+        routerMask.style = "z-index:" + (100 + id);
+        routerMask.setAttribute("data-Router-id", "m-router-" + id);
+        elm.appendChild(routerMask);
 
-            var elm = document.body || document.documentElement;
-            var id = Router.getId() + 1;
-            var routerMask = document.createElement("div");
-            routerMask.classList.add("m-router-mask");
-            routerMask.style = "z-index:" + (100 + id);
-            routerMask.setAttribute("data-Router-id", "m-router-" + id);
-            elm.appendChild(routerMask);
+        var routerEl = document.createElement("div");
+        Router.ids.push(id);
+        routerEl.id = "m-router-" + id;
+        routerEl.classList.add("m-router");
+        routerEl.classList.add("in");
 
-            var routerEl = document.createElement("div");
-            Router.ids.push(id);
-            routerEl.id = "m-router-" + id;
-            routerEl.classList.add("m-router");
-            routerEl.classList.add("in");
+        routerEl.style = "z-index:" + (100 + id);
+        routerEl.setAttribute("data-router-id", id);
 
-            routerEl.style = "z-index:" + (100 + id);
-            routerEl.setAttribute("data-router-id", id);
-
-            if (isShowBtn) {
-                var topEl = document.createElement("div");
-                topEl.classList.add("m-router-hd");
-                topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back\">\n                <span class=\"icon icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n               \n            </h4>\n            </div>";
-                routerEl.appendChild(topEl);
-            }
-
-            var contEl = document.createElement("div");
-            contEl.classList.add("m-router-hd");
-
-            elm.appendChild(routerEl);
-
-            var $prevEl = Router.getPrevEl();
-            var transition = "transform  " + Router.transitionTime + "ms ease  500ms";
-            $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
-            Router.isOneMove = true;
-
-            var $el = m("#" + routerEl.id);
-            $el.append("<div class=\"_loading-dh\"><div class=\"m-ball-clip-rotate\"><div></div></div>");
-
-            // 设置url的参数
-            var urlParameter = _setUrlParameter(src);
-            parameter = parameter || {};
-            var p = m.extend({}, urlParameter, parameter);
-            $el.data("parameter", p);
-
-            // 添加urls地址
-            Router.addUrl(id, src);
-
-            // 输出当前的路由页
-            console.log("当前的路由页：", Router.getUrl());
-
-            _moveEl($el);
-            _compilerHtml(m("#" + routerEl.id).get(0), src, {}, false, function () {
-                m.setRouterLayout();
-            }, routerEl.id);
+        if (isShowBtn) {
+            var topEl = document.createElement("div");
+            topEl.classList.add("m-router-back");
+            topEl.innerHTML = "<div class=\"m-hd-top\">\n            <div class=\"m-hd-top-icon m-router-back-btn\">\n                <span class=\"icon icon-back-left\">\n                </span>\n            </div>\n\n            <h4 class=\"m-hd-top-ttl\">  \n               <div class=\"m-router-loading\"><div class=\"m-ball-clip-rotate\"><div></div></div>\n            </h4>\n            </div>";
+            routerEl.appendChild(topEl);
         }
+
+        var contEl = document.createElement("div");
+        contEl.classList.add("m-router-back");
+
+        elm.appendChild(routerEl);
+
+        var $prevEl = Router.getPrevEl();
+        var transition = "transform  " + Router.transitionTime + "ms ease  800ms";
+        $prevEl.removeClass("in").transition(transition).translateX(-$prevEl.width() / 2).translateZ(0);
+        Router.isOneMove = true;
+
+        var $el = m("#" + routerEl.id);
+        $el.append("<div class=\"m-router-loading\"><div class=\"m-ball-clip-rotate\"><div></div></div>");
+
+        // 设置url的参数
+        var urlParameter = _setUrlParameter(src);
+        parameter = parameter || {};
+        var p = m.extend({}, urlParameter, parameter);
+        $el.data("parameter", p);
+
+        // 添加urls地址
+        Router.addUrl(id, src);
+
+        // 输出当前的路由页
+        console.log("当前的路由页：", Router.getUrl());
+
+        _moveEl($el);
+        var context = m("#" + routerEl.id).get(0);
+        _compilerHtml(context, src, {}, false, function () {
+            m.setRouterLayout();
+        }, routerEl.id);
     };
 
     // 删除路由
@@ -4913,13 +4886,27 @@ css3 transition
 
     // Router静态扩展
     m.extend({
-        router: Router
+        router: Router,
+        setRouterLayout: function setRouterLayout() {
+
+            // 设置页面布局 整体框架设置内容height
+            var $el = m.router.getActiveEl();
+            var $bd = $el;
+            var $header = $(".m-router-back", $el);
+            var $cont = $(".m-router-cnt", $el);
+            var $bd_height = parseFloat($bd.height()),
+                $header_height = parseFloat($header.height());
+            var $cont_height = $bd_height - $header_height;
+            $cont.height($cont_height); // set cnt height
+            $cont.css("top", $header_height); // set cnt top
+        }
     });
 
     // Router实例扩展
     m.fn.extend({
         setInterval: Router.setInterval,
         setTimeout: Router.setTimeout
+
     });
 
     // 初始化默认为m-bd 添加id值
@@ -4930,36 +4917,45 @@ css3 transition
 
     // 返回上一页
     function mBack() {
-        m(document).on("tap", ".m-router-back", function (event) {
+        m(document).on("tap", ".m-router-back-btn", function (event) {
             event.preventDefault();
             Router.back();
         });
     }
 
-    function setRouterLayout() {
-
-        // 整体框架设置内容height
-        var $el = m.router.getActiveEl();
-        var $bd = $el;
-        var $header = $(".m-router-hd", $el);
-        var $cont = $(".m-router-cnt", $el);
-
-        var $bd_height = parseFloat($bd.height()),
-            $header_height = parseFloat($header.height());
-
-        var $cont_height = $bd_height - $header_height;
-        $cont.height($cont_height); // set cnt height
-        $cont.css("top", $header_height); // set cnt top
-    }
-
-    // 设置页面布局
-    m.extend({
-        setRouterLayout: setRouterLayout
-    });
-
     mBack(); //返回上一页 
     m.setRouterLayout(); //整体框架设置内容
-    m(window).on("resize", setRouterLayout);
+    m(window).on("resize", m.setRouterLayout);
+
+    // 绑定函数 router.link 运行时执行 
+    m.router.bindFn(function () {
+
+        //获取当前激活路由页元素
+        var $activeEl = m.router.getActiveEl();
+        // m-media组件 a[data-link] 链接跳转
+        m(".m-media-list", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+        });
+
+        // m-slide组件 a[data-link] 链接跳转
+        m(".m-slide", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+        });
+
+        // m-listoption组件 a[data-link] 链接跳转
+        m(".m-listoption", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+        });
+    });
 }();
 
 $(function () {
@@ -4989,48 +4985,18 @@ $(function () {
     m.setLayout();
     m(window).on("resize", m.setLayout);
 
-    // 阻止默认行为
-    m("a").click(function (event) {
-        if (!m(this).hasAttr("data-open")) {
-            event.preventDefault();
-        }
+    m(document).on("touchstart", function (event) {
+        event.preventDefault();
+    });
+
+    m(document).on("touchmove", function (event) {
+        event.preventDefault();
     });
 
     m(document).on("click", "a", function (event) {
         if (!m(this).hasAttr("data-open")) {
             event.preventDefault();
         }
-    });
-
-    // 绑定函数 router.link 运行时执行 
-    m.router.bindFn(function () {
-
-        //获取当前激活路由页元素
-        var $activeEl = m.router.getActiveEl();
-
-        // m-media组件 a[data-link] 链接跳转
-        m(".m-media-list", $activeEl).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            event.stopPropagation();
-            m.router.alink.call(this);
-        });
-
-        // m-slide组件 a[data-link] 链接跳转
-        m(".m-slide", $activeEl).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            event.stopPropagation();
-            m.router.alink.call(this);
-        });
-
-        // m-listoption组件 a[data-link] 链接跳转
-        m(".m-listoption", $activeEl).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            event.stopPropagation();
-            m.router.alink.call(this);
-        });
     });
 
     // 移动端

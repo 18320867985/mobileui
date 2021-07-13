@@ -31,11 +31,11 @@
     bottom: 0;
     z-index: 100;
     background: #fff;
-   
-
 
     &.in {
-        animation: m-router-dh .25s linear both;
+       
+        box-shadow: -2px 0 5px rgba(0,0,0,.05);
+        animation: m-router-dh .3s linear both;
     }
 
     .m-hd-top-ttl {
@@ -54,7 +54,7 @@
     }
 
 
-    ._loading-fail, ._loading-dh {
+    .m-router-loading-fail, .m-router-loading {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -69,7 +69,7 @@
     }
 }
 
-.m-router-hd {
+.m-router-back {
     position: fixed;
     top: 0;
     left: 0;
@@ -151,7 +151,6 @@ body {
     border-bottom: 1px solid $text-line;
     box-shadow: 1px 0 5px rgba(0,0,0,.075);
 }
-
 
 .m-hd-top {
     position: relative;

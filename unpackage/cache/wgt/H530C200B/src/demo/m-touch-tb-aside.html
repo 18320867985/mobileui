@@ -133,8 +133,7 @@
         loadJs: [
            
         ],
-        // isAmd:true, /*默认为true异步加载js, isAmd=false同步加载js*/
-
+        
         // 生命周期函数--监听页面加载完成
         onLoad: function (context, parameter) {
 
@@ -238,31 +237,12 @@
                     $el.data("loadingEnd", false);
                     var page = $el.data("pageindex") || 1;
                     // var docf = document.createDocumentFragment();
-                    var lis_l = ""; lis_r = "";
-
+                   
                      // 左右边轮动添加
                     var $el_l = $el.find(".m-overflow-tb-cnt .m-media-auto-l");
                     var $el_r = $el.find(".m-overflow-tb-cnt .m-media-auto-r");
-                    var $el_l_h = $el_l.height();
-                    var $el_r_h = $el_r.height();
-                    var $el_l_last_h = $el_l.find(".m-media").last().height();
-                    var $el_r_last_h = $el_r.find(".m-media").last().height();
-                    var intoL = false;
-                    if ($el_l_h - $el_r_h >= 0) {
-                        
-                        intoVal = Math.ceil(($el_l_h - $el_r_h) / $el_r_last_h);
-                        intoVal = isNaN(intoVal) ? 0 : intoVal;
-                        intoL = false;
-                    } else {
-                        intoVal = Math.ceil(($el_r_h - $el_l_h) / $el_l_last_h);
-                        intoVal = isNaN(intoVal) ? 0 : intoVal;
-                        intoL = true;
-                    }
 
-                  
-            
                     for (var i = 0; i < res.length; i++) {
-
 
                         var li = `  <li class="m-media">
                                     <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
@@ -283,45 +263,23 @@
                                             </div>
 
                                         </div>
-
-
                                     </a>
                                 </li>`;
 
-                         // 左右边轮动添加
-                        if (intoVal <= 0) {
-                            
-                            if (i % 2 === 0) {
+                        var $el_l_h = $el_l.height();
+                        var $el_r_h = $el_r.height();
 
-                                // 左边列表
-                                lis_l += li;
-                            } else {
+                        if ($el_l_h < $el_r_h) {
+                            $el.find(".m-overflow-tb-cnt .m-media-auto-l").append(li);
 
-                                // 右边列表
-                                lis_r += li;
-                            }
-                        }
-                       
-                        if (intoVal >0) {
-                            if (intoL) {
-
-                                // 左边列表
-                                lis_l += li;
-                                intoVal--;
-                            } else {
-
-                                // 右边列表
-                                lis_r += li;
-                                intoVal--;
-                            }
-                           
-                        }
-                      
+                        } else {
+                            $el.find(".m-overflow-tb-cnt .m-media-auto-r").append(li);
+                        }  
                     }
 
                     $el.data("pageindex", ++page);
-                    $el.find(".m-overflow-tb-cnt .m-media-auto-l").append(lis_l);
-                    $el.find(".m-overflow-tb-cnt .m-media-auto-r").append(lis_r);
+                   // $el.find(".m-overflow-tb-cnt .m-media-auto-l").append(lis_l);
+                    //$el.find(".m-overflow-tb-cnt .m-media-auto-r").append(lis_r);
 
                     // 执行延迟加载
                     var $aciveEl = m(".m-aside-r-box.active", context);
@@ -333,8 +291,6 @@
                 }, "json");
 
             }
-
-
 
         },
 

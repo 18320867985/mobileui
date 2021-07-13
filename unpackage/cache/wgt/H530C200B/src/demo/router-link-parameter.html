@@ -64,8 +64,7 @@
         loadJs: [
             
         ],
-        // isAmd:false, /*默认为isAmd=true异步加载js, isAmd=false同步加载js*/
-
+       
         // 生命周期函数--监听页面加载完成
         onLoad: function (context, parameter) {
 
@@ -74,7 +73,7 @@
 
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
-
+          
             m("pre", context).html("接收的参数："+JSON.stringify(parameter));
 
 

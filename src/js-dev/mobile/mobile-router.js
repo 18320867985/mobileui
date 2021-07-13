@@ -5,6 +5,7 @@
 
 + function () {
 
+
     /*创建Router对象*/
     var Router = function (selector, content) {
 
@@ -16,11 +17,12 @@
             }
         }
     };
- 
-    Router.transitionTime = 250;
+
+    Router.transitionTime = 300;
     Router.fineObjs = {};
     Router.baseUrl = "";
     Router.jsLists = [];    // js 加载集合
+    Router.htmlUrls = [];   // html 文件的 css js 集合
     Router.caches = [];
     Router.ids = [];
     Router.tapTime = new Date().getTime(); // 点击相隔的时间
@@ -222,6 +224,7 @@
 
                 if (el1.nodeType === 1 && el1.tagName === "LINK") {
 
+                    // Router.htmlUrls 集合检测
                     el1.setAttribute("type", "text/html");
                     el1.setAttribute("data-Router-id", id);
                     el1.setAttribute("type", "text/css");
@@ -330,7 +333,7 @@
         }, function () {
             // 加载失败
             var $p = m("#m-router-" + Router.getId());
-            m(".m-hd-top-ttl", $p).html("");
+            //  m(".m-hd-top-ttl", $p).html(`<div class="_fail"> ~<span class="icon icon-nanguo"></span>~</div>`);
             //m-router-cnt
             $p.find(".m-router-loading").hide();
             $p.append(`<div class="m-router-loading-fail">~数据加载失败了~</div>`);
@@ -346,7 +349,7 @@
 
                 obj.$moveElment = m(this);
                 obj.moveElmentX = obj.$moveElment.translateX();
-                obj.moveElmentWidth=obj.$moveElment.width();
+                obj.moveElmentWidth = obj.$moveElment.width();
                 obj.$prevEl = Router.getPrevEl();
                 obj.$prevEl.transition("none");
                 obj.$moveElment.transition("none");
@@ -392,7 +395,7 @@
                         if (movePrevWidth > 0) {
                             movePrevWidth = 0;
                         }
-                        obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0); 
+                        obj.$prevEl.removeClass("in").translateX(movePrevWidth).translateZ(0);
                     }
                 }
             },
@@ -400,7 +403,7 @@
 
                 if (obj.isX) {
                     var t = 0.5;
-                    var transition = "transform  " + Router.transitionTime * t + "ms  linear";
+                    var transition = "transform  " + Router.transitionTime * t + "ms ease";
                     if (obj.$moveElment.translateX() < obj.$moveElment.width() / 2) {
                         obj.$moveElment.transition(transition);
                         if (!Router.isOneMove) { obj.$moveElment.translateX(0).translateZ(0); }
@@ -417,6 +420,7 @@
                 obj.oneTouch = undefined;
                 obj.$moveElment.removeClass("m-router-box-move");
             });
+
     }
 
     function _setRouterObj(el, obj) {
@@ -464,10 +468,6 @@
         } else {
             Router.reqSync(obj, urls, onload);
         }
-
-        // 执行页面的函数
-        Router.runBindFn();
-
     }
 
     // 定义执行函数
@@ -514,7 +514,7 @@
 
     // 异步并行加载js  全部加载完成再执行函数
     Router.req = function (obj, urls, fn) {
-      
+
         obj = obj instanceof Object ? obj : {};
         if (typeof urls === "function") {
             fn = urls;
@@ -522,63 +522,67 @@
         } else {
             urls = urls instanceof Array ? urls : [];
         }
-            
+
         var $el = Router.getActiveEl(); //m( "#m-router-" + Router.getId());
         _setRouterObj($el, obj);
-       // console.log(obj);
-                   
-         // 遍历器
-        var activeUrls = _activeUrls(urls);
-            var itr = Router.iterator(activeUrls);
-           
-            for (var i = 0; i < activeUrls.length; i++) {
-                if (Router.ckUrl(activeUrls[i])) {
+        // console.log(obj);
 
-                    _addAllIterator(itr, fn, activeUrls[i], urls);
-                }
+        // 遍历器
+        var activeUrls = _activeUrls(urls);
+        var itr = Router.iterator(activeUrls);
+
+        for (var i = 0; i < activeUrls.length; i++) {
+            if (Router.ckUrl(activeUrls[i])) {
+
+                _addAllIterator(itr, fn, activeUrls[i], urls);
             }
+        }
 
         if (activeUrls.length === 0) {
             var parameter = _getUrlParameter($el);
             fn.call($el, $el, parameter);
-          
+
             // 监听页面显示 触发的事件
-            $el.emit("m-router-show", [$el, Router.getId()]);  
+            $el.emit("m-router-show", [$el, Router.getId()]);
         }
+
+        // 执行页面的函数
+        Router.runBindFn();
 
         return this;
     };
 
     // 同步加载js  按顺序加载完成再执行函数
     Router.reqSync = function (obj, urls, fn) {
-     
-            obj = obj instanceof Object ? obj : {};
-            if (typeof urls === "function") {
-                fn = urls;
-                urls = [];
-            } else {
-                urls = urls instanceof Array ? urls : [];
-            }
+
+        obj = obj instanceof Object ? obj : {};
+        if (typeof urls === "function") {
+            fn = urls;
+            urls = [];
+        } else {
+            urls = urls instanceof Array ? urls : [];
+        }
 
         var $el = Router.getActiveEl(); //m("#m-router-" + Router.getId());
         _setRouterObj($el, obj);
-           
-            // 遍历器
+
+        // 遍历器
         var activeUrls = _activeUrls(urls);
-            var itr = Router.iteratorSync(activeUrls);
-            var itr2 = itr.next();
-            if (!itr2.done) {
-                _addAllIteratorSync(itr, fn, itr2.value, urls);
-            }
+        var itr = Router.iteratorSync(activeUrls);
+        var itr2 = itr.next();
+        if (!itr2.done) {
+            _addAllIteratorSync(itr, fn, itr2.value, urls);
+        }
 
         if (activeUrls.length === 0) {
             var parameter = _getUrlParameter($el);
             fn.apply($el, $el, parameter);
-                // 监听页面显示 触发的事件
-                $el.emit("m-router-show", [$el, Router.getId()]); 
-            }
-        
+            // 监听页面显示 触发的事件
+            $el.emit("m-router-show", [$el, Router.getId()]);
+        }
 
+        // 执行页面的函数
+        Router.runBindFn();
         return this;
     };
 
@@ -675,16 +679,16 @@
     // bind 函数
     Router.bindObj = {};
     Router.bindFn = function (fn) {
-
+       
         if (typeof fn === "function") { Array.prototype.push.call(Router.bindObj, fn); };
        
     };
 
      // 执行 函数
     Router.runBindFn = function (fn) {
-
+       
         for (var pros in Router.bindObj) {
-
+           
             if (typeof Router.bindObj[pros] === "function") { Router.bindObj[pros]();};
         }
 
@@ -848,14 +852,9 @@
 
     // 添加路由
     Router.link = function (src, parameter, isShowBtn) {
-
+      
         isShowBtn = typeof isShowBtn === "boolean" ? isShowBtn: true;
-        var nowTime = new Date().getTime();
-
-        // 相隔延迟时间的点击
-        if ((nowTime - Router.tapTime) > Router.transitionTime) {
-            Router.tapTime = nowTime;
-
+      
             var elm = document.body || document.documentElement;
             var id = Router.getId() + 1;
             var routerMask = document.createElement("div");
@@ -920,7 +919,7 @@
             _compilerHtml(context, src, {}, false, function () {         
                 m.setRouterLayout();
             }, routerEl.id);
-        }
+ 
     };
 
     // 删除路由
@@ -1024,13 +1023,27 @@
 
     // Router静态扩展
     m.extend({
-        router: Router      
+        router: Router,
+        setRouterLayout: function () {
+
+            // 设置页面布局 整体框架设置内容height
+            var $el = m.router.getActiveEl();
+            var $bd = $el;
+            var $header = $(".m-router-back", $el);
+            var $cont = $(".m-router-cnt", $el);
+            var $bd_height = parseFloat($bd.height()),
+                $header_height = parseFloat($header.height());
+            var $cont_height = $bd_height - $header_height;
+            $cont.height($cont_height);         // set cnt height
+            $cont.css("top", $header_height);   // set cnt top
+        }
     });   
 
     // Router实例扩展
     m.fn.extend({
         setInterval: Router.setInterval,
-        setTimeout:Router.setTimeout
+        setTimeout: Router.setTimeout,
+       
     });   
 
     // 初始化默认为m-bd 添加id值
@@ -1047,30 +1060,43 @@
         });
     }
 
-    function setRouterLayout() {
-
-        // 整体框架设置内容height
-        var $el = m.router.getActiveEl();
-        var $bd =$el;
-        var $header = $(".m-router-back", $el);
-        var $cont = $(".m-router-cnt", $el);
-
-        var $bd_height = parseFloat($bd.height()),
-            $header_height = parseFloat($header.height());
-
-        var $cont_height = $bd_height - $header_height;
-        $cont.height($cont_height); // set cnt height
-        $cont.css("top", $header_height); // set cnt top
-
-    }
-
-    // 设置页面布局
-    m.extend({
-        setRouterLayout: setRouterLayout
-    });
-
     mBack(); //返回上一页 
     m.setRouterLayout(); //整体框架设置内容
-    m(window).on("resize", setRouterLayout);
+    m(window).on("resize", m.setRouterLayout);
+
+    // 绑定函数 router.link 运行时执行 
+    m.router.bindFn(function () {
+
+        //获取当前激活路由页元素
+        var $activeEl = m.router.getActiveEl();
+        // m-media组件 a[data-link] 链接跳转
+        m(".m-media-list", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+
+        });
+
+        // m-slide组件 a[data-link] 链接跳转
+        m(".m-slide", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+
+        });
+
+        // m-listoption组件 a[data-link] 链接跳转
+        m(".m-listoption", $activeEl).on("tap", "a[data-link]", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            m.router.alink.call(this);
+
+        });
+
+
+    });
 
 }();

@@ -83,7 +83,14 @@ gulp.task('release', ['concat'], function() {
 	//pipe是进入流管道
 	//gulp.dest() 是复制文件
 
-	gulp.src(['./src/**/*.html']).pipe(gulp.dest('./dist')); //复制html
+	gulp.src(['./src/**/*.html'])
+		//.pipe(minHtml({
+		//collapseWhitespace: true,
+		//removeComments: true,
+		//minifyJS: true,  //压缩页面JS
+		//minifyCSS: true  //压缩页面CSS
+		//}))
+		.pipe(gulp.dest('./dist')); //复制html
 
 	// 模式1
 	//gulp.src('./src/css/**/*.css').pipe(minCss()).pipe(gulp.dest('./dist/css')); //复制css

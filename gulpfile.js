@@ -106,7 +106,7 @@ gulp.task('release', ['concat'], function() {
 		//.pipe(img())                     // 压缩图片
 		.pipe(gulp.dest('./dist/images/')); //复制img
 		
-	gulp.src('./src/css/font/**/*.*').pipe(minCss()).pipe(gulp.dest('./dist/css/font')); //复制font
+	gulp.src('./src/css/font/**/*.*').pipe(gulp.dest('./dist/css/font')); //复制font
 	gulp.src(['./src/json/**/*.json']).pipe(gulp.dest('./dist/json')); //json
 
 });

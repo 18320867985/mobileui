@@ -8,19 +8,18 @@
 
 @import "../var.scss";
 .m-overflow-tb {
-    width:100%;
+    position: relative;
+    width: 100%;
     height: 100%;
     touch-action: pan-y;
     -webkit-overflow-scrolling: touch;
-    overflow-y:auto;
-    overflow-x:hidden;
-    background:$body-bg;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: $body-bg;
 
     &.m-bar-no::-webkit-scrollbar {
         display: none;
     }
-
-   
 }
 
 .m-overflow-tb-cnt {

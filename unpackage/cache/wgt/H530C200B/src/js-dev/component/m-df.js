@@ -28,55 +28,19 @@ $(function () {
     m.setLayout();
     m(window).on("resize", m.setLayout);
 
-    // 阻止默认行为
-    m("a").click(function (event) {
-       if(!m(this).hasAttr("data-open")){
-        event.preventDefault();	
-       }
+    m(document).on("touchstart",function (event) {
+         event.preventDefault();
     });
 
+    m(document).on("touchmove", function (event) {
+        event.preventDefault();
+    });
+   
     m(document).on("click", "a", function (event) {
-		if(!m(this).hasAttr("data-open")){
-		 event.preventDefault();	
+        if (!m(this).hasAttr("data-open")) {
+            event.preventDefault();	
 		}
-       
-       
-    });
-
-    // 绑定函数 router.link 运行时执行 
-    m.router.bindFn(function () {
-
-        //获取当前激活路由页元素
-        var $activeEl = m.router.getActiveEl();
-
-        // m-media组件 a[data-link] 链接跳转
-        m(".m-media-list", $activeEl).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            event.stopPropagation();
-            m.router.alink.call(this);
-
-        });
-
-        // m-slide组件 a[data-link] 链接跳转
-        m(".m-slide", $activeEl).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            event.stopPropagation();
-            m.router.alink.call(this);
-
-        });
-
-        // m-listoption组件 a[data-link] 链接跳转
-        m(".m-listoption", $activeEl).on("tap", "a[data-link]", function (event) {
-
-            event.preventDefault();
-            event.stopPropagation();
-            m.router.alink.call(this);
-
-        });
-
-
+           
     });
 
 

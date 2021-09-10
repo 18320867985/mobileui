@@ -122,7 +122,6 @@
 		}
     }
 
-
     // scrollLeft 动画
     function _scrollLeft(self, x, time) {
 
@@ -195,7 +194,7 @@
 
         for (var prop in parentObj) {
 
-            if (typeof parentObj[prop] === "object") {
+            if (typeof parentObj[prop] === "object" && parentObj[ prop ] !== null) {
 
                 childObj[prop] = parentObj[prop].constructor === Array ? [] : {};
                 _extendDeep(parentObj[prop], childObj[prop]);

@@ -105,7 +105,6 @@
 
             // context 当前路由模块上下文对象
             //console.log("onLoad:", context);
-
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
@@ -113,30 +112,26 @@
             m(".m-slide", context).eq(0).mSlide({time:5000});
             m(".m-slide",context).eq(1).mSlide({ auto: true });
            
-
 			// 点击跳转
 			m("#router-link",context).on("tap", function (event) {
-			
 			    m.router.link("./demo/router-link-parameter.html", {age:20,name:"mini"});
 			});
 			
 			m("#router-link-2",context).on("tap", function (event) {
-			
+		
 			     m.router.link("./demo/m-touch-tab-menu-bottom.html", {}, false);
 			 });
 			
 			m("#router-link-3",context).on("tap", function (event) {
-			
 			 m.router.link("./demo/router-back.html");
 			});
-            m("#router-link-4", context).on("tap", function (event) {
 
+            m("#router-link-4", context).on("tap", function (event) {
                 m.router.link("./demo/m-touch-tab-menu-bottom.html", {}, false);
             });
 
             // 轮播图切换 触发事件 tab.m.slide
             m(".m-slide", context).on("tab.m.slide", function (event,el,index) {
-
                //console.log("el:", el);
                console.log("index:", index);
 

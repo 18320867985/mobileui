@@ -197,7 +197,7 @@ var mobileDom = createCommonjsModule(function (module) {
 
 			for (var prop in parentObj) {
 
-				if (_typeof(parentObj[prop]) === "object") {
+				if (_typeof(parentObj[prop]) === "object" && parentObj[prop] !== null) {
 
 					childObj[prop] = parentObj[prop].constructor === Array ? [] : {};
 					_extendDeep(parentObj[prop], childObj[prop]);

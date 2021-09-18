@@ -37,7 +37,7 @@
                 </div>
                 <div class="m-input vd-box">
                     <label class="m-input-label">密码</label>
-                    <input class="m-input-box vd-item" type="text" name="pwd" vd-req vd-req-msg="密码不能为空" vd-compare-emit="pwd2" vd-pattern="^\S{8,32}$" vd-pattern-msg="密码长度8到32位" placeholder="输入密码" />
+                    <input class="m-input-box vd-item" type="text" name="pwd" vd-req vd-req-msg="密码不能为空" vd-compare-emit="pwd2" vd-pattern="^\S{8,32}m" vd-pattern-msg="密码长度8到32位" placeholder="输入密码" />
                 </div>
 
                 <div class="m-input vd-box">
@@ -49,7 +49,7 @@
 
                 <div class="m-input vd-box">
                     <label class="m-input-label">手机号码</label>
-                    <input class="m-input-box vd-item" type="text" name="phone" vd-req vd-req-msg="手机号码不能为空" vd-pattern="^1\d{10}$"
+                    <input class="m-input-box vd-item" type="text" name="phone" vd-req vd-req-msg="手机号码不能为空" vd-pattern="^1\d{10}m"
                            vd-pattern-msg="手机格式不对" maxlength="11" vd-remote="json/remote.json"  vd-remote-msg="手机号码已存在" placeholder="输入手机号码" />
                     <!-- vd-dep-btn -->
                     <button type="button" class="m-input-btn vd-dep-btn" href="">发送</button>
@@ -66,7 +66,7 @@
                 <div class="m-input  vd-box">
                     <label class="m-input-label">邮箱</label>
                     <input class="m-input-box  vd-item" type="text" name="email"
-                           vd-req vd-req-msg="邮箱不能为空" vd-pattern="^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$" vd-pattern-msg="收件人格式不对" value=""
+                           vd-req vd-req-msg="邮箱不能为空" vd-pattern="^(\w-*\.*)+@(\w-?)+(\.\w{2,})+m" vd-pattern-msg="收件人格式不对" value=""
                            placeholder="输入邮箱" />
                 </div>
 
@@ -123,7 +123,7 @@
             // 验证全部=>vd1.validate();
 
             // 点击提交验证
-            $(".vd-btn",context).on("tap", function () {
+            m(".vd-btn",context).on("tap", function () {
 
                 // 是否验证成功
                 vd1.isSuccess(
@@ -131,44 +131,44 @@
                     function (obj) {
 
                         vd1.reset();
-                        $.mAlert(JSON.stringify(obj));
+                        m.mAlert(JSON.stringify(obj));
 
                     },
                     // error
                     function (obj) {
 
                         //console.log(obj);
-                        $.mAlert(obj.errorMsg, function () { obj.el.focus(); });
+                        m.mAlert(obj.errorMsg, function () { obj.el.focus(); });
 
                     });
             });
 
             // 发送验证码
-            $(".vd-dep-btn",context).tap(function () {
+            m(".vd-dep-btn",context).tap(function () {
 
                 // 根据name属性获取对象
                 if (vd1.getObj("phone").bl) {
 
-                    $.mInfo("已发送验证码");
+                    m.mInfo("已发送验证码");
                 };
 
             });
 
             m("#city",context).focus(function () {
                 m(this).blur();
-                $.mPicker({ type: "city1" }, function (val) {
+                m.mPicker({ type: "city1" }, function (val) {
                     m(this).val(val.city.city1.txt);
                     vd1.check(this);
                 }.bind(this));
             });
 
             // remote 验证验证之前触发
-            $(document).on("onremotebefore", function (e, el) {
+            m(document).on("onremotebefore", function (e, el) {
                 // console.log("onremotebefore element", el)
             })
 
             // remote 验证验证完成触发
-            $(document).on("onremoteafter", function (e, el, v) {
+            m(document).on("onremoteafter", function (e, el, v) {
                 //console.log("onremoteafter value:", v)
             })
 
@@ -216,7 +216,7 @@
  a.非空验证 => 验证属性： vd-req
     验证错误提示信息：vd-req-msg="此字段不能为空"
 
- b.正则验证 => 验证属性： vd-pattern="^1\d{10}$"
+ b.正则验证 => 验证属性： vd-pattern="^1\d{10}m"
           验证错误提示信息：vd-pattern-msg="此字段格式不对"
 
  c.ajax远程验证 => 验证属性： vd-remote="json/remote.json"   返回值 0=false 或 1=true
@@ -232,14 +232,14 @@
      例如html: <input vd-remote-name="code,phone"  class="form-control vd-item"/>
      名称转换用code=codeName号 是把code属性转换成发送的ajax对象属性codeName  <input vd-remote-name="code=codeName,phone=tel"  class="form-control vd-item"/>
 
-     远程验证之前的 onremotebefore  $(el).on("onremotebefore",function(event,el){ });
-    远程验证之后的 onremoteafter   $(el).on("onremoteafter",function(event,el,data){ });
+     远程验证之前的 onremotebefore  m(el).on("onremotebefore",function(event,el){ });
+    远程验证之后的 onremoteafter   m(el).on("onremoteafter",function(event,el,data){ });
 
     // 发送验证码
-    $(".vd-dep-btn").click(function () {
+    m(".vd-dep-btn").click(function () {
         // 根据name属性获取对象
         if (vd1.getObj("c").bl) {
-            $.alert("", "已发送验证码");
+            m.alert("", "已发送验证码");
         };
     });
 
@@ -270,7 +270,7 @@
 
 
 7.提交触发
-$(".vd-btn").on("click", function() {
+m(".vd-btn").on("click", function() {
 
         // 是否验证成功
         vd1.isSuccess(
@@ -279,7 +279,7 @@ $(".vd-btn").on("click", function() {
             //vd1.disabledItem();  //禁用每一项
             //vd1.reset();  //重设表单并清空所以内容和检测验
             //vd.isSubmit=true; 恢复提交按钮
-            //$.alert("",JSON.stringify(obj));
+            //m.alert("",JSON.stringify(obj));
         },
         // error
         function(obj) {

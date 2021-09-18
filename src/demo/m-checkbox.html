@@ -1,8 +1,5 @@
-﻿
-<!-- 1. css  style  区域 -->
+﻿<!-- 1. css  style  区域 -->
 <style>
-
-  
     #m-checkbtn .m-overflow-tb-cnt {
         padding: 1rem .5rem;
     }
@@ -11,7 +8,8 @@
         margin-left: .5rem;
     }
 
-    #m-checkbtn .m-overflow-tb h4, p {
+    #m-checkbtn .m-overflow-tb h4,
+    p {
         padding: .5rem;
     }
 
@@ -26,7 +24,6 @@
         <div class="m-overflow-tb-cnt">
 
             <!--内容start -->
-
 
             <div class="m-checkbox ">
                 <span class="m-checkbox-item icon  active"></span>
@@ -156,63 +153,67 @@
             //"./js/m-vd.js",
             //"./js/cityData.js"
         ],
-        
+
         // 生命周期函数--监听页面显示
-        onLoad: function (context, parameter) {
+        onLoad: function (context, parameter)
+        {
 
             // context 当前路由模块上下文对象
             //console.log("onLoad:", context);
-
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
             /*************m-checkbox-单选****************/
             // m-checkbox 触发自定义的事件           ,
-            $("#aixin",context).on("check.m.checkbox", function (e, el, bl) {
+            m("#aixin", context).on("check.m.checkbox", function (e, el, bl)
+            {
                 console.log(bl, el)
                 bl = !!bl;
-                $(".m-checkbox-val",context).text(bl)
+                m(".m-checkbox-val", context).text(bl)
             });
             // get
-            $(".m-checkbox-get",context).tap(function (e) {
-                var v = $("#aixin",context).mCheckbox("get");
+            m(".m-checkbox-get", context).tap(function (e)
+            {
+                var v = m("#aixin", context).mCheckbox("get");
                 v = !!v;
-                $.mAlert("获取选择的值:" + v + "");
-
-
+                m.mAlert("获取选择的值:" + v + "");
             });
             // set
-            $(".m-checkbox-set",context).tap(function (e) {
-                $("#aixin",context).mCheckbox("set",true);
+            m(".m-checkbox-set", context).tap(function (e)
+            {
+                m("#aixin", context).mCheckbox("set", true);
 
             });
 
             /*************m-checkbox-group多选****************/
 
-            $(".m-checkbox-group",context).on("check.m.checkbox.group", function (e, el, arrs) {
-
-                $(".m-checkbox-group-val",context).text(JSON.stringify(arrs));
+            m(".m-checkbox-group", context).on("check.m.checkbox.group", function (e, el, arrs)
+            {
+                m(".m-checkbox-group-val", context).text(JSON.stringify(arrs));
                 console.log(arrs)
-                //$.alert("","选择的值为:"+arrs);
+                //m.alert("","选择的值为:"+arrs);
             });
 
-            $(".m-checkbox-group-get",context).tap(function (e) {
-                var v = $(".m-checkbox-group",context).mCheckboxGroup("get");
-                $.mAlert("获取选择的值" + "[" + v + "]");
+            m(".m-checkbox-group-get", context).tap(function (e)
+            {
+                var v = m(".m-checkbox-group", context).mCheckboxGroup("get");
+                m.mAlert("获取选择的值" + "[" + v + "]");
             });
 
-            $(".m-checkbox-group-set",context).tap(function (e) {
-                $(".m-checkbox-group",context).mCheckboxGroup("set",["js", "c#"]);
-
+            m(".m-checkbox-group-set", context).tap(function (e)
+            {
+                m(".m-checkbox-group", context).mCheckboxGroup("set", [ "js", "c#" ]);
             });
 
-            $(".m-checkbox-group-fn",context).tap(function (e) {
-
-                $(".m-checkbox-group",context).mCheckboxGroup("set",function (v) {
-                    var arrs = ["js", "jquery"];
-                    for (var i = 0; i < arrs.length; i++) {
-
-                        if (arrs[i] === v) {
+            m(".m-checkbox-group-fn", context).tap(function (e)
+            {
+                m(".m-checkbox-group", context).mCheckboxGroup("set", function (v)
+                {
+                    var arrs = [ "js", "jquery" ];
+                    for (var i = 0; i < arrs.length; i++)
+                    {
+                        if (arrs[ i ] === v)
+                        {
                             return true;
                             break;
                         }
@@ -223,87 +224,84 @@
             });
 
             // 全选
-            $(".m-checkbox-group-all",context).tap(function () {
-                $(".m-checkbox-group",context).mCheckboxGroup("all",true);
+            m(".m-checkbox-group-all", context).tap(function ()
+            {
+                m(".m-checkbox-group", context).mCheckboxGroup("all", true);
 
             });
 
             // 反选
-            $(".m-checkbox-group-no",context).tap(function () {
-                $(".m-checkbox-group",context).mCheckboxGroup("all",false);
+            m(".m-checkbox-group-no", context).tap(function ()
+            {
+                m(".m-checkbox-group", context).mCheckboxGroup("all", false);
 
             });
-
 
             /*m-radiobox-group 组件-单选*/
             // set
-            $(".m-radiobox-group-set",context).tap(function () {
-                $("#m-radiobox-group1",context).mRadioboxGroup("set","中");
+            m(".m-radiobox-group-set", context).tap(function ()
+            {
+                m("#m-radiobox-group1", context).mRadioboxGroup("set", "中");
                 // 或者指定下标index
-                //$(".v-radiobtn-group").vradiobtnGroup(1);
-
+                //m(".v-radiobtn-group").vradiobtnGroup(1);
             });
 
             // get
-            $(".m-radiobox-group-get",context).tap(function () {
-                var v = $("#m-radiobox-group1",context).mRadioboxGroup("get");
-                 $.mAlert("选择的值：" + v);
+            m(".m-radiobox-group-get", context).tap(function ()
+            {
+                var v = m("#m-radiobox-group1", context).mRadioboxGroup("get");
+                m.mAlert("选择的值：" + v);
             });
-
 
             // 单选 m-radiobtn-group 自定事件
-            $("#m-radiobox-group1",context).on("check.m.radiobox.group", function (e, el, v) {
+            m("#m-radiobox-group1", context).on("check.m.radiobox.group", function (e, el, v)
+            {
                 console.log(v, el)
-                $(".m-radiobox-group-val",context).text(JSON.stringify(v));
+                m(".m-radiobox-group-val", context).text(JSON.stringify(v));
             });
-
-
 
             /*m-radiobox-group 组件-单选*/
             // set
-            $(".m-radiobox-group-set2", context).tap(function () {
-                $("#m-radiobox-group2", context).mRadioboxGroup("set","快");
+            m(".m-radiobox-group-set2", context).tap(function ()
+            {
+                m("#m-radiobox-group2", context).mRadioboxGroup("set", "快");
                 // 或者指定下标index
-                //$(".v-radiobtn-group").vradiobtnGroup(1);
+                //m(".v-radiobtn-group").vradiobtnGroup(1);
 
             });
 
             // get
-            $(".m-radiobox-group-get2", context).tap(function () {
-            
-                var v = $("#m-radiobox-group2", context).mRadioboxGroup("get");
+            m(".m-radiobox-group-get2", context).tap(function ()
+            {
+                var v = m("#m-radiobox-group2", context).mRadioboxGroup("get");
                 console.log(v)
-                $.mAlert("选择的值：" + v);
+                m.mAlert("选择的值：" + v);
             });
 
 
             // 单选 m-radiobtn-group 自定事件
-            $("#m-radiobox-group2", context).on("check.m.radiobox.group", function (e, el, v) {
+            m("#m-radiobox-group2", context).on("check.m.radiobox.group", function (e, el, v)
+            {
                 console.log(v, el)
-                $(".m-radiobox-group-val2", context).text(JSON.stringify(v));
+                m(".m-radiobox-group-val2", context).text(JSON.stringify(v));
             });
-
-
-
 
         },
 
         // 生命周期函数--监听页面显示
-        onShow: function (context) {
+        onShow: function (context)
+        {
             // context 当前路由模块上下文对
             //console.log("onShow", context);
         },
 
         // 生命周期函数--监听页面隐藏
-        onHide: function (context) {
+        onHide: function (context)
+        {
             // context 当前路由模块上下文对
             // console.log("onHide", context);
-
         },
 
     });
 
 </script>
-
-
-

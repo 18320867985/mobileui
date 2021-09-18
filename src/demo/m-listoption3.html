@@ -26,8 +26,6 @@
 
                 <!--<li class="m-listoption-item">
                 <div class="m-listoption-item-cnt">
-
-
                     <div class="m-listoption-item-left">
                         <a href="#">
                             <img src="../images/头像.png" alt="Alternate Text" />
@@ -35,7 +33,6 @@
                                 <h4 class="_ttl elp-1">微信群</h4>
                                 <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
                             </div>
-
                         </a>
 
                     </div>
@@ -89,7 +86,6 @@
 
             // context 当前路由模块上下文对象
             //console.log("onLoad:", context);
-
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
@@ -100,7 +96,6 @@
 
             // 拉到底部触发
             m(".m-overflow-tb",context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
-
                 ajaxData(m(el));
             });
 
@@ -110,7 +105,6 @@
             // ajax 加载数据
             function ajaxData($el) {
                 if ($el.data("loadingEnd")) {
-
                     return;
                 }
                 $el.data("loadingEnd", true);
@@ -148,19 +142,16 @@
                                                       <h4 class="_ttl elp-1">微信群</h4>
                                                     <p class="_txt elp-1">列表数据-${page}页-${index + 1}条</p>
                                                 </div>
-
                                                 <div>
                                                     <span>6月20日</span>
                                                      <span class="icon icon-cc-bell-o"></span>
                                                 </div>
                                             </div>
-
                                         </a>
 
                                     </div>
                                     <!--列表操作项-->
                                     <div class="m-listoption-item-option">
-                                      
                                         <div class="_item danger">
                                             删除
                                         </div>
@@ -175,7 +166,6 @@
             m(".m-listoption", context).on("auto.m.listoption", function (event, el) {
 
                 var $this = m(el);
-             
                 m.mConfirm("是否确认删除数据？", function () {
                     $this.remove();
                     m.mInfo("数据已删除成功", "danger");

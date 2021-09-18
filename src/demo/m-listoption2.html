@@ -1,11 +1,8 @@
-﻿
-
-<!-- 1. css  style  区域 -->
+﻿<!-- 1. css  style  区域 -->
 <style>
-
-      #m-listoption2   .m-scroll-content {
-            padding-bottom: .5rem;
-        }
+    #m-listoption2 .m-scroll-content {
+        padding-bottom: .5rem;
+    }
 
     .m-confirm2 .m-confirm2-body .m-confirm2-cnt-btn.ok {
         color: red;
@@ -30,9 +27,7 @@
                                 <h4 class="_ttl elp-1">微信群</h4>
                                 <p class="_txt elp-1">2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹2010微信群-笑笑-妹妹</p>
                             </div>
-
                         </a>
-
                     </div>
 
                     <div class="m-listoption-item-option">
@@ -78,48 +73,50 @@
             //"./js/m-vd.js",
             //"./js/cityData.js"
         ],
-       
+
         // 生命周期函数--监听页面加载完成
-        onLoad: function (context, parameter) {
+        onLoad: function (context, parameter)
+        {
 
             // context 当前路由模块上下文对象
             //console.log("onLoad:", context);
-
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
-
-             // overflow-tb上下滑动的插件模式
+            // overflow-tb上下滑动的插件模式
             m(".m-overflow-tb", context).mOverflowTb();
-             // mListoption 触发的插件
-            m(".m-listoption",context).mListoption();
+            // mListoption 触发的插件
+            m(".m-listoption", context).mListoption();
 
             // 拉到底部触发
-            m(".m-overflow-tb",context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
-
+            m(".m-overflow-tb", context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj)
+            {
                 ajaxData(m(el));
             });
 
             // 第一次加载数据
-            ajaxData(m(".m-overflow-tb",context));
+            ajaxData(m(".m-overflow-tb", context));
 
             // ajax 加载数据
-            function ajaxData($el) {
-                if ($el.data("loadingEnd")) {
-
+            function ajaxData($el)
+            {
+                if ($el.data("loadingEnd"))
+                {
                     return;
                 }
                 $el.data("loadingEnd", true);
 
-                m.get("./json/tab.json", function (res) {
+                m.get("./json/tab.json", function (res)
+                {
 
                     $el.data("loadingEnd", false);
                     var page = $el.data("pageindex") || 1;
                     var docf = document.createDocumentFragment();
-                    for (var i = 0; i < res.length; i++) {
+                    for (var i = 0; i < res.length; i++)
+                    {
                         var li = document.createElement("li");
                         li.classList.add("m-listoption-item");
                         li.classList.add("text-danger");
-                        li.innerHTML = listoptionHtml(page,i);
+                        li.innerHTML = listoptionHtml(page, i);
                         docf.appendChild(li);
 
                     }
@@ -130,7 +127,8 @@
 
             }
 
-            var listoptionHtml = function (page, index) {
+            var listoptionHtml = function (page, index)
+            {
 
                 return ` <div class="m-listoption-item-cnt">
 
@@ -143,13 +141,11 @@
                                                     <h4 class="_ttl elp-1">微信群</h4>
                                                     <p class="_txt elp-1">列表数据-${page}页-${index + 1}条</p>
                                                 </div>
-
                                                 <div>
                                                     <span>6月20日</span>
                                                      <span class="icon icon-cc-bell-o"></span>
                                                 </div>
                                             </div>
-
                                         </a>
 
                                     </div>
@@ -173,26 +169,29 @@
             };
 
             // 删除
-            m(".m-listoption",context).on("tap", "._item.danger", function (event) {
+            m(".m-listoption", context).on("tap", "._item.danger", function (event)
+            {
 
                 var $this = m(this);
-                m.mConfirm2("是否确认删除数据？", function () {
+                m.mConfirm2("是否确认删除数据？", function ()
+                {
                     $this.parents(".m-listoption-item").remove();
-                }, null, { ok: "删除" });
+                }, null, {ok: "删除"});
 
             });
-
 
         },
 
         // 生命周期函数--监听页面显示
-        onShow: function (context) {
+        onShow: function (context)
+        {
             // context 当前路由模块上下文对
             //console.log("onShow", context);
         },
 
         // 生命周期函数--监听页面隐藏
-        onHide: function (context) {
+        onHide: function (context)
+        {
             // context 当前路由模块上下文对
             // console.log("onHide", context);
 
@@ -201,5 +200,3 @@
     });
 
 </script>
-
-

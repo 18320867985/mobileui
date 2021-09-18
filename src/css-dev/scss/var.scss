@@ -16,8 +16,6 @@ $rem:20;
 $font-family: "Helvetica Neue", Helvetica, sans-serif !default;
 $font-size: .85rem !default;
 $line-height: 1.4 !default;
-
-
 $text-white:#fff;
 $text-muted: #ddd !default;
 $text-primary: darken(#428bca, 6.5%) !default; 
@@ -25,10 +23,8 @@ $text-success: #5cb85c !default;
 $text-info: #5bc0de !default;
 $text-warning: #f0ad4e !default;
 $text-danger: #d9534f !default;
-
 $text-df: #333 !default;
 $text-gray: #777!default;
-
 
 /*选中激活样式*/
 $active: $text-primary; 
@@ -36,7 +32,6 @@ $active: $text-primary;
 /*body*/
 $body-bg: #f8f8f8;
 $bg-white: #fff;
-
 
 /*loding组件*/
 $text-loading: $text-gray;
@@ -52,7 +47,6 @@ $text-placeholer:#999;
 
 /*标题文字*/
 $h-color: #444;
-
 
 /*路由页标题*/
 $router-ttl: $h-color;

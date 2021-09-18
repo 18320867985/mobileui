@@ -55,16 +55,13 @@
             // confirm信息框  属性设置
             m(".m-btn-success", context).tap(function () {
 
-                $.mConfirm(
+                m.mConfirm(
                     "这是confirm提示框！",
-
                     function () {
-
                         m.mInfo("这是确定的回调函数");
                     },
 
-                    function () {
-
+                    function () {cn
                         m.mInfo("这是取消的回调函数");
                     },
                     {

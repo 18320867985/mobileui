@@ -5,7 +5,6 @@
 
 + function () {
 
-
     /*创建Router对象*/
     var Router = function (selector, content) {
 

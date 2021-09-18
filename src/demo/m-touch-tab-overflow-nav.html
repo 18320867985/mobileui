@@ -123,7 +123,6 @@
                 nav += `<li class="${i === 0 ? `active` : ``}  m-overflow-lr-item " data-tab="#tab${i + 1}">
                                 <a href="javascript:;"> ${navs[i]} </a>
                             </li>  `;
-
                 tab += ` <div class="m-touch-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}" data-ttl="${navs[i]}">
                                 <div class="m-overflow-tb">
                                     <div class="m-overflow-tb-cnt">
@@ -133,18 +132,14 @@
                                     <div class="m-overflow-tb-loading ">
                                           正在加载中...
                                     </div>
-
                                 </div>
-
                             </div>  `;
 
             }
 
-    
             // 导航定位到中间
             m(".m-overflow-lr-cnt", context).html(nav).parents(".m-overflow-lr").mOverflowLr();
             m(".m-touch-tab-cnt", context).html(tab).parent().mTouchTab();
-
 
              //下拉加载
             m(".m-overflow-tb",context).mOverflowTb();
@@ -174,7 +169,6 @@
 
             // reachbottom.m.overflow.tb触发自定义的事件 拉到底部触发
             m(".m-overflow-tb",context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
-
                 var $el = m(el).parents(".m-touch-tab-item");
                 ajaxData($el, $el.index());
 
@@ -204,25 +198,17 @@
                    
                         var li = `  <li class="m-media">
                                     <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
-
                                        <div class="m-lazy m-lazy-mask " title="JD京东">
                                         <img class="m-media-img m-lazy-img"  data-lazy="./${res[i].img}" >
                                        </div>
-
                                         <div class="m-media-body">
                                             <h5 class="m-media-title  elp-1">${ttl}</h5>
-
                                             <p class="m-media-text elp-2">裙子款式好看，摸着舒适，当晚洗后没有发现掉色的现象，面料也很好，做工很细，超过预期哦外包也严实，上身就觉得质感很好，显腿长，关键很显瘦啊。瘦腿效果非常好。面料非常舒服，柔柔的软软的，腰部也没有紧绷感</p>
-
                                             <div class="m-media-icon">
                                                 <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
-
                                                 <div class="m-media-icon-r"><span>看相似的</span></div>
                                             </div>
-
                                         </div>
-
-
                                     </a>
                                 </li>`;
 

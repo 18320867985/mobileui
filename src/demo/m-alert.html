@@ -1,11 +1,8 @@
 <!-- 1. css  style  区域 -->
 <style>
-
-
     #template .pre-box {
         padding: .5rem;
     }
-
     #template pre {
         white-space: pre-wrap;
         background: #333;
@@ -20,9 +17,7 @@
 <section class="m-router-cnt" id="template">
     <div class="m-overflow-tb">
         <div class="m-overflow-tb-cnt">
-
             <!--内容start -->
-
             <button class="m-btn m-btn-success m-btn-block ddd" type="button">alert信息框 属性设置</button>
             <!--内容end -->
         </div>
@@ -53,19 +48,14 @@
 
             // context 当前路由模块上下文对象
             //console.log("onLoad:", context);
-
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
-
-
             // alert信息框 属性设置
             m(".m-btn-success", context).tap(function () {
 
                 $.mAlert(
                     "这是提示的信息！",
-
                     function () {
-
                         m.mInfo("这是确定的回调函数");
                     },
                     {
@@ -87,7 +77,6 @@
         onHide: function (context) {
             // context 当前路由模块上下文对
             // console.log("onHide", context);
-
         },
 
     });

@@ -1,16 +1,13 @@
-﻿
-<!-- 1. css  style  区域 -->
+﻿<!-- 1. css  style  区域 -->
 <style>
-    
     #router-btn .m-overflow-tb-cnt {
         padding: .5rem;
     }
 
-   #router-btn h5 {
+    #router-btn h5 {
         padding: .5rem;
     }
 </style>
-
 
 <!--2. 内容区域 区域 -->
 <section class="m-router-cnt" id="router-btn">
@@ -26,24 +23,24 @@
             <h5>禁用的按钮disabled</h5>
 
             <button type="button" class="m-btn disabled">默认</button>
-            <button type="button" class="m-btn m-btn-primary  disabled">蓝色</button>
-            <button type="button" class="m-btn m-btn-success disabled ">绿色</button>
-            <button type="button" class="m-btn m-btn-warning disabled ">黄色</button>
+            <button type="button" class="m-btn m-btn-primary disabled">蓝色</button>
+            <button type="button" class="m-btn m-btn-success disabled">绿色</button>
+            <button type="button" class="m-btn m-btn-warning disabled">黄色</button>
             <button type="button" class="m-btn m-btn-danger disabled">红色</button>
 
             <h5>若希望无底色、有边框的按钮，仅需增加.m-btn-outline类即可，代码如下：</h5>
 
-            <button type="button" class="m-btn m-btn-primary   m-btn-outline">蓝色</button>
-            <button type="button" class="m-btn m-btn-success m-btn-outline ">绿色</button>
-            <button type="button" class="m-btn m-btn-warning  m-btn-outline">黄色</button>
+            <button type="button" class="m-btn m-btn-primary m-btn-outline">蓝色</button>
+            <button type="button" class="m-btn m-btn-success m-btn-outline">绿色</button>
+            <button type="button" class="m-btn m-btn-warning m-btn-outline">黄色</button>
             <button type="button" class="m-btn m-btn-danger m-btn-outline">红色</button>
 
             <h5>禁用的无底色、有边框的按钮disabled</h5>
 
-            <button type="button" class="m-btn m-btn-primary   m-btn-outline disabled">蓝色</button>
-            <button type="button" class="m-btn m-btn-success   m-btn-outline disabled ">绿色</button>
-            <button type="button" class="m-btn m-btn-warning   m-btn-outline disabled ">黄色</button>
-            <button type="button" class="m-btn m-btn-danger   m-btn-outline disabled">红色</button>
+            <button type="button" class="m-btn m-btn-primary m-btn-outline disabled">蓝色</button>
+            <button type="button" class="m-btn m-btn-success m-btn-outline disabled ">绿色</button>
+            <button type="button" class="m-btn m-btn-warning m-btn-outline disabled ">黄色</button>
+            <button type="button" class="m-btn m-btn-danger m-btn-outline disabled">红色</button>
 
             <h5>块级按钮</h5>
             <button type="button" class="m-btn m-btn-block ">默认</button>
@@ -53,8 +50,7 @@
             <button type="button" class="m-btn m-btn-danger m-btn-block">红色</button>
 
             <h5>无底色、有边框的块级按钮</h5>
-
-            <button type="button" class="m-btn m-btn-primary   m-btn-outline  m-btn-block">蓝色</button>
+            <button type="button" class="m-btn m-btn-primary m-btn-outline  m-btn-block">蓝色</button>
             <button type="button" class="m-btn m-btn-success m-btn-outline  m-btn-block">绿色</button>
             <button type="button" class="m-btn m-btn-warning  m-btn-outline  m-btn-block">黄色</button>
             <button type="button" class="m-btn m-btn-danger m-btn-outline  m-btn-block">红色</button>
@@ -79,54 +75,49 @@
             //"./js/m-vd.js",
             //"./js/cityData.js"
         ],
-       
+
         // 生命周期函数--监听页面显示
-        onLoad: function (context, parameter) {
+        onLoad: function (context, parameter)
+        {
 
             // context 当前路由模块上下文对象
-          //  console.log("onLoad:", context);
-
+            //  console.log("onLoad:", context);
             // context 当前路由模块接受的参数
-           // console.log("parameter:", parameter);
-
+            // console.log("parameter:", parameter);
             // 拉到顶部触发
-            m(".m-overflow-tb", context).on("reachtop", function (event, el, scrollObj) {
-
+            m(".m-overflow-tb", context).on("reachtop", function (event, el, scrollObj)
+            {
                 //  console.log("reachtop.m.overflow.tb", scrollObj);
-
             });
 
             // scroll触发
-            m(".m-overflow-tb", context).on("scroll", function (event, el, scrollObj) {
-
+            m(".m-overflow-tb", context).on("scroll", function (event, el, scrollObj)
+            {
                 //  console.log("scroll.m.overflow.tb", scrollObj);
-
             });
 
             // 拉到底部触发
-            m(".m-overflow-tb", context).on("reachbottom", function (event, el, scrollObj) {
-
-               
+            m(".m-overflow-tb", context).on("reachbottom", function (event, el, scrollObj)
+            {
             });
-
 
         },
 
         // 生命周期函数--监听页面显示
-        onShow: function (context) {
+        onShow: function (context)
+        {
             // context 当前路由模块上下文对
             //console.log("onShow", context);
         },
 
         // 生命周期函数--监听页面隐藏
-        onHide: function (context) {
+        onHide: function (context)
+        {
             // context 当前路由模块上下文对
-       // console.log("onHide", context);
-           
+            // console.log("onHide", context);
+
         },
 
     });
 
 </script>
-
-

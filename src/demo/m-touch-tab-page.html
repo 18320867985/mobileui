@@ -77,7 +77,6 @@
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
-            
             // 触发插件
             m(".m-touch-tab-cnt",context).parent().mTouchTab();
             m(".m-overflow-tb",context).mOverflowTb();
@@ -89,8 +88,6 @@
                 m.router.alink.call(this);
 
             });
-
-
 
             // tab 触发自定义的事件
             m(".m-touch-tab",context).on("tab.m.touch.tab", function (event, el, index) {
@@ -116,17 +113,13 @@
                                         <div class="m-overflow-tb">
                                             <div class="m-overflow-tb-cnt">
                                                  <ul class="m-media-list list-2">
-
                                                  </ul>
                                             </div>
                                          <div class="m-overflow-tb-loading ">
                                             正在加载中...
                                         </div>
-
                                         </div>
-
                                     </div>  `;
-
                 return tab;
 
             }
@@ -142,24 +135,15 @@
 
                         var li = `  <li class="m-media">
                                     <a data-link href="./demo/m-card.html?ttl=第${page}页的详情 &&img=${res[i].img}">
-
-                                   
-                                            <img class="m-media-img "  src="./${res[i].img}">
-                               
+                                        <img class="m-media-img "  src="./${res[i].img}">
                                         <div class="m-media-body">
                                             <h5 class="m-media-title  elp-1 text-center">===第${page}页===</h5>
-
                                             <p class="m-media-text elp-2">裙子款式好看，摸着舒适，当晚洗后没有发现掉色的现象，面料也很好，做工很细，超过预期哦外包也严实，上身就觉得质感很好，显腿长，关键很显瘦啊。瘦腿效果非常好。面料非常舒服，柔柔的软软的，腰部也没有紧绷感</p>
-
                                             <div class="m-media-icon">
                                                 <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
-
                                                 <div class="m-media-icon-r"><span>看相似的</span></div>
                                             </div>
-
                                         </div>
-
-
                                     </a>
                                 </li>`;
 

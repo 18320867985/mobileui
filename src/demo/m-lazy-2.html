@@ -126,7 +126,6 @@
 
             // context 当前路由模块上下文对象
             //console.log("onLoad:", context);
-
             // context 当前路由模块接受的参数
             //console.log("parameter:", parameter);
 
@@ -137,24 +136,18 @@
             for (var i = 0; i < 4; i++) {
                 //nav += `<div class="${i === 0 ? `active` : ``}  m-touch-tab-btn-item" data-tab="#tab${i + 1}">
 
-
                 //              ${navs[i]}
                 //    </div>  `;
-
                 tab += ` <div class="m-touch-tab-item ${i === 0 ? `active` : ``}"  id="tab${i + 1}" data-ttl="${navs[i]}">
                                 <div class="m-overflow-tb">
                                     <div class="m-overflow-tb-cnt">
                                               <ul class="m-media-list list-2">
-
-
                                                </ul>
                                     </div>
                                     <div class="m-overflow-tb-loading ">
                                           正在加载中...
                                     </div>
-
                                 </div>
-
                             </div>  `;
 
             }
@@ -166,10 +159,8 @@
 
             // tap.m.touch.tab.btn触发的事件
             m(".m-touch-tab-btn", context).on("tap.m.touch.tab.btn", function (event, el, index) {
-
                 var $activeEl = m(".m-touch-tab-item", context).eq(index);
                 m(".m-touch-tab", context).mTouchTab("set", index);
-
                 if (!$activeEl.data("isOne")) {
                     $activeEl.data("isOne", true);
                     ajaxData($activeEl, index);
@@ -179,13 +170,11 @@
 
             // tab 触发自定义的事件
             m(".m-touch-tab", context).on("tab.m.touch.tab", function (event, el, index) {
-
                 m(".m-touch-tab-btn", context).mTouchTabBtn("set", index);
                 if (!m(el).data("isOne")) {
                     m(el).data("isOne", true);
                     ajaxData(el, index);
                 }
-
             });
 
             //  move 滑动触发自定义的事件
@@ -193,15 +182,12 @@
                 var w = m(el).find(".m-touch-tab-cnt").width();
                 var ratio = moveY / w;
                 m(".m-touch-tab-btn", context).mTouchTabBtn("move", ratio, moveY / m(el).width());
-
             });
 
             // 拉到底部触发
             m(".m-overflow-tb", context).on("reachbottom.m.overflow.tb", function (event, el, scrollObj) {
-
                 var $el = m(el).parents(".m-touch-tab-item");
                 ajaxData($el, $el.index());
-
             });
 
             // 第一次加载数据
@@ -229,24 +215,17 @@
 
                         var li = `  <li class="m-media">
                                     <a data-link href="./demo/m-card.html?ttl=${ttl}&&img=${res[i].img}">
-
                                         <div class="m-lazy m-lazy-mask" title="JD京东">
                                                 <img class="m-media-img m-lazy-img" data-lazy="./${res[i].img}">
                                           </div>
                                         <div class="m-media-body">
                                             <h5 class="m-media-title  elp-1">${ttl}</h5>
-
                                             <p class="m-media-text elp-2">裙子款式好看，摸着舒适，当晚洗后没有发现掉色的现象，面料也很好，做工很细，超过预期哦外包也严实，上身就觉得质感很好，显腿长，关键很显瘦啊。瘦腿效果非常好。面料非常舒服，柔柔的软软的，腰部也没有紧绷感</p>
-
                                             <div class="m-media-icon">
                                                 <div class="m-media-icon-l"><span>￥</span> <span>288</span></div>
-
                                                 <div class="m-media-icon-r"><span>看相似的</span></div>
                                             </div>
-
                                         </div>
-
-
                                     </a>
                                 </li>`;
 
@@ -263,12 +242,9 @@
                        // $aciveEl.find(".m-overflow-tb").mLazy("init"); //初始化 执行延迟加载
                     }
 
-
                 }, "json");
 
             }
-
-
 
         },
 
